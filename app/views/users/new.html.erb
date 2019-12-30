@@ -1,0 +1,7 @@
+<%= simple_form_for @user, wrapper: :horizontal_form do |f| %>
+    <%= f.input :name %>
+    <%= f.input :lastname %>
+    <%= f.input :phone %>
+    
+    <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

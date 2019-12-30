@@ -32,3 +32,4 @@ yarn-debug.log*
 
 # ADDED
 /config/local_env.yml
+/config/rubocop.yml
