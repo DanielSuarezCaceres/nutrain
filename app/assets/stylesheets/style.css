@@ -1,0 +1,24 @@
+a,a:visited {
+    color: inherit !important;
+    text-decoration: none;
+}
+
+.navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar {
+    background-color: #158c9e;
+    text-decoration: none;
+    border-bottom: 0px;
+    color: white;
+}
+
+.navbar-nav > .active {
+    background-color: #fbb50c;
+    border: medium none;
+}

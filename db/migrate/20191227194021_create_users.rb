@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.text :phone
       t.text :city
       t.text :country
-      t.text :type
+      t.text :role
 
       t.timestamps
     end

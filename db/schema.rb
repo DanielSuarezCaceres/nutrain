@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_194021) do
     t.text "phone"
     t.text "city"
     t.text "country"
-    t.text "type"
+    t.text "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

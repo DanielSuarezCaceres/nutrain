@@ -1,0 +1,23 @@
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Role</th>
+    </tr>
+    <tbody>
+    <% @users = User.all %>
+    <% @users.each do |user| %>
+    <tr>
+        <td class="text-center"><%= user.name %></td>
+        <td class="text-center"><%= user.lastname %></td>
+        <td class="text-center"><%= user.phone %></td>
+        <td class="text-center"><%= user.city %></td>
+        <td class="text-center"><%= user.country %></td>
+        <td class="text-center"><%= user.role %></td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>

@@ -2,6 +2,9 @@
     <%= f.input :name %>
     <%= f.input :lastname %>
     <%= f.input :phone %>
+    <%= f.input :city %>
+    <%= f.input :country %>
+    <%= f.input :role, collection: ['Admin', 'User', 'Nutritionist', 'Trainer', 'Physioterapist', 'Psychologist'], include_blank: false %>
     
     <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
