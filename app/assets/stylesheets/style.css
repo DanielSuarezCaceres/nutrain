@@ -12,13 +12,21 @@ a,a:visited {
 }
 
 .navbar {
-    background-color: #158c9e;
+    /*background-color: #158c9e;*/
+    background-color: #1787ba;
     text-decoration: none;
     border-bottom: 0px;
     color: white;
 }
 
-.navbar-nav > .active {
-    background-color: #fbb50c;
+.navbar-nav > .active > a {
+    background: #86bb15;
+    /* background-color: #fbb50c; */
     border: medium none;
+}
+
+.navbar-default .navbar-nav>.active> a, 
+.navbar-default .navbar-nav>.active> a:focus, 
+.navbar-default .navbar-nav>.active> a:hover {
+  background: #86bb15;
 }

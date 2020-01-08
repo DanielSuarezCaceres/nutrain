@@ -1,0 +1,15 @@
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tbody>
+    <% @routines = Routine.all %>
+    <% @routines.each do |routine| %>
+    <tr>
+        <td class="text-center"><%= routine.name %></td>
+        <td class="text-center"><%= routine.description %></td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>
