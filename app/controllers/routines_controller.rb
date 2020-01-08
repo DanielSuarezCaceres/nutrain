@@ -18,7 +18,7 @@ class RoutinesController < ApplicationController
     if @routine.valid?
       @routine.save
     end
-    redirect_to root_path
+    redirect_to routines_path
   end
 
   def update

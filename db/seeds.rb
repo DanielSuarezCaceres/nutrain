@@ -74,3 +74,12 @@ userManolo = {
   city: "LP",
   country: "Spain"
 }
+
+User.create(adminDaniel)
+User.create(nutritionistAlberto)
+User.create(physiotherapistPaco)
+User.create(psychologistPepe)
+User.create(userJavi)
+User.create(userJuan)
+User.create(userManolo)
+

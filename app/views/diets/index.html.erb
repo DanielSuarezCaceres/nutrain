@@ -1,0 +1,15 @@
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tbody>
+    <% @diets = Diet.all %>
+    <% @diets.each do |diet| %>
+    <tr>
+        <td class="text-center"><%= diet.name %></td>
+        <td class="text-center"><%= diet.description %></td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>
