@@ -1,3 +1,7 @@
+* {
+    font-family: "Muli";
+}
+
 a,a:visited {
     color: inherit !important;
     text-decoration: none;
@@ -13,14 +17,14 @@ a,a:visited {
 
 .navbar {
     /*background-color: #158c9e;*/
-    background-color: #1787ba;
+    background-color: #659DBD;
     text-decoration: none;
     border-bottom: 0px;
     color: white;
 }
 
 .navbar-nav > .active > a {
-    background: #86bb15;
+    background: #86bb15; /*#ffcb9a*/
     /* background-color: #fbb50c; */
     border: medium none;
 }
