@@ -2,6 +2,12 @@
     font-family: "Muli";
 }
 
+/* MATERIAL BOOTSTRAP COLORS:
+main orange: #f57c00
+secondary green: #009688
+secondary blue: #0288d1
+*/
+
 a,a:visited {
     color: inherit !important;
     text-decoration: none;
@@ -17,15 +23,14 @@ a,a:visited {
 
 .navbar {
     /*background-color: #158c9e;*/
-    background-color: #659DBD;
+    background-color: #f57c00;
     text-decoration: none;
     border-bottom: 0px;
     color: white;
 }
 
 .navbar-nav > .active > a {
-    background: #86bb15; /*#ffcb9a*/
-    /* background-color: #fbb50c; */
+    background: #009688;
     border: medium none;
 }
 

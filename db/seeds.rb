@@ -16,7 +16,9 @@ adminDaniel = {
   lastname: "Suarez",
   phone: "643543345",
   city: "LP",
-  country: "Spain"
+  country: "Spain",
+  email: "daniel@correo.es",
+  password: "nutrain"
 }
 
 nutritionistAlberto = {
@@ -25,6 +27,8 @@ nutritionistAlberto = {
   phone: "675765789",
   city: "Madrid",
   country: "Spain",
+  email: "alberto@correo.es",
+  password: "nutrain"
 }
 
 trainerAlvaro = {
@@ -33,6 +37,8 @@ trainerAlvaro = {
   phone: "765567567",
   city: "Valencia",
   country: "Spain",
+  email: "alvaro@correo.es",
+  password: "nutrain"
 }
 
 psychologistPepe = {
@@ -41,6 +47,8 @@ psychologistPepe = {
   phone: "765756798",
   city: "Barcelona",
   country: "Spain",
+  email: "pepe@correo.es",
+  password: "nutrain"
 }
 
 physiotherapistPaco = {
@@ -49,6 +57,8 @@ physiotherapistPaco = {
   phone: "654234123",
   city: "Sevilla",
   country: "Spain",
+  email: "paco@correo.es",
+  password: "nutrain"
 }
 
 userJavi = {
@@ -57,6 +67,8 @@ userJavi = {
   phone: "657765765",
   city: "Santa Cruz",
   country: "Spain",
+  email: "javier@correo.es",
+  password: "nutrain"
 }
 
 userJuan = {
@@ -65,6 +77,8 @@ userJuan = {
   phone: "765896345",
   city: "Murcia",
   country: "Spain",
+  email: "juan@correo.es",
+  password: "nutrain"
 }
 
 userManolo = {
@@ -72,7 +86,9 @@ userManolo = {
   lastname: "Perez",
   phone: "654786653",
   city: "LP",
-  country: "Spain"
+  country: "Spain",
+  email: "manolo@correo.es",
+  password: "nutrain"
 }
 
 User.create(adminDaniel)
