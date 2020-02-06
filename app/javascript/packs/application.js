@@ -20,3 +20,4 @@ require("bootstrap")
 
 import 'bootstrap'
 import './src/application.scss'
+

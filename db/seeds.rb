@@ -18,7 +18,8 @@ adminDaniel = {
   city: "LP",
   country: "Spain",
   email: "daniel@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'Admin'
 }
 
 nutritionistAlberto = {
@@ -28,7 +29,8 @@ nutritionistAlberto = {
   city: "Madrid",
   country: "Spain",
   email: "alberto@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'Nutritionist'
 }
 
 trainerAlvaro = {
@@ -38,7 +40,8 @@ trainerAlvaro = {
   city: "Valencia",
   country: "Spain",
   email: "alvaro@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'Trainer'
 }
 
 psychologistPepe = {
@@ -48,7 +51,8 @@ psychologistPepe = {
   city: "Barcelona",
   country: "Spain",
   email: "pepe@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'Psychologist'
 }
 
 physiotherapistPaco = {
@@ -58,7 +62,8 @@ physiotherapistPaco = {
   city: "Sevilla",
   country: "Spain",
   email: "paco@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'Physiotherapist'
 }
 
 userJavi = {
@@ -68,7 +73,8 @@ userJavi = {
   city: "Santa Cruz",
   country: "Spain",
   email: "javier@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'User'
 }
 
 userJuan = {
@@ -78,7 +84,8 @@ userJuan = {
   city: "Murcia",
   country: "Spain",
   email: "juan@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'User'
 }
 
 userManolo = {
@@ -88,7 +95,8 @@ userManolo = {
   city: "LP",
   country: "Spain",
   email: "manolo@correo.es",
-  password: "nutrain"
+  password: "nutrain",
+  role: 'User'
 }
 
 User.create(adminDaniel)
