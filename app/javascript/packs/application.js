@@ -19,5 +19,8 @@ require("bootstrap")
 // const imagePath = (name) => images(name, true)
 
 import 'bootstrap'
-import './src/application.scss'
+//import './src/application.scss'
 
+$(document).ready(function(){
+    $(".alert").fadeOut(4000);
+})

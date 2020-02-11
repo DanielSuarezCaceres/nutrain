@@ -20,11 +20,37 @@
     <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
 
-    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :country %>
+    <%= f.text_field :country, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :role %>
+    <%= f.select :role, options_for_select(['Admin', 'User', 'Nutritionist', 'Trainer', 'Physioterapist', 'Psychologist']),
+                 {}, {include_blank: false, class: 'form-control'} %>
   </div>
 
   <div class="form-group">

@@ -5,4 +5,30 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  attr_accessor :current_password
+
+  def update_with_password(params={})
+    current_password = params.delete(:current_password) if !params[:current_password].blank?
+
+    if params[:password].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation) if params[:password_confirmation].blank?
+    end
+
+    result = if has_no_password?  || valid_password?(current_password)
+               update_attributes(params)
+             else
+               self.errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+               self.attributes = params
+               false
+             end
+
+    clean_up_passwords
+    result
+  end
+
+  def has_no_password?
+    self.encrypted_password.blank?
+  end
 end
