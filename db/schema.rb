@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
   create_table "diets", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_diets_on_user_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -60,8 +62,10 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
   create_table "routines", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_routines_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

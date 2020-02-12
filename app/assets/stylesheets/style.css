@@ -4,6 +4,7 @@
 
 /* MATERIAL BOOTSTRAP COLORS:
 main orange: #f57c00
+second orange: #fff3e0
 secondary green: #009688
 secondary blue: #0288d1
 */
@@ -11,6 +12,10 @@ secondary blue: #0288d1
 a,a:visited {
     color: inherit !important;
     text-decoration: none;
+}
+
+#btn-sec {
+    background-color: #0288d1;
 }
 
 .logo {

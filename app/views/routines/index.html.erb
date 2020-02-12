@@ -1,10 +1,11 @@
+<%= link_to 'New routine', new_user_routine_path(current_user.id), class: 'btn-sec' %><br>
+
 <table class="table table-striped table-bordered table-hover">
     <tr>
         <th>Name</th>
         <th>Description</th>
     </tr>
     <tbody>
-    <% @routines = Routine.all %>
     <% @routines.each do |routine| %>
     <tr>
         <td class="text-center"><%= routine.name %></td>

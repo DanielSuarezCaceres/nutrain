@@ -7,7 +7,15 @@ Rails.application.routes.draw do
       registration: 'users/registrations'
   }
 
-  resources :users
+  resources :users do
+    resources :routines
+    resources :workouts
+    resources :exercises
+    resources :diets
+    resources :recipes
+    resources :foods
+    resources :appointments
+  end
   resources :routines
   resources :workouts
   resources :exercises

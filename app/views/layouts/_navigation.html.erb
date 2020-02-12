@@ -15,16 +15,16 @@
             <%= link_to 'Users', users_path %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Routines', routines_path %>
+            <%= link_to 'Routines', user_routines_path(current_user.id) %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Diets', diets_path %>
+            <%= link_to 'Diets', user_diets_path(current_user.id) %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Appointments', root_path %>
+            <%= link_to 'Appointments', user_appointments_path(current_user.id) %>
           </li>
           <li class="nav-item">
-            <%= link_to 'My documents', root_path %>
+            <%= link_to 'My documents', root_path(current_user.id) %>
           </li>
           <li class="nav-item">
             <%= link_to 'Contact', root_path %>
@@ -36,7 +36,7 @@
             <%= link_to 'Users', users_path %>
           </li>
           <li clas="nav-item">
-            <%= link_to 'Contact', root_path %>
+            <%= link_to 'Emails', root_path %>
           </li>
         </ul>
       <% end %>

@@ -1,7 +1,7 @@
 class DietsController < ApplicationController
 
   def index
-    @diets = Diet.all
+    @diets = User.find(params[:user_id]).diets
   end
 
   def show
@@ -9,7 +9,7 @@ class DietsController < ApplicationController
   end
 
   def new
-    @diet = Diet.new
+    @diet = Diet.new4
   end
   
   def create

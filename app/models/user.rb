@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :diets
+  has_many :routines
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,5 +32,9 @@ class User < ApplicationRecord
 
   def has_no_password?
     self.encrypted_password.blank?
+  end
+
+  def self.users_except_admin
+    where.not(role: 'Admin')
   end
 end

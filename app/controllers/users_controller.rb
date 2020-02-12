@@ -3,7 +3,8 @@
 class UsersController < ApplicationController
 
   def index
-    @user = User.all
+    # @user = User.all
+    @users = User.users_except_admin
   end
 
   def show

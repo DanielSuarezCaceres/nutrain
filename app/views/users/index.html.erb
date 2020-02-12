@@ -6,9 +6,11 @@
         <th>City</th>
         <th>Country</th>
         <th>Role</th>
+      <% if current_user.role == 'Admin' %>
+        <th>Actions</th>
+      <% end %>
     </tr>
     <tbody>
-    <% @users = User.all %>
     <% @users.each do |user| %>
     <tr>
         <td class="text-center"><%= user.name %></td>
@@ -17,6 +19,13 @@
         <td class="text-center"><%= user.city %></td>
         <td class="text-center"><%= user.country %></td>
         <td class="text-center"><%= user.role %></td>
+      <% if current_user.role == 'Admin' %>
+        <td class="text-center">
+          <%= link_to 'View', user_path(user), class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'Edit', edit_user_registration_path(user), class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
+        </td>
+      <% end %>
     </tr>
     <% end %>
     </tbody>

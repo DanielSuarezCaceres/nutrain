@@ -100,6 +100,7 @@ userManolo = {
 }
 
 User.create(adminDaniel)
+User.create(trainerAlvaro)
 User.create(nutritionistAlberto)
 User.create(physiotherapistPaco)
 User.create(psychologistPepe)

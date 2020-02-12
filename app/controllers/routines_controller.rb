@@ -2,7 +2,8 @@ class RoutinesController < ApplicationController
   
   def index
     #@ = .scoped
-    @routines = Routine.all
+    #@routines = Routine.all
+    @routines = User.find(params[:user_id]).routines
   end
 
   def show
@@ -18,7 +19,7 @@ class RoutinesController < ApplicationController
     if @routine.valid?
       @routine.save
     end
-    redirect_to routines_path
+    redirect_to user_routines_path
   end
 
   def update
@@ -40,6 +41,7 @@ class RoutinesController < ApplicationController
       :id,
 			:name,
 			:description,
+      :user_id
 		)
   end
 
