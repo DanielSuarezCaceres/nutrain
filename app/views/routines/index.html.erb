@@ -1,12 +1,13 @@
-<div class="d-flex justify-content-start" id="upper-toolbar">
-  <div class="p-2">
-    <%= link_to 'New routine', new_user_routine_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+<% if current_user.role == 'Trainer' %>
+  <div class="d-flex justify-content-start" id="upper-toolbar">
+    <div class="p-2">
+      <%= link_to 'New routine', new_user_routine_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-2">
+      <%= link_to 'Delete all', user_routines_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+    </div>
   </div>
-  <div class="p-2">
-    <%= link_to 'Delete all', user_routines_path(current_user.id), class: 'btn', id: 'btn-sec' %>
-  </div>
-</div>
-
+<% end %>
 <table class="table table-bordered table-hover">
   <tr>
     <th class="text-center">Name</th>
@@ -19,7 +20,7 @@
       <td class="text-center"><%= routine.name %></td>
       <td class="text-center"><%= routine.description %></td>
       <td class="text-center">
-        <%= link_to 'View details', routines_path, class: 'btn', id: 'btn-sec' %>
+        <%= link_to 'Details', routines_path, class: 'btn', id: 'btn-sec' %>
         <%= link_to 'Delete', user_routines_path(current_user.id), method: :delete, class: 'btn', id: 'btn-sec' %>
       </td>
     </tr>

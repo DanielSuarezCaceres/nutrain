@@ -1,11 +1,13 @@
-<div class="d-flex justify-content-start" id="upper-toolbar">
-  <div class="p-2">
-    <%= link_to 'New diet', new_user_diet_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+<% if current_user.role == 'Nutritionist' %>
+  <div class="d-flex justify-content-start" id="upper-toolbar">
+    <div class="p-2">
+      <%= link_to 'New diet', new_user_diet_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-2">
+      <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+    </div>
   </div>
-  <div class="p-2">
-    <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn', id: 'btn-sec' %>
-  </div>
-</div>
+<% end %>
 
 <table class="table table-bordered table-hover">
   <tr>
