@@ -1,15 +1,27 @@
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-    </tr>
-    <tbody>
-    <% @diets = Diet.all %>
-    <% @diets.each do |diet| %>
-    <tr>
-        <td class="text-center"><%= diet.name %></td>
-        <td class="text-center"><%= diet.description %></td>
-    </tr>
-    <% end %>
-    </tbody>
+<div class="d-flex justify-content-start" id="upper-toolbar">
+  <div class="p-2">
+    <%= link_to 'New diet', new_user_diet_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+  </div>
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Description</th>
+    <th class="text-center">Actions</th>
+  </tr>
+  <tbody>
+  <% @diets.each do |diet| %><tr>
+    <td class="text-center"><%= diet.name %></td>
+    <td class="text-center"><%= diet.description %></td>
+    <td class="text-center">
+      <%= link_to 'Details', user_diets_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+      <%= link_to 'Delete', user_diets_path(current_user.id), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
 </table>

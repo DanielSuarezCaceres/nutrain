@@ -1,4 +1,4 @@
-<%= simple_form_for @diet, wrapper: :horizontal_form do |f| %>
+<%= simple_form_for(@diet, url: user_diets_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
  

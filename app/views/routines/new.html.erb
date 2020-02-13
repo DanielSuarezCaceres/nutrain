@@ -1,4 +1,4 @@
-<%= simple_form_for(@routine, url: user_routines_path(user_id: params[:user_id]), wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for(@routine, url: user_routines_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
  

@@ -12,10 +12,12 @@ class RoutinesController < ApplicationController
 
   def new
     @routine = Routine.new
-  end 
+  end
 
   def create
-    @routine = Routine.new(routine_params)
+    #@routine = Routine.new(routine_params)
+    @user = User.find(params[:user_id])
+    @routine = @user.routines.new(routine_params)
     if @routine.valid?
       @routine.save
     end

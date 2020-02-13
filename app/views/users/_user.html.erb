@@ -1,0 +1,74 @@
+<table class="table table-hover table-bordered">
+  <tr>
+    <th class="text-center">Name</th>
+    <td class="text-center"><%= @user.name %></td>
+  </tr>
+  <tr>
+    <th class="text-center">Lastname</th>
+    <td class="text-center"><%= @user.lastname %></td>
+  </tr>
+  <tr>
+    <th class="text-center">Email</th>
+    <td class="text-center"><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th class="text-center">Phone</th>
+    <td class="text-center"><%= @user.phone %></td>
+  </tr>
+  <tr>
+    <th class="text-center">City</th>
+    <td class="text-center"><%= @user.city %></td>
+  </tr>
+  <tr>
+    <th class="text-center">Country</th>
+    <td class="text-center"><%= @user.country %></td>
+  </tr>
+</table>
+
+<div class="d-flex justify-content-start">
+  <% if current_user.role == 'Admin' %>
+    <div class="p-2">
+      <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% elsif current_user.role == 'Trainer' %>
+    <div class="p-1">
+      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'New routine', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% elsif current_user.role == 'Nutritionist' %>
+    <div class="p-1">
+      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'New diet', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% elsif current_user.role == 'Physiotherapist' %>
+    <div class="p-1">
+      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'New assignment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% elsif current_user.role == 'Psychology' %>
+    <div class="p-1">
+      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'New assignment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+    <div class="p-1">
+      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% end %>
+</div>

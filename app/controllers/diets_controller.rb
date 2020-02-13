@@ -5,19 +5,20 @@ class DietsController < ApplicationController
   end
 
   def show
-    #@ = .find(params[:id])
+    @diet = Diet.find(params[:id])
   end
 
   def new
-    @diet = Diet.new4
+    @diet = Diet.new
   end
   
   def create
-    @diet = Diet.new(diet_params)
+    @user = User.find(params[:user_id])
+    @diet = @user.diets.new(diet_params)
     if @diet.valid?
       @diet.save
     end
-    redirect_to diets_path
+    redirect_to user_diets_path
   end
 
   def update
@@ -39,6 +40,7 @@ class DietsController < ApplicationController
       :id,
       :name,
       :description,
+      :user_id,
     )
   end  
 
