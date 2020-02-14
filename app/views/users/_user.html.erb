@@ -31,44 +31,12 @@
       <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
     </div>
   <% elsif current_user.role == 'Trainer' %>
-    <div class="p-1">
-      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'New routine', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
+    <%= render 'trainer_actions' %>
   <% elsif current_user.role == 'Nutritionist' %>
-    <div class="p-1">
-      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'New diet', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
+    <%= render 'nutritionist_actions' %>
   <% elsif current_user.role == 'Physiotherapist' %>
-    <div class="p-1">
-      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'New assignment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
+    <%= render 'physiotherapist_actions' %>
   <% elsif current_user.role == 'Psychology' %>
-    <div class="p-1">
-      <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'New assignment', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
-    <div class="p-1">
-      <%= link_to 'Cancel relationship', user_path(@user), method: :delete, class: 'btn', id: 'btn-sec' %>
-    </div>
+    <%= render 'psychologist_actions' %>
   <% end %>
 </div>

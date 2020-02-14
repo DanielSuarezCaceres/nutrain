@@ -14,12 +14,12 @@
     <tbody>
     <% @users.each do |user| %>
     <tr>
-        <td class="text-center"><%= user.name %></td>
-        <td class="text-center"><%= user.lastname %></td>
-        <td class="text-center"><%= user.phone %></td>
-        <td class="text-center"><%= user.city %></td>
-        <td class="text-center"><%= user.country %></td>
-        <td class="text-center"><%= user.role %></td>
+      <td class="text-center"><%= user.name %></td>
+      <td class="text-center"><%= user.lastname %></td>
+      <td class="text-center"><%= user.phone %></td>
+      <td class="text-center"><%= user.city %></td>
+      <td class="text-center"><%= user.country %></td>
+      <td class="text-center"><%= user.role %></td>
       <% if current_user.role == 'Admin' %>
         <td class="text-center">
           <%= link_to 'View', user_path(user), class: 'btn', id: 'btn-sec' %>
