@@ -6,7 +6,12 @@
 main orange: #f57c00
 second orange: #fff3e0
 secondary green: #009688
+turquoise: #1ABC9C
+green sea: #16A085
+midnight blue: #2C3E50
+pumpkin: #D35400
 secondary blue: #0288d1
+background elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05)
 */
 
 a,a:visited {
@@ -14,14 +19,16 @@ a,a:visited {
     text-decoration: none;
 }
 
+table {
+    background-color: rgba(0,0,0,0.025);
+}
+
 #btn-sec {
-    background-color: #0288d1;
-/*    margin: 10px 10px 10px 10px;
-    padding: 10px 10px 10px 10px;*/
+    background-color: #16A085;
 }
 
 #upper-toolbar {
-    background-color: #cfd8dc;
+    /*background-color: #cfd8dc;*/
     height: 15%;
 }
 
@@ -39,7 +46,6 @@ a,a:visited {
 }
 
 .navbar {
-    /*background-color: #158c9e;*/
     background-color: #f57c00;
     text-decoration: none;
     border-bottom: 0px;

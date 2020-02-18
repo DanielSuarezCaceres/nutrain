@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :recipe do
+  factory :meal do
     name { "MyString" }
     description { "MyText" }
-    kcal { 1 }
-    type { "" }
+    file { "MyString" }
+    user { nil }
   end
 end
