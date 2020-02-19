@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_165550) do
+ActiveRecord::Schema.define(version: 2020_02_17_210722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
   create_table "diets", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.integer "total_kcal"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -33,35 +34,50 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
+    t.text "description"
     t.integer "sets"
     t.integer "reps"
-    t.text "description"
+    t.integer "weight"
+    t.string "file"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
+    t.string "brand"
     t.integer "kcal"
-    t.integer "protein"
-    t.integer "ch"
-    t.integer "fats"
+    t.float "protein"
+    t.float "ch"
+    t.float "fats"
+    t.boolean "vegan", default: false, null: false
+    t.boolean "vegetarian", default: false, null: false
+    t.boolean "gluten_free", default: false, null: false
+    t.boolean "nut_free", default: false, null: false
+    t.boolean "soy_free", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "recipes", force: :cascade do |t|
+  create_table "meals", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "file"
     t.integer "kcal"
-    t.string "type"
+    t.bigint "user_id"
+    t.boolean "vegan", default: false, null: false
+    t.boolean "vegetarian", default: false, null: false
+    t.boolean "gluten_free", default: false, null: false
+    t.boolean "nut_free", default: false, null: false
+    t.boolean "soy_free", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "routines", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,12 +85,13 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "name"
-    t.text "lastname"
-    t.text "phone"
-    t.text "city"
-    t.text "country"
-    t.text "role"
+    t.string "name"
+    t.string "lastname"
+    t.string "gender"
+    t.string "phone"
+    t.string "city"
+    t.string "country"
+    t.string "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -89,8 +106,10 @@ ActiveRecord::Schema.define(version: 2020_02_05_165550) do
   create_table "workouts", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end

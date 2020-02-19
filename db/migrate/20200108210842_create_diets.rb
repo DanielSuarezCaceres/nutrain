@@ -3,6 +3,7 @@ class CreateDiets < ActiveRecord::Migration[6.0]
     create_table :diets do |t|
       t.string :name
       t.text :description
+      t.integer :total_kcal
       t.bigint :user_id
 
       t.timestamps
