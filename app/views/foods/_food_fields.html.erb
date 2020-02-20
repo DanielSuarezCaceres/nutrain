@@ -16,6 +16,6 @@
                 label_method: :second, value_method: :first %>
     <%= f.input :soy_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
-    <%= link_to_remove_association 'Remove ingredient', f , id: 'btn-sec' %>
+    <%= link_to_remove_association 'Remove ingredient', f , class: 'btn', id: 'btn-sec' %>
   </div>
 </div>
