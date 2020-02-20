@@ -26,10 +26,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'bootstrap', '~> 4.4.1'
-gem 'sprockets', '~> 4.0'
-gem 'simple_form'
+gem 'cocoon'
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'simple_form'
+gem 'sprockets', '~> 4.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb

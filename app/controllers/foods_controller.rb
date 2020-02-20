@@ -1,27 +1,51 @@
 class FoodsController < ApplicationController
 
   def index
-    @ = .scoped
+    #@ = .scoped
+    @foods = Food.all
+    if params[:meal_id]
+      @foods = Meal.find(params[:meal_id]).foods
+    end
   end
 
   def show
-    @ = .find(params[:id])
+    @food = Food.find(params[:id])
   end
 
   def create
-    @ = .new(params[:])
+    @food = Food.new(food_params)
   end
 
   def update
-    @ = .find(params[:id])
+    @food = Food.find(params[:id])
   end
 
   def edit
-    @ = .find(params[:id])
+    @food = Food.find(params[:id])
   end
 
   def destroy
-     = .find(params[:id])
+    @food = Food.find(params[:id])
+  end
+
+  private
+
+  def food_params
+    params.require(:food).permit(
+        :id,
+        :name,
+        :brand,
+        :kcal,
+        :protein,
+        :ch,
+        :fats,
+        :vegan,
+        :vegetarian,
+        :gluten_free,
+        :nut_free,
+        :soy_free,
+        :meal_id,
+    )
   end
 
 end

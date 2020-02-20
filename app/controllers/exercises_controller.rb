@@ -1,27 +1,53 @@
 class ExercisesController < ApplicationController
   
   def index
-    @ = .scoped
+    #@ = .scoped
+    if params[:workout_id]
+      @exercises = Workout.find(params[:workout_id]).exercises
+    end
   end
 
   def show
-    @ = .find(params[:id])
+  end
+
+  def new
+    @exercise = Exercise.new
   end
 
   def create
-    @ = .new(params[:])
+    @exercise = Exercise.new(exercise_params)
+    if @exercise.valid?
+      @exercise.save
+    end
+    redirect_to exercise_path
   end
 
   def update
-    @ = .find(params[:id])
   end
 
   def edit
-    @ = .find(params[:id])
   end
 
   def destroy
-     = .find(params[:id])
+  end
+
+  private
+
+  def exercise_params
+    params.require(:exercise).permit(
+        :id,
+        :name,
+        :description,
+        :sets,
+        :reps,
+        :weight,
+        :file,
+        :workout_id
+    )
+  end
+
+  def set_exercise
+    @exercise = Exercise.find(params[:id])
   end
 
 end

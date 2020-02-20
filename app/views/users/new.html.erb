@@ -1,9 +1,12 @@
 <%= simple_form_for @user, wrapper: :horizontal_form do |f| %>
     <%= f.input :name %>
     <%= f.input :lastname %>
+    <%= f.input :gender, collection: ['Male', 'Female'], prompt: 'Select gender' %>
     <%= f.input :phone %>
     <%= f.input :city %>
-    <%= f.input :country %>
+<!--
+    <%#= f.input :country %>
+-->
     <%= f.input :role, collection: ['Admin', 'User', 'Nutritionist', 'Trainer', 'Physioterapist', 'Psychologist'], include_blank: false %>
     
     <%= f.button :submit, class: 'btn btn-primary' %>

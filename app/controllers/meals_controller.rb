@@ -4,7 +4,10 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
-    @meals = Meal.all
+    #@meals = Meal.all
+    if params[:user_id]
+      @meals = User.find(params[:user_id]).meals
+    end
   end
 
   # GET /meals/1
@@ -14,7 +17,7 @@ class MealsController < ApplicationController
 
   # GET /meals/new
   def new
-    @meal = Meal.new
+    @meal = User.find(params[:user_id]).meals.new
   end
 
   # GET /meals/1/edit
@@ -24,17 +27,12 @@ class MealsController < ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    @meal = Meal.new(meal_params)
-
-    respond_to do |format|
-      if @meal.save
-        format.html { redirect_to @meal, notice: 'Meal was successfully created.' }
-        format.json { render :show, status: :created, location: @meal }
-      else
-        format.html { render :new }
-        format.json { render json: @meal.errors, status: :unprocessable_entity }
-      end
+    @user = User.find(params[:user_id])
+    @meal = @user.meals.new(meal_params)
+    if @meal.valid?
+      @meal.save
     end
+    redirect_to user_path(params[:user_id])
   end
 
   # PATCH/PUT /meals/1
@@ -63,12 +61,26 @@ class MealsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_meal
-      @meal = Meal.find(params[:id])
-    end
+  def set_meal
+    @meal = Meal.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def meal_params
-      params.fetch(:meal, {})
-    end
+  def meal_params
+    #params.fetch(:meal, {})
+    params.require(:meal).permit(
+        :id,
+        :name,
+        :description,
+        :file,
+        :kcal,
+        :vegan,
+        :vegetarian,
+        :gluten_free,
+        :nut_free,
+        :soy_free,
+        :user_id,
+        foods_attributes: %i[id name brand kcal protein ch fats vegan vegetarian gluten_free nut_free soy_free _destroy]
+    )
+  end
 end

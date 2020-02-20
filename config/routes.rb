@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :workouts
     resources :exercises
     resources :diets
-    resources :recipes
+    resources :meals
     resources :foods
     resources :appointments
   end
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :workouts
   resources :exercises
   resources :diets
-  resources :recipes
+  resources :meals
   resources :foods
   
 end

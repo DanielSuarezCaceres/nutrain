@@ -1,6 +1,8 @@
 <h1>Hello, Rails!</h1>
 
-<%= link_to 'New user', new_user_path %> <br>
+<%= link_to 'New user', new_user_path %><br>
+<%= link_to 'New meal', new_user_meal_path(user_id: current_user.id) %><br>
+<%= link_to 'New workout', new_user_workout_path(user_id: current_user.id) %><br>
 <!--
 <%#= link_to 'New routine', new_user_routine_path %> <br>
 <%#= link_to 'New workout', new_user_workout_path %> <br>

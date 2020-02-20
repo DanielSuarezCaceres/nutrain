@@ -1,5 +1,4 @@
 class RoutinesController < ApplicationController
-  
   def index
     #@ = .scoped
     #@routines = Routine.all
@@ -45,6 +44,10 @@ class RoutinesController < ApplicationController
 			:description,
       :user_id
 		)
+  end
+
+  def set_routine
+    @routine = Routine.find(params[:id])
   end
 
 end

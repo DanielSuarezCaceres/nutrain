@@ -1,0 +1,11 @@
+<%= simple_form_for @exercise, wrapper: :horizontal_form do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :sets %>
+  <%= f.input :reps %>
+  <%= f.input :weight %>
+  <%= f.input :file %>
+
+  <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+
+<% end %>

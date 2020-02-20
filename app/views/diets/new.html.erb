@@ -1,6 +1,5 @@
-<%= simple_form_for(@diet, url: user_diets_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
- 
-    <%= f.button :submit, class: 'btn btn-primary' %>
-<% end %>
+<h1>New diet</h1>
+
+<%= render 'form', diet: @diet, user_id: current_user.id %>
+
+<%= link_to 'Back', diets_path, class: 'btn', id: 'btn-sec'%>

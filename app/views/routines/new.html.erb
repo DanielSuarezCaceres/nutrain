@@ -1,6 +1,5 @@
-<%= simple_form_for(@routine, url: user_routines_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
- 
-    <%= f.button :submit, class: 'btn btn-primary' %>
-<% end %>
+<h1>New routine</h1>
+
+<%= render 'form', routine: @routine, user_id: current_user.id %>
+
+<%= link_to 'Back', routines_path, class: 'btn', id: 'btn-sec'%>

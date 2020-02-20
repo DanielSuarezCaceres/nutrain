@@ -1,12 +1,22 @@
-
-<%= simple_form_for(@meal) do |f| %>
+<%= simple_form_for(@meal, url: user_meals_path(user_id: current_user.id), wrapper: :horizontal_form) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :file, label: 'Select photo of meal', as: :file %>
+    <%= f.input :vegan %>
+    <%= f.input :vegetarian %>
+    <%= f.input :gluten_free %>
+    <%= f.input :nut_free %>
+    <%= f.input :soy_free %>
   </div>
 
+  <h3>Add foods to meal</h3>
+  <%= link_to_add_association 'Add ingredient', f, :foods, id: 'btn-sec' %>
+
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn', id: 'btn-sec'%>
   </div>
 <% end %>

@@ -9,11 +9,17 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navBarMenu">
-      <% if current_user.role != 'Admin' %>
+      <% if current_user.role == 'Admin' %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <%= link_to 'Users', users_path %>
           </li>
+          <li clas="nav-item">
+            <%= link_to 'Emails', root_path %>
+          </li>
+        </ul>
+      <% elsif current_user.role == 'User' %>
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <%= link_to 'Routines', user_routines_path(current_user.id) %>
           </li>
@@ -35,8 +41,20 @@
           <li class="nav-item">
             <%= link_to 'Users', users_path %>
           </li>
-          <li clas="nav-item">
-            <%= link_to 'Emails', root_path %>
+          <li class="nav-item">
+            <%= link_to 'Routines', user_routines_path(current_user.id) %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Diets', user_diets_path(current_user.id) %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Appointments', user_appointments_path(current_user.id) %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My documents', root_path(current_user.id) %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Contact', root_path %>
           </li>
         </ul>
       <% end %>
