@@ -2,17 +2,17 @@
     font-family: "Muli";
 }
 
-/* MATERIAL BOOTSTRAP COLORS:
-main orange: #f57c00
-second orange: #fff3e0
-secondary green: #009688
-turquoise: #1ABC9C
-green sea: #16A085
-midnight blue: #2C3E50
-pumpkin: #D35400
-secondary blue: #0288d1
-background elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05)
-*/
+/* MATERIAL BOOTSTRAP COLORS: */
+$main-orange: #f57c00;
+$secondary-orange: #fff3e0;
+$secondary-green: #009688;
+$turquoise: #1ABC9C;
+$green-sea: #16A085;
+$midnight-blue: #2C3E50;
+$pumpkin: #D35400;
+$secondary-blue: #0288d1;
+//$background-elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05);
+/* ---------------------------------------- */
 
 a,a:visited {
     color: inherit !important;
@@ -24,7 +24,7 @@ table {
 }
 
 #btn-sec {
-    background-color: #16A085;
+    background-color: $green-sea;
     margin: 5px 5px 5px 5px;
 }
 
@@ -47,14 +47,14 @@ table {
 }
 
 .navbar {
-    background-color: #f57c00;
+    background-color: $main-orange;
     text-decoration: none;
     border-bottom: 0px;
     color: white;
 }
 
 .navbar-nav > .active > a {
-    background: #009688;
+    background: $midnight-blue;
     border: medium none;
 }
 
@@ -62,4 +62,9 @@ table {
 .navbar-default .navbar-nav>.active> a:focus, 
 .navbar-default .navbar-nav>.active> a:hover {
   background: #86bb15;
+}
+
+.vl {
+  border-left: solid 2px $secondary-orange;
+  height: 800px;
 }

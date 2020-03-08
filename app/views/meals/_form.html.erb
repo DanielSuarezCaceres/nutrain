@@ -1,27 +1,35 @@
-<%= simple_form_for(@meal, url: user_meals_path(user_id: current_user.id), wrapper: :horizontal_form) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="row">
+  <div class="col-md-4">
+  <%= simple_form_for(@meal, url: user_meals_path(user_id: current_user.id), wrapper: :horizontal_form) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
-    <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
-    <%= f.input :file, label: 'Select photo of meal', as: :file %>
-<!--    <%#= f.input :vegan %>
-    <%#= f.input :vegetarian %>
-    <%#= f.input :gluten_free %>
-    <%#= f.input :nut_free %>
-    <%#= f.input :soy_free %>-->
+    <div class="form-inputs">
+      <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
+      <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
+      <%= f.input :file, label: 'Select photo of meal', as: :file %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn', id: 'btn-sec'%>
+    </div>
   </div>
 
-  <h3>Add foods to meal</h3>
-  <%= f.fields_for :foods do |food| %>
-    <%= render 'foods/food_fields', f: food %>
+  <div class="vl"></div>
+  <div class="col-md-4">
+    <h3>Add foods to meal</h3>  
+    <%= f.fields_for :foods do |food| %>
+      <%= render 'foods/food_fields', f: food %>
+    <% end %>
+    <div class="link-add-association">
+      <%= link_to_add_association 'Add food', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'btn-sec' %>
+    </div>
+  </div>
+
+  <div class="vl"></div>
+  <div class="col-md-3">
+    <h3>Macronutrients</h3>
+  </div>
+
   <% end %>
-  <div class="link-add-association">
-    <%= link_to_add_association 'Add food', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'btn-sec' %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn', id: 'btn-sec'%>
-  </div>
-<% end %>
+</div>

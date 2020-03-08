@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  #before_action :set_workout, only: [:show :edit :update :destroy]
+  before_action :set_workout, only: [:show, :edit, :update, :destroy]
   def index
     if params[:user_id]
       @workouts = User.find(params[:user_id]).workouts
@@ -10,15 +10,16 @@ class WorkoutsController < ApplicationController
   end
 
   def new
-    @workout = Workout.new
+    @workout = User.find(params[:user_id]).workouts.new
   end
 
   def create
-    @workout = Workout.new(workout_params)
+    @user = User.find(params[:user_id])
+    @workout = @user.workouts.new(workout_params)
     if @workout.valid?
       @workout.save
     end
-    redirect_to workout_path
+    redirect_to user_path(params[:user_id])
   end
 
   def edit
@@ -32,6 +33,10 @@ class WorkoutsController < ApplicationController
 
   private
 
+  def set_workout
+    @workout = Workout.find(params[:id])
+  end
+
   def workout_params
     params.require(:workout).permit(
         :id,
@@ -39,10 +44,7 @@ class WorkoutsController < ApplicationController
         :description,
         :date,
         :user_id,
+        exercises_attributes: %i[name description sets reps weight _destroy]
     )
-  end
-
-  def set_workout
-    @workout = Workout.find(params[:id])
   end
 end

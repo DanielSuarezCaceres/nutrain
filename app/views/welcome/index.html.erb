@@ -1,11 +1,72 @@
-<h1>Hello, Rails!</h1>
+<div class="container-fluid">
+  <div class="d-flex align-middle">
+    <h4>Hi, <%= current_user.fullname %></h4>
+    
+    <%= link_to 'New user', new_user_path, class: 'btn ml-auto', id: 'btn-sec' %><br>
+  </div><hr>
 
-<%= link_to 'New user', new_user_path %><br>
-<%= link_to 'New meal', new_user_meal_path(user_id: current_user.id) %><br>
-<%= link_to 'New workout', new_user_workout_path(user_id: current_user.id) %><br>
-<!--
-<%#= link_to 'New routine', new_user_rout
-ine_path %> <br>
-<%#= link_to 'New workout', new_user_workout_path %> <br>
-<%#= link_to 'New exercises', new_user_exercise_path %> <br>
-<%#= link_to 'New diets', new_user_diet_path %>-->
+  <h2>Daily's summary</h2>
+  <!--
+  <%#= link_to 'New routine', new_user_rout
+  ine_path %> <br>
+  <%#= link_to 'New workout', new_user_workout_path %> <br>
+  <%#= link_to 'New exercises', new_user_exercise_path %> <br>
+  <%#= link_to 'New diets', new_user_diet_path %>-->
+
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Today's food</h3>
+      <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %><br>
+        <% if current_user.meals.empty? %>
+          You have not added any food today.     
+        <% else %>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Description</th>
+          <th class="text-center">Kcal</th>
+          <th class="text-center">Protein</th>
+          <th class="text-center">Carbs</th>
+          <th class="text-center">Fats</th>
+        </tr>
+        <% meals = current_user.meals.where("DATE(created_at) = ?", Date.today) %>
+        <% meals.each do |m| %>
+        <tr>
+          <td class="text-center"><%= m.name %></td>
+          <td class="text-center"><%= m.description %></td>
+          <td class="text-center"></td>
+          <td class="text-center"></td>
+          <td class="text-center"></td>
+          <td class="text-center"></td>
+        </tr>
+        <% end %>
+      </table>
+      <% end%>    
+
+      <h3>Today's workout</h3>
+      <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %><br>
+      <% if current_user.workouts.empty? %>
+        You have not added any workout today.     
+      <% else %>
+      <table class="table table-bordered table-hover">
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Description</th>
+        </tr>
+        <% workouts = current_user.workouts.where("DATE(created_at) = ?", Date.today) %>
+        <% workouts.each do |m| %>
+          <tr>
+            <td class="text-center"><%= m.name %></td>
+            <td class="text-center"><%= m.description %></td>
+          </tr>
+        <% end %>
+      </table>
+      <% end%>
+    </div>
+
+    <div class="vl"></div>
+    <div class="col-md-3">
+      <h3>Today's Macros</h3>  
+    </div>
+  </div>
+</div>

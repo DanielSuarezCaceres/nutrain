@@ -37,6 +37,10 @@ class User < ApplicationRecord
     self.encrypted_password.blank?
   end
 
+  def fullname
+    "#{name} #{lastname}"
+  end
+
   def self.users_except_admin
     where.not(role: 'Admin')
   end

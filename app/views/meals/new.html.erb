@@ -1,5 +1,8 @@
-<h1>New Meal</h1>
-
-<%= render 'form', meal: @meal, user_id: current_user.id %>
-
-<%= link_to 'Back', meals_path, class: 'btn', id: 'btn-sec'%>
+<div class="container-fluid">
+  <div class="d-flex">
+    <h2>New meal</h2>
+    <%= link_to 'Back', meals_path, class: 'btn ml-auto', id: 'btn-sec'%>
+  </div><hr>
+	
+	<%= render 'form', meal: @meal, user_id: current_user.id %>
+</div>

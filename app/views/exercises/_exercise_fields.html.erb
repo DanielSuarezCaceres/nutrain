@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <div class="exercise-form">
+    <%= f.input :name, placeholder: 'Exercise name' %>
+    <%= f.input :description, placeholder: 'How to do it, recommendations...' %>
+    <%= f.input :sets, placeholder: 'Number of sets' %>
+    <%= f.input :reps, placeholder: 'Number of reps' %>
+    <%= f.input :weight, placeholder: 'Weight (kg)' %>
+  </div>
+  
+  <%= link_to_remove_association 'Remove exercise', f , class: 'btn', id: 'btn-sec' %>
+</div>

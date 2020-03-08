@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <div class="d-flex">
+    <h2>New workout</h2>
+    <%= link_to 'Back', workouts_path, class: 'btn ml-auto', id: 'btn-sec'%>
+  </div><hr>
+	
+	<%= render 'form', workout: @workout, user_id: current_user.id %>
+</div>
