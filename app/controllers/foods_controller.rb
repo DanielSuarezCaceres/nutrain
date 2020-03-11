@@ -14,6 +14,10 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
+    if @food.valid?
+      @food.save
+    end
+    redirect_to root_path, notice: 'Foods created successfully'
   end
 
   def update

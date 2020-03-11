@@ -13,6 +13,7 @@ class MealsController < ApplicationController
   # GET /meals/1
   # GET /meals/1.json
   def show
+    @meal = Meal.find(params[:id])
   end
 
   # GET /meals/new
@@ -29,6 +30,7 @@ class MealsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @meal = @user.meals.new(meal_params)
+    byebug
     if @meal.valid?
       @meal.save
     end
@@ -60,12 +62,13 @@ class MealsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_meal
     @meal = Meal.find(params[:id])
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through.
   def meal_params
     #params.fetch(:meal, {})
     params.require(:meal).permit(
@@ -74,13 +77,16 @@ class MealsController < ApplicationController
         :description,
         :file,
         :kcal,
+        :protein,
+        :carbs,
+        :fats,
         :vegan,
         :vegetarian,
         :gluten_free,
         :nut_free,
         :soy_free,
         :user_id,
-        foods_attributes: %i[id name brand kcal protein ch fats vegan vegetarian gluten_free nut_free soy_free _destroy]
+        foods_attributes: %i[id name brand kcal protein carbs fats vegan vegetarian gluten_free nut_free soy_free _destroy]
     )
   end
 end

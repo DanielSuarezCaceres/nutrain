@@ -37,20 +37,19 @@ table {
     font-family: "Sriracha";
 }
 
-.navbar-nav > li {
+.navbar {
+  background-color: $main-orange;
+  text-decoration: none;
+  border-bottom: 0;
+  color: white;
+  li {
     padding-left: 5px;
     padding-right: 5px;
 
     margin-left: 5px;
     margin-right: 5px;
     font-weight: bold;
-}
-
-.navbar {
-    background-color: $main-orange;
-    text-decoration: none;
-    border-bottom: 0px;
-    color: white;
+  }
 }
 
 .navbar-nav > .active > a {
@@ -67,4 +66,10 @@ table {
 .vl {
   border-left: solid 2px $secondary-orange;
   height: 800px;
+}
+
+hr {
+  background-color: $secondary-orange;
+  color: $secondary-orange;
+  height: 1px;
 }

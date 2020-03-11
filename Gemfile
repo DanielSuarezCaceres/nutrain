@@ -26,9 +26,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 gem 'bootstrap', '~> 4.4.1'
+gem 'chartkick'
 gem 'cocoon'
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'groupdate'
 gem 'simple_form'
 gem 'sprockets', '~> 4.0'
 

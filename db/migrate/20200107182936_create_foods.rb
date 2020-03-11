@@ -5,7 +5,7 @@ class CreateFoods < ActiveRecord::Migration[6.0]
       t.string :brand
       t.integer :kcal
       t.float :protein
-      t.float :ch
+      t.float :carbs
       t.float :fats
       t.boolean :vegan, default: false, null: false
       t.boolean :vegetarian, default: false, null: false

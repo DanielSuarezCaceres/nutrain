@@ -1,11 +1,11 @@
 <div class="container-fluid">
-  <div class="d-flex align-middle">
-    <h4>Hi, <%= current_user.fullname %></h4>
+<!--  <div class="d-flex align-middle">
+    <h4>Hi, <%#= current_user.fullname %></h4>
     
-    <%= link_to 'New user', new_user_path, class: 'btn ml-auto', id: 'btn-sec' %><br>
-  </div><hr>
+    <%#= link_to 'New user', new_user_path, class: 'btn ml-auto', id: 'btn-sec' %><br>
+  </div><hr>-->
 
-  <h2>Daily's summary</h2>
+  <h2>Daily's summary</h2><hr>
   <!--
   <%#= link_to 'New routine', new_user_rout
   ine_path %> <br>
@@ -15,7 +15,7 @@
 
   <div class="row">
     <div class="col-md-8">
-      <h3>Today's food</h3>
+      <h3>Today's meals</h3><hr>
       <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %><br>
         <% if current_user.meals.empty? %>
           You have not added any food today.     
@@ -24,26 +24,33 @@
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Description</th>
-          <th class="text-center">Kcal</th>
+<!--          <th class="text-center">Kcal</th>
           <th class="text-center">Protein</th>
           <th class="text-center">Carbs</th>
-          <th class="text-center">Fats</th>
+          <th class="text-center">Fats</th>-->
+          <th class="text-center">Actions</th>
         </tr>
         <% meals = current_user.meals.where("DATE(created_at) = ?", Date.today) %>
-        <% meals.each do |m| %>
+        <% meals.each do |meal| %>
         <tr>
-          <td class="text-center"><%= m.name %></td>
-          <td class="text-center"><%= m.description %></td>
-          <td class="text-center"></td>
-          <td class="text-center"></td>
-          <td class="text-center"></td>
-          <td class="text-center"></td>
+          <td class="text-center"><%= meal.name %></td>
+          <td class="text-center"><%= meal.description %></td>
+<!--          <td class="text-center"><%#= meal.kcal %></td>
+          <td class="text-center"><%#= meal.protein %></td>
+          <td class="text-center"><%#= meal.carbs %></td>
+          <td class="text-center"><%#= meal.fats %></td>-->
+          <td class="text-center">
+            <%= link_to 'Edit', user_meal_path(current_user.id, id: meal), class: 'btn', id: 'btn-sec' %>
+            <%= link_to 'Delete', user_meal_path(current_user.id, id: meal), method: :delete, class: 'btn btn-danger' %>
+          </td>
         </tr>
         <% end %>
       </table>
-      <% end%>    
+      <% end%>
+    </div>
 
-      <h3>Today's workout</h3>
+      <div class="col-md-4">
+      <h3>Today's workout</h3><hr>
       <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %><br>
       <% if current_user.workouts.empty? %>
         You have not added any workout today.     
@@ -52,21 +59,46 @@
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Description</th>
+          <th class="text-center">Actions</th>
         </tr>
         <% workouts = current_user.workouts.where("DATE(created_at) = ?", Date.today) %>
-        <% workouts.each do |m| %>
+        <% workouts.each do |workout| %>
           <tr>
-            <td class="text-center"><%= m.name %></td>
-            <td class="text-center"><%= m.description %></td>
+            <td class="text-center"><%= workout.name %></td>
+            <td class="text-center"><%= workout.description %></td>
+            <td class="text-center">
+              <%= link_to 'Edit', user_workout_path(current_user.id, id: workout), class: 'btn', id: 'btn-sec' %>
+              <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete, class: 'btn btn-danger' %>
+            </td>
           </tr>
         <% end %>
       </table>
       <% end%>
     </div>
+  </div><hr>
 
-    <div class="vl"></div>
+  <div class="row container-fluid">
+    <h3>Today's Macros</h3>
+  </div><hr>
+    <!--
+        <div class="vl"></div>
+    -->
+  <div class="row">
     <div class="col-md-3">
-      <h3>Today's Macros</h3>  
+      <h4>Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %></h4>
+      <%= bar_chart Meal.group(:name).sum(:kcal) %><hr></div>
+    <div class="col-md-3">
+      <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %></h4>
+      <%= pie_chart Meal.group(:name).sum(:protein) %><hr></div>
+    <div class="col-md-3">
+      <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %></h4>
+      <%= pie_chart Meal.group(:name).sum(:carbs) %><hr></div>
+    <div class="col-md-3">
+      <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %></h4>
+      <%= pie_chart Meal.group(:name).sum(:fats) %><hr></div>
     </div>
   </div>
+<!--
+  </div>
+-->
 </div>

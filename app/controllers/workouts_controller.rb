@@ -16,6 +16,7 @@ class WorkoutsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @workout = @user.workouts.new(workout_params)
+    byebug
     if @workout.valid?
       @workout.save
     end
@@ -44,7 +45,7 @@ class WorkoutsController < ApplicationController
         :description,
         :date,
         :user_id,
-        exercises_attributes: %i[name description sets reps weight _destroy]
+        exercises_attributes: [:name, :description, :sets, :reps, :weight, :_destroy]
     )
   end
 end

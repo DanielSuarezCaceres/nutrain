@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "brand"
     t.integer "kcal"
     t.float "protein"
-    t.float "ch"
+    t.float "carbs"
     t.float "fats"
     t.boolean "vegan", default: false, null: false
     t.boolean "vegetarian", default: false, null: false
@@ -66,10 +66,12 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "date"
     t.string "file"
-    t.integer "kcal"
     t.bigint "user_id"
+    t.integer "kcal"
+    t.integer "protein"
+    t.integer "carbs"
+    t.integer "fats"
     t.boolean "vegan", default: false, null: false
     t.boolean "vegetarian", default: false, null: false
     t.boolean "gluten_free", default: false, null: false
@@ -111,7 +113,6 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
   create_table "workouts", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.datetime "date"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
