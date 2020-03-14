@@ -34,7 +34,7 @@ class MealsController < ApplicationController
     if @meal.valid?
       @meal.save
     end
-    redirect_to user_path(params[:user_id])
+    redirect_to root_path
   end
 
   # PATCH/PUT /meals/1

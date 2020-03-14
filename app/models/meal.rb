@@ -35,7 +35,7 @@ class Meal < ApplicationRecord
 
   def self.total_kcal_meals_today(user_id)
     total_kcal = 0
-    User.find(user_id).meals.each do |meal|
+    User.find(user_id).meals.where("DATE(created_at) = ?", Date.today).each do |meal|
       total_kcal += meal.kcal
     end
     total_kcal
@@ -43,7 +43,7 @@ class Meal < ApplicationRecord
 
   def self.total_protein_meals_today(user_id)
     total_protein = 0
-    User.find(user_id).meals.each do |meal|
+    User.find(user_id).meals.where("DATE(created_at) = ?", Date.today).each do |meal|
       total_protein += meal.protein
     end
     total_protein
@@ -51,7 +51,7 @@ class Meal < ApplicationRecord
 
   def self.total_carbs_meals_today(user_id)
     total_carbs = 0
-    User.find(user_id).meals.each do |meal|
+    User.find(user_id).meals.where("DATE(created_at) = ?", Date.today).each do |meal|
       total_carbs += meal.carbs
     end
     total_carbs
@@ -59,7 +59,7 @@ class Meal < ApplicationRecord
 
   def self.total_fats_meals_today(user_id)
     total_fats = 0
-    User.find(user_id).meals.each do |meal|
+    User.find(user_id).meals.where("DATE(created_at) = ?", Date.today).each do |meal|
       total_fats += meal.fats
     end
     total_fats

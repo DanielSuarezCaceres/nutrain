@@ -16,6 +16,7 @@ require("chart.js")
 //require("scrollreveal")
 require("custom/users")
 //require("src/cocoon")
+require("custom/scrollreveal")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -31,4 +32,8 @@ require("custom/users")
 $(document).ready(function(){
     $(".alert").fadeOut(4000);
     $(".notice").fadeOut(4000);
+});
+
+$(document).ready(function(){
+
 });
