@@ -1,7 +1,3 @@
-* {
-    font-family: "Muli";
-}
-
 /* MATERIAL BOOTSTRAP COLORS: */
 $main-orange: #f57c00;
 $secondary-orange: #fff3e0;
@@ -13,6 +9,14 @@ $pumpkin: #D35400;
 $secondary-blue: #0288d1;
 //$background-elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05);
 /* ---------------------------------------- */
+
+* {
+  font-family: "Muli";
+}
+
+.logo {
+  font-family: "Sriracha";
+}
 
 a,a:visited {
     color: inherit !important;
@@ -33,9 +37,7 @@ table {
     height: 15%;
 }
 
-.logo {
-    font-family: "Sriracha";
-}
+
 
 .navbar {
   background-color: $main-orange;

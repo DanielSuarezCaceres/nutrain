@@ -33,7 +33,13 @@ $(document).ready(function(){
     $(".alert").fadeOut(4000);
     $(".notice").fadeOut(4000);
 });
+/*
+$(function(){
+    $(document).foundation();
+    window.scrollReveal = new ScrollReveal();
+});*/
 
-$(document).ready(function(){
-
-});
+/*
+document.addEventListener('page:change', function() {
+    document.getElementsByClassName('pie-graphics').className += 'animated fadeIn';
+});*/

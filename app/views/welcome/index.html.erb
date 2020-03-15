@@ -89,6 +89,7 @@
   <!--
       <div class="vl"></div>
   -->
+  <div class="pie-graphics">
   <div class="row">
     <div class="col-md-3">
       <h4>Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %></h4>
@@ -113,16 +114,30 @@
       <hr>
     </div>
   </div>
+  </div>
 
-<!--  <div class="row">
-    <%# @meals = current_user.meals %>
-    <%#= area_chart @meals.group_by_day(:created_at).maximum(:kcal) %>
-  </div>-->
+  <div class="row container-fluid">
+    <h3>Your macros of last 7 days</h3>
+  </div>
+  <hr>
+
+  <div class="row">
+    <% @meals = current_user.meals %>
+    <%= line_chart [
+                       {name: "Total protein per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:protein)},
+                       {name: "Total carbs per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:carbs)},
+                       {name: "Total fats per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:fats)}],
+                   {library: {hAxis: {title: "X-label"}, vAxis: {title: "Y-label"}, title: "Graph title label"}} %>
+  </div>
 
 </div>
 
 <script>
-/*
-  ScrollReveal.reveal('.col-md-3', {delay: 1000})
-*/
+/*    $(document).ready(function(){
+        ScrollReveal().reveal('.pie-graphics  ', {
+            easing: 'ease-in',
+            delay: 1000,
+            duration: 1000,
+        });
+    });*/
 </script>

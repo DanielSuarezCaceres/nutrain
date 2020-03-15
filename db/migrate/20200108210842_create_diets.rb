@@ -5,6 +5,7 @@ class CreateDiets < ActiveRecord::Migration[6.0]
       t.text :description
       t.integer :total_kcal
       t.bigint :user_id
+      t.string :goal
 
       t.timestamps
       t.index ["user_id"], name: "index_diets_on_user_id"

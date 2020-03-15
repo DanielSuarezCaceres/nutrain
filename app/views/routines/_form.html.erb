@@ -1,6 +1,12 @@
 <%= simple_form_for(@routine, url: user_routines_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :days_of_exercise %>
+  <%= f.select :goal, options_for_select(['Hypertrophy focused', 'Strength focused', 'Strength and Hypertrophy', 'Other']),
+               {}, {include_blank: false, class: 'form-control'} %>
+<!--
+  <%#= f.input :file, 'Select a file', as: :file %>
+-->
 
   <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
 <% end %>

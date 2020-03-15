@@ -1,6 +1,10 @@
 <%= simple_form_for(@diet, url: user_diets_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
+  <%= f.input :total_kcal %>
+  <%= f.input :total_meals %>
+  <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain']),
+               {}, {include_blank: false, class: 'form-control'}  %>
 
   <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
 <% end %>
