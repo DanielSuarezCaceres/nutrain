@@ -4,6 +4,7 @@ class CreateDiets < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.integer :total_kcal
+      t.integer :total_meals
       t.bigint :user_id
       t.string :goal
 

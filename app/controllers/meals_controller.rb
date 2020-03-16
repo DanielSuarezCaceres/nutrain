@@ -30,10 +30,11 @@ class MealsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @meal = @user.meals.new(meal_params)
-    byebug
+    #byebug
     if @meal.valid?
       @meal.save
     end
+
     redirect_to root_path
   end
 
@@ -86,7 +87,8 @@ class MealsController < ApplicationController
         :nut_free,
         :soy_free,
         :user_id,
-        foods_attributes: %i[id name brand kcal protein carbs fats vegan vegetarian gluten_free nut_free soy_free _destroy]
+        foods_attributes: %i[id name brand kcal protein carbs fats serving_size vegan vegetarian gluten_free nut_free soy_free _destroy]
     )
   end
+
 end

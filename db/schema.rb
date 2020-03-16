@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "name"
     t.text "description"
     t.integer "total_kcal"
+    t.integer "total_meals"
     t.bigint "user_id"
+    t.string "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_diets_on_user_id"
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.float "protein"
     t.float "carbs"
     t.float "fats"
+    t.float "serving_size"
     t.boolean "vegan", default: false, null: false
     t.boolean "vegetarian", default: false, null: false
     t.boolean "gluten_free", default: false, null: false
@@ -86,6 +89,9 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "name"
     t.text "description"
     t.bigint "user_id"
+    t.string "file"
+    t.integer "days_of_exercise"
+    t.string "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_routines_on_user_id"
@@ -114,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "name"
     t.text "description"
     t.bigint "user_id"
+    t.integer "number_of_exercises"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_workouts_on_user_id"
