@@ -16,10 +16,20 @@ adminDaniel = {
   lastname: "Suarez",
   phone: "643543345",
   city: "LP",
+  age: "32",
+  gender: "Male",
+  height: "168",
+  weight: "45",
+  description: "",
   country: "Spain",
   email: "daniel@correo.es",
   password: "nutrain",
-  role: 'Admin'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #role: 'Admin'
 }
 
 nutritionistAlberto = {
@@ -27,10 +37,20 @@ nutritionistAlberto = {
   lastname: "Rodriguez",
   phone: "675765789",
   city: "Madrid",
+  age: "23",
+  gender: "Male",
+  height: "176",
+  weight: "63",
+  description: "",
   country: "Spain",
   email: "alberto@correo.es",
   password: "nutrain",
-  role: 'Nutritionist'
+  nutritionist: true,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #role: 'Nutritionist'
 }
 
 trainerAlvaro = {
@@ -38,10 +58,20 @@ trainerAlvaro = {
   lastname: "Perez",
   phone: "765567567",
   city: "Valencia",
+  age: "29",
+  gender: "Male",
+  height: "186",
+  weight: "78",
+  description: "",
   country: "Spain",
   email: "alvaro@correo.es",
   password: "nutrain",
-  role: 'Trainer'
+  nutritionist: false,
+  trainer: true,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #role: 'Trainer'
 }
 
 psychologistPepe = {
@@ -49,10 +79,20 @@ psychologistPepe = {
   lastname: "Gomez",
   phone: "765756798",
   city: "Barcelona",
+  age: "46",
+  gender: "Male",
+  height: "172",
+  weight: "87",
+  description: "",
   country: "Spain",
   email: "pepe@correo.es",
   password: "nutrain",
-  role: 'Psychologist'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: true,
+  verified: false
+  #role: 'Psychologist'
 }
 
 physiotherapistPaco = {
@@ -60,10 +100,20 @@ physiotherapistPaco = {
   lastname: "Diaz",
   phone: "654234123",
   city: "Sevilla",
+  age: "30",
+  gender: "Male",
+  height: "177",
+  weight: "78",
+  description: "",
   country: "Spain",
   email: "paco@correo.es",
   password: "nutrain",
-  role: 'Physiotherapist'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: true,
+  psychologist: false,
+  verified: false
+  #role: 'Physiotherapist'
 }
 
 userJavi = {
@@ -71,10 +121,20 @@ userJavi = {
   lastname: "Rodriguez",
   phone: "657765765",
   city: "Santa Cruz",
+  age: "35",
+  gender: "Male",
+  height: "179",
+  weight: "77",
+  description: "",
   country: "Spain",
   email: "javier@correo.es",
   password: "nutrain",
-  role: 'User'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #role: 'User'
 }
 
 userJuan = {
@@ -82,10 +142,20 @@ userJuan = {
   lastname: "Santana",
   phone: "765896345",
   city: "Murcia",
+  age: "42",
+  gender: "Male",
+  height: "177",
+  weight: "72",
+  description: "",
   country: "Spain",
   email: "juan@correo.es",
   password: "nutrain",
-  role: 'User'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #role: 'User'
 }
 
 userManolo = {
@@ -93,18 +163,28 @@ userManolo = {
   lastname: "Perez",
   phone: "654786653",
   city: "LP",
+  age: "25",
+  gender: "Male",
+  height: "178",
+  weight: "65",
+  description: "",
   country: "Spain",
   email: "manolo@correo.es",
   password: "nutrain",
-  role: 'User'
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+  #type: 'User'
 }
 
-User.create(adminDaniel)
-User.create(trainerAlvaro)
-User.create(nutritionistAlberto)
-User.create(physiotherapistPaco)
-User.create(psychologistPepe)
-User.create(userJavi)
-User.create(userJuan)
-User.create(userManolo)
+Admin.create(adminDaniel)
+Professional.create(trainerAlvaro)
+Professional.create(nutritionistAlberto)
+Professional.create(physiotherapistPaco)
+Professional.create(psychologistPepe)
+Client.create(userJavi)
+Client.create(userJuan)
+Client.create(userManolo)
 

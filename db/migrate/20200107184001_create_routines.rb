@@ -7,6 +7,7 @@ class CreateRoutines < ActiveRecord::Migration[6.0]
       t.string :file
       t.integer :days_of_exercise
       t.string :goal
+      t.boolean :active
 
       t.timestamps
       t.index ["user_id"], name: "index_routines_on_user_id"

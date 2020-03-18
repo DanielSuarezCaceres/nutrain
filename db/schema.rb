@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_144142) do
+ActiveRecord::Schema.define(version: 2020_03_18_211529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "professional_id"
+    t.datetime "scheduled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_appointments_on_client_id"
+    t.index ["professional_id"], name: "index_appointments_on_professional_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "email"
@@ -22,13 +32,24 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "contractual_relationships", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "professional_id"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_contractual_relationships_on_client_id"
+    t.index ["professional_id"], name: "index_contractual_relationships_on_professional_id"
+  end
+
   create_table "diets", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "total_kcal"
+    t.integer "kcal_goal"
     t.integer "total_meals"
     t.bigint "user_id"
     t.string "goal"
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_diets_on_user_id"
@@ -92,6 +113,7 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "file"
     t.integer "days_of_exercise"
     t.string "goal"
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_routines_on_user_id"
@@ -101,10 +123,19 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.string "name"
     t.string "lastname"
     t.string "gender"
+    t.string "age"
+    t.string "height"
+    t.string "weight"
     t.string "phone"
     t.string "city"
     t.string "country"
-    t.string "role"
+    t.string "description"
+    t.string "type"
+    t.boolean "nutritionist"
+    t.boolean "trainer"
+    t.boolean "physiotherapist"
+    t.boolean "psychologist"
+    t.boolean "verified"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -126,6 +157,10 @@ ActiveRecord::Schema.define(version: 2020_02_19_144142) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
+  add_foreign_key "appointments", "users", column: "client_id"
+  add_foreign_key "appointments", "users", column: "professional_id"
+  add_foreign_key "contractual_relationships", "users", column: "client_id"
+  add_foreign_key "contractual_relationships", "users", column: "professional_id"
   add_foreign_key "exercises", "workouts"
   add_foreign_key "foods", "meals"
 end
