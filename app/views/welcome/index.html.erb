@@ -1,35 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row daily-summary-header">
+      <h2>Daily's summary</h2>
+    </div>
+  </div>
+</div><br>
+
 <div class="container-fluid">
-  <!--  <div class="d-flex align-middle">
-    <h4>Hi, <%#= current_user.fullname %></h4>
-    
-    <%#= link_to 'New user', new_user_path, class: 'btn ml-auto', id: 'btn-sec' %><br>
-  </div><hr>-->
+  
 
-  <h2>Daily's summary</h2>
-  <hr>
-  <!--
-  <%#= link_to 'New routine', new_user_rout
-  ine_path %> <br>
-  <%#= link_to 'New workout', new_user_workout_path %> <br>
-  <%#= link_to 'New exercises', new_user_exercise_path %> <br>
-  <%#= link_to 'New diets', new_user_diet_path %>-->
-
+  <!-- MEALS BLOCK -->
   <div class="row">
     <div class="col-md-8">
-      <h3>Today's meals</h3>
-      <hr>
-      <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %><br>
-      <% if current_user.meals.empty? %>
+      <div class="row daily-meals-header">
+        <h3>Today's meals</h3>
+        <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %>
+      </div>
+      
+      <div class="row">
+      <% if current_user.meals.where("DATE(created_at) = ?", Date.today).empty? %>
         You have not added any food today.
       <% else %>
         <table class="table table-bordered table-hover">
           <tr>
             <th class="text-center">Name</th>
             <th class="text-center">Description</th>
-            <!--          <th class="text-center">Kcal</th>
-                      <th class="text-center">Protein</th>
-                      <th class="text-center">Carbs</th>
-                      <th class="text-center">Fats</th>-->
             <th class="text-center">Actions</th>
           </tr>
           <% meals = current_user.meals.where("DATE(created_at) = ?", Date.today) %>
@@ -37,10 +32,6 @@
             <tr>
               <td class="text-center"><%= meal.name %></td>
               <td class="text-center"><%= meal.description %></td>
-              <!--          <td class="text-center"><%#= meal.kcal %></td>
-          <td class="text-center"><%#= meal.protein %></td>
-          <td class="text-center"><%#= meal.carbs %></td>
-          <td class="text-center"><%#= meal.fats %></td>-->
               <td class="text-center">
                 <%= link_to 'Edit', user_meal_path(current_user.id, id: meal), class: 'btn', id: 'btn-sec' %>
                 <%= link_to 'Delete', user_meal_path(current_user.id, id: meal), method: :delete, class: 'btn btn-danger' %>
@@ -49,78 +40,91 @@
           <% end %>
         </table>
       <% end %>
+      </div>
     </div>
 
+    <!-- WORKOUTS BLOCK -->
     <div class="col-md-4">
-      <h3>Today's workout</h3>
-      <hr>
-      <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %>
-      <br>
-      <% if current_user.workouts.empty? %>
-        You have not added any workout today.
-      <% else %>
-        <table class="table table-bordered table-hover">
-          <tr>
-            <th class="text-center">Name</th>
-            <th class="text-center">Description</th>
-            <th class="text-center">Actions</th>
-          </tr>
-          <% workouts = current_user.workouts.where("DATE(created_at) = ?", Date.today) %>
-          <% workouts.each do |workout| %>
+      <div class="row daily-workouts-header">
+        <h3>Today's workout</h3>
+        <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %>
+      </div>
+
+      <div class="row">
+        <% if current_user.workouts.where("DATE(created_at) = ?", Date.today).empty? %>
+          You have not added any workout today.
+        <% else %>
+          <table class="table table-bordered table-hover">
             <tr>
-              <td class="text-center"><%= workout.name %></td>
-              <td class="text-center"><%= workout.description %></td>
-              <td class="text-center">
-                <%= link_to 'Edit', user_workout_path(current_user.id, id: workout), class: 'btn', id: 'btn-sec' %>
-                <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete, class: 'btn btn-danger' %>
-              </td>
+              <th class="text-center">Name</th>
+              <th class="text-center">Description</th>
+              <th class="text-center">Actions</th>
             </tr>
-          <% end %>
-        </table>
-      <% end %>
+            <% workouts = current_user.workouts.where("DATE(created_at) = ?", Date.today) %>
+            <% workouts.each do |workout| %>
+              <tr>
+                <td class="text-center"><%= workout.name %></td>
+                <td class="text-center"><%= workout.description %></td>
+                <td class="text-center">
+                  <%= link_to 'Edit', user_workout_path(current_user.id, id: workout), class: 'btn', id: 'btn-sec' %>
+                  <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete, class: 'btn btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </div>
     </div>
   </div>
-  <hr>
 
-  <div class="row container-fluid">
+  <!-- MACRONUTRIENTS HEADER-->
+  <br>
+  <div class="row daily-macros-header">
     <h3>Today's Macros</h3>
   </div>
-  <hr>
-  <!--
-      <div class="vl"></div>
-  -->
+  <!-- DAILY MACRONUTRIENTS PIE GRAPHICS -->
   <div class="pie-graphics">
-  <div class="row">
-    <div class="col-md-3">
-      <h4>Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %></h4>
-      <%= bar_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
+    <div class="row">
+      <div class="col-md-3">
+        <div class="row daily-kcal-header">
+          <h4>Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %></h4>
+        </div>
+        <%= bar_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
                     colors: ['#f57c00'] %>
-      <hr>
-    </div>
-    <div class="col-md-3">
-      <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %></h4>
-      <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
+        
+      </div>
+      <div class="col-md-3">
+        <div class="row daily-protein-header">
+          <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %></h4>
+        </div>
+        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
                     colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
-      <hr>
+        
+      </div>
+      <div class="col-md-3">
+        <div class="row daily-carbs-header">
+          <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %></h4>
+        </div>
+        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs) %>
+        
+      </div>
+      <div class="col-md-3">
+        <div class="row daily-fats-header">
+          <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %></h4>
+        </div>
+        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats) %>
+        
+      </div>
     </div>
-    <div class="col-md-3">
-      <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %></h4>
-      <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs) %>
-      <hr>
-    </div>
-    <div class="col-md-3">
-      <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %></h4>
-      <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats) %>
-      <hr>
-    </div>
-  </div>
-  </div>
+  </div><br>
 
-  <div class="row container-fluid">
-    <h3>Your macros of last 7 days</h3>
+  <!-- WEEKLY MACRONUTRIENTS HEADER -->
+  <div class="row weekly-macros-header">
+      <h3>Your macros of last 7 days</h3>
   </div>
-  <hr>
-
+  <br>
+  
+  <!-- WEEKLY MACRONUTRIENT LINE GRAPHIC -->
   <div class="row">
     <% @meals = current_user.meals %>
     <%= line_chart [
@@ -133,11 +137,11 @@
 </div>
 
 <script>
-/*    $(document).ready(function(){
-        ScrollReveal().reveal('.pie-graphics  ', {
-            easing: 'ease-in',
-            delay: 1000,
-            duration: 1000,
-        });
-    });*/
+  /*    $(document).ready(function(){
+          ScrollReveal().reveal('.pie-graphics  ', {
+              easing: 'ease-in',
+              delay: 1000,
+              duration: 1000,
+          });
+      });*/
 </script>

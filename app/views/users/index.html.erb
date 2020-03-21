@@ -2,12 +2,13 @@
     <tr>
       <th class="text-center">Name</th>
       <th class="text-center">Lastname</th>
+      <th class="text-center">Age</th>
+      <th class="text-center">Gender</th>
       <th class="text-center">Phone</th>
       <th class="text-center">City</th>
       <th class="text-center">Country</th>
-      <th class="text-center">Role</th>
       <th class="text-center">Actions</th>
-      <% if current_user.role == 'Admin' %>
+      <% if current_user.type == 'Admin' %>
         <th>Actions</th>
       <% end %>
     </tr>
@@ -16,17 +17,18 @@
     <tr>
       <td class="text-center"><%= user.name %></td>
       <td class="text-center"><%= user.lastname %></td>
+      <td class="text-center"><%= user.age %></td>
+      <td class="text-center"><%= user.gender %></td>
       <td class="text-center"><%= user.phone %></td>
       <td class="text-center"><%= user.city %></td>
       <td class="text-center"><%= user.country %></td>
-      <td class="text-center"><%= user.role %></td>
-      <% if current_user.role == 'Admin' %>
+      <% if current_user.type == 'Admin' %>
         <td class="text-center">
           <%= link_to 'View', user_path(user), class: 'btn', id: 'btn-sec' %>
           <%= link_to 'Edit', edit_user_registration_path(user), class: 'btn', id: 'btn-sec' %>
           <%= link_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
         </td>
-      <% elsif current_user.role != 'Admin' && current_user.role != 'User' %>
+      <% elsif current_user.type != 'Admin' && current_user.type != 'Client' %>
         <td class="text-center">
           <%= link_to 'Details', user_path(user), class: 'btn', id: 'btn-sec' %>
           <%= link_to 'New appointment', user_path(user), class: 'btn', id: 'btn-sec' %>

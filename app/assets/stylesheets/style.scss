@@ -8,10 +8,18 @@ $midnight-blue: #2C3E50;
 $pumpkin: #D35400;
 $secondary-blue: #0288d1;
 //$background-elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05);
+
+/* COLOR PALETTE FROM COLORSINSPO.COM */
+
+$dark-orange: #f96d15;
+$light-gray: #45969b;
+$light-aquamarine: #50b6bb;
+$snow: #f8f8f8;
+
 /* ---------------------------------------- */
 
 * {
-  font-family: "Muli";
+  font-family: "Quicksand";
 }
 
 .logo {
@@ -28,19 +36,20 @@ table {
 }
 
 #btn-sec {
-    background-color: $green-sea;
-    margin: 5px 5px 5px 5px;
+  color: white;  
+  background-color: $light-gray;
+  margin: 5px 5px 5px 5px;
 }
 
 #upper-toolbar {
-    /*background-color: #cfd8dc;*/
-    height: 15%;
+  /*background-color: #cfd8dc;*/
+  height: 15%;
 }
 
 
 
 .navbar {
-  background-color: $main-orange;
+  background-color: $dark-orange;
   text-decoration: none;
   border-bottom: 0;
   color: white;
@@ -74,4 +83,35 @@ hr {
   background-color: $secondary-orange;
   color: $secondary-orange;
   height: 1px;
+}
+
+.daily-workouts-header, .daily-meals-header {
+  background-color: $light-gray;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.daily-summary-header {
+  background-color: $light-gray;
+}
+
+.daily-macros-header {
+  background-color: $light-gray;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.daily-kcal-header, .daily-protein-header, .daily-carbs-header, .daily-fats-header {
+  background-color: $snow;
+  height: 15%;
+  align-items: center;
+}
+
+.weekly-macros-header {
+    background-color: $light-gray;
+  border-radius: 5px 5px 0px 0px;
+}
+
+h2, h3, h4 {
+  margin: 10px 0px 10px 5px;
+  padding: 5px 0px 5px 0px;
+  color: white;
 }

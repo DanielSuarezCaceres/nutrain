@@ -29,7 +29,7 @@ adminDaniel = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #role: 'Admin'
+  #type: 'Admin'
 }
 
 nutritionistAlberto = {
@@ -50,7 +50,7 @@ nutritionistAlberto = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #role: 'Nutritionist'
+  #type: 'Nutritionist'
 }
 
 trainerAlvaro = {
@@ -71,7 +71,7 @@ trainerAlvaro = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #role: 'Trainer'
+  #type: 'Trainer'
 }
 
 psychologistPepe = {
@@ -92,7 +92,7 @@ psychologistPepe = {
   physiotherapist: false,
   psychologist: true,
   verified: false
-  #role: 'Psychologist'
+  #type: 'Psychologist'
 }
 
 physiotherapistPaco = {
@@ -113,7 +113,7 @@ physiotherapistPaco = {
   physiotherapist: true,
   psychologist: false,
   verified: false
-  #role: 'Physiotherapist'
+  #type: 'Physiotherapist'
 }
 
 userJavi = {
@@ -134,7 +134,7 @@ userJavi = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #role: 'User'
+  #type: 'User'
 }
 
 userJuan = {
@@ -155,7 +155,7 @@ userJuan = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #role: 'User'
+  #type: 'User'
 }
 
 userManolo = {

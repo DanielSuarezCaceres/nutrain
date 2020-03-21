@@ -16,11 +16,10 @@ class WorkoutsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @workout = @user.workouts.new(workout_params)
-    byebug
     if @workout.valid?
       @workout.save
     end
-    redirect_to user_path(params[:user_id])
+    redirect_to root_path
   end
 
   def edit

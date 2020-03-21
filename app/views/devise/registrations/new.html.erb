@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control', placeholder: 'e.g: example@example.com' %>
   </div>
 
   <div class="form-group">
@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
+    <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control', placeholder: 'repeat password' %>
   </div>
 
   <div class="form-group">
@@ -33,8 +33,29 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.select :type, options_for_select(['Male', 'Female']),
+                 {}, {include_blank: false, class: 'form-control'}%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.number_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :height %>
+    <%= f.number_field :phone, class: 'form-control', placeholder: 'Height in cm' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :weight %>
+    <%= f.number_field :phone, class: 'form-control', placeholder: 'Weight in kg' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :phone %>
-    <%= f.text_field :phone, class: 'form-control' %>
+    <%= f.text_field :phone, class: 'form-control', placeholder: 'eg: 123456789' %>
   </div>
 
   <div class="form-group">
@@ -48,8 +69,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :role %>
-    <%= f.select :role, options_for_select(['Admin', 'User', 'Nutritionist', 'Trainer', 'Physioterapist', 'Psychologist']),
+    <%= f.label :type %>
+    <%= f.select :type, options_for_select(['Client', 'Professional']),
                  {}, {include_blank: false, class: 'form-control'} %>
   </div>
 

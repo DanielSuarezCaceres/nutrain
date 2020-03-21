@@ -42,6 +42,6 @@ class User < ApplicationRecord
   end
 
   def self.users_except_admin
-    where.not(role: 'Admin')
+    where.not(type: 'Admin')
   end
 end

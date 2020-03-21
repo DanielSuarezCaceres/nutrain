@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       :phone,
       :city,
       :country,
-      :role,
+      :type,
     )
   end
 end
