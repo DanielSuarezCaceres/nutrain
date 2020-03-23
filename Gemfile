@@ -31,6 +31,7 @@ gem 'cocoon'
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'groupdate'
+gem 'simple_calendar'
 gem 'simple_form'
 gem 'sprockets', '~> 4.0'
 

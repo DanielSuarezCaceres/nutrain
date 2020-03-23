@@ -31,7 +31,6 @@ require("custom/scrollreveal")
 
 $(document).ready(function(){
     $(".alert").fadeOut(4000);
-    $(".notice").fadeOut(4000);
 });
 /*
 $(function(){

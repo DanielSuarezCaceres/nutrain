@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :workouts
   has_many :diets
   has_many :meals
+  has_many :appointments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

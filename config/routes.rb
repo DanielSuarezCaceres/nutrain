@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   resources :diets
   resources :meals
   resources :foods
+  resources :appointments
   
 end

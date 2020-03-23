@@ -3,7 +3,9 @@ class CreateAppointments < ActiveRecord::Migration[6.0]
     create_table :appointments do |t|
       t.references :client, index: true, foreign_key: { to_table: 'users' }
       t.references :professional, index: true, foreign_key: { to_table: 'users' }
-      t.datetime :scheduled_at
+      t.string :description
+      t.datetime :start_time
+      t.datetime :end_time
 
       t.timestamps
     end

@@ -90,6 +90,10 @@ hr {
   border-radius: 5px 5px 0px 0px;
 }
 
+.workout-block {
+
+}
+
 .daily-summary-header {
   background-color: $light-gray;
 }
@@ -110,8 +114,13 @@ hr {
   border-radius: 5px 5px 0px 0px;
 }
 
-h2, h3, h4 {
+h2, h3 {
   margin: 10px 0px 10px 5px;
   padding: 5px 0px 5px 0px;
   color: white;
+}
+
+h4 {
+  color: black;
+  padding: 0px 0px 0px 5px;
 }
