@@ -5,20 +5,22 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @appointment = appointment.find(params[:id])
+    @appointment = Appointment.find(params[:id])
   end
 
   def new
-    @appointment = appointment.new
+    byebug
+    @appointment = Appointment.new
   end
   
   def create
+    byebug
     @user = User.find(params[:user_id])
     @appointment = @user.appointments.new(appointment_params)
     if @appointment.valid?
       @appointment.save
     end
-    redirect_to user_appointments_path
+    redirect_to user_appointments_path  
   end
 
   def update
@@ -40,7 +42,8 @@ class AppointmentsController < ApplicationController
       :id,
       :name,
       :description,
-      :user_id,
+      :start_date,
+      :end_date
     )
   end  
 
