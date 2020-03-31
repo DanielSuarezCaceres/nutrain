@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "client_id"
     t.bigint "professional_id"
+    t.string "name"
     t.string "description"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_appointments_on_client_id"

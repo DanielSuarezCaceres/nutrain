@@ -1,8 +1,13 @@
+<div class="p-1">
+  <%= link_to 'New appointment', new_user_appointment_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+</div>
+
 <%= month_calendar events: @appointments do |date, appointments| %>
   <%= date %>
 
   <% appointments.each do |appointment| %>
     <div>
+      <%= appointment.name %>
       <%= appointment.description %><br>
       <%= User.find(appointment.client_id).name %><br>
       <%= User.find(appointment.professional_id).name %>

@@ -1,0 +1,8 @@
+<%= simple_form_for(@appointment, url: user_appointments_path(id: current_user.id)) do |f| %>
+  <%= f.input :description %>
+  <%= f.datetime_field :start_time %><br>
+  <%= f.datetime_field :end_time %> <br>
+  <%= f.input :client_id, collection: Client.all %>
+
+  <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+<% end %> 

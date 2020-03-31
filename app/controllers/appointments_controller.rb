@@ -9,14 +9,18 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    byebug
+    #byebug
     @appointment = Appointment.new
   end
   
   def create
-    byebug
+    #byebug
     @user = User.find(params[:user_id])
     @appointment = @user.appointments.new(appointment_params)
+    byebug
+    @appointment.update(start_time: appointment_params[:start_time].to_time)
+    @appointment.update(end_time: appointment_params[:end_time].to_time)
+    byebug
     if @appointment.valid?
       @appointment.save
     end
@@ -42,8 +46,10 @@ class AppointmentsController < ApplicationController
       :id,
       :name,
       :description,
-      :start_date,
-      :end_date
+      :client_id,
+      :professional_id,
+      :start_time,
+      :end_time
     )
   end  
 
