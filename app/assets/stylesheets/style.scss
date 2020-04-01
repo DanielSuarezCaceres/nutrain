@@ -9,17 +9,72 @@ $pumpkin: #D35400;
 $secondary-blue: #0288d1;
 //$background-elements: rgba(246,246,246,0.2), rgba(0,0,0,0,0.05);
 
-/* COLOR PALETTE FROM COLORSINSPO.COM */
+/* ORANGE BLUE PALETTE FROM COLORSINSPO.COM */
 
-$dark-orange: #f96d15;
-$light-gray: #45969b;
-$light-aquamarine: #50b6bb;
-$snow: #f8f8f8;
+$ob_main: #f96d15;
+$ob_secondary1: #45969b;
+$ob_secondary2: #50b6bb;
+$ob_secondary3: #f8f8f8;
+
+/* GREEN PALETTE FROM COLORSINSPO.COM */
+
+$gp_main: #40514e;
+$gp_secondary1: #2cb978;
+$gp_secondary2: #83e85a;
+$gp_secondary3: #3b5441;
+
+/* ORANGE GRAY PALETTE FROM COLORINSPO.COM */
+
+$og_main: #f78536;
+$og_secondary1: #dfebed;
+$og_secondary2: #497285;
+$og_secondary3: #2b4450;
+
+/*  ORANGE BLUE GREEN PALETTE FROM PALETTON.COM */
+
+$obg-main-orange: #FF6700;
+$obg-secondary-orange: #FF9C00;
+$obg-blue: #026BE9;
+$obg-green: #00E8C1;
+
+//.color-primary-0 { color: #FF6700 }	/* Main Primary color */
+//.color-primary-1 { color: #FF9C58 }
+//.color-primary-2 { color: #FF7E26 }
+//.color-primary-3 { color: #FF6700 }
+//.color-primary-4 { color: #F36200 }
+//
+//.color-secondary-1-0 { color: #FF9C00 }	/* Main Secondary color (1) */
+//.color-secondary-1-1 { color: #FFBE58 }
+//.color-secondary-1-2 { color: #FFAB26 }
+//.color-secondary-1-3 { color: #FF9C00 }
+//.color-secondary-1-4 { color: #F39400 }
+//
+//.color-secondary-2-0 { color: #1179F7 }	/* Main Secondary color (2) */
+//.color-secondary-2-1 { color: #62A4F4 }
+//.color-secondary-2-2 { color: #368DF6 }
+//.color-secondary-2-3 { color: #026BE9 }
+//.color-secondary-2-4 { color: #034A9F }
+//
+//.color-complement-0 { color: #00F6CD }	/* Main Complement color */
+//.color-complement-1 { color: #54F4D9 }
+//.color-complement-2 { color: #24F6D3 }
+//.color-complement-3 { color: #00E8C1 }
+//.color-complement-4 { color: #009A80 }
+
+$gr1: #005b88;
+$gr2: #007da7;
+$gr3: #00a0b5;
+$gr4: #00c1af;
 
 /* ---------------------------------------- */
 
 * {
   font-family: "Quicksand";
+}
+
+body {
+  //background-image: linear-gradient(to top, #f48606, #bda200, #85b13d, #4db873, #09b9a3);
+  //background-image: linear-gradient(to top, #00e098, #00c1af, #00a0b5, #007da7, #005b88);
 }
 
 .logo {
@@ -37,7 +92,7 @@ table {
 
 #btn-sec {
   color: white;  
-  background-color: $light-gray;
+  background-color: $gr2;
   margin: 5px 5px 5px 5px;
 }
 
@@ -49,7 +104,7 @@ table {
 
 
 .navbar {
-  background-color: $dark-orange;
+  background-color: $gr1;
   text-decoration: none;
   border-bottom: 0;
   color: white;
@@ -75,18 +130,18 @@ table {
 }
 
 .vl {
-  border-left: solid 2px $secondary-orange;
+  border-left: solid 2px $obg-secondary-orange;
   height: 800px;
 }
 
 hr {
-  background-color: $secondary-orange;
-  color: $secondary-orange;
+  background-color: $obg-secondary-orange;
+  color: $gp_secondary3;
   height: 1px;
 }
 
 .daily-workouts-header, .daily-meals-header {
-  background-color: $light-gray;
+  background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
 }
 
@@ -95,22 +150,22 @@ hr {
 }
 
 .daily-summary-header {
-  background-color: $light-gray;
+  background-color: $gr2;
 }
 
 .daily-macros-header {
-  background-color: $light-gray;
+  background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
 }
 
 .daily-kcal-header, .daily-protein-header, .daily-carbs-header, .daily-fats-header {
-  background-color: $snow;
+  background-color: $ob_secondary3;
   height: 15%;
   align-items: center;
 }
 
 .weekly-macros-header {
-    background-color: $light-gray;
+  background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
 }
 
@@ -121,6 +176,7 @@ h2, h3 {
 }
 
 h4 {
+  color: white;
   color: black;
   padding: 0px 0px 0px 5px;
 }

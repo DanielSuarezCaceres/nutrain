@@ -7,10 +7,12 @@
 
   <% appointments.each do |appointment| %>
     <div>
-      <%= appointment.name %>
-      <%= appointment.description %><br>
-      <%= User.find(appointment.client_id).name %><br>
-      <%= User.find(appointment.professional_id).name %>
+      Description: <%= appointment.description %><br>
+      <% if current_user.type == 'Client'%>
+        Appointment with <%= User.find(appointment.professional_id).name %><br>
+      <% elsif current_user.type == 'Professional' %>
+        Appointment with <%= User.find(appointment.client_id).name %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
