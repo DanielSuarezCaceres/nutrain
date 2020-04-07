@@ -31,7 +31,7 @@
       <% elsif current_user.type != 'Admin' && current_user.type != 'Client' %>
         <td class="text-center">
           <%= link_to 'Details', user_path(user), class: 'btn', id: 'btn-sec' %>
-          <%= link_to 'New appointment', user_path(user), class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn', id: 'btn-sec' %>
           <%= link_to 'Cancel relationship', user_path(user), class: 'btn', id: 'btn-sec' %>
         </td>
       <% end %>

@@ -2,17 +2,24 @@
   <%= link_to 'New appointment', new_user_appointment_path(current_user.id), class: 'btn', id: 'btn-sec' %>
 </div>
 
+<button class="btn btn-primary" id="button-cal">
+button
+</button>
+
+<div id="calendar">
 <%= month_calendar events: @appointments do |date, appointments| %>
   <%= date %>
 
   <% appointments.each do |appointment| %>
-    <div>
-      Description: <%= appointment.description %><br>
-      <% if current_user.type == 'Client'%>
-        Appointment with <%= User.find(appointment.professional_id).name %><br>
-      <% elsif current_user.type == 'Professional' %>
-        Appointment with <%= User.find(appointment.client_id).name %>
-      <% end %>
+    <div class="appointment-box">
+      <%= link_to "#{Appointment.find(appointment.id).name} - #{appointment.start_time.strftime('%H:%M')}", 
+      user_appointment_path(id: appointment.id) %>
     </div>
   <% end %>
 <% end %>
+</div>
+
+<p id="other">kfdskfjdaskjfak</p>
+
+<script>
+</script>

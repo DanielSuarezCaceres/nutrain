@@ -1,8 +1,11 @@
+<div id="appointment-form">
 <%= simple_form_for(@appointment, url: user_appointments_path(id: current_user.id)) do |f| %>
+  <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :start_time, as: :datetime, html5: true %> <br>
   <%= f.input :end_time, as: :datetime, html5: true %> <br>
   <%= f.input :client_id, collection: Client.all %>
 
   <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
-<% end %> 
+<% end %>
+</div>

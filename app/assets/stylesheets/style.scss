@@ -143,6 +143,10 @@ hr {
 .daily-workouts-header, .daily-meals-header {
   background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
+  h3 {
+    color: white;
+    margin-left: 5px;
+  }
 }
 
 .workout-block {
@@ -151,11 +155,19 @@ hr {
 
 .daily-summary-header {
   background-color: $gr2;
+  h2 {
+    color: white;
+    margin-left: 5px;
+  }
 }
 
 .daily-macros-header {
   background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
+  h3 {
+    color: white;
+    margin-left: 5px;
+  }
 }
 
 .daily-kcal-header, .daily-protein-header, .daily-carbs-header, .daily-fats-header {
@@ -167,16 +179,23 @@ hr {
 .weekly-macros-header {
   background-color: $gr2;
   border-radius: 5px 5px 0px 0px;
-}
-
-h2, h3 {
-  margin: 10px 0px 10px 5px;
-  padding: 5px 0px 5px 0px;
-  color: white;
+  h3 {
+    color: white;
+    margin-left: 5px;
+  }
 }
 
 h4 {
-  color: white;
   color: black;
   padding: 0px 0px 0px 5px;
+}
+
+.appointment-box {
+  background-color: $gr2;
+  padding: 2px 2px 2px 2px;
+  margin: 2px 2px 2px 2px;
+  border-radius: 5px 5px 5px 5px;
+  text-align: center;
+  color: white;
+  //width: max-content;
 }

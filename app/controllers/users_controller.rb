@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     # @user = User.all
-    @users = User.users_except_admin
+    @users = User.users_except_admin(current_user.id)
   end
 
   def show

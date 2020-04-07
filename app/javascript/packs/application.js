@@ -15,6 +15,7 @@ require("chart.js")
 //require("cocoon")
 //require("scrollreveal")
 require("custom/users")
+require("custom/appointments")
 //require("src/cocoon")
 require("custom/scrollreveal")
 

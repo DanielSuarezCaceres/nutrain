@@ -42,7 +42,15 @@ class User < ApplicationRecord
     "#{name} #{lastname}"
   end
 
-  def self.users_except_admin
-    where.not(type: 'Admin')
+  def self.users_except_admin(current_user_id)
+    where.not(id: current_user_id).where.not(type: 'Admin')
+  end
+
+  def self.only_professionals
+    where(type: 'Professional')
+  end
+
+  def self.only_clients
+    where(type: 'Client')
   end
 end
