@@ -1,10 +1,10 @@
 <div class="p-1">
-  <%= link_to 'New appointment', new_user_appointment_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+  <%= link_to 'New appointment', new_user_appointment_path, class: 'btn', id: 'btn-sec' %>
 </div>
 
-<button class="btn btn-primary" id="button-cal">
+<!-- <button class="btn btn-primary" id="button-cal">
 button
-</button>
+</button> -->
 
 <div id="calendar">
 <%= month_calendar events: @appointments do |date, appointments| %>
@@ -12,14 +12,19 @@ button
 
   <% appointments.each do |appointment| %>
     <div class="appointment-box">
-      <%= link_to "#{Appointment.find(appointment.id).name} - #{appointment.start_time.strftime('%H:%M')}", 
-      user_appointment_path(id: appointment.id) %>
+      <% if current_user.type == 'Client' %>
+        <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).professional_id).fullname} - 
+        #{appointment.start_time.strftime('%H:%M')}", edit_user_appointment_path(id: appointment.id) %>
+      <% else %>
+        <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).client_id).fullname} - 
+        #{appointment.start_time.strftime('%H:%M')}", edit_user_appointment_path(id: appointment.id) %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
 </div>
 
-<p id="other">kfdskfjdaskjfak</p>
-
 <script>
+  // var appointments = <%= Appointment.all.count %>;
+  // countApps(appointments);
 </script>

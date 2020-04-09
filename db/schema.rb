@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "client_id"
     t.bigint "professional_id"
-    t.string "name"
+    t.string "title"
     t.string "description"
     t.datetime "start_time"
     t.datetime "end_time"

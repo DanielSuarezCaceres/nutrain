@@ -1,11 +1,15 @@
 <div id="appointment-form">
-<%= simple_form_for(@appointment, url: user_appointments_path(id: current_user.id)) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :start_time, as: :datetime, html5: true %> <br>
-  <%= f.input :end_time, as: :datetime, html5: true %> <br>
-  <%= f.input :client_id, collection: Client.all %>
+  <%= simple_form_for(@appointment) do |f| %>
+    <%= f.error_notification %>
 
-  <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
-<% end %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :start_time, as: :datetime, html5: true %> <br>
+    <%= f.input :end_time, as: :datetime, html5: true %> <br>
+    <%= f.input :client_id, collection: Client.all %>
+    <div class="row">
+      <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+      <%= link_to 'Back', user_appointments_path(user_id: current_user.id), class: 'btn', id: 'btn-sec' %>
+    </div>
+  <% end %>
 </div>

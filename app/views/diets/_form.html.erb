@@ -1,10 +1,15 @@
-<%= simple_form_for(@diet, url: user_diets_path(id: current_user.id), wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for(@diet, wrapper: :horizontal_form) do |f| %>
+  <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :kcal_goal %>
   <%= f.input :total_meals %>
   <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain']),
                {}, {include_blank: false, class: 'form-control'}  %>
-
-  <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+  <%= f.input :active %>
+               
+  <div class="row">
+    <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+    <%= link_to 'Back', user_diets_path(user_id: current_user.id), class: 'btn', id: 'btn-sec' %>
+  </div>
 <% end %>

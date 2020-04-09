@@ -13,24 +13,43 @@ class DietsController < ApplicationController
   end
   
   def create
-    @user = User.find(params[:user_id])
-    @diet = @user.diets.new(diet_params)
+    # temporary, see how to pass the id of another user (the id of a client you are creating a diet for)
+    #@user = User.find(params[:user_id])
+    @diet = current_user.diets.new(diet_params)
     if @diet.valid?
       @diet.save
-    end
-    redirect_to user_diets_path
+      flash[:notice] = 'Diet created sucessfully'
+      redirect_to user_diets_path(current_user)
+    else
+      flash[:error] = @diet.errors
+      render :new
+    end 
   end
 
   def update
-    #@ = .find(params[:id])
+    @diet = Diet.find(params[:id])
+    if @diet.update(diet_params)
+      flash[:notice] = 'Diet updated sucessfully'
+      redirect_to user_diets_path(current_user)
+    else
+      flash[:error] = @diet.errors
+      render :edit
+    end
   end
 
   def edit
-    #@ = .find(params[:id])
+    @diet = Diet.find(params[:id])
   end
 
   def destroy
-    #@ = .find(params[:id])
+    @diet = Diet.find(params[:id])
+    if @diet.destroy
+      flash[:notice] = 'Diet deleted successfully'
+      redirect_to user_diets_path
+    else
+      flash[:error] = 'Something went wrong while deleting diet'
+      redirect_to user_diet_path(@diet)
+    end
   end
 
   private
@@ -41,6 +60,10 @@ class DietsController < ApplicationController
       :name,
       :description,
       :user_id,
+      :kcal_goal,
+      :total_meals,
+      :active,
+      :goal
     )
   end  
 
