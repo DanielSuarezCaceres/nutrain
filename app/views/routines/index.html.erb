@@ -12,6 +12,9 @@
   <tr>
     <th class="text-center">Name</th>
     <th class="text-center">Description</th>
+    <th class="text-center">Active</th>
+    <th class="text-center">Days of exercise</th>
+    <th class="text-center">Routine goal</th>
     <th class="text-center">Actions</th>
   </tr>
   <tbody>
@@ -19,9 +22,14 @@
       <tr>
         <td class="text-center"><%= routine.name %></td>
         <td class="text-center"><%= routine.description %></td>
+        <td class="text-center"><%= routine.active %></td>
+        <td class="text-center"><%= routine.days_of_exercise %></td>
+        <td class="text-center"><%= routine.goal %></td>
         <td class="text-center">
-          <%= link_to 'Details', routines_path, class: 'btn', id: 'btn-sec' %>
-          <%= link_to 'Delete', user_routines_path(current_user.id), method: :delete, class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'Delete', user_routine_path(user_id: current_user.id, id: routine.id), 
+            method: :delete, class: 'btn', id: 'btn-sec' %>
+          <%= link_to 'Edit', edit_routine_path(user_id: current_user.id, id: routine.id), class: 'btn', id: 'btn-sec' %>
         </td>
       </tr>
     <% end %>

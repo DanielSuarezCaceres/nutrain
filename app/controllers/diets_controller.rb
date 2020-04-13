@@ -15,14 +15,14 @@ class DietsController < ApplicationController
   def create
     # temporary, see how to pass the id of another user (the id of a client you are creating a diet for)
     #@user = User.find(params[:user_id])
-    @diet = current_user.diets.new(diet_params)
+    user = current_user
+    @diet = user.diets.new(diet_params)
     if @diet.valid?
-      #change_active_diet(current_user.id, @diet)
       @diet.save
       flash[:notice] = 'Diet created sucessfully'
       redirect_to user_diets_path(current_user)
     else
-      flash[:error] = @diet.errors
+      # flash[:error] = @diet.errors.full_messages
       render :new
     end 
   end
@@ -30,13 +30,10 @@ class DietsController < ApplicationController
   def update
     @diet = Diet.find(params[:id])
     if @diet.update(diet_params)
-      #if @diet.active
-      #  change_active_diet(current_user.id, @diet)
-      #end
       flash[:notice] = 'Diet updated sucessfully'
       redirect_to user_diets_path(current_user)
     else
-      flash[:error] = @diet.errors
+      # flash[:error] = @diet.errors.full_messages
       render :edit
     end
   end
@@ -51,7 +48,7 @@ class DietsController < ApplicationController
       flash[:notice] = 'Diet deleted successfully'
       redirect_to user_diets_path
     else
-      flash[:error] = 'Something went wrong while deleting diet'
+      flash[:error] = @routine.errors.full_messages
       redirect_to user_diet_path(@diet)
     end
   end
@@ -70,19 +67,5 @@ class DietsController < ApplicationController
       :goal
     )
   end
-
-  #def change_active_diet(user_id, current_diet)
-  #  user = User.find(user_id)
-  #  diets = user.diets.where.not(id: current_diet.id).where(active: true)
-  #  unless diets.count.zero?
-  #    if diets.count == 1
-  #      diets.first.update(active: false)
-  #    else
-  #      diets.each do |diet|
-  #        diet.update(active: false)
-  #      end
-  #    end
-  #  end
-  #end
 
 end

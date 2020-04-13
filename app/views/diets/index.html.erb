@@ -11,12 +11,20 @@
   <tr>
     <th class="text-center">Name</th>
     <th class="text-center">Description</th>
+    <th class="text-center">Active</th>
+    <th class="text-center">Total kcal</th>
+    <th class="text-center">Nº of meals</th>
+    <th class="text-center">Diet goal</th>
     <th class="text-center">Actions</th>
   </tr>
   <tbody>
   <% @diets.each do |diet| %><tr>
     <td class="text-center"><%= diet.name %></td>
     <td class="text-center"><%= diet.description %></td>
+    <td class="text-center"><%= diet.active %></td>
+    <td class="text-center"><%= diet.kcal_goal %></td>
+    <td class="text-center"><%= diet.total_meals %></td>
+    <td class="text-center"><%= diet.goal %></td>
     <td class="text-center">
       <%= link_to 'Details', user_diet_path(user_id: current_user.id, id: diet.id), class: 'btn', id: 'btn-sec' %>
       <%= link_to 'Delete', user_diet_path(user_id: current_user.id, id: diet.id), method: :delete, class: 'btn', id: 'btn-sec' %>

@@ -8,7 +8,7 @@ class Diet < ApplicationRecord
 
   before_save :check_active_diet
 
-  # If any diet is saved as 'active', set other diets to 'false' (only one can be active)
+  # If any diet is saved as 'active', set other active diets to 'false' (only one can be active)
   def check_active_diet
     if self.active
       Diet.where.not(id: self.id).update_all(active: false)

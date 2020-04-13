@@ -15,24 +15,44 @@ class RoutinesController < ApplicationController
 
   def create
     #@routine = Routine.new(routine_params)
-    @user = User.find(params[:user_id])
-    @routine = @user.routines.new(routine_params)
+    #@user = User.find(params[:user_id])
+    user = current_user
+    @routine = user.routines.new(routine_params)
+    #byebug
     if @routine.valid?
       @routine.save
+      flash[:notice] = 'Routine created sucessfully'
+      redirect_to user_routines_path(current_user)
+    else
+      # flash[:error] = @routine.errors.full_messages
+      render :new
     end
-    redirect_to user_routines_path
   end
 
   def update
-    #@ = .find(params[:id])
+    @routine = Routine.find(params[:id])
+    if @routine.update(routine_params)
+      flash[:notice] = 'Routine updated sucessfully'
+      redirect_to user_routines_path(current_user)
+    else
+      # flash[:error] = @routine.errors.full_messages
+      render :edit
+    end
   end
 
   def edit
-    #@ = .find(params[:id])
+    @routine = Routine.find(params[:id])
   end
 
   def destroy
-    #@ = .find(params[:id])
+    @routine = Routine.find(params[:id])
+    if @routine.destroy
+      flash[:notice] = 'Routine deleted sucessfully'
+      redirect_to user_routines_path(current_user)
+    else
+      flash[:error] = @routine.errors.full_messages
+      # redirect_to user_routines_path(current_user)
+    end
   end
 
   private
@@ -42,7 +62,10 @@ class RoutinesController < ApplicationController
       :id,
 			:name,
 			:description,
-      :user_id
+      :user_id,
+      :days_of_exercise,
+      :goal,
+      :active
 		)
   end
 
