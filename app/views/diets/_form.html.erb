@@ -4,7 +4,7 @@
   <%= f.input :description %>
   <%= f.input :kcal_goal %>
   <%= f.input :total_meals %>
-  <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain']),
+  <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal),
                {}, {include_blank: false, class: 'form-control'}  %>
   <%= f.input :active %>
                

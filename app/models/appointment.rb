@@ -5,8 +5,8 @@ class Appointment < ApplicationRecord
   attr_accessible :end_time
   validates :title, presence: true
   validates :description, presence: true, lenght: { minimum: 3 }
-  validates :start_time_is_valid_datetime
-  validates :end_time_is_valid_datetime
+  # validates :start_time_is_valid_datetime
+  # validates :end_time_is_valid_datetime
 
   def start_time_is_valid_datetime
     errors.add(:start_time, 'start time must be a valid datetime') if ((DateTime.parse(start_time) rescue ArgumentError) == ArgumentError)
