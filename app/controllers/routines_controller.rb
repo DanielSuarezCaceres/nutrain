@@ -21,8 +21,7 @@ class RoutinesController < ApplicationController
     #byebug
     if @routine.valid?
       @routine.save
-      flash[:notice] = 'Routine created sucessfully'
-      redirect_to user_routines_path(current_user)
+      redirect_to user_routines_path(current_user), notice: 'Routine created successfully'
     else
       # flash[:error] = @routine.errors.full_messages
       render :new
@@ -32,8 +31,7 @@ class RoutinesController < ApplicationController
   def update
     @routine = Routine.find(params[:id])
     if @routine.update(routine_params)
-      flash[:notice] = 'Routine updated sucessfully'
-      redirect_to user_routines_path(current_user)
+      redirect_to user_routines_path(current_user), notice: 'Routine updated successfully'
     else
       # flash[:error] = @routine.errors.full_messages
       render :edit
@@ -47,8 +45,7 @@ class RoutinesController < ApplicationController
   def destroy
     @routine = Routine.find(params[:id])
     if @routine.destroy
-      flash[:notice] = 'Routine deleted sucessfully'
-      redirect_to user_routines_path(current_user)
+      redirect_to user_routines_path(current_user), notice: 'Routine deleted successfully'
     else
       flash[:error] = @routine.errors.full_messages
       # redirect_to user_routines_path(current_user)

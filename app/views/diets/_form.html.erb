@@ -4,9 +4,11 @@
   <%= f.input :description %>
   <%= f.input :kcal_goal %>
   <%= f.input :total_meals %>
-  <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal),
-               {}, {include_blank: false, class: 'form-control'}  %>
-  <%= f.input :active %>
+  <%= f.input :goal do %>
+    <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal), 
+                {}, {include_blank: false, class: 'form-control'} %>
+  <% end %>
+  <%= f.input :active, label: 'Set as current diet' %>
                
   <div class="row">
     <%= f.button :submit, class: 'btn', id: 'btn-sec' %>

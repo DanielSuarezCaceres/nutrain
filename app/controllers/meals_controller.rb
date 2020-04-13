@@ -35,7 +35,7 @@ class MealsController < ApplicationController
       @meal.save
     end
 
-    redirect_to root_path
+    redirect_to root_path, notice: 'Meal added successfully' # (current_user)
   end
 
   # PATCH/PUT /meals/1

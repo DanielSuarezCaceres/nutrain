@@ -19,7 +19,7 @@ class WorkoutsController < ApplicationController
     if @workout.valid?
       @workout.save
     end
-    redirect_to root_path
+    redirect_to root_path, notice: 'Workout added successfully' # (current_user)
   end
 
   def edit

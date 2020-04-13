@@ -1,4 +1,7 @@
-<%= render 'diet' %>
-
-<%= link_to 'Edit', edit_user_diet_path(@diet), class: 'btn', id: 'btn-sec' %>  
-<%= link_to 'Back', user_diets_path, class: 'btn', id: 'btn-sec' %>
+<div class="container p-2">
+  <h3>Details</h3>
+  <hr>
+  <%= render 'diet' %>
+  <%= link_to 'Edit', edit_user_diet_path(@diet), class: 'btn', id: 'btn-sec' %>
+  <%= link_to 'Back', user_diets_path, class: 'btn', id: 'btn-sec' %>
+</h2>

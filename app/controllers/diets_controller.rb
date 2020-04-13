@@ -19,8 +19,7 @@ class DietsController < ApplicationController
     @diet = user.diets.new(diet_params)
     if @diet.valid?
       @diet.save
-      flash[:notice] = 'Diet created sucessfully'
-      redirect_to user_diets_path(current_user)
+      redirect_to user_diets_path(current_user), notice: 'Diet created successfully'
     else
       # flash[:error] = @diet.errors.full_messages
       render :new
@@ -30,8 +29,7 @@ class DietsController < ApplicationController
   def update
     @diet = Diet.find(params[:id])
     if @diet.update(diet_params)
-      flash[:notice] = 'Diet updated sucessfully'
-      redirect_to user_diets_path(current_user)
+      redirect_to user_diets_path(current_user), notice: 'Diet updated successfully'
     else
       # flash[:error] = @diet.errors.full_messages
       render :edit
@@ -45,8 +43,7 @@ class DietsController < ApplicationController
   def destroy
     @diet = Diet.find(params[:id])
     if @diet.destroy
-      flash[:notice] = 'Diet deleted successfully'
-      redirect_to user_diets_path
+      redirect_to user_diets_path(current_user), notice: 'Diet deleted successfully'
     else
       flash[:error] = @routine.errors.full_messages
       redirect_to user_diet_path(@diet)
