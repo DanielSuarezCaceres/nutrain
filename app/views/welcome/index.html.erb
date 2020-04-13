@@ -7,8 +7,6 @@
 </div><br>
 
 <div class="container-fluid">
-  
-
   <!-- MEALS BLOCK -->
   <div class="row">
     <div class="col-md-6">
@@ -21,7 +19,7 @@
       <% if current_user.meals.where("DATE(created_at) = ?", Date.today).empty? %>
         You have not added any food today.
       <% else %>
-        <table class="table table-bordered table-hover">
+        <table class="table table-responsive-lg table-hover table-summary-welcome-page">
           <tr>
             <th class="text-center">Name</th>
             <th class="text-center">Description</th>
@@ -57,7 +55,7 @@
         <% if current_user.workouts.where("DATE(created_at) = ?", Date.today).empty? %>
           You have not added any workout today.
         <% else %>
-          <table class="table table-bordered table-hover">
+          <table class="table table-responsive-lg table-hover table-summary-welcome-page">
             <tr>
               <th class="text-center">Name</th>
               <th class="text-center">Description</th>
@@ -90,9 +88,12 @@
     <div class="row">
       <div class="col-md-3">
         <div class="row daily-kcal-header">
-          <h4>Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %></h4>
+          <h4>
+            Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %> of 
+            <%= current_user.get_current_diet.kcal_goal unless current_user.diets.empty? %>
+          </h4>
         </div>
-        <%= bar_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
+        <%= bar_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
                     colors: ['#f57c00'] %>
         
       </div>
@@ -100,7 +101,7 @@
         <div class="row daily-protein-header">
           <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %></h4>
         </div>
-        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
+        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
                     colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
         
       </div>
@@ -108,14 +109,14 @@
         <div class="row daily-carbs-header">
           <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %></h4>
         </div>
-        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs) %>
+        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs) %>
         
       </div>
       <div class="col-md-3">
         <div class="row daily-fats-header">
           <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %></h4>
         </div>
-        <%= pie_chart Meal.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats) %>
+        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats) %>
         
       </div>
     </div>

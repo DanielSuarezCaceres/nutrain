@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran|Comfortaa|Muli|Poppins|Sriracha|Quicksand&display=swap" rel="stylesheet">
   </head>
   <body>
+  <div class="content">
   <header>
     <%= render 'layouts/messages' %>
     <%= render 'layouts/navigation' %>
@@ -19,5 +20,10 @@
     <div class="container-fluid">
       <%= yield %>
     </div>
+    </div>
+  <div class="footer-box">
+    <footer class="footer text-center">&copy; 2019 OrcaPictures SL. All rights reserved.</footer>
+  </div>
   </body>
+
 </html>

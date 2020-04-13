@@ -1,7 +1,12 @@
 <div class="container p-2 col-6">
-  <h2>Routine details</h2>
-  <hr>
-  <%= render 'routine' %>
-  <%= link_to 'Edit', edit_user_routine_path(@routine), class: 'btn', id: 'btn-sec' %>
-  <%= link_to 'Back', user_routines_path, class: 'btn', id: 'btn-sec' %>
+  <div class="card">
+    <div class="card-header">
+      <h2>Routine details</h2>
+    </div>
+    <div class="card-body">
+      <%= render 'routine' %>
+      <%= link_to 'Edit', edit_user_routine_path(@routine), class: 'btn', id: 'btn-sec' %>
+      <%= link_to 'Back', user_routines_path, class: 'btn', id: 'btn-sec' %>
+    </div>
+  </div>
 </div>

@@ -4,7 +4,7 @@
   <%= f.input :description %>
   <%= f.input :days_of_exercise %>
   <%= f.input :goal do %>
-    <%= f.select :goal,options_for_select(['Hypertrophy focused', 'Strength focused', 'Strength and Hypertrophy', 'Other'],
+    <%= f.select :goal,options_for_select(['Hypertrophy', 'Strength', 'Strength and Hypertrophy', 'Other'],
         selected: f.object.goal), {}, {include_blank: false, class: 'form-control'} %>
   <% end %>
   <%= f.input :active, label: 'Set as current routine', class: 'form-control' %>
@@ -12,7 +12,7 @@
     <%#= f.input :file, 'Select a file', as: :file %>
   -->
   <div class="row">
-    <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
-    <%= link_to 'Back', user_routines_path(user_id: current_user.id), class: 'btn', id: 'btn-sec' %>
+    <%= f.button :submit, class: 'btn' %>
+    <%= link_to 'Back', user_routines_path(user_id: current_user.id), class: 'btn' %>
   </div>
 <% end %>

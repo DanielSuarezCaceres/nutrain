@@ -1,8 +1,13 @@
-<div class="container-fluid">
-  <div class="d-flex">
-    <h2>New workout</h2>
-    <%= link_to 'Back', workouts_path, class: 'btn ml-auto', id: 'btn-sec'%>
-  </div><hr>
-	
-	<%= render 'form', workout: @workout, user_id: current_user.id %>
+<div class="container-fluid p-2 col-6">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex">
+        <h2>New workout</h2>
+        <%= link_to 'Back', root_path, class: 'btn ml-auto', id: 'btn-sec'%>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= render 'form', workout: @workout, user_id: current_user.id %>
+    </div>
+  </div>
 </div>

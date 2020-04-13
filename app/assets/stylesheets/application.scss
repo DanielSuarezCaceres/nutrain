@@ -15,3 +15,18 @@
  */
 
  @import "bootstrap";
+ @import "style";
+
+ .btn {
+   background-color: $gr2;
+   color: white;
+   margin: 5px 5px 5px 5px;
+ }
+
+ .card-header {
+   background-color: $gr2;
+ }
+
+th {
+  background-color: $gr2;
+}

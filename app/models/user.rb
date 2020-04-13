@@ -53,4 +53,8 @@ class User < ApplicationRecord
   def self.only_clients
     where(type: 'Client')
   end
+
+  def get_current_diet
+    self.diets.where(active: true).first
+  end
 end

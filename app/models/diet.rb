@@ -7,6 +7,7 @@ class Diet < ApplicationRecord
   validates :goal, presence: true
 
   before_save :check_active_diet
+  # attr_reader :kcal_goal
 
   # If any diet is saved as 'active', set other active diets to 'false' (only one can be active)
   def check_active_diet

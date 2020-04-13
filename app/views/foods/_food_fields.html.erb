@@ -7,20 +7,19 @@
     <%= f.input :carbs, placeholder: 'Carbohydrates per 100g' %>
     <%= f.input :fats, placeholder: 'Fats per 100g' %>
     <%= f.input :serving_size, placeholder: 'Serving size (g)' %>
-
-    <div class="d-flex justify-content-start m-2 p-2">
-    <%= f.input :vegan, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
+    
+    <div class="d-flex justify-content-between">
+      <%= f.input :vegan, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
-    <%= f.input :vegetarian, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
+      <%= f.input :vegetarian, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
-    <%= f.input :gluten_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
+      <%= f.input :gluten_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
-    <%= f.input :nut_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
+      <%= f.input :nut_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
-    <%= f.input :soy_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
+      <%= f.input :soy_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
     </div>
-
     <%= link_to_remove_association 'Remove ingredient', f , class: 'btn', id: 'btn-sec' %><hr>
   </div>
 </div>

@@ -1,8 +1,13 @@
-<div class="container-fluid">
-  <div class="d-flex">
-    <h4>New meal</h4>
-    <%= link_to 'Back', meals_path, class: 'btn ml-auto', id: 'btn-sec'%>
-  </div><hr>
-	
-	<%= render 'form', meal: @meal, user_id: current_user.id %>
+<div class="container-fluid p-2 col-9">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex">
+        <h2>New meal</h2>
+        <%= link_to 'Back', root_path, class: 'btn ml-auto', id: 'btn-sec'%>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= render 'form', meal: @meal, user_id: current_user.id %>
+    </div>
+  </div>
 </div>

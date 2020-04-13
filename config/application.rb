@@ -11,6 +11,9 @@ module Nutrain
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    # add images to assets path
+    config.assets.paths << Rails.root.join("app", "assets", "images")
+
     # set Spanish hour
     # config.time_zone = 'London'
     # config.active_record.default_timezone = :local

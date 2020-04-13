@@ -72,13 +72,47 @@ $gr4: #00c1af;
   font-family: "Quicksand";
 }
 
+
+/* Make footer always after page content, at the bottom */
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+}
+
+.footer-box {
+  color: white;
+  font-size: 14px;
+  margin-top: 30px;
+  padding: 10px 0px 10px 0px;
+  background-color: $gr2;
+}
+/* --------------------------- */
+
 body {
   //background-image: linear-gradient(to top, #f48606, #bda200, #85b13d, #4db873, #09b9a3);
   //background-image: linear-gradient(to top, #00e098, #00c1af, #00a0b5, #007da7, #005b88);
 }
 
+/* Devise screens */ 
+.sign-in-screen, .sign-up-screen, .forgot-password-screen, .change-password-screen, .send-confirmation-screen {
+  background-image: radial-gradient(circle, #005b88, #006c96, #007da2, #008fac, #00a0b5);
+}
+
 .logo {
   font-family: "Sriracha";
+}
+
+.nutrain-logo {
+  height: 500px;
+  width: 250px;
 }
 
 a,a:visited {
@@ -130,14 +164,14 @@ table {
 }
 
 .vl {
-  border-left: solid 2px $obg-secondary-orange;
+  border-left: solid 1px $obg-secondary-orange;
   height: 800px;
 }
 
 hr {
   background-color: $obg-secondary-orange;
   color: $gp_secondary3;
-  height: 1px;
+  height: 0.25px;
 }
 
 .daily-workouts-header, .daily-meals-header {
@@ -200,3 +234,32 @@ h4 {
   //width: max-content;
 }
 
+/* ROUNDED BORDERS IN TABLE */
+table {
+  border-collapse: collapse;
+  border-radius: 5px 5px 5px 5px; //1em;
+  overflow: hidden;
+
+  th, td {
+    padding: 1em;
+  }
+}
+
+.table-details, .table-summary-welcome-page {
+  th {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+}
+
+/*
+.css-mine {
+  margin-top: 2em;
+  clear: both;
+}
+
+body {
+  margin: 1.5em;
+}
+*/
+
+/* -------------------- */ 

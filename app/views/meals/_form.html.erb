@@ -7,14 +7,20 @@
       <div class="form-inputs">
         <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
         <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
-        <%= f.input :file, label: 'Select photo of meal', as: :file %>
+        <label class="btn" id="btn-sec">
+        Select file
+          <span style="display:none;">
+            <%= f.input :file, label: 'Select photo of meal', as: :file %>
+          </span>
+        </label>
       </div>
+      <br>
 
       <div class="form-actions">
         <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
       </div>
 
-      <hr>
+      <br><br>
       <h4>Add ingredients to meal</h4>
       <hr>
 
