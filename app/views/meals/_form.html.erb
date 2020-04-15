@@ -17,7 +17,7 @@
       <br>
 
       <div class="form-actions">
-        <%= f.button :submit, class: 'btn', id: 'btn-sec' %>
+        <%= f.button :submit, class: 'btn' %>
       </div>
 
       <br><br>
@@ -28,7 +28,7 @@
         <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
         <% end %>
-        <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'btn-sec' %>
+        <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn' %>
       </div>
     <% end %>
   </div>

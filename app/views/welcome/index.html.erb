@@ -12,7 +12,7 @@
     <div class="col-md-6">
       <div class="row daily-meals-header">
         <h3>Today's meals</h3>
-        <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %>
+        <%= link_to 'New meal', new_user_meal_path(user_id: current_user.id), class: 'btn ml-auto' %>
       </div>
       
       <div class="row">
@@ -31,7 +31,7 @@
               <td class="text-center"><%= meal.name %></td>
               <td class="text-center"><%= meal.description %></td>
               <td class="text-center">
-                <%= link_to 'Edit', user_meal_path(current_user.id, id: meal), class: 'btn', id: 'btn-sec' %>
+                <%= link_to 'Edit', user_meal_path(current_user.id, id: meal), class: 'btn' %>
                 <%= link_to 'Delete', user_meal_path(current_user.id, id: meal), method: :delete, class: 'btn btn-danger' %>
               </td>
             </tr>
@@ -48,7 +48,7 @@
     <div class="col-md-5 workout-block">
       <div class="row daily-workouts-header">
         <h3>Today's workout</h3>
-        <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto', id: 'btn-sec' %>
+        <%= link_to 'New workout', new_user_workout_path(user_id: current_user.id), class: 'btn ml-auto' %>
       </div>
 
       <div class="row">
@@ -67,7 +67,7 @@
                 <td class="text-center"><%= workout.name %></td>
                 <td class="text-center"><%= workout.description %></td>
                 <td class="text-center">
-                  <%= link_to 'Edit', user_workout_path(current_user.id, id: workout), class: 'btn', id: 'btn-sec' %>
+                  <%= link_to 'Edit', user_workout_path(current_user.id, id: workout), class: 'btn' %>
                   <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete, class: 'btn btn-danger' %>
                 </td>
               </tr>

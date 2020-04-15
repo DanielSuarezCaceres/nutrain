@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
-    <%= link_to 'New diet', new_user_diet_path(user_id: current_user.id), class: 'btn', id: 'btn-sec' %>
+    <%= link_to 'New diet', new_user_diet_path(user_id: current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn', id: 'btn-sec' %>
+    <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn' %>
   </div>
 </div>
 
@@ -26,9 +26,9 @@
     <td class="text-center"><%= diet.total_meals %></td>
     <td class="text-center"><%= diet.goal %></td>
     <td class="text-center">
-      <%= link_to 'Details', user_diet_path(user_id: current_user.id, id: diet.id), class: 'btn', id: 'btn-sec' %>
-      <%= link_to 'Delete', user_diet_path(user_id: current_user.id, id: diet.id), method: :delete, class: 'btn', id: 'btn-sec' %>
-      <%= link_to 'Edit', edit_user_diet_path(user_id: current_user.id, id: diet), class: 'btn', id: 'btn-sec' %>
+      <%= link_to 'Details', user_diet_path(user_id: current_user.id, id: diet.id), class: 'btn' %>
+      <%= link_to 'Delete', user_diet_path(user_id: current_user.id, id: diet.id), method: :delete, class: 'btn'%>
+      <%= link_to 'Edit', edit_user_diet_path(user_id: current_user.id, id: diet), class: 'btn' %>
     </td>
   </tr>
   <% end %>

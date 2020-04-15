@@ -1,12 +1,12 @@
-<div class="container p-2">
+<div class="container p-3 col-6">
   <div class="card">
     <div class="card-header">
       <h3>Details</h3>
     </div>
     <div class="card-body">
       <%= render 'diet' %>
-      <%= link_to 'Edit', edit_user_diet_path(@diet), class: 'btn', id: 'btn-sec' %>
-      <%= link_to 'Back', user_diets_path, class: 'btn', id: 'btn-sec' %>
+      <%= link_to 'Edit', edit_user_diet_path(@diet), class: 'btn' %>
+      <%= link_to 'Back', user_diets_path, class: 'btn' %>
     </div>
   </div>
-</h2>
+</div>
