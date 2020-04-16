@@ -16,6 +16,8 @@ require("chart.js")
 //require("scrollreveal")
 require("custom/users")
 require("custom/appointments")
+require("custom/meals")
+require("custom/workouts")
 //require("src/cocoon")
 require("custom/scrollreveal")
 
@@ -33,6 +35,17 @@ require("custom/scrollreveal")
 $(document).ready(function(){
     $(".alert").fadeOut(4000);
 });
+
+/*
+$(document).ready(function(){
+  ScrollReveal().reveal('.pie-graphics  ', {
+      easing: 'ease-in',
+      delay: 1000,
+      duration: 1000,
+  });
+});
+*/
+
 /*
 $(function(){
     $(document).foundation();

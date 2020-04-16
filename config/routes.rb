@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :meals
     resources :foods
     resources :appointments
+    resources :contractual_relationships
   end
   resources :routines
   resources :workouts

@@ -1,0 +1,13 @@
+<div id="appointment-form">
+  <%= simple_form_for(@contractual_relationship) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :message %>
+    <%= f.input :state %>
+    <%= f.input :client_id, collection: Client.all %>
+    <div class="row">
+      <%= f.button :submit, class: 'btn' %>
+      <%= link_to 'Back', user_appointments_path(user_id: current_user.id), class: 'btn' %>
+    </div>
+  <% end %>
+</div>

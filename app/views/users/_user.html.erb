@@ -46,13 +46,15 @@
     <div class="p-2">
       <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn' %>
     </div>
-  <% elsif current_user.trainer %>
-    <%= render 'trainer_actions' %>
-  <% elsif current_user.nutritionist %>
-    <%= render 'nutritionist_actions' %>
-  <% elsif current_user.physiotherapist %>
-    <%= render 'physiotherapist_actions' %>
-  <% elsif current_user.psychologist %>
-    <%= render 'psychologist_actions' %>
+  <% elsif current_user.id != @user.id %>
+    <% if current_user.trainer %>
+      <%= render 'trainer_actions' %>
+    <% elsif current_user.nutritionist %>
+      <%= render 'nutritionist_actions' %>
+    <% elsif current_user.physiotherapist %>
+      <%= render 'physiotherapist_actions' %>
+    <% elsif current_user.psychologist %>
+      <%= render 'psychologist_actions' %>
+    <% end %>
   <% end %>
 </div>

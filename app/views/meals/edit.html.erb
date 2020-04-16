@@ -1,6 +1,11 @@
-<h1>Edit Meal</h1>
-
-<%= render 'form', meal: @meal %>
-
-<%= link_to 'Show', @meal %> |
-<%= link_to 'Back', meals_path %>
+<div class="container p-3 col-9">
+  <div class="card">
+    <div class="card-header d-flex ">
+      <h2>Edit meal</h2>
+      <%= link_to 'Back', root_path, class: 'btn ml-auto' %>
+    </div>
+    <div class="card-body">
+      <%= render 'form', meal: @meal, user_id: current_user.id %>
+    </div>
+  </div>
+</div>

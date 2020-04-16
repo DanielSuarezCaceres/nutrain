@@ -4,7 +4,7 @@
     <%= f.input :description, placeholder: 'How to do it, recommendations...' %>
     <%= f.input :sets, placeholder: 'Number of sets' %>
     <%= f.input :reps, placeholder: 'Number of reps' %>
-    <%= f.input :weight, placeholder: 'Weight (kg)' %>
+    <%= f.input :weight, placeholder: 'Weight (kg)', label: 'Weight (kg)' %>
   </div>
 
   <%= link_to_remove_association 'Remove exercise', f , class: 'btn' %><hr>

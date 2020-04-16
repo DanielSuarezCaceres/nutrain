@@ -23,9 +23,16 @@ class ExercisesController < ApplicationController
   end
 
   def update
+    @exercise = Exercise.find(params[:id])
+    if @exercise.update(exercise_params)
+      redirect_to root_path(current_user)
+    else
+      flash[:error] = @exercise.errors
+    end
   end
 
   def edit
+    @exercise = Exercise.find(params[:id])
   end
 
   def destroy

@@ -28,8 +28,9 @@ class MealsController < ApplicationController
   # POST /meals
   # POST /meals.json
   def create
-    @user = User.find(params[:user_id])
-    @meal = @user.meals.new(meal_params)
+    # @user = User.find(params[:user_id])
+    user = current_user
+    @meal = user.meals.new(meal_params)
     #byebug
     if @meal.valid?
       @meal.save
@@ -41,14 +42,10 @@ class MealsController < ApplicationController
   # PATCH/PUT /meals/1
   # PATCH/PUT /meals/1.json
   def update
-    respond_to do |format|
-      if @meal.update(meal_params)
-        format.html { redirect_to @meal, notice: 'Meal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @meal }
-      else
-        format.html { render :edit }
-        format.json { render json: @meal.errors, status: :unprocessable_entity }
-      end
+    if @meal.update(meal_params)
+      redirect_to root_path, notice: 'Meal updated successfully'
+    else
+      render :edit
     end
   end
 

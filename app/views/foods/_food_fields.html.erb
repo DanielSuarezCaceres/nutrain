@@ -1,12 +1,12 @@
 <div class="nested-fields">
-  <div class="food-form">
+  <div class="food-fields">
     <%= f.input :name, placeholder: 'Food name' %>
     <%= f.input :brand, placeholder: 'Brand name' %>
-    <%= f.input :kcal, placeholder: 'Kcal per 100g' %>
-    <%= f.input :protein, placeholder: 'Protein per 100g' %>
-    <%= f.input :carbs, placeholder: 'Carbohydrates per 100g' %>
-    <%= f.input :fats, placeholder: 'Fats per 100g' %>
-    <%= f.input :serving_size, placeholder: 'Serving size (g)' %>
+    <%= f.input :kcal, placeholder: 'Kcal per 100g', label: 'Kcal (x/100g)' %>
+    <%= f.input :protein, placeholder: 'Protein per 100g', label: 'Protein (x/100g)' %>
+    <%= f.input :carbs, placeholder: 'Carbohydrates per 100g', label: 'CH (x/100g)' %>
+    <%= f.input :fats, placeholder: 'Fats per 100g', label: 'Fats (x/100g)' %>
+    <%= f.input :serving_size, placeholder: 'Serving size (g)', label: 'Serving size (g)' %>
     
     <div class="d-flex justify-content-between">
       <%= f.input :vegan, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
@@ -20,6 +20,6 @@
       <%= f.input :soy_free, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],
                 label_method: :second, value_method: :first %>
     </div>
-    <%= link_to_remove_association 'Remove ingredient', f , class: 'btn' %><hr>
+    <%= link_to_remove_association 'Remove ingredient', f , class: 'btn', id: 'delete-ingredient' %><hr>
   </div>
 </div>

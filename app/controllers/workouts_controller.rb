@@ -14,9 +14,10 @@ class WorkoutsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @workout = @user.workouts.new(workout_params)
-    byebug
+    user = current_user
+    # @user = User.find(params[:user_id])
+    @workout = user.workouts.new(workout_params)
+    #byebug
     if @workout.valid?
       @workout.save
     end
@@ -27,6 +28,11 @@ class WorkoutsController < ApplicationController
   end
 
   def update
+    if @workout.update(workout_params)
+      redirect_to root_path, notice: 'Workout updated succesfully'
+    else
+      render :edit
+    end
   end
 
   def destroy

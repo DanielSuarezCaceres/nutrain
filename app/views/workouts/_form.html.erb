@@ -1,24 +1,22 @@
-<%= simple_form_for(@workout, url: user_workouts_path(user_id: current_user.id), wrapper: :horizontal_form) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.input :name, placeholder: 'Name of your workout' %>
-    <%= f.input :description, placeholder: 'Which muscle group are you working on, type of exercise...' %>
-    <%= f.input :number_of_exercises, placeholder: 'Insert number of exercises for this workout' %>
-  </div>
-  
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn' %>
-  </div>
-
-  <br>
-  <h4>Add exercises to workout</h4>
-
-  <div class="exercises-form">
-    <%= f.simple_fields_for :exercises do |exercise| %>
-      <%= render 'exercises/exercise_fields', f: exercise %>
-    <% end %>
-    <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn' %>
-  </div>
-<% end %>
+<div class="workout-form">
+  <%= simple_form_for(@workout, wrapper: :horizontal_form) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <%= f.input :name, placeholder: 'Name of your workout' %>
+      <%= f.input :description, placeholder: 'Which muscle group are you working on, type of exercise...' %>
+      <%= f.input :number_of_exercises, placeholder: 'Insert number of exercises for this workout' %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn' %>
+    </div>
+    <br>
+    <h4>Add exercises to workout</h4>
+    <div class="exercises-form">
+      <%= f.simple_fields_for :exercises do |exercise| %>
+        <%= render 'exercises/exercise_fields', f: exercise %>
+      <% end %>
+      <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn', id: 'add-workout' %>
+    </div>
+  <% end %>
+</div>

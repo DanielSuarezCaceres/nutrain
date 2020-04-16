@@ -4,6 +4,7 @@ class CreateContractualRelationships < ActiveRecord::Migration[6.0]
       t.references :client, index: true, foreign_key: { to_table: 'users' }
       t.references :professional, index: true, foreign_key: { to_table: 'users' }
       t.string :state
+      t.string :message
 
       t.timestamps
     end

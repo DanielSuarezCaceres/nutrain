@@ -1,0 +1,11 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header d-flex">
+      <h2>Edit workout</h2>
+      <%= link_to 'Back', root_path, class: 'btn ml-auto' %>
+    </div>
+    <div class="card-body">
+      <%= render 'form', workout: @workout, user_id: current_user.id %>
+    </div>
+  </div>
+</div>

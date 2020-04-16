@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-8">
-    <%= simple_form_for(@meal, url: user_meals_path(user_id: current_user.id), wrapper: :horizontal_form) do |f| %>
+  <div class="col-md-8" id="meal-form">
+    <%= simple_form_for(@meal, wrapper: :horizontal_form) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -28,7 +28,7 @@
         <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
         <% end %>
-        <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn' %>
+        <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
       </div>
     <% end %>
   </div>
@@ -36,5 +36,6 @@
   <div class="vl"></div>
   <div class="col-md-3">
     <h3>Macronutrients</h3>
+    <div class="macros"></div>
   </div>
 </div>
