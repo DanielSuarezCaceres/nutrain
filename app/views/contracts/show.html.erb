@@ -1,0 +1,12 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header">
+      <h3>Details</h3>
+    </div>
+    <div class="card-body">
+      <%= render 'contract' %>
+      <%= link_to 'Edit', edit_user_contract_path(@contract, user_id: current_user.id), class: 'btn' %>
+      <%= link_to 'Back', user_contracts_path(user_id: current_user.id), class: 'btn' %>
+    </div>
+  </div>
+</div>

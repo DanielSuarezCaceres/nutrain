@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :contractual_relationship do
+  factory :contract do
     user_id { 1 }
     professional_id { 1 }
     state { "MyString" }

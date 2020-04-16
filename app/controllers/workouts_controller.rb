@@ -36,6 +36,11 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
+    if @workout.destroy
+      redirect_to root_path, notice: 'Workout deleted successfully'
+    else
+      flash[:error] = @workout.errors.full_messages
+    end
   end
 
   private

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :meals
     resources :foods
     resources :appointments
-    resources :contractual_relationships
+    resources :contracts
   end
   resources :routines
   resources :workouts
@@ -24,5 +24,6 @@ Rails.application.routes.draw do
   resources :meals
   resources :foods
   resources :appointments
+  resources :contracts
   
 end

@@ -25,10 +25,12 @@
       <hr>
 
       <div class="foods-form">
+      <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
+      <hr>
         <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
         <% end %>
-        <%= link_to_add_association 'Add ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
+        
       </div>
     <% end %>
   </div>

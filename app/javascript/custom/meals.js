@@ -9,6 +9,15 @@ document.addEventListener("turbolinks:load", function () {
   })
 })
 
+/*document.addEventListener("turbolinks:load", function () {
+  $("#delete-ingredient").click(function () {
+    $('html, body').animate({
+      scrollTop: $(".foods-form").offset().top
+    },
+      'slow');
+  })
+})*/
+
 /*
 document.addEventListener("turbolinks:load", function () {
   $("#delete-ingredient").click(function () {

@@ -35,20 +35,24 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "contractual_relationships", force: :cascade do |t|
+  create_table "contracts", force: :cascade do |t|
     t.bigint "client_id"
     t.bigint "professional_id"
     t.string "state"
+    t.string "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["client_id"], name: "index_contractual_relationships_on_client_id"
-    t.index ["professional_id"], name: "index_contractual_relationships_on_professional_id"
+    t.index ["client_id"], name: "index_contracts_on_client_id"
+    t.index ["professional_id"], name: "index_contracts_on_professional_id"
   end
 
   create_table "diets", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "kcal_goal"
+    t.integer "protein_goal"
+    t.integer "carbs_goal"
+    t.integer "fats_goal"
     t.integer "total_meals"
     t.bigint "user_id"
     t.string "goal"
@@ -162,8 +166,8 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
 
   add_foreign_key "appointments", "users", column: "client_id"
   add_foreign_key "appointments", "users", column: "professional_id"
-  add_foreign_key "contractual_relationships", "users", column: "client_id"
-  add_foreign_key "contractual_relationships", "users", column: "professional_id"
+  add_foreign_key "contracts", "users", column: "client_id"
+  add_foreign_key "contracts", "users", column: "professional_id"
   add_foreign_key "exercises", "workouts"
   add_foreign_key "foods", "meals"
 end

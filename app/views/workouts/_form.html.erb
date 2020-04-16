@@ -12,11 +12,13 @@
     </div>
     <br>
     <h4>Add exercises to workout</h4>
+    <hr>
     <div class="exercises-form">
+      <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn', id: 'add-workout' %>
+      <hr>
       <%= f.simple_fields_for :exercises do |exercise| %>
         <%= render 'exercises/exercise_fields', f: exercise %>
       <% end %>
-      <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn', id: 'add-workout' %>
     </div>
   <% end %>
 </div>
