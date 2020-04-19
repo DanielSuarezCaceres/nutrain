@@ -17,6 +17,7 @@ class RoutinesController < ApplicationController
     #@routine = Routine.new(routine_params)
     #@user = User.find(params[:user_id])
     user = current_user
+    byebug
     @routine = user.routines.new(routine_params)
     #byebug
     if @routine.valid?

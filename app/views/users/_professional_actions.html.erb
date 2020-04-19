@@ -1,0 +1,32 @@
+<div class="p-1">
+  <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn' %>
+</div>
+<% if current_user.has_contract?(@user.id) %>
+  <% if current_user.nutritionist %>
+    <div class="p-1">
+      <%= link_to 'New diet', new_user_diet_path(@user), class: 'btn' %>
+    </div>
+  <% end %>
+  <% if current_user.trainer %>
+    <div class="p-1">
+      <%= link_to 'New routine', new_user_routine_path(@user), class: 'btn' %>
+    </div>
+  <% end %>
+  <% if current_user.physiotherapist %>
+    <div class="p-1">
+      <%= link_to 'New rehab exercise', user_path(@user), class: 'btn' %>
+    </div>
+  <% end %>
+  <% if current_user.psychologist %>
+    <div class="p-1">
+      <%= link_to 'New task', user_path(@user), class: 'btn' %>
+    </div>
+  <% end %>
+  <div class="p-1">
+    <%= link_to 'Cancel contract', user_path(@user), method: :delete, class: 'btn' %>
+  </div>
+<% else %>
+  <div class="p-1">
+    <%= link_to 'Contract request', new_user_contract_path(current_user), class: 'btn' %>
+  </div>
+<% end %>

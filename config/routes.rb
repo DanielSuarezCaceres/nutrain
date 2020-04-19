@@ -7,7 +7,18 @@ Rails.application.routes.draw do
       registration: 'users/registrations'
   }
 
+  resources :professionals, controller: 'users', type: 'Professional' do
+
+  end
+
+  resources :clients, controller: 'users', type: 'Client' do
+    
+  end
+
   resources :users do
+    resources :clients do
+      resources :routines
+    end
     resources :routines
     resources :workouts
     resources :exercises

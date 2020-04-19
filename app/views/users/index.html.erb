@@ -28,11 +28,25 @@
           <%= link_to 'Edit', edit_user_registration_path(user), class: 'btn' %>
           <%= link_to 'Delete', user_path(user), method: :delete, class: 'btn btn-danger' %>
         </td>
-      <% elsif current_user.type != 'Admin' && current_user.type != 'Client' %>
+      <% elsif current_user.type == 'Professional' %>
         <td class="text-center">
           <%= link_to 'Details', user_path(user), class: 'btn' %>
-          <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn' %>
-          <%= link_to 'Cancel relationship', user_path(user), class: 'btn' %>
+          <% if current_user.has_contract?(user.id) %>
+            <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn' %>
+            <%= link_to 'Cancel contract', user_path(user), class: 'btn' %>
+          <% else %>
+            <%= link_to 'Contract request', user_path(user), class: 'btn' %>
+          <% end %>
+        </td>
+      <% else %>
+        <td class="text-center">
+          <%= link_to 'Details', user_path(user), class: 'btn' %>
+          <% if current_user.has_contract?(user.id) %>
+            <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn' %>
+            <%= link_to 'Cancel contract', user_path(user), class: 'btn' %>
+          <% else %>
+            <%= link_to 'Contract request', user_path(user), class: 'btn' %>
+          <% end %>
         </td>
       <% end %>
     </tr>

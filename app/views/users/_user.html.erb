@@ -39,6 +39,24 @@
     <th class="text-center">Country</th>
     <td class="text-center"><%= @user.country %></td>
   </tr>
+  <% if @user.type == 'Professional' %>
+    <tr>
+      <th class="text-center">Nutritionist</th>
+      <td class="text-center"><%= @user.is_nutritionist? %></td>
+    </tr>
+    <tr>
+      <th class="text-center">Personal trainer</th>
+      <td class="text-center"><%= @user.is_trainer? %></td>
+    </tr>
+    <tr>
+      <th class="text-center">Physiotherapist</th>
+      <td class="text-center"><%= @user.is_physiotherapist? %></td>
+    </tr>
+    <tr>
+      <th class="text-center">Psychologist</th>
+      <td class="text-center"><%= @user.is_psychologist? %></td>
+    </tr>
+  <% end %>
 </table>
 
 <div class="d-flex justify-content-start">
@@ -47,14 +65,6 @@
       <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn' %>
     </div>
   <% elsif current_user.id != @user.id %>
-    <% if current_user.trainer %>
-      <%= render 'trainer_actions' %>
-    <% elsif current_user.nutritionist %>
-      <%= render 'nutritionist_actions' %>
-    <% elsif current_user.physiotherapist %>
-      <%= render 'physiotherapist_actions' %>
-    <% elsif current_user.psychologist %>
-      <%= render 'psychologist_actions' %>
-    <% end %>
+    <%= render 'professional_actions', user: @user %>
   <% end %>
 </div>
