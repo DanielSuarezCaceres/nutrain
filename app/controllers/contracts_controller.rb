@@ -33,7 +33,7 @@ class ContractsController < ApplicationController
 
   def update
     #@contract = Contract.find(params[:id])
-    #byebug
+    byebug
     if @contract.update(contract_params)
       flash[:notice] = 'Contract updated succesfully'
       redirect_to user_contract_path(user_id: current_user.id)

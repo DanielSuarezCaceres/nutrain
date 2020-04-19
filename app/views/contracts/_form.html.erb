@@ -1,11 +1,45 @@
 <div id="contract-form">
+  <% if @contract.state == 'Pending' %>
+    <%= simple_form_for(@contract, remote: true, data: { confirm: "You sure?"}) do |f| %>
+      <%= f.label :client_id %>: <%= User.find(@contract.client_id).name %><br>
+      Request sent at: <%= @contract.created_at %>
+      <br><br>
+      <%= f.hidden_field :client_id, disabled: true %>
+      <%= f.hidden_field :state, :value => 1 %>
+      <%= f.submit "Approve", class: "btn btn-large btn-success", onclick: "contract_state.value = '1'" %>
+      <%= f.submit "Reject", class: "btn btn-large btn-danger", onclick: "contract_state.value = '2'" %>
+    <% end%>
+  <% else %>
+    <%= simple_form_for(@contract) do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :state, disabled: true, input_html: { value: 'Pending' } %>
+      <%= f.input :client_id, collection: Client.all %>
+      <div class="row">
+        <%= f.button :submit, class: 'btn' %>
+        <%= link_to 'Back', user_contracts_path(current_user), class: 'btn' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 
+<div id="contract-form">
   <%= simple_form_for(@contract) do |f| %>
     <%= f.error_notification %>
-    <%= f.input :state %>
+    <%= f.input :state, disabled: true, input_html: { value: 'Pending' } %>
     <%= f.input :client_id, collection: Client.all %>
     <div class="row">
       <%= f.button :submit, class: 'btn' %>
-      <%= link_to 'Back', root_path, class: 'btn' %>
+      <%= link_to 'Back', user_contracts_path(current_user), class: 'btn' %>
     </div>
   <% end %>
 </div>
+-->

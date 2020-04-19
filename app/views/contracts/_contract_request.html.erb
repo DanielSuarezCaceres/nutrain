@@ -1,0 +1,5 @@
+<%= form_for(@contract, remote: true, data: { confirm: "You sure?"}) do |f| %>
+  <%= f.hidden_field :state, :value => 1 %>
+  <%= f.submit "Approve", class: "btn btn-large btn-success", onclick: "contract_state.value = '1'" %>
+  <%= f.submit "Reject", class: "btn btn-large btn-danger", onclick: "contract_state.value = '2'" %>
+<% end %>

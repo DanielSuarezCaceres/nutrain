@@ -27,7 +27,8 @@
     <td class="text-center"><%= diet.goal %></td>
     <td class="text-center">
       <%= link_to 'Details', user_diet_path(user_id: current_user.id, id: diet.id), class: 'btn' %>
-      <%= link_to 'Delete', user_diet_path(user_id: current_user.id, id: diet.id), method: :delete, class: 'btn'%>
+      <%= link_to 'Delete', user_diet_path(user_id: current_user.id, id: diet.id), method: :delete,
+        data: { confirm: "You are deleting '#{diet.name}'. Are you sure?" }, class: 'btn'%>
       <%= link_to 'Edit', edit_user_diet_path(user_id: current_user.id, id: diet), class: 'btn' %>
     </td>
   </tr>
