@@ -6,7 +6,6 @@ class ContractsController < ApplicationController
   end
 
   def show
-    @contract = Contract.find(params[:id])
   end
 
   def new
@@ -15,15 +14,14 @@ class ContractsController < ApplicationController
   end
   
   def create
-    #byebug
     # esta asignacion no deberia tener que hacerla, buscar solucion
     # params[:user_id] = current_user.id
     #@user = User.find(params[:user_id])
     @contract = current_user.contracts.new(contract_params)
-    #byebug
+    byebug
     if @contract.valid?
       @contract.save
-      flash[:notice] = 'Contract created sucessfully'
+      flash[:notice] = "Contract request sent sucessfully"
       redirect_to user_contracts_path(current_user)
     else
       flash[:error] = @contract.errors.full_messages
@@ -32,24 +30,31 @@ class ContractsController < ApplicationController
   end
 
   def update
-    #@contract = Contract.find(params[:id])
+    # If contract param is 'Accepted', save contract ; else, show it as reject or cancelled
+    state = params[:contract][:state]
     byebug
-    if @contract.update(contract_params)
-      flash[:notice] = 'Contract updated succesfully'
-      redirect_to user_contract_path(user_id: current_user.id)
+    if state == 'Accepted'
+      byebug
+      if @contract.update(contract_params)
+        @contract.update(state: 'Active')
+        redirect_to user_contracts_path(current_user), notice: 'Contract accepted'
+      else
+        flash[:error] = @contract.errors.full_messages
+        render :edit
+      end
     else
-      flash[:error] = @contract.errors.full_messages
-      render :edit
+      @contract.destroy
+      state == 'Rejected' ? notice_message = 'Contract request rejected' : notice_message = 'Contract cancelled'
+      redirect_to user_contracts_path(current_user), notice: notice_message
     end
   end
 
   def edit
-    @contract = Contract.find(params[:id])
   end
 
   def destroy
     if @contract.destroy
-      redirect_to root_path, notice: 'Contract deleted successfully'
+      redirect_to user_contracts_path(current_user), notice: 'Contract deleted successfully'
     else
       flash[:notice] = @contract.errors.full_messages
     end
@@ -70,6 +75,14 @@ class ContractsController < ApplicationController
       :start_date,
       :end_date
     )
-  end  
+  end
+
+  def solve_contract_status
+    if params[:contract][:state] == 'Accepted'
+      if @contract.update(contract_params)
+        @contract.update(state: 'Active')
+      end
+    end
+  end
 
 end

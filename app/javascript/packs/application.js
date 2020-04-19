@@ -32,8 +32,10 @@ require("custom/scrollreveal")
 //import 'bootstrap'
 //import './src/application.scss'
 
-$(document).ready(function(){
-    $(".alert").fadeOut(4000);
+document.addEventListener("turbolinks:load", function () {
+  $(document).ready(function(){
+      $(".alert").fadeOut(4000);
+  });
 });
 
 /*

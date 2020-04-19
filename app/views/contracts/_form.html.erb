@@ -4,42 +4,29 @@
       <%= f.label :client_id %>: <%= User.find(@contract.client_id).name %><br>
       Request sent at: <%= @contract.created_at %>
       <br><br>
-      <%= f.hidden_field :client_id, disabled: true %>
-      <%= f.hidden_field :state, :value => 1 %>
-      <%= f.submit "Approve", class: "btn btn-large btn-success", onclick: "contract_state.value = '1'" %>
-      <%= f.submit "Reject", class: "btn btn-large btn-danger", onclick: "contract_state.value = '2'" %>
+      <%= f.input :state, readonly: true %> 
+
+      <%= f.hidden_field :client_id %>
+      <!-- <%= f.hidden_field :state %> -->
+      <%= f.submit "Approve", class: "btn btn-large btn-success", onclick: "contract_state.value = 'Accepted'" %>
+      <%= f.submit "Reject", class: "btn btn-large btn-danger", onclick: "contract_state.value = 'Rejected'" %>
+    <% end %>
+  <% elsif @contract.state == 'Active' %>
+    <%= simple_form_for(@contract) do |f| %>
+      <%= f.label :client_id %>: <%= User.find(@contract.client_id).fullname %><br>
+      <%= f.input :state, readonly: true %>
+      <%= f.submit 'Cancel contract', class: 'btn btn-danger', onclick: "contrat_state.value = 'Cancelled'" %>
     <% end%>
   <% else %>
     <%= simple_form_for(@contract) do |f| %>
       <%= f.error_notification %>
-      <%= f.input :state, disabled: true, input_html: { value: 'Pending' } %>
+      <%= f.hidden_field :state %>
       <%= f.input :client_id, collection: Client.all %>
+      <%= f.input :message %>
       <div class="row">
-        <%= f.button :submit, class: 'btn' %>
+        <%= f.submit 'Send request', onclick: "contract_state.value = 'Pending'", class: 'btn' %>
         <%= link_to 'Back', user_contracts_path(current_user), class: 'btn' %>
       </div>
     <% end %>
   <% end %>
 </div>
-
-
-
-
-
-
-
-
-
-<!-- 
-<div id="contract-form">
-  <%= simple_form_for(@contract) do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :state, disabled: true, input_html: { value: 'Pending' } %>
-    <%= f.input :client_id, collection: Client.all %>
-    <div class="row">
-      <%= f.button :submit, class: 'btn' %>
-      <%= link_to 'Back', user_contracts_path(current_user), class: 'btn' %>
-    </div>
-  <% end %>
-</div>
--->
