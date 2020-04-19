@@ -18,7 +18,7 @@ class ContractsController < ApplicationController
     # params[:user_id] = current_user.id
     #@user = User.find(params[:user_id])
     @contract = current_user.contracts.new(contract_params)
-    byebug
+    # byebug
     if @contract.valid?
       @contract.save
       flash[:notice] = "Contract request sent sucessfully"
@@ -32,9 +32,9 @@ class ContractsController < ApplicationController
   def update
     # If contract param is 'Accepted', save contract ; else, show it as reject or cancelled
     state = params[:contract][:state]
-    byebug
+    #byebug
     if state == 'Accepted'
-      byebug
+      #byebug
       if @contract.update(contract_params)
         @contract.update(state: 'Active')
         redirect_to user_contracts_path(current_user), notice: 'Contract accepted'
@@ -44,6 +44,7 @@ class ContractsController < ApplicationController
       end
     else
       @contract.destroy
+      # if contract was still pending, show as rejected ; else, show as existing contract deleted
       state == 'Rejected' ? notice_message = 'Contract request rejected' : notice_message = 'Contract cancelled'
       redirect_to user_contracts_path(current_user), notice: notice_message
     end
@@ -53,8 +54,10 @@ class ContractsController < ApplicationController
   end
 
   def destroy
+    state = @contract.state
     if @contract.destroy
-      redirect_to user_contracts_path(current_user), notice: 'Contract deleted successfully'
+      state == 'Pending' ? notice_message = 'Contract request cancelled' : notice_message = 'Contract deleted successfully'
+      redirect_to user_contracts_path(current_user), notice: notice_message
     else
       flash[:notice] = @contract.errors.full_messages
     end
@@ -72,8 +75,9 @@ class ContractsController < ApplicationController
       :client_id,
       :professional_id,
       :state,
-      :start_date,
-      :end_date
+      :message,
+      :sent_by_id,
+      :start_date
     )
   end
 

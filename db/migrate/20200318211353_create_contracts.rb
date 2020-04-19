@@ -5,6 +5,7 @@ class CreateContracts < ActiveRecord::Migration[6.0]
       t.references :professional, index: true, foreign_key: { to_table: 'users' }
       t.string :state
       t.string :message
+      t.references :sent_by, index: true, foreign_key: { to_table: 'users' }
 
       t.timestamps
     end

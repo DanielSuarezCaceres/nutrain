@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
     t.bigint "professional_id"
     t.string "state"
     t.string "message"
+    t.bigint "sent_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_contracts_on_client_id"
     t.index ["professional_id"], name: "index_contracts_on_professional_id"
+    t.index ["sent_by_id"], name: "index_contracts_on_sent_by_id"
   end
 
   create_table "diets", force: :cascade do |t|
@@ -168,6 +170,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
   add_foreign_key "appointments", "users", column: "professional_id"
   add_foreign_key "contracts", "users", column: "client_id"
   add_foreign_key "contracts", "users", column: "professional_id"
+  add_foreign_key "contracts", "users", column: "sent_by_id"
   add_foreign_key "exercises", "workouts"
   add_foreign_key "foods", "meals"
 end
