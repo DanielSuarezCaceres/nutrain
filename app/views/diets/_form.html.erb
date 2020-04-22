@@ -1,4 +1,4 @@
-<%= simple_form_for(@diet, wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for(@diet, url: params[:client_id] ? user_client_diets_path(id: @diet) : user_diets_path(id: @diet), method: :post ) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>

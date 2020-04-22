@@ -1,7 +1,11 @@
 class DietsController < ApplicationController
 
   def index
-    @diets = User.find(params[:user_id]).diets
+    if params[:client_id]
+      @diets = User.find(params[:client_id]).routines
+    else
+      @diets = User.find(params[:user_id]).diets
+    end
   end
 
   def show
@@ -15,15 +19,25 @@ class DietsController < ApplicationController
   def create
     # temporary, see how to pass the id of another user (the id of a client you are creating a diet for)
     #@user = User.find(params[:user_id])
-    user = current_user
-    @diet = user.diets.new(diet_params)
-    if @diet.valid?
-      @diet.save
-      redirect_to user_diets_path(current_user), notice: 'Diet created successfully'
+    if params[:client_id]
+      @user = User.find(params[:client_id])
+      @diet = @user.diets.new(diet_params)
+      if @diet.valid?
+        @diet.save
+        redirect_to user_clients_path(user_id: params[:user_id]), notice: 'Diet created for your client successfully'
+      else
+        render :new
+      end
     else
-      # flash[:error] = @diet.errors.full_messages
-      render :new
-    end 
+      @user = User.find(params[:user_id])
+      @diet = @user.diets.new(diet_params)
+      if @diet.valid?
+        @diet.save
+        redirect_to user_diets_path(@user), notice: 'Diet created successfully'
+      else
+        render :new
+      end
+    end
   end
 
   def update
@@ -58,6 +72,7 @@ class DietsController < ApplicationController
       :name,
       :description,
       :user_id,
+      :client_id,
       :kcal_goal,
       :total_meals,
       :active,

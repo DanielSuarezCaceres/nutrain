@@ -4,12 +4,12 @@
 <% if current_user.has_contract?(@user.id) %>
   <% if current_user.nutritionist %>
     <div class="p-1">
-      <%= link_to 'New diet', new_user_diet_path(@user), class: 'btn' %>
+      <%= link_to 'New diet', new_user_client_diet_path(client_id: @user.id), class: 'btn' %>
     </div>
   <% end %>
   <% if current_user.trainer %>
     <div class="p-1">
-      <%= link_to 'New routine', new_user_client_routine_path(client_id: @user.id, user_id: current_user.id, id: @routine), class: 'btn' %>
+      <%= link_to 'New routine', new_user_client_routine_path(client_id: @user.id), class: 'btn' %>
     </div>
   <% end %>
   <% if current_user.physiotherapist %>
