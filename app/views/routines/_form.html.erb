@@ -1,8 +1,11 @@
-<%= simple_form_for(@routine, wrapper: :horizontal_form) do |f| %>
+<%= simple_form_for(@routine, url: params[:client_id] ? user_client_routines_path(id: @routine) : user_routines_path(id: @routine), method: :post)  do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :days_of_exercise %>
+  <!--<%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.hidden_field :client_id, :value => params[:client_id] %>-->
+  <!-- <%= f.hidden_field :client_id, value: params[:id] %> -->
   <%= f.input :goal do %>
     <%= f.select :goal,options_for_select(['Hypertrophy', 'Strength', 'Strength and Hypertrophy', 'Other'],
         selected: f.object.goal), {}, {include_blank: false, class: 'form-control'} %>

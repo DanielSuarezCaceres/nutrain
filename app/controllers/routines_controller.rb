@@ -1,8 +1,10 @@
 class RoutinesController < ApplicationController
   def index
-    #@ = .scoped
-    #@routines = Routine.all
-    @routines = User.find(params[:user_id]).routines
+    if params[:client_id]
+      @routines = User.find(params[:client_id]).routines
+    else
+      @routines = User.find(params[:user_id]).routines
+    end
   end
 
   def show
@@ -14,18 +16,24 @@ class RoutinesController < ApplicationController
   end
 
   def create
-    #@routine = Routine.new(routine_params)
-    #@user = User.find(params[:user_id])
-    user = current_user
-    byebug
-    @routine = user.routines.new(routine_params)
-    #byebug
-    if @routine.valid?
-      @routine.save
-      redirect_to user_routines_path(current_user), notice: 'Routine created successfully'
+    if params[:client_id]
+      @user = User.find(params[:client_id])
+      @routine = @user.routines.new(routine_params)
+      if @routine.valid?
+        @routine.save
+        redirect_to user_clients_path(user_id: params[:user_id]), notice: 'Routine created for your client successfully'
+      else
+        render :new
+      end
     else
-      # flash[:error] = @routine.errors.full_messages
-      render :new
+      @user = User.find(params[:user_id])
+      @routine = @user.routines.new(routine_params)
+      if @routine.valid?
+        @routine.save
+        redirect_to user_routines_path(@user), notice: 'Routine created successfully'
+      else
+        render :new
+      end
     end
   end
 
@@ -61,6 +69,7 @@ class RoutinesController < ApplicationController
 			:name,
 			:description,
       :user_id,
+      :client_id,
       :days_of_exercise,
       :goal,
       :active

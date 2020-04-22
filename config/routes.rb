@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :clients do
+    resources :clients, controller: 'users', type: 'Client' do
       resources :routines
+      resources :diets
     end
     resources :routines
     resources :workouts
