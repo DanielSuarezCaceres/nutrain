@@ -3,7 +3,9 @@ class Meal < ApplicationRecord
   has_many :foods, inverse_of: :meal, dependent: :destroy
   accepts_nested_attributes_for :foods, reject_if: :all_blank, allow_destroy: true
   before_save :calculate_total_macros_food
+  before_update :calculate_total_macros_food
   #attr_accessor :foods_attributes
+
 
   def calculate_total_macros_food
     self.kcal = self.protein = self.carbs = self.fats = 0.0
