@@ -20,7 +20,11 @@ require("custom/meals")
 require("custom/workouts")
 //require("src/cocoon")
 require("custom/scrollreveal")
+require("select2")
 
+import $ from 'jquery';
+import select2 from 'select2';
+import 'select2/dist/css/select2.css';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -35,6 +39,12 @@ require("custom/scrollreveal")
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function(){
       $(".alert").fadeOut(4000);
+  });
+});
+
+document.addEventListener("turbolinks:load", function () {
+  $(document).ready(function() {
+    $('select').select2();
   });
 });
 

@@ -31,17 +31,29 @@ class MealsController < ApplicationController
     # @user = User.find(params[:user_id])
     user = current_user
     @meal = user.meals.new(meal_params)
-    #byebug
+    # check existing ingredients sent by select2
+    byebug
+    if params[:meal][:food_ids]
+      params[:meal][:food_ids].each do |ingredient|
+        @meal.foods << Food.find(ingredient) unless @meal.foods.include? Food.find(ingredient)
+      end
+    end
+    byebug
     if @meal.valid?
       @meal.save
     end
-
     redirect_to root_path, notice: 'Meal added successfully' # (current_user)
   end
 
   # PATCH/PUT /meals/1
   # PATCH/PUT /meals/1.json
   def update
+    byebug
+    if params[:meal][:food_ids]
+      params[:meal][:food_ids].each do |ingredient|
+        @meal.foods << Food.find(ingredient) unless @meal.foods.include? Food.find(ingredient)
+      end
+    end
     if @meal.update(meal_params)
       redirect_to root_path, notice: 'Meal updated successfully'
     else

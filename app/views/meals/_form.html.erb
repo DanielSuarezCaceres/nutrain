@@ -26,8 +26,8 @@
 
       <div>
         <%= f.association :foods, collection: Food.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
-          label: 'Add existing ingredients' %>
-      </div>
+          label: 'Add existing ingredients', include_blank: false, include_hidden: false %>
+      </div><hr>
 
       <div class="foods-form">
       <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
@@ -45,3 +45,9 @@
     <div class="macros"></div>
   </div>
 </div>
+
+<script>
+
+
+
+</script>
