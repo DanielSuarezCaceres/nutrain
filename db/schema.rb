@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_211529) do
+ActiveRecord::Schema.define(version: 2020_04_27_212627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
     t.index ["user_id"], name: "index_diets_on_user_id"
   end
 
+  create_table "dishes", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_dishes_on_food_id"
+    t.index ["meal_id"], name: "index_dishes_on_meal_id"
+  end
+
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -92,8 +101,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
     t.boolean "soy_free", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "meal_id", null: false
-    t.index ["meal_id"], name: "index_foods_on_meal_id"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -171,6 +178,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_211529) do
   add_foreign_key "contracts", "users", column: "client_id"
   add_foreign_key "contracts", "users", column: "professional_id"
   add_foreign_key "contracts", "users", column: "sent_by_id"
+  add_foreign_key "dishes", "foods"
+  add_foreign_key "dishes", "meals"
   add_foreign_key "exercises", "workouts"
-  add_foreign_key "foods", "meals"
 end

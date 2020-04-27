@@ -1,6 +1,8 @@
 class Meal < ApplicationRecord
   belongs_to :user
-  has_many :foods, inverse_of: :meal, dependent: :destroy
+  #has_many :foods, inverse_of: :meal, dependent: :destroy
+  has_many :dishes, inverse_of: :meal
+  has_many :foods, through: :dishes
   accepts_nested_attributes_for :foods, reject_if: :all_blank, allow_destroy: true
   before_save :calculate_total_macros_food
   before_update :calculate_total_macros_food
