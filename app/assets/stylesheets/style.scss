@@ -132,7 +132,7 @@ table {
 
 #upper-toolbar {
   background-color: #cfd8dc;
-  height: 15%;
+  height: 15%; // Is it doing something???
 }
 
 @media (min-width: 768px) {  
@@ -142,8 +142,6 @@ table {
     border-radius:0;
   }
 }
-  
-
 
 .navbar {
   background-color: $gr1;
@@ -240,6 +238,12 @@ h4 {
   text-align: center;
   color: white;
   //width: max-content;
+}
+
+.table-title {
+  color: white;
+  background-color: $gr2;
+  height: 15%;
 }
 
 /* ROUNDED BORDERS IN TABLE */
