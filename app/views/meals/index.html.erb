@@ -1,25 +1,51 @@
-<p id="notice"><%= notice %></p>
+  
+<div class="d-flex justify-content-start" id="upper-toolbar">
+  <div class="p-2">
+    <%= link_to 'New meal', new_user_meal_path(current_user.id), class: 'btn' %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Download history', user_meals_path(current_user.id), class: 'btn' %>
+  </div>
+</div>
 
-<h1>Meals</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class="table table-responsive-lg table-hover">
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Description</th>
+    <th class="text-center">Kcal</th>
+    <th class="text-center">Protein</th>
+    <th class="text-center">Carbs</th>
+    <th class="text-center">Fats</th>
+    <th class="text-center">Vegan</th>
+    <th class="text-center">Vegetarian</th>
+    <th class="text-center">Gluten free</th>
+    <th class="text-center">Nut free</th>
+    <th class="text-center">Soy free</th>
+    <th class="text-center">Date</th>
+    <th class="text-center">Actions</th>
+  </tr>
   <tbody>
     <% @meals.each do |meal| %>
       <tr>
-        <td><%= link_to 'Show', meal %></td>
-        <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-        <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="text-center"><%= meal.name %></td>
+        <td class="text-center"><%= meal.description %></td>
+        <td class="text-center"><%= meal.kcal %></td>
+        <td class="text-center"><%= meal.protein %></td>
+        <td class="text-center"><%= meal.carbs %></td>
+        <td class="text-center"><%= meal.fats %></td>
+        <td class="text-center"><%= meal.vegan %></td>
+        <td class="text-center"><%= meal.vegetarian %></td>
+        <td class="text-center"><%= meal.gluten_free %></td>
+        <td class="text-center"><%= meal.nut_free %></td>
+        <td class="text-center"><%= meal.soy_free %></td>
+        <td class="text-center"><%= meal.created_at %></td>
+        <td class="text-center">
+          <%= link_to 'Details', user_meal_path(user_id: current_user.id, id: meal.id), class: 'btn' %>
+          <%= link_to 'Delete', user_meal_path(user_id: current_user.id, id: meal.id), 
+            method: :delete, data: { confirm: "You are deleting '#{meal.name}'. Are you sure" }, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_user_meal_path(user_id: current_user.id, id: meal.id), class: 'btn' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Meal', new_meal_path %>

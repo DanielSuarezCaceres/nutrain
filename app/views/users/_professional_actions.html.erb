@@ -23,7 +23,9 @@
     </div>
   <% end %>
   <div class="p-1">
-    <%= link_to 'Cancel contract', user_path(@user), method: :delete, class: 'btn btn-danger' %>
+    <%= link_to 'Cancel contract', user_clients_path(current_user), method: :delete, 
+      data: { confirm: "You are deleting the contract. This action cannot be undone. 
+                        Are you sure you want to delete?" }, class: 'btn btn-danger' %>
   </div>
 <% else %>
   <div class="p-1">

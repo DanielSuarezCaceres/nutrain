@@ -131,9 +131,19 @@ table {
 }
 
 #upper-toolbar {
-  /*background-color: #cfd8dc;*/
+  background-color: #cfd8dc;
   height: 15%;
 }
+
+@media (min-width: 768px) {  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    border-radius:0;
+  }
+}
+  
+
 
 .navbar {
   background-color: $gr1;
