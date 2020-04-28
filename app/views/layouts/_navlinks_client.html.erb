@@ -2,11 +2,13 @@
   <li class="nav-item">
     <%= link_to 'Home', root_path %>
   </li>
+  <%= render 'layouts/dropdown_training' %>
+  <%= render 'layouts/dropdown_nutrition' %>
   <li class="nav-item">
-    <%= link_to 'Routines', user_routines_path(current_user.id) %>
+    <%= link_to 'Psychology', user_diets_path(current_user) %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Diets', user_diets_path(current_user.id) %>
+    <%= link_to 'Physiotherapy', user_diets_path(current_user) %>
   </li>
   <li class="nav-item">
     <%= link_to 'Professionals', users_path %>
