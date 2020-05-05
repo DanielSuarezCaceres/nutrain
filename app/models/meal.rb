@@ -72,4 +72,26 @@ class Meal < ApplicationRecord
     total_fats
   end
 
+  def vegan?
+    self.vegan ? 'Yes' : 'No'
+  end
+
+  def vegetarian?
+    self.vegetarian ? 'Yes' : 'No'
+  end
+
+  def gluten_free?
+    self.gluten_free ? 'Yes' : 'No'
+  end
+
+  def soy_free?
+    self.soy_free ? 'Yes' : 'No'
+  end
+
+  def nut_free?
+    self.soy_free ? 'Yes' : 'No'
+  end
+
+  
+
 end

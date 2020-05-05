@@ -34,6 +34,8 @@ gem 'groupdate'
 gem 'simple_calendar', '~> 2.3' #~> 2.0.6'
 gem 'simple_form'
 gem 'sprockets', '~> 4.0'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 
 # Reduces boot times through caching; required in config/boot.rb

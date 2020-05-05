@@ -4,7 +4,7 @@
     <%= link_to 'New meal', new_user_meal_path(current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Download history', user_meals_path(current_user.id), class: 'btn' %>
+    <%= link_to 'Download history', user_meals_path(current_user, :format => :pdf) , :format => :pdf, class: 'btn' %>
   </div>
 </div>
 

@@ -7,6 +7,17 @@ class MealsController < ApplicationController
     #@meals = Meal.all
     if params[:user_id]
       @meals = User.find(params[:user_id]).meals
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Meals history",
+          page_size: 'A4',
+          template: "meals/index.pdf.erb",
+          title: "Meals_H©istory_#{Date.today.strftime("%Y_%m_%d")}",
+          # orientation: "Landscape",
+          locals: {:meals => @meals}
+        end
+      end
     end
   end
 
