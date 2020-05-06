@@ -9,7 +9,9 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # add pdf scss to assets
-Rails.application.config.assets.precompile += ['pdf.css']
+#Rails.application.config.assets.precompile += ['pdf.css']
+#Rails.application.config.assets.precompile += ['bootstrap.css']
+
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

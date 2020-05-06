@@ -92,6 +92,4 @@ class Meal < ApplicationRecord
     self.soy_free ? 'Yes' : 'No'
   end
 
-  
-
 end

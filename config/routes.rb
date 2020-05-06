@@ -24,7 +24,11 @@ Rails.application.routes.draw do
     resources :workouts
     resources :exercises
     resources :diets
-    resources :meals
+    resources :meals do
+      collection do
+        get :download_report
+      end
+    end
     resources :foods
     resources :appointments
     resources :contracts

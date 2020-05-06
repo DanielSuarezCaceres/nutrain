@@ -1,13 +1,17 @@
 <div class="container">
   <div class="row">
-    <h2>Meals history</h2>
+    <h3 class="ml-0">Nutrain</h3>
+    <h3 class="mr-0"><%= current_user.fullname %></h3>
   </div>
 
   <div class="row">
-    Total meals: <%= meals.count %>
+    <div class="mr-0">Total meals: <%= meals.count %></div>
+    <% if params[:meal][:start_date] %>
+      <%= params[:meal][:start_date] %>
+    <% end %>
   </div>
 
-  <table class="table table-responsive-lg table-hover">
+  <table class="table">
   <tr>
     <th class="text-center">Name</th>
     <th class="text-center">Description</th>
@@ -15,11 +19,7 @@
     <th class="text-center">Protein</th>
     <th class="text-center">Carbs</th>
     <th class="text-center">Fats</th>
-    <th class="text-center">Vegan</th>
-    <th class="text-center">Vegetarian</th>
-    <th class="text-center">Gluten free</th>
-    <th class="text-center">Soy free</th>
-    <th class="text-center">Nut free</th>
+    <th class="text-center">Date</th>
   </tr>
   <tbody>
   <% meals.each do |meal| %><tr>
@@ -29,11 +29,7 @@
     <td class="text-center"><%= meal.protein %></td>
     <td class="text-center"><%= meal.carbs %></td>
     <td class="text-center"><%= meal.fats %></td>
-    <td class="text-center"><%= meal.vegan? %></td>
-    <td class="text-center"><%= meal.vegetarian? %></td>
-    <td class="text-center"><%= meal.gluten_free? %></td>
-    <td class="text-center"><%= meal.soy_free? %></td>
-    <td class="text-center"><%= meal.nut_free? %></td>
+    <td class="text-center"><%= meal.created_at.strftime("%Y-%m-%d") %></td>
   </tr>
   <% end %>
   </tbody>

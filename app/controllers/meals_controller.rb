@@ -6,16 +6,22 @@ class MealsController < ApplicationController
   def index
     #@meals = Meal.all
     if params[:user_id]
+      #byebug
       @meals = User.find(params[:user_id]).meals
+      #byebug
       respond_to do |format|
         format.html
+        #format.js
         format.pdf do
-          render pdf: "Meals history",
+          render pdf: "Meals_History_#{Date.today.strftime("%Y_%m_%d")}",
           page_size: 'A4',
           template: "meals/index.pdf.erb",
-          title: "Meals_H©istory_#{Date.today.strftime("%Y_%m_%d")}",
+          title: "Meals_History_#{Date.today.strftime("%Y_%m_%d")}",
           # orientation: "Landscape",
-          locals: {:meals => @meals}
+          #locals: {:meals => @meals}
+          locals: { :meals => params[:meal].nil? ? @meals : meals_in_date_range }
+          #lowquality: true
+          #disposition: 'attachment' -> directly download without previz
         end
       end
     end
@@ -80,6 +86,12 @@ class MealsController < ApplicationController
     end
   end
 
+  def download_report
+    pdf = WickedPdf.new.pdf_from_string(
+      render_to_string('templates/pdf', layout: 'pdfs/layout_pdf.html')
+    )
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -105,8 +117,10 @@ class MealsController < ApplicationController
         :nut_free,
         :soy_free,
         :user_id,
+        :start_date,
+        :end_date,
         foods_attributes: %i[id name brand kcal protein carbs fats serving_size vegan vegetarian gluten_free nut_free soy_free _destroy],
-        food_ids: []
+        food_ids: [],
     )
   end
 
@@ -145,6 +159,22 @@ class MealsController < ApplicationController
       end
     end
     return
+  end
+
+  def meals_in_date_range
+    #byebug
+    start_date = params[:meal][:start_date]
+    end_date = params[:meal][:end_date]
+    meals_in_range = []
+    @meals.each do |meal|
+      meal_date = meal.created_at.strftime("%Y-%m-%d")
+      #byebug
+      if meal_date.between?(start_date, end_date)
+        meals_in_range << meal
+      end
+    end
+    #byebug
+    meals_in_range
   end
 
 end
