@@ -6,6 +6,9 @@
   <div class="p-2">
     <%= link_to 'Delete all', user_routines_path(current_user.id), class: 'btn' %>
   </div>
+  <div class="p-2">
+    <%= link_to 'Download report', user_routines_path(current_user, :format => :pdf) , :format => :pdf, target: :_blank, class: 'btn' %>
+  </div>
 </div>
 
 <table class="table table-responsive-lg table-hover">

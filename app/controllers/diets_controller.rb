@@ -5,6 +5,17 @@ class DietsController < ApplicationController
       @diets = User.find(params[:client_id]).routines
     else
       @diets = User.find(params[:user_id]).diets
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Diets_#{Date.today.strftime("%Y_%m_%d")}",
+          page_size: 'A4',
+          template: "diets/index.pdf.erb",
+          title: "Diets_#{Date.today.strftime("%Y_%m_%d")}",
+          locals: { :diets => @diets }
+          #disposition: 'attachment' -> directly download without previz
+        end
+      end
     end
   end
 

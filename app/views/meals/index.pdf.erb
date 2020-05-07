@@ -1,37 +1,43 @@
 <div class="container">
-  <div class="row">
-    <h3 class="ml-0">Nutrain</h3>
-    <h3 class="mr-0"><%= current_user.fullname %></h3>
-  </div>
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
 
   <div class="row">
-    <div class="mr-0">Total meals: <%= meals.count %></div>
-    <% if params[:meal][:start_date] %>
-      <%= params[:meal][:start_date] %>
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Meal history</h4>
+    <br>
+    <% if !params[:meal].nil? || params[:meal][:start_date].empty? %>
+      <h5>From: <%= params[:meal][:start_date] %></h5>
+      <h5>To: <%= params[:meal][:end_date] %></h5>
     <% end %>
-  </div>
+    <br>
+    <h5>Total meals: <%= meals.count %></h5>
+  </div><br>
 
   <table class="table">
-  <tr>
-    <th class="text-center">Name</th>
-    <th class="text-center">Description</th>
-    <th class="text-center">Kcal</th>
-    <th class="text-center">Protein</th>
-    <th class="text-center">Carbs</th>
-    <th class="text-center">Fats</th>
-    <th class="text-center">Date</th>
-  </tr>
-  <tbody>
-  <% meals.each do |meal| %><tr>
-    <td class="text-center"><%= meal.name %></td>
-    <td class="text-center"><%= meal.description %></td>
-    <td class="text-center"><%= meal.kcal %></td>
-    <td class="text-center"><%= meal.protein %></td>
-    <td class="text-center"><%= meal.carbs %></td>
-    <td class="text-center"><%= meal.fats %></td>
-    <td class="text-center"><%= meal.created_at.strftime("%Y-%m-%d") %></td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Kcal</th>
+      <th class="text-center">Protein</th>
+      <th class="text-center">Carbs</th>
+      <th class="text-center">Fats</th>
+      <th class="text-center">Date</th>
+    </tr>
+    <tbody>
+      <% meals.each do |meal| %>
+        <tr>
+          <td class="text-center"><%= meal.name %></td>
+          <td class="text-center"><%= meal.description %></td>
+          <td class="text-center"><%= meal.kcal %></td>
+          <td class="text-center"><%= meal.protein %></td>
+          <td class="text-center"><%= meal.carbs %></td>
+          <td class="text-center"><%= meal.fats %></td>
+          <td class="text-center"><%= meal.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

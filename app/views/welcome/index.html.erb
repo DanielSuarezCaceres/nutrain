@@ -90,7 +90,7 @@
         <div class="row daily-kcal-header">
           <h4>
             Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %> of 
-            <%= current_user.get_current_diet.kcal_goal unless current_user.diets.empty? %>
+            <%= current_user.get_current_diet.kcal_goal unless current_user.get_current_diet.nil? %>
           </h4>
         </div>
         <%= bar_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),

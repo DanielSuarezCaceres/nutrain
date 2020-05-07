@@ -4,6 +4,17 @@ class RoutinesController < ApplicationController
       @routines = User.find(params[:client_id]).routines
     else
       @routines = User.find(params[:user_id]).routines
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Routines_#{Date.today.strftime("%Y_%m_%d")}",
+          page_size: 'A4',
+          template: "routines/index.pdf.erb",
+          title: "Routines_#{Date.today.strftime("%Y_%m_%d")}",
+          locals: { :routines => @routines }
+          #disposition: 'attachment' -> directly download without previz
+        end
+      end
     end
   end
 

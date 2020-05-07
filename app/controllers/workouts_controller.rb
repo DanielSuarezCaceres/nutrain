@@ -3,6 +3,16 @@ class WorkoutsController < ApplicationController
   def index
     if params[:user_id]
       @workouts = User.find(params[:user_id]).workouts
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Workouts_History_#{Date.today.strftime("%Y_%m_%d")}",
+          page_size: 'A4',
+          template: "workouts/index.pdf.erb",
+          title: "Workouts_History_#{Date.today.strftime("%Y_%m_%d")}",
+          locals: { :workouts => params[:workout].nil? ? @workouts : workouts_in_date_range }
+        end
+      end
     end
   end
 
@@ -15,7 +25,6 @@ class WorkoutsController < ApplicationController
 
   def create
     user = current_user
-    # @user = User.find(params[:user_id])
     @workout = user.workouts.new(workout_params)
     #byebug
     if @workout.valid?
@@ -60,4 +69,23 @@ class WorkoutsController < ApplicationController
         exercises_attributes: [:name, :description, :sets, :reps, :weight, :_destroy]
     )
   end
+
+  def workouts_in_date_range
+    start_date = params[:workout][:start_date]
+    end_date = params[:workout][:end_date]
+    # if no date is sent, return all workouts
+    if start_date.empty? || end_date.empty?
+      workouts = current_user.workouts
+      return workouts
+    end
+    workouts_in_range = []
+    @workouts.each do |workout|
+      workout_date = workout.created_at.strftime("%Y-%m-%d")
+      if workout_date.between?(start_date, end_date)
+        workouts_in_range << workout
+      end
+    end
+    workouts_in_range
+  end
+
 end

@@ -1,0 +1,37 @@
+<div class="container">
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
+
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Workout history</h4>
+    <br>
+    <% if !params[:workout].nil? || params[:workout][:start_date].empty? %>
+      <h5>From: <%= params[:workout][:start_date] %></h5>
+      <h5>To: <%= params[:workout][:end_date] %></h5>
+    <% end %>
+    <br>
+    <h5>Total workouts: <%= workouts.count %></h5>
+  </div><br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Number of exercises</th>
+      <th class="text-center">Date</th>
+    </tr>
+    <tbody>
+      <% workouts.each do |workout| %>
+        <tr>
+          <td class="text-center"><%= workout.name %></td>
+          <td class="text-center"><%= workout.description %></td>
+          <td class="text-center"><%= workout.number_of_exercises %></td>
+          <td class="text-center"><%= workout.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

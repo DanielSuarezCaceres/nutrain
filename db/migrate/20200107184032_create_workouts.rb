@@ -5,6 +5,7 @@ class CreateWorkouts < ActiveRecord::Migration[6.0]
       t.text :description
       t.bigint :user_id
       t.integer :number_of_exercises
+      t.string :goal
 
       t.timestamps
       t.index ["user_id"], name: "index_workouts_on_user_id"
