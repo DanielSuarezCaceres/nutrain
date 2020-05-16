@@ -17,6 +17,7 @@ require("chart.js")
 require("custom/users")
 require("custom/appointments")
 require("custom/meals")
+require("custom/routines")
 require("custom/workouts")
 //require("src/cocoon")
 require("custom/scrollreveal")
@@ -44,7 +45,8 @@ document.addEventListener("turbolinks:load", function () {
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function() {
-    $('select').select2();
+    //$('select').select2();
+    $('.select2').select2();
   });
 });
 

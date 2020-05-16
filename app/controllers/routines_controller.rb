@@ -1,4 +1,5 @@
 class RoutinesController < ApplicationController
+  
   def index
     if params[:client_id]
       @routines = User.find(params[:client_id]).routines
@@ -23,10 +24,21 @@ class RoutinesController < ApplicationController
   end
 
   def new
+    #byebug
     @routine = Routine.new
+    if params[:client_id]
+      @routine = User.find(params[:client_id]).routines.new
+    else
+      @routine = User.find(params[:user_id]).routines.new 
+    end
+  end
+
+  def edit
+    @routine = Routine.find(params[:id])
   end
 
   def create
+    byebug
     if params[:client_id]
       @user = User.find(params[:client_id])
       @routine = @user.routines.new(routine_params)
@@ -37,7 +49,8 @@ class RoutinesController < ApplicationController
         render :new
       end
     else
-      @user = User.find(params[:user_id])
+      # @user = User.find(params[:user_id])
+      @user = current_user
       @routine = @user.routines.new(routine_params)
       if @routine.valid?
         @routine.save
@@ -49,6 +62,7 @@ class RoutinesController < ApplicationController
   end
 
   def update
+    #byebug
     @routine = Routine.find(params[:id])
     if @routine.update(routine_params)
       redirect_to user_routines_path(current_user), notice: 'Routine updated successfully'
@@ -56,10 +70,6 @@ class RoutinesController < ApplicationController
       # flash[:error] = @routine.errors.full_messages
       render :edit
     end
-  end
-
-  def edit
-    @routine = Routine.find(params[:id])
   end
 
   def destroy

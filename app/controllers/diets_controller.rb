@@ -2,7 +2,7 @@ class DietsController < ApplicationController
 
   def index
     if params[:client_id]
-      @diets = User.find(params[:client_id]).routines
+      @diets = User.find(params[:client_id]).diets
     else
       @diets = User.find(params[:user_id]).diets
       respond_to do |format|
@@ -25,11 +25,20 @@ class DietsController < ApplicationController
 
   def new
     @diet = Diet.new
+    if params[:client_id]
+      @diet = User.find(params[:client_id]).diets.new
+    else
+      @diet = User.find(params[:user_id]).diets.new 
+    end
+  end
+
+  def edit
+    #byebug
+    @diet = Diet.find(params[:id])
   end
   
   def create
-    # temporary, see how to pass the id of another user (the id of a client you are creating a diet for)
-    #@user = User.find(params[:user_id])
+    #byebug
     if params[:client_id]
       @user = User.find(params[:client_id])
       @diet = @user.diets.new(diet_params)
@@ -40,7 +49,8 @@ class DietsController < ApplicationController
         render :new
       end
     else
-      @user = User.find(params[:user_id])
+      #@user = User.find(params[:user_id])
+      @user = current_user
       @diet = @user.diets.new(diet_params)
       if @diet.valid?
         @diet.save
@@ -52,6 +62,7 @@ class DietsController < ApplicationController
   end
 
   def update
+    #byebug
     @diet = Diet.find(params[:id])
     if @diet.update(diet_params)
       redirect_to user_diets_path(current_user), notice: 'Diet updated successfully'
@@ -61,16 +72,12 @@ class DietsController < ApplicationController
     end
   end
 
-  def edit
-    @diet = Diet.find(params[:id])
-  end
-
   def destroy
     @diet = Diet.find(params[:id])
     if @diet.destroy
       redirect_to user_diets_path(current_user), notice: 'Diet deleted successfully'
     else
-      flash[:error] = @routine.errors.full_messages
+      flash[:error] = @diet.errors.full_messages
       redirect_to user_diet_path(@diet)
     end
   end

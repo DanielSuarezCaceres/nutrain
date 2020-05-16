@@ -1,4 +1,4 @@
-<%= simple_form_for(@diet, url: params[:client_id] ? user_client_diets_path(id: @diet) : user_diets_path(id: @diet), method: :post ) do |f| %>
+<%= simple_form_for(@diet, check_diet_routes(params[:client_id], @diet)) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>

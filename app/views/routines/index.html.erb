@@ -11,6 +11,10 @@
   </div>
 </div>
 
+<div class="d-flex justify-content-center table-title">
+  <h3>Routines</h3>
+</div>
+
 <table class="table table-responsive-lg table-hover">
   <tr>
     <th class="text-center">Name</th>
@@ -31,7 +35,7 @@
         <td class="text-center">
           <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
           <%= link_to 'Delete', user_routine_path(user_id: current_user.id, id: routine.id), 
-            method: :delete, data: { confirm: "You are deleting '#{routine.name}'. Are you sure" }, class: 'btn btn-danger' %>
+            method: :delete, data: { confirm: "You are deleting '#{routine.name}'. Are you sure?" }, class: 'btn btn-danger' %>
           <%= link_to 'Edit', edit_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
         </td>
       </tr>

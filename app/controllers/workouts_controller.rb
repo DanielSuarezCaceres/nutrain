@@ -73,8 +73,11 @@ class WorkoutsController < ApplicationController
   def workouts_in_date_range
     start_date = params[:workout][:start_date]
     end_date = params[:workout][:end_date]
-    # if no date is sent, return all workouts
-    if start_date.empty? || end_date.empty?
+    # if start_date or end_date are empty (or both), return all workouts
+    if start_date.empty?
+      workouts = current_user.workouts
+      return workouts
+    elsif end_date.empty?
       workouts = current_user.workouts
       return workouts
     end

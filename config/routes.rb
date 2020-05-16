@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   devise_for :users, controllers: {
-      registration: 'users/registrations'
+      registrations: 'users/registrations'
   }
 
   resources :professionals, controller: 'users', type: 'Professional' do

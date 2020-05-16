@@ -1,34 +1,43 @@
-<div class="p-1">
-  <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn' %>
-</div>
-<% if current_user.has_contract?(@user.id) %>
-  <% if current_user.nutritionist %>
-    <div class="p-1">
-      <%= link_to 'New diet', new_user_client_diet_path(client_id: @user.id), class: 'btn' %>
-    </div>
-  <% end %>
-  <% if current_user.trainer %>
-    <div class="p-1">
-      <%= link_to 'New routine', new_user_client_routine_path(client_id: @user.id), class: 'btn' %>
-    </div>
-  <% end %>
-  <% if current_user.physiotherapist %>
-    <div class="p-1">
-      <%= link_to 'New rehab exercise', user_path(@user), class: 'btn' %>
-    </div>
-  <% end %>
-  <% if current_user.psychologist %>
-    <div class="p-1">
-      <%= link_to 'New task', user_path(@user), class: 'btn' %>
-    </div>
-  <% end %>
+<div class="row">
   <div class="p-1">
-    <%= link_to 'Cancel contract', user_clients_path(current_user), method: :delete, 
+    <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn' %>
+  </div>
+  <% if current_user.has_contract?(@user.id) %>
+    <% if current_user.nutritionist %>
+      <div class="p-1">
+        <%= link_to 'New diet', new_user_client_diet_path(client_id: @user.id), class: 'btn' %>
+      </div>
+    <% end %>
+    <% if current_user.trainer %>
+      <div class="p-1">
+        <% if @user.get_current_routine != nil %>
+          <%= link_to 'Edit routine', edit_user_client_routine_path(client_id: @user.id, id: @user.get_current_routine), class: 'btn' %>
+        <% else %>
+          <%= link_to 'New routine', new_user_client_routine_path(client_id: @user.id), class: 'btn' %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if current_user.physiotherapist %>
+      <div class="p-1">
+        <%= link_to 'New rehab exercise', user_path(@user), class: 'btn' %>
+      </div>
+    <% end %>
+    <% if current_user.psychologist %>
+      <div class="p-1">
+        <%= link_to 'New task', user_path(@user), class: 'btn' %>
+      </div>
+    <% end %>
+    <div class="p-1">
+      <%= link_to 'Cancel contract', user_clients_path(current_user), method: :delete, 
       data: { confirm: "You are deleting the contract. This action cannot be undone. 
                         Are you sure you want to delete?" }, class: 'btn btn-danger' %>
-  </div>
-<% else %>
+    </div>
+  <% else %>
+    <div class="p-1">
+      <%= link_to 'Contract request', new_user_contract_path(current_user), class: 'btn' %>
+    </div>
+  <% end %>
   <div class="p-1">
-    <%= link_to 'Contract request', new_user_contract_path(current_user), class: 'btn' %>
+    <%= link_to 'Back', user_clients_path(current_user), class: 'btn' %>
   </div>
-<% end %>
+</div>

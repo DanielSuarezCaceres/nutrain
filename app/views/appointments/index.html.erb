@@ -1,29 +1,36 @@
-<div class="p-1">
-  <%= link_to 'New appointment', new_user_appointment_path, class: 'btn' %>
+<div class="d-flex justify-content-start" id="upper-toolbar">
+  <div class="p-2">
+    <%= link_to 'New appointment', new_user_appointment_path, class: 'btn' %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Download history', "#", 
+    {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'} %>
+  </div>
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><%= render 'appointments/modal' %></div>
+    </div>
+  </div>
 </div>
-
 <!-- <button class="btn btn-primary" id="button-cal">
 button
 </button> -->
-
 <div id="calendar">
-<%= month_calendar events: @appointments do |date, appointments| %>
-  <%= date %>
-
-  <% appointments.each do |appointment| %>
-    <div class="appointment-box">
-      <% if current_user.type == 'Client' %>
-        <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).professional_id).fullname} - 
+  <%= month_calendar events: @appointments do |date, appointments| %>
+    <%= date %>
+    <% appointments.each do |appointment| %>
+      <div class="appointment-box">
+        <% if current_user.type == 'Client' %>
+          <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).professional_id).fullname} - 
         #{appointment.start_time.strftime('%H:%M')}", edit_user_appointment_path(id: appointment.id) %>
-      <% else %>
-        <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).client_id).fullname} - 
+        <% else %>
+          <%= link_to "Cita con #{User.find(Appointment.find(appointment.id).client_id).fullname} - 
         #{appointment.start_time.strftime('%H:%M')}", edit_user_appointment_path(id: appointment.id) %>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
 </div>
-
 <script>
   // var appointments = <%= Appointment.all.count %>;
   // countApps(appointments);

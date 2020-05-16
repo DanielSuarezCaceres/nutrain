@@ -4,6 +4,7 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
+    #@meals = Meal.all
     if params[:user_id]
       @meals = User.find(params[:user_id]).meals
       respond_to do |format|
@@ -157,8 +158,12 @@ class MealsController < ApplicationController
   def meals_in_date_range
     start_date = params[:meal][:start_date]
     end_date = params[:meal][:end_date]
-    # if no date is sent, return all meals
-    if start_date.empty? || end_date.empty?
+    # if start_date or end_date are empty (or both), return all meals
+    # need to check why if in a single line doesn't work
+    if start_date.empty?
+      meals = current_user.meals
+      return meals
+    elsif end_date.empty?
       meals = current_user.meals
       return meals
     end

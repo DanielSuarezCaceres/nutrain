@@ -99,7 +99,7 @@
       </div>
       <div class="col-md-3">
         <div class="row daily-protein-header">
-          <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %></h4>
+          <h4>Protein: <%= Meal.total_protein_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
                     colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
@@ -107,14 +107,14 @@
       </div>
       <div class="col-md-3">
         <div class="row daily-carbs-header">
-          <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %></h4>
+          <h4>Carbs: <%= Meal.total_carbs_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs) %>
         
       </div>
       <div class="col-md-3">
         <div class="row daily-fats-header">
-          <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %></h4>
+          <h4>Fats: <%= Meal.total_fats_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats) %>
         

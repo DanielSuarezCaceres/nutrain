@@ -4,11 +4,11 @@
     <h4 class="modal-title mr-auto" id="myModalLabel">Select date range to generate PDF</h4>
   </div>
   <div class="modal-body">
-    <%= form_tag(user_workouts_path(current_user, :format => :pdf), method: :get, target: :_blank, :format => :pdf) do %>
+    <%= form_tag(user_appointments_path(current_user, :format => :pdf), method: :get, target: :_blank, :format => :pdf) do %>
       <%= label_tag "Stat date" %>
-      <%= date_field :workout, :start_date, class: 'form-control' %>
+      <%= date_field :appointment, :start_date, class: 'form-control' %>
       <%= label_tag "End date" %>
-      <%= date_field :workout, :end_date, class: 'form-control' %><br>
+      <%= date_field :appointment, :end_date, class: 'form-control' %><br>
       <p class="small">*If any date field is empty, all meals will be shown in the PDF file.</p>
       <div class="modal-footer">
         <%= button_tag "See pdf", class: 'btn' %>

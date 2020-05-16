@@ -1,8 +1,9 @@
-<%= simple_form_for(@routine, url: params[:client_id] ? user_client_routines_path(id: @routine) : user_routines_path(id: @routine), method: :post)  do |f| %>
+<!-- simple_form_for(@routine) works too, but still don't know how to differentiate between own routines and client routines -->
+<%= simple_form_for(@routine, html: { id: 'routines-form' }) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :days_of_exercise %>
+  <%= f.input :days_of_exercise, id: 'routine_days_of_exercise' %>
   <!--<%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :client_id, :value => params[:client_id] %>-->
   <!-- <%= f.hidden_field :client_id, value: params[:id] %> -->
@@ -15,7 +16,7 @@
     <%#= f.input :file, 'Select a file', as: :file %>
   -->
   <div class="row">
-    <%= f.button :submit, class: 'btn' %>
-    <%= link_to 'Back', user_routines_path(user_id: current_user.id), class: 'btn' %>
+    <%= f.button :submit, class: 'btn', id: 'submit-routine' %>
+    <%= link_to 'Back', :back, class: 'btn' %>
   </div>
 <% end %>

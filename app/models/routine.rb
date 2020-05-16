@@ -2,7 +2,10 @@ class Routine < ApplicationRecord
   belongs_to :user
   
   validates :name, presence: true, uniqueness: true
-  validates :days_of_exercise, presence: true, numericality: { minimum: 1 }
+  # validates :description, presence: true
+  #validates :days_of_exercise, presence: true, numericality: { minimum: 1, maximum: 7 }
+  validates_inclusion_of :days_of_exercise, :in => 1..7, message: "must be between 1 and 7"
+  validates :days_of_exercise, presence: true
   validates :goal, presence: true
 
   before_save :check_active_routine

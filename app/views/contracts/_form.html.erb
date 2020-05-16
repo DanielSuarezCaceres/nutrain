@@ -18,8 +18,8 @@
     <%= simple_form_for(@contract, data: { confirm: 'You are cancelling a contract, this cannot be undone. Are you sure?' }) do |f| %>
       <b><%= f.label :client_id %>:</b> <%= User.find(@contract.client_id).fullname %><br>
       <b><%= f.label :professional_id %>:</b> <%= User.find(@contract.professional_id).fullname %><br>
-      <b>Active since:</b> <%= @contract.updated_at %><br>
-      <%= f.input :state, readonly: true %>
+      <b>Active since:</b> <%= @contract.updated_at %><br><br>
+      <!-- <%= f.input :state, readonly: true %> --> 
       <%= f.submit 'Cancel contract', class: 'btn btn-danger', onclick: "contrat_state.value = 'Cancelled'" %>
     <% end%>
   <% else %>

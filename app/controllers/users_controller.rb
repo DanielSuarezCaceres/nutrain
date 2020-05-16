@@ -29,7 +29,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
     if @user.update
       redirect_to users_path
     end
@@ -42,10 +41,22 @@ class UsersController < ApplicationController
       :id,
       :name,
       :lastname,
+      :gender,
+      :age,
+      :height,
+      :weight,
       :phone,
       :city,
       :country,
+      :description,
+      :nutritionist,
+      :trainer,
+      :physiotherapist,
+      :psychologist,
+      :verified,
       :type,
+      :current_password,
+      :email
     )
   end
 end

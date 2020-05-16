@@ -12,8 +12,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attr_accessor :current_password
-
+  #attr_accessor :current_password
+=begin
   def update_with_password(params={})
     current_password = params.delete(:current_password) if !params[:current_password].blank?
 
@@ -33,6 +33,7 @@ class User < ApplicationRecord
     clean_up_passwords
     result
   end
+=end
 
   def has_no_password?
     self.encrypted_password.blank?
@@ -56,5 +57,9 @@ class User < ApplicationRecord
 
   def get_current_diet
     self.diets.where(active: true).first
+  end
+  
+  def get_current_routine
+    self.routines.where(active: true).first
   end
 end

@@ -1,0 +1,40 @@
+<div class="container">
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
+
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Appointments resume</h4>
+    <br>
+    <% if !params[:appointment].nil? || params[:appointment][:start_date].empty? %>
+      <h5>From: <%= params[:appointment][:start_date] %></h5>
+      <h5>To: <%= params[:appointment][:end_date] %></h5>
+    <% end %>
+    <br>
+    <h5>Total appointments: <%= appointments.count %></h5>
+  </div><br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Title</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Client</th>
+      <th class="text-center">Date</th>
+    </tr>
+    <tbody>
+      <% appointments.each do |appointment| %>
+        <tr>
+          <td class="text-center"><%= appointment.title %></td>
+          <td class="text-center"><%= appointment.description %></td>
+          <td class="text-center"><%= User.find(appointment.client_id).fullname %></td>
+          <td class="text-center">
+            <%= "#{appointment.start_time.strftime("%Y-%m-%d")}
+              #{appointment.start_time.strftime("%H:%M")}-#{appointment.end_time.strftime("%H:%M")} "%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
