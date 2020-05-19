@@ -62,7 +62,7 @@ class RoutinesController < ApplicationController
   end
 
   def update
-    #byebug
+    byebug
     @routine = Routine.find(params[:id])
     if @routine.update(routine_params)
       redirect_to user_routines_path(current_user), notice: 'Routine updated successfully'

@@ -37,34 +37,28 @@ $obg-secondary-orange: #FF9C00;
 $obg-blue: #026BE9;
 $obg-green: #00E8C1;
 
-//.color-primary-0 { color: #FF6700 }	/* Main Primary color */
-//.color-primary-1 { color: #FF9C58 }
-//.color-primary-2 { color: #FF7E26 }
-//.color-primary-3 { color: #FF6700 }
-//.color-primary-4 { color: #F36200 }
-//
-//.color-secondary-1-0 { color: #FF9C00 }	/* Main Secondary color (1) */
-//.color-secondary-1-1 { color: #FFBE58 }
-//.color-secondary-1-2 { color: #FFAB26 }
-//.color-secondary-1-3 { color: #FF9C00 }
-//.color-secondary-1-4 { color: #F39400 }
-//
-//.color-secondary-2-0 { color: #1179F7 }	/* Main Secondary color (2) */
-//.color-secondary-2-1 { color: #62A4F4 }
-//.color-secondary-2-2 { color: #368DF6 }
-//.color-secondary-2-3 { color: #026BE9 }
-//.color-secondary-2-4 { color: #034A9F }
-//
-//.color-complement-0 { color: #00F6CD }	/* Main Complement color */
-//.color-complement-1 { color: #54F4D9 }
-//.color-complement-2 { color: #24F6D3 }
-//.color-complement-3 { color: #00E8C1 }
-//.color-complement-4 { color: #009A80 }
-
 $gr1: #005b88;
 $gr2: #007da7;
 $gr3: #00a0b5;
 $gr4: #00c1af;
+
+$pal1col1: #264653;
+$pal1col2: #2a9d8f;
+$pal1col3: #e9c46a;
+$pal1col4: #f4a261;
+$pal1col5: #e76f51;
+
+$pal2col1: #2C2E36;
+$pal2col2: #247171;
+$pal2col3: #A6CF6D;
+$pal2col4: #FABF58;
+$pal2col5: #EB816E;
+
+$pal3col1: #456990;
+$pal3col2: #49BEAA;
+$pal3col3: #EF767A;
+$pal3col4: #49DCB1;
+$pal3col5: #EEB868;
 
 /* ---------------------------------------- */
 
@@ -82,6 +76,9 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  //background-image: linear-gradient(to top, #f48606, #bda200, #85b13d, #4db873, #09b9a3);
+  //background-image: linear-gradient(to top, #00e098, #00c1af, #00a0b5, #007da7, #005b88);
+  background-color: $og_secondary1;
 }
 .content {
   flex: 1;
@@ -92,18 +89,13 @@ body {
   font-size: 14px;
   margin-top: 30px;
   padding: 10px 0px 10px 0px;
-  background-color: $gr2;
-}
-/* --------------------------- */
-
-body {
-  //background-image: linear-gradient(to top, #f48606, #bda200, #85b13d, #4db873, #09b9a3);
-  //background-image: linear-gradient(to top, #00e098, #00c1af, #00a0b5, #007da7, #005b88);
+  background-color: $pal1col1;
 }
 
-/* Devise screens */ 
+// Devise screens
 .sign-in-screen, .sign-up-screen, .forgot-password-screen, .change-password-screen, .send-confirmation-screen {
-  background-image: radial-gradient(circle, #005b88, #006c96, #007da2, #008fac, #00a0b5);
+  //background-image: radial-gradient(circle, #005b88, #006c96, #007da2, #008fac, #00a0b5);
+  background: linear-gradient(180deg, rgba(38,70,83,1) 0%, rgba(36,113,113,1) 58%, rgba(42,157,143,1) 100%);
 }
 
 .logo {
@@ -124,12 +116,6 @@ table {
     background-color: rgba(0,0,0,0.025);
 }
 
-#btn-sec {
-  color: white;  
-  background-color: $gr2;
-  margin: 5px 5px 5px 5px;
-}
-
 #upper-toolbar {
   background-color: #cfd8dc;
   height: 15%; // Is it doing something???
@@ -144,7 +130,7 @@ table {
 }
 
 .navbar {
-  background-color: $gr1;
+  background-color: $pal1col1;
   text-decoration: none;
   border-bottom: 0;
   color: white;
@@ -181,7 +167,7 @@ hr {
 }
 
 .daily-workouts-header, .daily-meals-header {
-  background-color: $gr2;
+  background-color: $pal2col2;
   border-radius: 5px 5px 0px 0px;
   h3 {
     color: white;
@@ -194,7 +180,7 @@ hr {
 }
 
 .daily-summary-header {
-  background-color: $gr2;
+  background-color: $pal2col2;
   h2 {
     color: white;
     margin-left: 5px;
@@ -202,7 +188,7 @@ hr {
 }
 
 .daily-macros-header {
-  background-color: $gr2;
+  background-color: $pal2col2;
   border-radius: 5px 5px 0px 0px;
   h3 {
     color: white;
@@ -211,18 +197,22 @@ hr {
 }
 
 .daily-kcal-header, .daily-protein-header, .daily-carbs-header, .daily-fats-header {
-  background-color: $ob_secondary3;
+  background-color: $og_secondary1;
   height: 15%;
   align-items: center;
 }
 
 .weekly-macros-header {
-  background-color: $gr2;
+  background-color: $pal2col2;
   border-radius: 5px 5px 0px 0px;
   h3 {
     color: white;
     margin-left: 5px;
   }
+}
+
+h1 {
+  color: white;
 }
 
 h4 {
@@ -231,7 +221,7 @@ h4 {
 }
 
 .appointment-box {
-  background-color: $gr2;
+  background-color: $pal1col5;
   padding: 2px 2px 2px 2px;
   margin: 2px 2px 2px 2px;
   border-radius: 5px 5px 5px 5px;
@@ -242,11 +232,11 @@ h4 {
 
 .table-title {
   color: white;
-  background-color: $gr2;
+  background-color: $pal2col2;
   height: 15%;
 }
 
-/* ROUNDED BORDERS IN TABLE */
+// Rounded borders in table
 table {
   border-collapse: collapse;
   border-radius: 5px 5px 5px 5px; //1em;
@@ -274,10 +264,7 @@ body {
 }
 */
 
-/* -------------------- */ 
-
-/* STYLE SIMPLE CALENDAR */
-
+// Simple calendar gem style
 .simple-calendar {
   .day {}
 

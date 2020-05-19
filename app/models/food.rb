@@ -4,7 +4,7 @@ class Food < ApplicationRecord
   has_many :meals, through: :dishes
 
   def name_and_amount
-    "#{name} , #{serving_size} g, #{brand}"
+    "#{name}, #{serving_size}g, #{brand} (#{kcal} kcal, #{protein} p, #{carbs} ch, #{fats} f)"
   end
 
 end

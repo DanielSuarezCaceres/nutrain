@@ -1,6 +1,6 @@
 <div class="row">
   <div class="p-1">
-    <%= link_to 'New appointment', user_path(@user), method: :delete, class: 'btn' %>
+    <%= link_to 'New appointment', new_user_appointment_path(@user), class: 'btn' %>
   </div>
   <% if current_user.has_contract?(@user.id) %>
     <% if current_user.nutritionist %>

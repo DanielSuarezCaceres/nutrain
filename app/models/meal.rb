@@ -6,6 +6,10 @@ class Meal < ApplicationRecord
   accepts_nested_attributes_for :foods, reject_if: :all_blank, allow_destroy: true
   before_save :calculate_total_macros_food
   before_update :calculate_total_macros_food
+
+  validates :name, presence: true
+  # validates :description, presence: true (?)
+  
   #attr_accessor :foods_attributes
 
 

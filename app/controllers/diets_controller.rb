@@ -38,10 +38,11 @@ class DietsController < ApplicationController
   end
   
   def create
-    #byebug
+    byebug
     if params[:client_id]
       @user = User.find(params[:client_id])
       @diet = @user.diets.new(diet_params)
+      byebug
       if @diet.valid?
         @diet.save
         redirect_to user_clients_path(user_id: params[:user_id]), notice: 'Diet created for your client successfully'
@@ -62,7 +63,7 @@ class DietsController < ApplicationController
   end
 
   def update
-    #byebug
+    byebug
     @diet = Diet.find(params[:id])
     if @diet.update(diet_params)
       redirect_to user_diets_path(current_user), notice: 'Diet updated successfully'

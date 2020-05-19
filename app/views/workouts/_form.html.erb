@@ -13,6 +13,12 @@
     <br>
     <h4>Add exercises to workout</h4>
     <hr>
+
+    <div>
+        <%= f.association :exercises, collection: Exercise.all, label_method: :full_description, value_method: :id, id: "select_exercises",
+          label: 'Add existing exercises', include_blank: false, include_hidden: false %>
+      </div><hr>
+
     <div class="exercises-form">
       <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn', id: 'add-workout' %>
       <hr>

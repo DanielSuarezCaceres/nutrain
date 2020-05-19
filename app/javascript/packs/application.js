@@ -45,8 +45,8 @@ document.addEventListener("turbolinks:load", function () {
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function() {
-    //$('select').select2();
-    $('.select2').select2();
+    $('select').select2();
+    //$('.select2').select2();
   });
 });
 

@@ -7,6 +7,7 @@
   <!--<%= f.hidden_field :user_id, :value => params[:user_id] %>
   <%= f.hidden_field :client_id, :value => params[:client_id] %>-->
   <!-- <%= f.hidden_field :client_id, value: params[:id] %> -->
+  <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   <%= f.input :goal do %>
     <%= f.select :goal,options_for_select(['Hypertrophy', 'Strength', 'Strength and Hypertrophy', 'Other'],
         selected: f.object.goal), {}, {include_blank: false, class: 'form-control'} %>
