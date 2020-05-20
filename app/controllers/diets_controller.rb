@@ -33,16 +33,14 @@ class DietsController < ApplicationController
   end
 
   def edit
-    #byebug
     @diet = Diet.find(params[:id])
   end
   
   def create
-    byebug
-    if params[:client_id]
-      @user = User.find(params[:client_id])
-      @diet = @user.diets.new(diet_params)
-      byebug
+    # if id's are different, diet is being created by a professional for one of his clients
+    if params[:diet][:user_id]
+      @client = User.find(params[:diet][:user_id].to_i)
+      @diet = @client.diets.new(diet_params)
       if @diet.valid?
         @diet.save
         redirect_to user_clients_path(user_id: params[:user_id]), notice: 'Diet created for your client successfully'
@@ -50,7 +48,6 @@ class DietsController < ApplicationController
         render :new
       end
     else
-      #@user = User.find(params[:user_id])
       @user = current_user
       @diet = @user.diets.new(diet_params)
       if @diet.valid?
@@ -63,12 +60,14 @@ class DietsController < ApplicationController
   end
 
   def update
-    byebug
     @diet = Diet.find(params[:id])
     if @diet.update(diet_params)
-      redirect_to user_diets_path(current_user), notice: 'Diet updated successfully'
+      if params[:diet][:user_id].to_i != current_user.id
+        redirect_to user_clients_path(current_user), notice: 'Diet updated successfully'
+      else
+        redirect_to user_diets_path(current_user), notice: 'Diet updated successfully'
+      end
     else
-      # flash[:error] = @diet.errors.full_messages
       render :edit
     end
   end

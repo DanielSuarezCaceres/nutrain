@@ -5,7 +5,11 @@
   <% if current_user.has_contract?(@user.id) %>
     <% if current_user.nutritionist %>
       <div class="p-1">
-        <%= link_to 'New diet', new_user_client_diet_path(client_id: @user.id), class: 'btn' %>
+        <% if @user.get_current_diet != nil %>
+          <%= link_to 'Edit diet', edit_user_client_diet_path(client_id: @user.id, id: @user.get_current_diet), class: 'btn' %>
+        <% else %>
+          <%= link_to 'New diet', new_user_client_diet_path(client_id: @user.id), class: 'btn' %>
+        <% end %>
       </div>
     <% end %>
     <% if current_user.trainer %>

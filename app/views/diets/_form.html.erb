@@ -1,9 +1,10 @@
-<%= simple_form_for(@diet, check_diet_routes(params[:client_id], @diet)) do |f| %>
+<%= simple_form_for(@diet) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :kcal_goal %>
   <%= f.input :total_meals %>
+  <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   <%= f.input :goal do %>
     <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal), 
                 {}, {include_blank: false, class: 'form-control'} %>

@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <%= render 'routine' %>
-      <%= link_to 'Edit', edit_user_routine_path(@routine), class: 'btn' %>
+      <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: @routine), class: 'btn' %>
       <%= link_to 'Back', user_routines_path, class: 'btn' %>
     </div>
   </div>
