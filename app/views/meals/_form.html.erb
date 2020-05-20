@@ -35,9 +35,9 @@
       <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
       <hr>
         <!-- maybe comment this in the future depending on wether user are allowed to edit foods or not -->
-        <%= f.simple_fields_for :foods do |food| %>
+        <!-- <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
-        <% end %>
+        <% end %> -->
       </div>
     <% end %>
   </div>
@@ -50,9 +50,9 @@
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Kcal</th>
-          <th class="text-center">Protein</th>
-          <th class="text-center">Carbs</th>
-          <th class="text-center">Fats</th>
+          <th class="text-center">Protein(g)</th>
+          <th class="text-center">Carbs(g)</th>
+          <th class="text-center">Fats(g)</th>
         </tr>
         <tbody>
           <% meal.foods.each do |food| %>
@@ -64,6 +64,13 @@
               <td class="text-center"><%= food.fats %></td>
             </tr>
           <% end %>
+          <tr>
+            <td class="text-center" style="font-weight: bold">Total macros</td>
+            <td class="text-center" style="font-weight: bold"><%= meal.kcal%></td>
+            <td class="text-center" style="font-weight: bold"><%= meal.protein %></td>
+            <td class="text-center" style="font-weight: bold"><%= meal.carbs %></td>
+            <td class="text-center" style="font-weight: bold"><%= meal.fats %></td>
+          </tr>
         </tbody>
       </table>
     </div>
