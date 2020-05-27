@@ -1,0 +1,12 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header">
+      <h3>Details</h3>
+    </div>
+    <div class="card-body">
+      <%= render 'physio_exercise' %>
+      <%= link_to 'Edit', edit_physio_exercise_path(@physio_exercise), class: 'btn' %>
+      <%= link_to 'Back', user_physio_exercises_path, class: 'btn' %>
+    </div>
+  </div>
+</div>

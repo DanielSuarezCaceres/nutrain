@@ -4,7 +4,31 @@
       <h2>Edit training routine</h2>
     </div>
     <div class="card-body">
-      <%= render 'form', routine: @routine, user_id: current_user.id %>
+      <%= simple_form_for(@routine, url: user_routine_path(params[:client_id].nil? ? params[:user_id] : params[:client_id]), method: :put) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :days_of_exercise, id: 'routine_days_of_exercise' %>
+        <!--<%= f.hidden_field :user_id, :value => params[:user_id] %>
+  <%= f.hidden_field :client_id, :value => params[:client_id] %>-->
+        <!-- <%= f.hidden_field :client_id, value: params[:id] %> -->
+        <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
+        <%= f.input :goal do %>
+          <%= f.select :goal,options_for_select(['Hypertrophy', 'Strength', 'Strength and Hypertrophy', 'Other'],
+        selected: f.object.goal), {}, {include_blank: false, class: 'form-control'} %>
+        <% end %>
+        <%= f.input :active, label: 'Set as current routine', class: 'form-control' %>
+        <% if current_user.id != params[:user_id] %>
+          <p><small>*You can only change user's current routine. Set routine as current if you want to update it later.</small></p>
+        <% end %>
+        <!--
+    <%#= f.input :file, 'Select a file', as: :file %>
+  -->
+        <div class="row">
+          <%= f.button :submit, class: 'btn', id: 'submit-routine' %>
+          <%= link_to 'Back', :back, class: 'btn' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,4 +1,3 @@
-  
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
     <%= link_to 'New food', new_user_food_path(current_user.id), class: 'btn' %>
@@ -7,49 +6,49 @@
     <%= link_to 'Download history', user_foods_path(current_user.id), class: 'btn' %>
   </div>
 </div>
-
 <div class="d-flex justify-content-center table-title">
   <h3>Foods</h3>
 </div>
-
-<table class="table table-responsive-lg table-hover">
-  <tr>
-    <th class="text-center">Name</th>
-    <th class="text-center">Brand</th>
-    <th class="text-center">Kcal</th>
-    <th class="text-center">Protein</th>
-    <th class="text-center">Carbs</th>
-    <th class="text-center">Fats</th>
-    <th class="text-center">Vegan</th>
-    <th class="text-center">Vegetarian</th>
-    <th class="text-center">Gluten free</th>
-    <th class="text-center">Nut free</th>
-    <th class="text-center">Soy free</th>
-    <th class="text-center">Date</th>
-    <th class="text-center">Actions</th>
-  </tr>
-  <tbody>
-    <% @foods.each do |food| %>
-      <tr>
-        <td class="text-center"><%= food.name %></td>
-        <td class="text-center"><%= food.brand %></td>
-        <td class="text-center"><%= food.kcal %></td>
-        <td class="text-center"><%= food.protein %></td>
-        <td class="text-center"><%= food.carbs %></td>
-        <td class="text-center"><%= food.fats %></td>
-        <td class="text-center"><%= food.vegan %></td>
-        <td class="text-center"><%= food.vegetarian %></td>
-        <td class="text-center"><%= food.gluten_free %></td>
-        <td class="text-center"><%= food.nut_free %></td>
-        <td class="text-center"><%= food.soy_free %></td>
-        <td class="text-center"><%= food.created_at %></td>
-        <td class="text-center">
-          <%= link_to 'Details', user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
-          <%= link_to 'Delete', user_food_path(user_id: current_user.id, id: food.id), 
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Brand</th>
+      <th class="text-center">Kcal</th>
+      <th class="text-center">Protein</th>
+      <th class="text-center">Carbs</th>
+      <th class="text-center">Fats</th>
+      <th class="text-center">Vegan</th>
+      <th class="text-center">Vegetarian</th>
+      <th class="text-center">Gluten free</th>
+      <th class="text-center">Nut free</th>
+      <th class="text-center">Soy free</th>
+      <th class="text-center">Date</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td class="text-center"><%= food.name %></td>
+          <td class="text-center"><%= food.brand %></td>
+          <td class="text-center"><%= food.kcal %></td>
+          <td class="text-center"><%= food.protein %></td>
+          <td class="text-center"><%= food.carbs %></td>
+          <td class="text-center"><%= food.fats %></td>
+          <td class="text-center"><%= food.vegan %></td>
+          <td class="text-center"><%= food.vegetarian %></td>
+          <td class="text-center"><%= food.gluten_free %></td>
+          <td class="text-center"><%= food.nut_free %></td>
+          <td class="text-center"><%= food.soy_free %></td>
+          <td class="text-center"><%= food.created_at %></td>
+          <td class="text-center">
+            <%= link_to 'Details', user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
+            <%= link_to 'Delete', user_food_path(user_id: current_user.id, id: food.id), 
             method: :delete, data: { confirm: "You are deleting '#{food.name}'. Are you sure" }, class: 'btn btn-danger' %>
-          <%= link_to 'Edit', edit_user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <%= link_to 'Edit', edit_user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

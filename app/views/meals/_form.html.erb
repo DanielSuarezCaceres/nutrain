@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8" id="meal-form">
+  <div class="col-lg-7 col-md-6 col-sm-6" id="meal-form">
     <%= simple_form_for(meal, wrapper: :horizontal_form) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -26,14 +26,16 @@
       <h4>Add ingredients to meal</h4>
       <hr>
 
-      <div>
+      <div class="">
         <%= f.association :foods, collection: Food.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
           label: 'Add existing ingredients', include_blank: false, include_hidden: false %>
-      </div><hr>
+      </div>
+      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path %> if you need to change any food macronutrients</small></p>
+      <hr>
 
       <div class="foods-form">
       <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
-      <hr>
+      
         <!-- maybe comment this in the future depending on wether user are allowed to edit foods or not -->
         <!-- <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
@@ -43,10 +45,10 @@
   </div>
 
   <div class="vl"></div>
-  <div class="col-md-3">
+  <div class="col-lg-4 col-md-5 col-sm-5">
     <h4>Current macros</h4>
-    <div class="macros">
-      <table class="table table-responsive-lg table-hover">
+    <div class="meal-macros">
+      <table class="table table-hover table-responsive">
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">Kcal</th>

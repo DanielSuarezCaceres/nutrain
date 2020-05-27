@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_212627) do
+ActiveRecord::Schema.define(version: 2020_05_25_164720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,9 +52,6 @@ ActiveRecord::Schema.define(version: 2020_04_27_212627) do
     t.string "name"
     t.text "description"
     t.integer "kcal_goal"
-    t.integer "protein_goal"
-    t.integer "carbs_goal"
-    t.integer "fats_goal"
     t.integer "total_meals"
     t.bigint "user_id"
     t.string "goal"
@@ -108,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_212627) do
     t.text "description"
     t.string "file"
     t.bigint "user_id"
+    t.datetime "day"
     t.integer "kcal"
     t.integer "protein"
     t.integer "carbs"
@@ -120,6 +118,29 @@ ActiveRecord::Schema.define(version: 2020_04_27_212627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_meals_on_user_id"
+  end
+
+  create_table "physio_exercises", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.string "duration"
+    t.bigint "sent_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sent_by_id"], name: "index_physio_exercises_on_sent_by_id"
+    t.index ["user_id"], name: "index_psychology_tasks_on_user_id"
+  end
+
+  create_table "psychology_tasks", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.bigint "sent_by_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sent_by_id"], name: "index_psychology_tasks_on_sent_by_id"
+    t.index ["user_id"], name: "index_physio_exercises_on_user_id"
   end
 
   create_table "routines", force: :cascade do |t|
@@ -167,7 +188,9 @@ ActiveRecord::Schema.define(version: 2020_04_27_212627) do
     t.string "name"
     t.text "description"
     t.bigint "user_id"
+    t.datetime "day"
     t.integer "number_of_exercises"
+    t.string "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_workouts_on_user_id"
@@ -181,4 +204,6 @@ ActiveRecord::Schema.define(version: 2020_04_27_212627) do
   add_foreign_key "dishes", "foods"
   add_foreign_key "dishes", "meals"
   add_foreign_key "exercises", "workouts"
+  add_foreign_key "physio_exercises", "users", column: "sent_by_id"
+  add_foreign_key "psychology_tasks", "users", column: "sent_by_id"
 end

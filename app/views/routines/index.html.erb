@@ -1,4 +1,3 @@
-  
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
     <%= link_to 'New routine', new_user_routine_path(current_user.id), class: 'btn' %>
@@ -10,35 +9,35 @@
     <%= link_to 'Download report', user_routines_path(current_user, :format => :pdf) , :format => :pdf, target: :_blank, class: 'btn' %>
   </div>
 </div>
-
 <div class="d-flex justify-content-center table-title">
   <h3>Routines</h3>
 </div>
-
-<table class="table table-responsive-lg table-hover">
-  <tr>
-    <th class="text-center">Name</th>
-    <th class="text-center">Description</th>
-    <th class="text-center">Current?</th>
-    <th class="text-center">Days of exercise</th>
-    <th class="text-center">Routine goal</th>
-    <th class="text-center">Actions</th>
-  </tr>
-  <tbody>
-    <% @routines.each do |routine| %>
-      <tr>
-        <td class="text-center"><%= routine.name %></td>
-        <td class="text-center"><%= routine.description %></td>
-        <td class="text-center"><%= routine.active %></td>
-        <td class="text-center"><%= routine.days_of_exercise %></td>
-        <td class="text-center"><%= routine.goal %></td>
-        <td class="text-center">
-          <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
-          <%= link_to 'Delete', user_routine_path(user_id: current_user.id, id: routine.id), 
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Current?</th>
+      <th class="text-center">Days of exercise</th>
+      <th class="text-center">Routine goal</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    <tbody>
+      <% @routines.each do |routine| %>
+        <tr>
+          <td class="text-center"><%= routine.name %></td>
+          <td class="text-center"><%= routine.description %></td>
+          <td class="text-center"><%= routine.active %></td>
+          <td class="text-center"><%= routine.days_of_exercise %></td>
+          <td class="text-center"><%= routine.goal %></td>
+          <td class="text-center">
+            <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
+            <%= link_to 'Delete', user_routine_path(user_id: current_user.id, id: routine.id), 
             method: :delete, data: { confirm: "You are deleting '#{routine.name}'. Are you sure?" }, class: 'btn btn-danger' %>
-          <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

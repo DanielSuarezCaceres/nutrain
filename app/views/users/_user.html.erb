@@ -64,7 +64,7 @@
     <div class="p-2">
       <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn' %>
     </div>
-  <% elsif current_user.id != @user.id %>
+  <% elsif current_user.type == 'Professional' && @user.has_contract?(current_user.id) %>
     <%= render 'professional_actions', user: @user %>
   <% end %>
 </div>

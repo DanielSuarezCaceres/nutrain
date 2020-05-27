@@ -22,7 +22,7 @@ class Client < User
   def has_contract?(user_id)
     result = false
     self.contracts.each do |contract|
-      if contract.professional_id == user_id
+      if contract.professional_id == user_id && contract.state == 'Active'
         result = true
       end
     end

@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@physio_exercise) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name, placeholder: 'Name of the exercise' %>
+    <%= f.input :description, placeholder: 'Give some details: how to do it, tips, how many times per week, etc' %>
+    <%= f.input :duration, placeholder: 'e.g: 4 weeks' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

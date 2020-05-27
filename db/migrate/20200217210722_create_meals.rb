@@ -5,6 +5,7 @@ class CreateMeals < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :file
       t.bigint :user_id
+      t.datetime :day
       t.integer :kcal
       t.integer :protein
       t.integer :carbs

@@ -1,4 +1,4 @@
-<%= simple_form_for(@diet) do |f| %>
+<%= simple_form_for(@diet, url: user_diets_path(params[:client_id].nil? ? params[:user_id] : params[:client_id])) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -10,6 +10,9 @@
                 {}, {include_blank: false, class: 'form-control'} %>
   <% end %>
   <%= f.input :active, label: 'Set as current diet' %>
+  <% if current_user.id != params[:user_id] %>
+    <p><small>*You can only change user's current diet. Set diet as current if you want to update it later.</small></p>
+  <% end %>
                
   <div class="row">
     <%= f.button :submit, class: 'btn' %>

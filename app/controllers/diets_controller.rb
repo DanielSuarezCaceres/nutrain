@@ -25,11 +25,11 @@ class DietsController < ApplicationController
 
   def new
     @diet = Diet.new
-    if params[:client_id]
-      @diet = User.find(params[:client_id]).diets.new
-    else
-      @diet = User.find(params[:user_id]).diets.new 
-    end
+    # if params[:client_id]
+    #   @diet = User.find(params[:client_id]).diets.new
+    # else
+    #   @diet = User.find(params[:user_id]).diets.new 
+    # end
   end
 
   def edit
@@ -38,7 +38,9 @@ class DietsController < ApplicationController
   
   def create
     # if id's are different, diet is being created by a professional for one of his clients
-    if params[:diet][:user_id]
+    # maybe try this check (more understandable?)
+    # if User.find(params[:diet][:user_id].to_i).type == 'Client' && current_user.type == 'Professional'
+    if params[:diet][:user_id].to_i != current_user.id
       @client = User.find(params[:diet][:user_id].to_i)
       @diet = @client.diets.new(diet_params)
       if @diet.valid?

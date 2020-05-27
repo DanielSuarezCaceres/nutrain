@@ -1,5 +1,5 @@
 <!-- simple_form_for(@routine) works too, but still don't know how to differentiate between own routines and client routines -->
-<%= simple_form_for(@routine) do |f| %>
+<%= simple_form_for(@routine, url: user_routines_path(params[:client_id].nil? ? params[:user_id] : params[:client_id])) do |f| %>
   <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -13,6 +13,10 @@
         selected: f.object.goal), {}, {include_blank: false, class: 'form-control'} %>
   <% end %>
   <%= f.input :active, label: 'Set as current routine', class: 'form-control' %>
+  <!-- if professional is creating routine for client, show message -->
+  <% if current_user.id != params[:user_id] %>
+    <p><small>*You can only change user's current routine. Set routine as current if you want to update it later.</small></p>
+  <% end %>
   <!--
     <%#= f.input :file, 'Select a file', as: :file %>
   -->

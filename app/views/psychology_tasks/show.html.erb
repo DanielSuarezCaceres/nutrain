@@ -1,0 +1,12 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header">
+      <h3>Details</h3>
+    </div>
+    <div class="card-body">
+      <%= render 'psychology_task' %>
+      <%= link_to 'Edit', edit_psychology_task_path(@psychology_task), class: 'btn' %>
+      <%= link_to 'Back', user_psychology_tasks_path, class: 'btn' %>
+    </div>
+  </div>
+</div>

@@ -5,13 +5,13 @@
   <%= render 'layouts/dropdown_training' %>
   <%= render 'layouts/dropdown_nutrition' %>
   <li class="nav-item">
-    <%= link_to 'Psychology', user_diets_path(current_user) %>
+    <%= link_to 'Psychology', user_psychology_tasks_path(current_user) %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Physiotherapy', user_diets_path(current_user) %>
+    <%= link_to 'Physiotherapy', user_physio_exercises_path(current_user) %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Search Professionals', users_path %>
+    <%= link_to 'Search Professionals', professionals_path %>
   </li>
   <li class="nav-item">
     <%= link_to 'Contracts', user_contracts_path(current_user.id) %>

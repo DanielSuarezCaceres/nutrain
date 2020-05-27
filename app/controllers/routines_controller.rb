@@ -1,5 +1,6 @@
 class RoutinesController < ApplicationController
-  
+  #before_action :set_physio_exercise, only: [:show, :edit, :update, :destroy]
+
   def index
     if params[:client_id]
       @routines = User.find(params[:client_id]).routines
@@ -24,7 +25,7 @@ class RoutinesController < ApplicationController
   end
 
   def new
-    @routine = Routine.new
+    # @routine = Routine.new
     if params[:client_id]
       @routine = User.find(params[:client_id]).routines.new
     else

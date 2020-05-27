@@ -4,7 +4,26 @@
       <h1>Edit diet</h1>
     </div>
     <div class="card-body">
-      <%= render 'form', diet: @diet, user_id: current_user.id %>
+      <%= simple_form_for(@diet, url: user_diet_path(params[:client_id].nil? ? params[:user_id] : params[:client_id]), method: :put) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :kcal_goal %>
+        <%= f.input :total_meals %>
+        <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
+        <%= f.input :goal do %>
+          <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal), 
+                {}, {include_blank: false, class: 'form-control'} %>
+        <% end %>
+        <%= f.input :active, label: 'Set as current diet' %>
+        <% if current_user.id != params[:user_id] %>
+          <p><small>*You can only change user's current diet. Set diet as current if you want to update it later.</small></p>
+        <% end %>
+        <div class="row">
+          <%= f.button :submit, class: 'btn' %>
+          <%= link_to 'Back', user_diets_path(user_id: current_user.id), class: 'btn' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

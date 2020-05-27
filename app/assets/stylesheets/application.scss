@@ -16,18 +16,19 @@
 
  @import "bootstrap";
  @import "style";
-
- .btn {
-   background-color: $pal2col2;
-   color: white;
-   margin: 5px 5px 5px 5px;
- }
  
- .card-header {
-   background-color: $pal2col2;
-   color: white;
- }
+.btn, a.btn {
+  background-color: $pal2col2;
+  color: white;
+  margin: 5px 5px 5px 5px;
+}
+
+.card-header {
+  background-color: $pal2col2;
+  color: white;
+}
 
 th {
   background-color: $pal2col2;
+  color: white;
 }

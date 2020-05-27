@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :workouts
   has_many :diets
   has_many :meals
+  has_many :physio_exercises
+  has_many :psychology_tasks
   has_many :appointments
 
   # Include default devise modules. Others available are:
