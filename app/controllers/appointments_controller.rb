@@ -20,7 +20,12 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    # byebug
     @appointment = Appointment.new
+    # prepopulate client_id field in form
+    if params[:client_id]
+      @appointment = current_user.appointments.build(client_id: params[:client_id])
+    end
   end
   
   def create

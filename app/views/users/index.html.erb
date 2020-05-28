@@ -36,11 +36,13 @@
             <td class="text-center">
               <%= link_to 'Details', user_client_path(user_id: current_user.id, id: user.id), class: 'btn' %>
               <!-- appointments can be made without existing a contract between professional and user -->
-              <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn' %>
+              <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
               <% if current_user.has_contract?(user.id) %>
-                <%= link_to Contract.get_contract_message(user.id, current_user.id), user_path(user), class: 'btn btn-danger' %>
+                <%= link_to Contract.get_contract_message(user.id, current_user.id), 
+                  edit_user_contract_path(user_id: current_user, id: Contract.where(professiona_id: current_user.id, client_id: user.id)),
+                  class: 'btn btn-danger' %>
               <% else %>
-                <%= link_to 'Contract request', user_path(user), class: 'btn' %>
+                <%= link_to 'Contract request', new_user_contract_path(user_id: current_user, client_id: user.id), class: 'btn' %>
               <% end %>
             </td>
           <!-- CHECK THIS ELSE, MAYBE NEEDS TO SHOW DETAILS BUTTON ONLY -->
@@ -48,7 +50,7 @@
             <td class="text-center">
               <%= link_to 'Details', user_path(user), class: 'btn' %>
               <% if current_user.has_contract?(user.id) %>
-                <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, id: user.id), class: 'btn' %>
+                <%= link_to 'New appointment', new_user_client_appointment_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
                 <%= link_to 'Cancel contract', user_path(user), class: 'btn btn-danger' %>
               <% else %>
                 <%= link_to 'Contract request', user_path(user), class: 'btn' %>

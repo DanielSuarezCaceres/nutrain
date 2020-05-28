@@ -11,6 +11,10 @@ class ContractsController < ApplicationController
   def new
     #byebug
     @contract = Contract.new
+    # prepopulate client_id field in form
+    if params[:client_id]
+      @contract = current_user.contracts.build(client_id: params[:client_id])
+    end
   end
   
   def create

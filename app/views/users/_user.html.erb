@@ -1,60 +1,60 @@
 <table class="table table-hover table-responsive-lg table-details">
   <tr>
-    <th class="text-center">Name</th>
-    <td class="text-center"><%= @user.name %></td>
+    <th>Name</th>
+    <td><%= @user.name %></td>
   </tr>
   <tr>
-    <th class="text-center">Lastname</th>
-    <td class="text-center"><%= @user.lastname %></td>
-  </tr>
-    <tr>
-    <th class="text-center">Age</th>
-    <td class="text-center"><%= @user.age %></td>
-  </tr>
-    <tr>
-    <th class="text-center">Gender</th>
-    <td class="text-center"><%= @user.gender %></td>
+    <th>Lastname</th>
+    <td><%= @user.lastname %></td>
   </tr>
   <tr>
-    <th class="text-center">Height</th>
-    <td class="text-center"><%= @user.height %></td>
+    <th>Age</th>
+    <td><%= @user.age %></td>
   </tr>
   <tr>
-    <th class="text-center">Weight</th>
-    <td class="text-center"><%= @user.weight %></td>
+    <th>Gender</th>
+    <td><%= @user.gender %></td>
   </tr>
   <tr>
-    <th class="text-center">Email</th>
-    <td class="text-center"><%= @user.email %></td>
+    <th>Height</th>
+    <td><%= @user.height %></td>
   </tr>
   <tr>
-    <th class="text-center">Phone</th>
-    <td class="text-center"><%= @user.phone %></td>
+    <th>Weight</th>
+    <td><%= @user.weight %></td>
   </tr>
   <tr>
-    <th class="text-center">City</th>
-    <td class="text-center"><%= @user.city %></td>
+    <th>Email</th>
+    <td><%= @user.email %></td>
   </tr>
   <tr>
-    <th class="text-center">Country</th>
-    <td class="text-center"><%= @user.country %></td>
+    <th>Phone</th>
+    <td><%= @user.phone %></td>
+  </tr>
+  <tr>
+    <th>City</th>
+    <td><%= @user.city %></td>
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td><%= @user.country %></td>
   </tr>
   <% if @user.type == 'Professional' %>
     <tr>
-      <th class="text-center">Nutritionist</th>
-      <td class="text-center"><%= @user.is_nutritionist? %></td>
+      <th>Nutritionist</th>
+      <td><%= @user.is_nutritionist? %></td>
     </tr>
     <tr>
-      <th class="text-center">Personal trainer</th>
-      <td class="text-center"><%= @user.is_trainer? %></td>
+      <th>Personal trainer</th>
+      <td><%= @user.is_trainer? %></td>
     </tr>
     <tr>
-      <th class="text-center">Physiotherapist</th>
-      <td class="text-center"><%= @user.is_physiotherapist? %></td>
+      <th>Physiotherapist</th>
+      <td><%= @user.is_physiotherapist? %></td>
     </tr>
     <tr>
-      <th class="text-center">Psychologist</th>
-      <td class="text-center"><%= @user.is_psychologist? %></td>
+      <th>Psychologist</th>
+      <td><%= @user.is_psychologist? %></td>
     </tr>
   <% end %>
 </table>

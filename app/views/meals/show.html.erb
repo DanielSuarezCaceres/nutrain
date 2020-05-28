@@ -4,10 +4,8 @@
       <div class="mr-auto">
         <h3>Meal details</h3>
       </div>
-      <div>
-        <%= link_to 'Edit', edit_user_meal_path(@meal), class: 'btn' %>
-        <%= link_to 'Back', root_path, class: 'btn ml-auto'%>
-      </div>
+      <%= link_to 'Edit', edit_user_meal_path(@meal), class: 'btn' %>
+      <%= link_to 'Back', root_path, class: 'btn'%>
     </div>
     <div class="card-body">
       <%= render 'meal' %>

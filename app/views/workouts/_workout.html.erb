@@ -1,0 +1,43 @@
+<h5>Workout</h5>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Day</th>
+      <th class="text-center">Nº of exercises</th>
+    </tr>
+    <tbody>
+      <tr>
+        <td class="text-center"><%= @workout.name %></td>
+        <td class="text-center"><%= @workout.description %></td>
+        <td class="text-center"><%= @workout.day %></td>
+        <td class="text-center"><%= @workout.number_of_exercises %></td>
+    </tbody>
+  </table>
+</div>
+<h5>Exercises</h5>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Sets</th>
+      <th class="text-center">Reps</th>
+      <th class="text-center">Weight</th>
+    </tr>
+    <tbody>
+      <% @workout.exercises.each do |exercise| %>
+        <tr>
+          <td class="text-center"><%= exercise.name %></td>
+          <td class="text-center"><%= exercise.description %></td>
+          <td class="text-center"><%= exercise.sets %></td>
+          <td class="text-center"><%= exercise.reps %></td>
+          <td class="text-center"><%= exercise.weight %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Insert here histogram for every exercise of the workout-->

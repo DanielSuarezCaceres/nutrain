@@ -49,21 +49,18 @@
   </table>
 </div>
 
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-around">
   <div class="col-3">
   <h5>Protein</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:protein),
-        colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
+  <%= pie_chart @meal.foods.group(:name).sum(:protein) %>
   </div>
   <div class="col-3">
   <h5>Carbs</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:carbs),
-        colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
+  <%= pie_chart @meal.foods.group(:name).sum(:carbs) %>
   </div>
   <div class="col-3">
   <h5>Fats</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:fats),
-        colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'] %>
+  <%= pie_chart @meal.foods.group(:name).sum(:fats) %>
   </div>
 </div>
 <br><br>

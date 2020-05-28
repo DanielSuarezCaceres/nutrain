@@ -1,8 +1,11 @@
 <div class="container p-3 col-9">
   <div class="card">
-    <div class="card-header d-flex ">
-      <h2>Edit meal</h2>
-      <%= link_to 'Back', root_path, class: 'btn ml-auto' %>
+    <div class="card-header d-flex">
+      <div class="mr-auto">
+        <h3>Edit meal</h3>
+      </div>
+      <!-- <%= link_to 'Show', user_meal_path(current_user), class: 'btn' %> -->
+      <%= link_to 'Back', root_path, class: 'btn' %>
     </div>
     <div class="card-body">
       <%= render 'form', meal: @meal, user_id: current_user.id %>

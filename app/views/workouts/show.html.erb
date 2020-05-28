@@ -1,0 +1,14 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header d-flex">
+      <div class="mr-auto">
+        <h3>Workout details</h3>
+      </div>
+      <%= link_to 'Edit', edit_user_workout_path(@workout), class: 'btn' %>
+      <%= link_to 'Back', root_path, class: 'btn'%>
+    </div>
+    <div class="card-body">
+      <%= render 'workout' %>
+    </div>
+  </div>
+</div>

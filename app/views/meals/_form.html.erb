@@ -1,41 +1,36 @@
 <div class="row">
-  <div class="col-lg-7 col-md-6 col-sm-6" id="meal-form">
+  <div class="col-lg-6 col-md-6 col-sm-6 mr-auto" id="meal-form">
     <%= simple_form_for(meal, wrapper: :horizontal_form) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
       <div class="form-inputs">
         <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
         <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
         <label class="btn" id="btn-sec">
-        Select file
+          Select file
           <span style="display:none;">
             <%= f.input :file, label: 'Select photo of meal', as: :file %>
           </span>
         </label>
       </div>
       <br>
-
       <div class="form-actions">
         <%= f.button :submit, class: 'btn' %>
         <!-- pending: reset button does not reset select2 -->
         <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn' %> -->
       </div>
-
-      <br><br>
+      <br>
+      <br>
       <h4>Add ingredients to meal</h4>
       <hr>
-
       <div class="">
         <%= f.association :foods, collection: Food.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
           label: 'Add existing ingredients', include_blank: false, include_hidden: false %>
       </div>
       <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path %> if you need to change any food macronutrients</small></p>
       <hr>
-
       <div class="foods-form">
-      <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
-      
+        <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
         <!-- maybe comment this in the future depending on wether user are allowed to edit foods or not -->
         <!-- <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>
@@ -43,38 +38,48 @@
       </div>
     <% end %>
   </div>
-
   <div class="vl"></div>
-  <div class="col-lg-4 col-md-5 col-sm-5">
+  <div class="col-lg-5 col-md-5 col-sm-5 d-flex flex-column align-items-center edit-meal-right-content" align="center">
     <h4>Current macros</h4>
     <div class="meal-macros">
-      <table class="table table-hover table-responsive">
-        <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">Kcal</th>
-          <th class="text-center">Protein(g)</th>
-          <th class="text-center">Carbs(g)</th>
-          <th class="text-center">Fats(g)</th>
-        </tr>
-        <tbody>
-          <% meal.foods.each do |food| %>
-            <tr>
-              <td class="text-center"><%= food.name %></td>
-              <td class="text-center"><%= food.kcal %></td>
-              <td class="text-center"><%= food.protein %></td>
-              <td class="text-center"><%= food.carbs %></td>
-              <td class="text-center"><%= food.fats %></td>
-            </tr>
-          <% end %>
+      <div class="table-responsive">
+        <table class="table table-hover">
           <tr>
-            <td class="text-center" style="font-weight: bold">Total macros</td>
-            <td class="text-center" style="font-weight: bold"><%= meal.kcal%></td>
-            <td class="text-center" style="font-weight: bold"><%= meal.protein %></td>
-            <td class="text-center" style="font-weight: bold"><%= meal.carbs %></td>
-            <td class="text-center" style="font-weight: bold"><%= meal.fats %></td>
+            <th class="text-center">Name</th>
+            <th class="text-center">Kcal</th>
+            <th class="text-center">Protein(g)</th>
+            <th class="text-center">Carbs(g)</th>
+            <th class="text-center">Fats(g)</th>
           </tr>
-        </tbody>
-      </table>
+          <tbody>
+            <% meal.foods.each do |food| %>
+              <tr>
+                <td class="text-center"><%= food.name %></td>
+                <td class="text-center"><%= food.kcal %></td>
+                <td class="text-center"><%= food.protein %></td>
+                <td class="text-center"><%= food.carbs %></td>
+                <td class="text-center"><%= food.fats %></td>
+              </tr>
+            <% end %>
+            <tr>
+              <td class="text-center" style="font-weight: bold">Total macros</td>
+              <td class="text-center" style="font-weight: bold"><%= meal.kcal%></td>
+              <td class="text-center" style="font-weight: bold"><%= meal.protein %></td>
+              <td class="text-center" style="font-weight: bold"><%= meal.carbs %></td>
+              <td class="text-center" style="font-weight: bold"><%= meal.fats %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <%= pie_chart @meal.foods.group(:name).sum(:protein),
+                  colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],
+                  width: "250px", height: "250px" %>
+    <%= pie_chart @meal.foods.group(:name).sum(:carbs),
+                  colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],
+                  width: "250px", height: "250px" %>
+    <%= pie_chart @meal.foods.group(:name).sum(:fats),
+                  colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],
+                  width: "250px", height: "250px" %>
   </div>
 </div>
