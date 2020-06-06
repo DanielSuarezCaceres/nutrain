@@ -31,3 +31,26 @@ $(document).ready(function(){
       $(".food-form").append(" <b>Newly added appended text</b>.");
   });
 });*/
+
+document.addEventListener("turbolinks:load", function () {
+  $("#toggle-edit-meal-graphics").click(function(){
+    $("#edit-meal-graphics").slideToggle(
+      "slow"
+    );
+  });
+});
+
+document.addEventListener("turbolinks:load", function () {
+  $("#toggle-show-meal-graphics").click(function(){
+    let button = this;
+    console.log(button.text)
+    $("#show-meal-graphics").slideToggle(
+      "slow",
+      // function(){
+      //   console.log($(this)); // div show meal graphics
+      //   // console.log($("span", button).text
+      //   $("span", button).text("Hide");
+      // }
+    );
+  });
+});

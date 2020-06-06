@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 mr-auto" id="meal-form">
-    <%= simple_form_for(meal, wrapper: :horizontal_form) do |f| %>
+    <%= simple_form_for(@meal, url: user_meals_path(user_id: params[:user_id])) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       <div class="form-inputs">
@@ -24,10 +24,10 @@
       <h4>Add ingredients to meal</h4>
       <hr>
       <div class="">
-        <%= f.association :foods, collection: Food.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
+        <%= f.association :foods, collection: current_user.foods.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
           label: 'Add existing ingredients', include_blank: false, include_hidden: false %>
       </div>
-      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path %> if you need to change any food macronutrients</small></p>
+      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
       <hr>
       <div class="foods-form">
         <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
@@ -72,6 +72,8 @@
         </table>
       </div>
     </div>
+    <!-- <button class="btn" id="toggle-edit-meal-graphics">Show graphics</button> -->
+    <div id="edit-meal-graphics">
     <%= pie_chart @meal.foods.group(:name).sum(:protein),
                   colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],
                   width: "250px", height: "250px" %>
@@ -81,5 +83,6 @@
     <%= pie_chart @meal.foods.group(:name).sum(:fats),
                   colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],
                   width: "250px", height: "250px" %>
+    </div>
   </div>
 </div>

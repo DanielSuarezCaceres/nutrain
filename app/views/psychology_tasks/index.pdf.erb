@@ -1,0 +1,37 @@
+<div class="container">
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
+
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Psychology exercises history</h4>
+    <br>
+    <% if !params[:psychology_task].nil? || params[:psychology_task][:start_date].empty? %>
+      <h5>From: <%= params[:psychology_task][:start_date] %></h5>
+      <h5>To: <%= params[:psychology_task][:end_date] %></h5>
+    <% end %>
+    <br>
+    <h5>Total psychology exercises: <%= psychology_tasks.count %></h5>
+  </div><br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Created by</th>
+      <th class="text-center">Date</th>
+    </tr>
+    <tbody>
+      <% psychology_tasks.each do |psychology_task| %>
+        <tr>
+          <td class="text-center"><%= psychology_task.name %></td>
+          <td class="text-center"><%= psychology_task.description %></td>
+          <td class="text-center"><%= psychology_task.sent_by_id %></td>
+          <td class="text-center"><%= psychology_task.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

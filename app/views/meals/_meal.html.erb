@@ -49,7 +49,10 @@
   </table>
 </div>
 
-<div class="row d-flex justify-content-around">
+<!-- <button class="btn" id="toggle-show-meal-graphics"><span>Show graphics</span></button> -->
+<br><br>
+<div id="show-meal-graphics">
+<div class="col-12 d-flex justify-content-around">
   <div class="col-3">
   <h5>Protein</h5>
   <%= pie_chart @meal.foods.group(:name).sum(:protein) %>
@@ -63,4 +66,4 @@
   <%= pie_chart @meal.foods.group(:name).sum(:fats) %>
   </div>
 </div>
-<br><br>
+</div>

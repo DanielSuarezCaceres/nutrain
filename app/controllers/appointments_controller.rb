@@ -23,8 +23,20 @@ class AppointmentsController < ApplicationController
     # byebug
     @appointment = Appointment.new
     # prepopulate client_id field in form
-    if params[:client_id]
-      @appointment = current_user.appointments.build(client_id: params[:client_id])
+    if current_user.type == 'Professional'
+      if params[:client_id]
+        @appointment = current_user.appointments.build(client_id: params[:client_id])
+      else
+        @appointment = Appointment.new
+      end
+    elsif current_user.type == 'Client'
+      if params[:professional_id]
+        @appointment = current_user.appointments.build(professional_id: params[:professional_id])
+      else
+        @appointment = Appointment.new
+      end
+    else
+      @appointment = Appointment.new
     end
   end
   

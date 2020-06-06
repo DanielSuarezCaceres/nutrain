@@ -1,13 +1,11 @@
-
-<%= simple_form_for(@psychology_task) do |f| %>
+<%= simple_form_for(@psychology_task, url: user_psychology_tasks_path(params[:client_id].nil? ? params[:user_id] : params[:client_id])) do |f| %>
   <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+  <!-- <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %> -->
   <div class="form-inputs">
     <%= f.input :name, placeholder: 'Name of the exercise' %>
     <%= f.input :description, placeholder: 'Give some details: explanations, tips, considerations...' %>
+    <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   </div>
-
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

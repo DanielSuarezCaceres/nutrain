@@ -1,12 +1,18 @@
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
-    <%= link_to 'New Psychology Task', new_user_psychology_task_path(current_user), class: 'btn' %>
+    <%= link_to 'New Psychology task', new_user_psychology_task_path(user_id: current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Delete all', user_physio_exercises_path(current_user), class: 'btn' %>
+    <%= link_to 'Delete all', user_psychology_tasks_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Download history', user_physio_exercises_path(current_user, :format => :pdf) , :format => :pdf, target: :_blank, class: 'btn' %>
+    <%= link_to 'Download report', "#", 
+    {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'} %>
+  </div>
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><%= render 'psychology_tasks/modal' %></div>
+    </div>
   </div>
 </div>
 
@@ -28,9 +34,11 @@
         <tr>
           <td class="text-center"><%= psychology_task.name %></td>
           <td class="text-center"><%= psychology_task.description %></td>
-          <td class="text-center"><%= link_to 'Show', psychology_task %></td>
-          <td class="text-center"><%= link_to 'Edit', edit_psychology_task_path(psychology_task) %></td>
-          <td class="text-center"><%= link_to 'Destroy', psychology_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="text-center">
+            <%= link_to 'Show', psychology_task, class: 'btn' %>
+            <%= link_to 'Edit', edit_psychology_task_path(psychology_task), class: 'btn' %>
+            <%= link_to 'Destroy', psychology_task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
         </tr>
       <% end %>
     </tbody>

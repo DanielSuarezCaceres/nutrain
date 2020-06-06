@@ -1,0 +1,39 @@
+<div class="container">
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
+
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Phyisiotherapy exercises history</h4>
+    <br>
+    <% if !params[:physio_exercise].nil? || params[:physio_exercise][:start_date].empty? %>
+      <h5>From: <%= params[:physio_exercise][:start_date] %></h5>
+      <h5>To: <%= params[:physio_exercise][:end_date] %></h5>
+    <% end %>
+    <br>
+    <h5>Total physiotherapy exercises: <%= physio_exercises.count %></h5>
+  </div><br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Duration</th>
+      <th class="text-center">Created by</th>
+      <th class="text-center">Date</th>
+    </tr>
+    <tbody>
+      <% physio_exercises.each do |physio_exercise| %>
+        <tr>
+          <td class="text-center"><%= physio_exercise.name %></td>
+          <td class="text-center"><%= physio_exercise.description %></td>
+          <td class="text-center"><%= physio_exercise.duration %></td>
+          <td class="text-center"><%= physio_exercise.sent_by_id %></td>
+          <td class="text-center"><%= physio_exercise.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

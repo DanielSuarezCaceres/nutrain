@@ -2,6 +2,7 @@ class ExercisesController < ApplicationController
   
   def index
     #@ = .scoped
+    @exercises = Exercise.all
     if params[:workout_id]
       @exercises = Workout.find(params[:workout_id]).exercises
     end
@@ -11,11 +12,11 @@ class ExercisesController < ApplicationController
   end
 
   def new
-    @exercise = Exercise.new
+    @exercise = curent_user.exercises.new
   end
 
   def create
-    @exercise = Exercise.new(exercise_params)
+    @exercise = current_user.exercises.new(exercise_params)
     if @exercise.valid?
       @exercise.save
     end
@@ -49,7 +50,8 @@ class ExercisesController < ApplicationController
         :reps,
         :weight,
         :file,
-        :workout_id
+        :workout_id,
+        #:user_id
     )
   end
 

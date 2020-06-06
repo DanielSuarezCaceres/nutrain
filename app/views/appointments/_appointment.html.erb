@@ -1,26 +1,27 @@
-<table class="table table-hover table-bordered">
-  <tr>
-    <th class="text-center">Title</th>
-    <td class="text-center"><%= @appointment.name %></td>
-  </tr>
-  <tr>
-    <th class="text-center">Description</th>
-    <td class="text-center"><%= @appointment.description %></td>
-  </tr>
-  <tr>
-    <% if current_user.type == 'Professional '%>
-      <th class="text-center">Client</th>
-      <td class="text-center"><%= User.find(@appointment.client_id).name %></td>
-    <% else %>
-      <th class="text-center">Professional</th>
-      <td class="text-center"><%= User.find(@appointment.professional_id).name %></td>
-    <% end %>
-  </tr>
-  <tr>
-    <th class="text-center">Documents</th>
-    <td class="text-center"></td>
-  </tr>
-</table>
-
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <tr>
+      <th class="text-center">Title</th>
+      <td class="text-center"><%= @appointment.name %></td>
+    </tr>
+    <tr>
+      <th class="text-center">Description</th>
+      <td class="text-center"><%= @appointment.description %></td>
+    </tr>
+    <tr>
+      <% if current_user.type == 'Professional '%>
+        <th class="text-center">Client</th>
+        <td class="text-center"><%= User.find(@appointment.client_id).name %></td>
+      <% else %>
+        <th class="text-center">Professional</th>
+        <td class="text-center"><%= User.find(@appointment.professional_id).name %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <th class="text-center">Documents</th>
+      <td class="text-center"></td>
+    </tr>
+  </table>
+</div>
 <div class="d-flex justify-content-start">
 </div>

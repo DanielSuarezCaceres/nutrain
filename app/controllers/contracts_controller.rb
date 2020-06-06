@@ -10,10 +10,23 @@ class ContractsController < ApplicationController
 
   def new
     #byebug
-    @contract = Contract.new
+    # @contract = Contract.new
     # prepopulate client_id field in form
-    if params[:client_id]
-      @contract = current_user.contracts.build(client_id: params[:client_id])
+    #if params[:client_id]
+    if current_user.type == 'Professional'
+      if params[:client_id]
+        @contract = current_user.contracts.build(client_id: params[:client_id])
+      else
+        @contract = Contract.new
+      end
+    elsif current_user.type == 'Client'
+      if params[:professional_id]
+        @contract = current_user.contracts.build(professional_id: params[:professional_id])
+      else
+        @contract = Contract.new
+      end
+    else
+      @contract = Contract.new
     end
   end
   

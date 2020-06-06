@@ -1,0 +1,18 @@
+<div id="meals-modal">
+  <div class="modal-header">
+    <button type="button" class="close ml-0" data-dismiss="modal">x</button>
+    <h4 class="modal-title mr-auto" id="myModalLabel">Select date range to generate PDF</h4>
+  </div>
+  <div class="modal-body">
+    <%= form_tag(user_physio_exercises_path(current_user, :format => :pdf), method: :get, target: :_blank, :format => :pdf) do %>
+      <%= label_tag "Stat date" %>
+      <%= date_field :physio_exercise, :start_date, class: 'form-control' %>
+      <%= label_tag "End date" %>
+      <%= date_field :physio_exercise, :end_date, class: 'form-control' %><br>
+      <p class="small">*If any date field is empty, all physiotherapy exercises will be shown in the PDF file.</p>
+      <div class="modal-footer">
+        <%= button_tag "See pdf", class: 'btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>

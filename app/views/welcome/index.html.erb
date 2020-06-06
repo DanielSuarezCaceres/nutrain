@@ -19,7 +19,8 @@
       <% if current_user.meals.where("DATE(created_at) = ?", Date.today).empty? %>
         You have not added any food today.
       <% else %>
-        <table class="table table-responsive-lg table-hover table-summary-welcome-page">
+      <div class="table-responsive">
+        <table class="table table-hover table-summary-welcome-page">
           <tr>
             <th class="text-center">Name</th>
             <th class="text-center">Description</th>
@@ -32,11 +33,13 @@
               <td class="text-center"><%= meal.description %></td>
               <td class="text-center">
                 <%= link_to 'Edit', edit_user_meal_path(current_user.id, id: meal), class: 'btn' %>
-                <%= link_to 'Delete', user_meal_path(current_user.id, id: meal), method: :delete, class: 'btn btn-danger' %>
+                <%= link_to 'Delete', user_meal_path(current_user.id, id: meal), method: :delete,
+                  data: { confirm: "You are deleting '#{meal.name}'. Are you sure?" }, class: 'btn btn-danger' %>
               </td>
             </tr>
           <% end %>
         </table>
+      </div>
       <% end %>
       </div>
     </div>
@@ -55,7 +58,8 @@
         <% if current_user.workouts.where("DATE(created_at) = ?", Date.today).empty? %>
           You have not added any workout today.
         <% else %>
-          <table class="table table-responsive-lg table-hover table-summary-welcome-page">
+        <div class="table-responsive">
+          <table class="table table-hover table-summary-welcome-page">
             <tr>
               <th class="text-center">Name</th>
               <th class="text-center">Description</th>
@@ -68,11 +72,13 @@
                 <td class="text-center"><%= workout.description %></td>
                 <td class="text-center">
                   <%= link_to 'Edit', edit_user_workout_path(user_id: current_user.id, id: workout), class: 'btn' %>
-                  <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete, class: 'btn btn-danger' %>
+                  <%= link_to 'Delete', user_workout_path(current_user.id, id: workout), method: :delete,
+                    data: { confirm: "You are deleting '#{workout.name}'. Are you sure?" }, class: 'btn btn-danger' %>
                 </td>
               </tr>
             <% end %>
           </table>
+        </div>
         <% end %>
       </div>
     </div>
@@ -91,9 +97,9 @@
           <h4>
             Kcal: <%= Meal.total_kcal_meals_today(current_user.id) %> of 
             <%= current_user.get_current_diet.kcal_goal unless current_user.get_current_diet.nil? %>
-          </h4>
-          <p><small>*Set your diet as active in order to see your kcal goal</small></p>
+          </h4><br>
         </div>
+        <p><small>*Set your diet as active in order to see your kcal goal</small></p>
         <%= bar_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
                     colors: ['#f57c00'] %>
         

@@ -2,9 +2,16 @@
 
 class User < ApplicationRecord
   has_many :routines
+  # has_many :workout_exercises, dependent: :destroy
+  # has_many :workouts, through: :workout_exercises
   has_many :workouts
+  has_many :exercises, dependent: :destroy
+  #has_many :workouts, dependent: :destroy
   has_many :diets
-  has_many :meals
+  has_many :meals, dependent: :destroy
+  # has_many :meal_foods
+  # has_many :meals, through: :meal_foods
+  has_many :foods, dependent: :destroy
   has_many :physio_exercises
   has_many :psychology_tasks
   has_many :appointments
@@ -47,6 +54,10 @@ class User < ApplicationRecord
 
   def self.users_except_admin(current_user_id)
     where.not(id: current_user_id).where.not(type: 'Admin')
+  end
+
+  def self.users_withoot_contract(user_id)
+    
   end
 
   def self.only_professionals

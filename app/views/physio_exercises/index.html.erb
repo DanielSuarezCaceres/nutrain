@@ -6,7 +6,13 @@
     <%= link_to 'Delete all', user_physio_exercises_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Download history', user_physio_exercises_path(current_user, :format => :pdf) , :format => :pdf, target: :_blank, class: 'btn' %>
+    <%= link_to 'Download report', "#", 
+    {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'} %>
+  </div>
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><%= render 'physio_exercises/modal' %></div>
+    </div>
   </div>
 </div>
 <div class="d-flex justify-content-center table-title">
@@ -27,11 +33,13 @@
         <tr>
           <td class="text-center"><%= physio_exercise.name %></td>
           <td class="text-center"><%= physio_exercise.description %></td>
-          <td class="text-center"><%= physio_exercise.client_id %></td>
+          <td class="text-center"><%= physio_exercise.user_id %></td>
           <td class="text-center"><%= physio_exercise.duration %></td>
-          <td class="text-center"><%= link_to 'Show', physio_exercise %></td>
-          <td class="text-center"><%= link_to 'Edit', edit_physio_exercise_path(physio_exercise) %></td>
-          <td class="text-center"><%= link_to 'Destroy', physio_exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td class="text-center">
+            <%= link_to 'Show', physio_exercise_path(user_id: params[:user_id], id: physio_exercise.id), class: 'btn' %>
+            <%= link_to 'Edit', edit_physio_exercise_path(user_id: params[:user_id], id: physio_exercise.id), class: 'btn' %>
+            <%= link_to 'Destroy', physio_exercise_path(user_id: params[:user_id], id: physio_exercise.id), method: :delete,
+            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
         </tr>
       <% end %>
     </tbody>

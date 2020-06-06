@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
-    <%= link_to 'New appointment', new_user_appointment_path, class: 'btn' %>
+    <!-- <%= link_to t(' New appointment'), new_user_appointment_path(current_user), class: 'btn btn-calendar fas fa-plus' %> -->
+    <%= link_to 'New appointment', new_user_appointment_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
     <%= link_to 'Download history', "#", 

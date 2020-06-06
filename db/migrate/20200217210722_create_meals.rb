@@ -3,13 +3,12 @@ class CreateMeals < ActiveRecord::Migration[6.0]
     create_table :meals do |t|
       t.string :name
       t.text :description
-      t.string :file
-      t.bigint :user_id
+      t.references :user, index: true, foreign_key: true
       t.datetime :day
       t.integer :kcal
-      t.integer :protein
-      t.integer :carbs
-      t.integer :fats
+      t.float :protein
+      t.float :carbs
+      t.float :fats
       t.boolean :vegan, default: false, null: false
       t.boolean :vegetarian, default: false, null: false
       t.boolean :gluten_free, default: false, null: false
@@ -17,7 +16,6 @@ class CreateMeals < ActiveRecord::Migration[6.0]
       t.boolean :soy_free, default: false, null: false
 
       t.timestamps
-      t.index ["user_id"], name: "index_meals_on_user_id"
     end
   end
 end

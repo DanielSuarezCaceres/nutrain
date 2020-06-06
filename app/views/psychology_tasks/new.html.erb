@@ -4,7 +4,7 @@
       <h2>New psychology exercise</h2>
     </div>
     <div class="card-body">
-      <%= render 'form', psychology_task: @psychology_task %>
+      <%= render 'form', user_id: current_user.id, psychology_task: @psychology_task %>
     </div>
   </div>
 </div>

@@ -26,17 +26,21 @@ class WorkoutsController < ApplicationController
   def create
     user = current_user
     @workout = user.workouts.new(workout_params)
-    #byebug
+    # byebug
     if @workout.valid?
       @workout.save
+      redirect_to root_path, notice: 'Workout added successfully' # (current_user)
+    else
+      render :new
     end
-    redirect_to root_path, notice: 'Workout added successfully' # (current_user)
   end
 
   def edit
   end
 
   def update
+    # update_exercises
+    # byebug
     if @workout.update(workout_params)
       redirect_to root_path, notice: 'Workout updated succesfully'
     else
@@ -63,11 +67,26 @@ class WorkoutsController < ApplicationController
         :id,
         :name,
         :description,
-        #:date,
+        :day,
         :user_id,
         :number_of_exercises,
-        exercises_attributes: [:name, :description, :sets, :reps, :weight, :_destroy]
+        exercises_attributes: %i[id name description sets reps weight _destroy],
     )
+  end
+
+  def update_exercises
+    selected_exercises_ids = params[:workout][:exercise_ids]
+    params[:workout][:exercises_attributes].each do |key, value|
+      byebug
+      if value["id"].nil?
+        next
+      else
+        # byebug
+        params[:workout][:exercises_attributes].delete(key) unless selected_exercises_ids.include? value["id"]
+      end
+    end
+    byebug
+    aux = true
   end
 
   def workouts_in_date_range

@@ -12,7 +12,7 @@ class PsychologyTasksController < ApplicationController
         format.pdf do
           render pdf: "Psychology_Exercises_History_#{Date.today.strftime("%Y_%m_%d")}",
           page_size: 'A4',
-          template: "physio_exercises/index.pdf.erb",
+          template: "psychology_tasks/index.pdf.erb",
           title: "Psychology_Exercises_History_#{Date.today.strftime("%Y_%m_%d")}",
           locals: { :psychology_tasks => params[:psychology_task].nil? ? @psychology_tasks : psychology_tasks_in_date_range }
         end
@@ -26,7 +26,8 @@ class PsychologyTasksController < ApplicationController
 
   # GET /psychology_tasks/new
   def new
-    @psychology_task = PsychologyTask.new
+    # @psychology_task = PsychologyTask.new
+    @psychology_task = User.find(params[:user_id]).psychology_tasks.new
     # if params[:client_id]
     #   @psychology_task = User.find(params[:client_id]).psychology_tasks.new
     # else
@@ -42,11 +43,11 @@ class PsychologyTasksController < ApplicationController
   def create
     # if id's are different, routine is being created by a professional for one of his clients
     if params[:psychology_task][:user_id].to_i != current_user.id
-      @client = User.find(params[:routine][:user_id].to_i)
+      @client = User.find(params[:psychology_task][:user_id].to_i)
       @psychology_task = @client.psychology_tasks.new(psychology_task_params)
       if @psychology_task.valid?
         @psychology_task.save
-        redirect_to user_psychology_tasks_path(user_id: current_user.id),
+        redirect_to user_clients_path(user_id: params[:user_id]),
           notice: 'Psychology exercise created for your client successfully'
       else
         render :new
@@ -101,6 +102,28 @@ class PsychologyTasksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_psychology_task
     @psychology_task = PsychologyTask.find(params[:id])
+  end
+
+  def psychology_tasks_in_date_range
+    start_date = params[:psychology_task][:start_date]
+    end_date = params[:psychology_task][:end_date]
+    # if start_date or end_date are empty (or both), return all meals
+    # need to check why if in a single line doesn't work
+    if start_date.empty?
+      psychology_tasks = current_user.psychology_tasks
+      return psychology_tasks
+    elsif end_date.empty?
+      psychology_tasks = current_user.psychology_tasks
+      return psychology_tasks
+    end
+    psychology_tasks_in_range = []
+    @psychology_tasks.each do |psychology_task|
+      psychology_task_date = psychology_task.created_at.strftime("%Y-%m-%d")
+      if psychology_task_date.between?(start_date, end_date)
+        psychology_tasks_in_range << psychology_task
+      end
+    end
+    psychology_tasks_in_range
   end
 
 end

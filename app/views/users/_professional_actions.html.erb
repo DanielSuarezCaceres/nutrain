@@ -1,6 +1,6 @@
 <div class="row">
   <div class="p-1">
-    <%= link_to 'New appointment', new_user_appointment_path(@user), class: 'btn' %>
+    <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
   </div>
   <% if current_user.has_contract?(@user.id) %>
     <% if current_user.nutritionist %>
@@ -23,12 +23,14 @@
     <% end %>
     <% if current_user.physiotherapist %>
       <div class="p-1">
-        <%= link_to 'New rehab exercise', user_path(@user), class: 'btn' %>
+        <%= link_to 'New physiotherapy exercise', new_user_client_physio_exercise_path(client_id: @user.id), class: 'btn' %>
+        <!-- SEE ALL EXERCISES BUTTON -->
       </div>
     <% end %>
     <% if current_user.psychologist %>
       <div class="p-1">
-        <%= link_to 'New task', user_path(@user), class: 'btn' %>
+        <%= link_to 'New psychology task', new_user_client_psychology_task_path(client_id: @user.id), class: 'btn' %>
+        <!-- SEE ALL EXERCISES BUTTON -->
       </div>
     <% end %>
     <div class="p-1">
@@ -41,7 +43,4 @@
       <%= link_to 'Contract request', new_user_contract_path(current_user), class: 'btn' %>
     </div>
   <% end %>
-  <div class="p-1">
-    <%= link_to 'Back', user_clients_path(current_user), class: 'btn' %>
-  </div>
 </div>

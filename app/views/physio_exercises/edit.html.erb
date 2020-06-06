@@ -1,10 +1,25 @@
 <div class="container p-3 col-6">
   <div class="card">
-    <div class="card-header">
-      <h1>Edit physio exercise</h1>
+    <div class="card-header d-flex">
+      <div class="mr-auto">
+        <h1>Edit physio exercise</h1>
+      </div>
+      <%= link_to 'Back', :back, class: 'btn' %>
     </div>
     <div class="card-body">
-      <%= render 'form', physio_exercise: @physio_exercise, user_id: current_user.id %>
+      <%= simple_form_for(@physio_exercise, url: edit_user_physio_exercise_path(user_id: params[:user_id]), method: :put) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="form-inputs">
+          <%= f.input :name, placeholder: 'Name of the exercise' %>
+          <%= f.input :description, placeholder: 'Give some details: how to do it, tips, how many times per week, etc' %>
+          <%= f.input :duration, placeholder: 'e.g: 4 weeks' %>
+          <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

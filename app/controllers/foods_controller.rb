@@ -48,7 +48,8 @@ class FoodsController < ApplicationController
         :gluten_free,
         :nut_free,
         :soy_free,
-        :meal_id,
+        #:meal_id,
+        :user_id,
         :serving_size
     )
   end

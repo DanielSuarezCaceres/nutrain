@@ -2,7 +2,6 @@ class MealsController < ApplicationController
   before_action :set_meal, only: [:show, :edit, :update, :destroy]
 
   # GET /meals
-  # GET /meals.json
   def index
     #@meals = Meal.all
     if params[:user_id]
@@ -37,21 +36,22 @@ class MealsController < ApplicationController
   end
 
   # POST /meals
-  # POST /meals.json
   def create
     # @user = User.find(params[:user_id])
     user = current_user
     @meal = user.meals.new(meal_params)
     # check existing ingredients sent by select2
     add_existing_ingredients
+    # byebug
     if @meal.valid?
       @meal.save
+      redirect_to root_path, notice: 'Meal added successfully' # (current_user)
+    else
+      render :new
     end
-    redirect_to root_path, notice: 'Meal added successfully' # (current_user)
   end
 
   # PATCH/PUT /meals/1
-  # PATCH/PUT /meals/1.json
   def update
     #if params[:meal][:food_ids]
     #  params[:meal][:food_ids].each do |ingredient|
@@ -59,7 +59,7 @@ class MealsController < ApplicationController
     #  end
     #end
     update_ingredients
-    byebug
+    # byebug
     if @meal.update(meal_params)
       #if params[:meal][:food_ids]
       #  update_meal_foods
@@ -71,19 +71,12 @@ class MealsController < ApplicationController
   end
 
   # DELETE /meals/1
-  # DELETE /meals/1.json
   def destroy
     if @meal.destroy
       redirect_to root_path, notice: 'Meal deleted successfully'
     else
       flash[:error] = @meal.errors.full_messages
     end
-  end
-
-  def download_report
-    pdf = WickedPdf.new.pdf_from_string(
-      render_to_string('templates/pdf', layout: 'pdfs/layout_pdf.html')
-    )
   end
 
   private
@@ -113,7 +106,8 @@ class MealsController < ApplicationController
         :user_id,
         :start_date,
         :end_date,
-        foods_attributes: %i[id name brand kcal protein carbs fats serving_size vegan vegetarian gluten_free nut_free soy_free _destroy],
+        :user_id,
+        foods_attributes: %i[id name user_id brand kcal protein carbs fats serving_size vegan vegetarian gluten_free nut_free soy_free _destroy],
         food_ids: [],
     )
   end
@@ -133,16 +127,18 @@ class MealsController < ApplicationController
 
   def update_ingredients
     selected_ingredients_ids = params[:meal][:food_ids]
-    params[:meal][:foods_attributes].each do |key, value|
-      byebug
-      if value["id"].nil?
-        next
-      else
-        byebug
-        params[:meal][:foods_attributes].delete(key) unless selected_ingredients_ids.include? value["id"]
+    if params[:meal][:foods_attributes]
+      params[:meal][:foods_attributes].each do |key, value|
+        #byebug
+        if value["id"].nil?
+          next
+        else
+          #byebug
+          params[:meal][:foods_attributes].delete(key) unless selected_ingredients_ids.include? value["id"]
+        end
       end
     end
-    byebug
+    #byebug
     aux = true
   end
 

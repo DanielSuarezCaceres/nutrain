@@ -6,7 +6,19 @@
     <%= f.input :description %>
     <%= f.input :start_time, as: :datetime, html5: true %>
     <%= f.input :end_time, as: :datetime, html5: true %>
-    <%= f.input :client_id, collection: Client.all %>
+    <% if current_user.type == 'Professional' %>
+      <% if params[:client_id] %>
+        <%= f.input :client_id, collection: Client.all, disabled: true %>
+      <% else %>
+        <%= f.input :client_id, collection: Client.all %>
+      <% end %>
+    <% else %>
+      <% if params[:professional_id] %>
+        <%= f.input :professional_id, collection: Professional.all, disabled: true %>
+      <% else %>
+        <%= f.input :professional_id, collection: Professional.all %>
+      <% end %>
+    <% end %>
     <div class="row">
       <%= f.button :submit, class: 'btn' %>
       <%= link_to 'Back', user_appointments_path(user_id: current_user.id), class: 'btn' %>

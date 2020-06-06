@@ -1,24 +1,22 @@
 <div class="workout-form">
-  <%= simple_form_for(@workout, wrapper: :horizontal_form) do |f| %>
+  <%= simple_form_for(@workout, url: user_workouts_path(user_id: params[:user_id])) do |f| %>
     <%= f.error_notification %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="form-inputs">
       <%= f.input :name, placeholder: 'Name of your workout' %>
       <%= f.input :description, placeholder: 'Which muscle group are you working on, type of exercise...' %>
       <%= f.input :number_of_exercises, placeholder: 'Insert number of exercises for this workout' %>
+      <%= f.hidden_field :user_id, value: params[:user_id] %>
     </div>
     <div class="form-actions">
       <%= f.button :submit, class: 'btn' %>
     </div>
     <br>
-    <h4>Add exercises to workout</h4>
-    <hr>
-
-    <div>
-        <%= f.association :exercises, collection: Exercise.all, label_method: :full_description, value_method: :id, id: "select_exercises",
+    <h4>Add exercises to workout</h4><hr>
+    <!-- <div> -->
+    <%#= f.association :exercises, collection: current_user.exercises.all, label_method: :full_description, value_method: :id, id: "select_exercises",
           label: 'Add existing exercises', include_blank: false, include_hidden: false %>
-      </div><hr>
-
+    <!-- </div> -->
     <div class="exercises-form">
       <%= link_to_add_association 'Add exercise', f, :exercises, partial: 'exercises/exercise_fields', class: 'btn', id: 'add-workout' %>
       <hr>

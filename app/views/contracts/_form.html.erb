@@ -28,9 +28,17 @@
       <%= f.hidden_field :state %>
       <%= f.hidden_field :sent_by_id %>
       <% if current_user.type == 'Professional' %>
-        <%= f.input :client_id, collection: Professional.find(current_user.id).clients_without_contract %>
+        <% if params[:client_id] %>
+          <%= f.input :client_id, collection: Professional.find(current_user.id).clients_without_contract, disabled: true %>
+        <% else %>
+          <%= f.input :client_id, collection: Professional.find(current_user.id).clients_without_contract %>
+        <% end %>
       <% else %>
-        <%= f.input :professional_id, collection: Client.find(current_user.id).professionals_without_contract %>
+        <% if params[:professional_id] %>
+          <%= f.input :professional_id, collection: Client.find(current_user.id).professionals_without_contract, disabled: true %>
+        <% else %>
+          <%= f.input :professional_id, collection: Client.find(current_user.id).professionals_without_contract %>
+        <% end %>
       <% end %>
       <%= f.input :message %>
       <div class="row">

@@ -7,6 +7,7 @@
     <%= f.input :carbs, placeholder: 'Carbohydrates per 100g', label: 'CH (x/100g)' %>
     <%= f.input :fats, placeholder: 'Fats per 100g', label: 'Fats (x/100g)' %>
     <%= f.input :serving_size, placeholder: 'Serving size (g)', label: 'Serving size (g)' %>
+    <%= f.hidden_field :user_id, value: params[:user_id] %>
     
     <div class="d-flex justify-content-between">
       <%= f.input :vegan, as: :radio_buttons, collection: [["true", "Yes"], ["false","No"]],

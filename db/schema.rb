@@ -61,22 +61,12 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
     t.index ["user_id"], name: "index_diets_on_user_id"
   end
 
-  create_table "dishes", force: :cascade do |t|
-    t.bigint "meal_id", null: false
-    t.bigint "food_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["food_id"], name: "index_dishes_on_food_id"
-    t.index ["meal_id"], name: "index_dishes_on_meal_id"
-  end
-
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "sets"
     t.integer "reps"
     t.integer "weight"
-    t.string "file"
     t.bigint "workout_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -85,6 +75,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.string "brand"
     t.integer "kcal"
     t.float "protein"
@@ -98,12 +89,21 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
     t.boolean "soy_free", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_foods_on_user_id"
+  end
+
+  create_table "meal_foods", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "food_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_id"], name: "index_meal_foods_on_food_id"
+    t.index ["meal_id"], name: "index_meal_foods_on_meal_id"
   end
 
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "file"
     t.bigint "user_id"
     t.datetime "day"
     t.integer "kcal"
@@ -201,9 +201,12 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
   add_foreign_key "contracts", "users", column: "client_id"
   add_foreign_key "contracts", "users", column: "professional_id"
   add_foreign_key "contracts", "users", column: "sent_by_id"
-  add_foreign_key "dishes", "foods"
-  add_foreign_key "dishes", "meals"
   add_foreign_key "exercises", "workouts"
+  add_foreign_key "foods", "users"
+  add_foreign_key "meal_foods", "foods"
+  add_foreign_key "meal_foods", "meals"
+  add_foreign_key "meals", "users"
   add_foreign_key "physio_exercises", "users", column: "sent_by_id"
   add_foreign_key "psychology_tasks", "users", column: "sent_by_id"
+  add_foreign_key "workouts", "users"
 end

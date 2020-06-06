@@ -3,19 +3,25 @@
     <%= link_to 'Home', root_path %>
   </li>
   <li>
-    <%= link_to 'All users', users_path %>
+    <%= link_to 'Search users', users_path %>
   </li>
   <!-- <%= render 'layouts/dropdown_users' %> -->
   <%= render 'layouts/dropdown_training' %>
   <%= render 'layouts/dropdown_nutrition' %>
+  <li class="nav-item">
+    <%= link_to 'Psychology', user_psychology_tasks_path(current_user) %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Physiotherapy', user_physio_exercises_path(current_user) %>
+  </li>
   <li>
-    <!-- <%= link_to 'Clients', user_clients_path(current_user.id) %> -->
-    <%= link_to 'My clients', user_contracts_path(current_user) %>
+    <!-- <%= link_to 'My clients', user_contracts_path(current_user.id) %> -->
+    <%= link_to 'My contracts', user_contracts_path(current_user) %>
   </li>
   <li class="nav-item">
     <%= link_to 'Appointments', user_appointments_path(current_user) %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Contact', root_path %>
+    <%= link_to 'Help', root_path %>
   </li>
 </ul>

@@ -40,6 +40,25 @@ class PhysioExercisesController < ApplicationController
   # POST /physio_exercises
   def create
     @physio_exercise = PhysioExercise.new(physio_exercise_params)
+    if params[:physio_exercise][:user_id] != current_user.id
+      @client = User.find(params[:user_id].to_i)
+      @physio_exercise = @client.physio_exercises.new(physio_exercise_params)
+      if @physio_exercise.valid?
+        @physio_exercise.save
+        redirect_to user_clients_path(current_user), notice: 'Phyisiotherapy exercise created for your client successfully'
+      else
+        render :new
+      end
+    else
+      @user = current_user
+      @physio_exercise = @user.physio_exercises.new(physio_exercise_params)
+      if @physio_exercise.valid?
+        @physio_exercise.save
+        redirect_to user_physio_exercises_path(@user), notice: 'Physiotherapy exercise created successfully'
+      else
+        render :new
+      end
+    end
   end
 
   # PATCH/PUT /physio_exercises/1
@@ -52,7 +71,7 @@ class PhysioExercisesController < ApplicationController
         redirect_to user_physio_exercises_path(user_id: current_user.id),
           notice: 'Physiotherapy exercise created for your client successfully'
       else
-        render :new
+        render :edit
       end
     else
       @user = current_user
@@ -61,7 +80,7 @@ class PhysioExercisesController < ApplicationController
         @physio_exercise.save
         redirect_to user_physio_exercises_path(@user), notice: 'Physiotherapy exercise created successfully'
       else
-        render :new
+        render :edit
       end
     end
   end
@@ -102,14 +121,14 @@ class PhysioExercisesController < ApplicationController
       physio_exercises = current_user.physio_exercises
       return physio_exercises
     elsif end_date.empty?
-      meals = current_user.physio_exercises
+      physio_exercises = current_user.physio_exercises
       return physio_exercises
     end
     physio_exercises_in_range = []
-    @physio_exercises.each do |physio_exercisemeal|
-      physio_exercise = meal.created_at.strftime("%Y-%m-%d")
+    @physio_exercises.each do |physio_exercise|
+      physio_exercise = physio_exercise.created_at.strftime("%Y-%m-%d")
       if physio_exercise.between?(start_date, end_date)
-        physio_exercises_in_range << meal
+        physio_exercises_in_range << physio_exercise
       end
     end
     physio_exercises_in_range

@@ -185,7 +185,7 @@ hr {
   border-radius: 5px 5px 0px 0px;
   h3 {
     color: white;
-    margin-left: 5px;
+    margin: 5px 0px 0px 5px;
   }
 }
 
@@ -272,6 +272,9 @@ table {
   border-left: 1px black,;
 }
 
+// show same height as other bootstrap inputs
+.select2-container .select2-selection--single {height: 40px !important;}
+
 /*
 .css-mine {
   margin-top: 2em;
@@ -306,6 +309,18 @@ body {
   .current-month {}
 
   .has-events {}
+}
+
+.calendar-title.btn {
+  background-color: $pal2col2;
+  color: white;
+  margin: 0px;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+.btn-calendar {
+  font-weight: bold;
 }
 
 // Some media queries adjustments for Desktop, Mobile & Tablet

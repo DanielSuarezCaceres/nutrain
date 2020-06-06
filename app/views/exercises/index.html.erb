@@ -30,7 +30,6 @@
             <td class="text-center"><%= exercise.reps %></td>
             <td class="text-center"><%= exercise.weight %></td>
             <td class="text-center"><%= exercise.created_at %></td>
-            <td class="text-center"><%= exercise.goal %></td>
             <td class="text-center">
               <%= link_to 'Details', user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
               <%= link_to 'Delete', user_exercise_path(user_id: current_user.id, id: exercise.id), 

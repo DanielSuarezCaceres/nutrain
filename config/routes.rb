@@ -32,11 +32,7 @@ Rails.application.routes.draw do
     resources :workouts
     resources :exercises
     resources :diets
-    resources :meals do
-      collection do
-        get :download_report
-      end
-    end
+    resources :meals
     resources :foods
     resources :psychology_tasks
     resources :physio_exercises
