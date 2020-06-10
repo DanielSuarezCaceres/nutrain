@@ -55,6 +55,14 @@ class WorkoutsController < ApplicationController
       flash[:error] = @workout.errors.full_messages
     end
   end
+  
+  def delete_all
+    if current_user.workouts.delete_all
+      redirect_to user_workouts_path(current_user), notice: 'All workouts deleted successfully'
+    else
+      redirect_to user_workouts_path(current_user), flash[:error] = 'Something went wrong while deleting workouts'
+    end
+  end
 
   private
 

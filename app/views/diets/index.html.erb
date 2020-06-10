@@ -3,7 +3,8 @@
     <%= link_to 'New diet', new_user_diet_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Delete all', user_diets_path(current_user.id), class: 'btn' %>
+    <%= link_to "Delete all", delete_all_user_diets_path(current_user), :method => :get, class: 'btn btn-danger',
+        data: { confirm: 'You are going to delete all your diets. This action cannot be undone. Are you sure?' } %>
   </div>
   <div class="p-2">
     <%= link_to 'Download history', user_diets_path(current_user, :format => :pdf) , :format => :pdf, target: :_blank, class: 'btn' %>

@@ -87,6 +87,14 @@ class PsychologyTasksController < ApplicationController
     end
   end
 
+  def delete_all
+    if current_user.psychology_tasks.delete_all
+      redirect_to user_psychology_tasks_path(current_user), notice: 'All psychology tasks deleted successfully'
+    else
+      redirect_to user_psychology_tasks_path(current_user), flash[:error] = 'Something went wrong while deleting all psychology tasks'
+    end
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

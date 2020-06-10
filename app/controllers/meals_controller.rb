@@ -79,6 +79,14 @@ class MealsController < ApplicationController
     end
   end
 
+  def delete_all
+    if current_user.meals.delete_all
+      redirect_to user_meals_path(current_user), notice: 'All meals deleted successfully'
+    else
+      redirect_to user_meals_path(current_user), flash[:error] = 'Something went wrong while deleting meals'
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

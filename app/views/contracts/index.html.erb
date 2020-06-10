@@ -3,7 +3,8 @@
     <%= link_to 'New contract', new_user_contract_path(user_id: current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Delete all', user_contracts_path(user_id: current_user.id), class: 'btn btn-danger' %>
+    <%= link_to "Delete all", delete_all_user_contracts_path(current_user), :method => :get, class: 'btn btn-danger',
+        data: { confirm: 'You are going to delete all your contracts. This action cannot be undone. Are you sure?' } %>
   </div>
 </div>
 <div class="d-flex justify-content-center table-title">

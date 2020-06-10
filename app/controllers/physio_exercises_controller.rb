@@ -94,6 +94,14 @@ class PhysioExercisesController < ApplicationController
     end
   end
 
+  def delete_all
+    if current_user.physio_exercises.delete_all
+      redirect_to user_physio_exercises_path(current_user), notice: 'All physiotherapy exercises deleted successfully'
+    else
+      redirect_to user_physio_exercises_path(current_user), flash[:error] = 'Something went wrong while deleting physiotherapy exercises'
+    end
+  end
+
   private
 
   # Only allow a list of trusted parameters through.

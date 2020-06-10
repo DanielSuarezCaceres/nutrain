@@ -84,6 +84,14 @@ class RoutinesController < ApplicationController
     end
   end
 
+  def delete_all
+    if current_user.routines.delete_all
+      redirect_to user_routines_path(current_user), notice: 'All routines deleted successfully'
+    else
+      redirect_to user_routines_path(current_user), flash[:error] = 'Something went wrong while deleting routines'
+    end
+  end
+
   private
 
   def routine_params

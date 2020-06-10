@@ -29,17 +29,61 @@ Rails.application.routes.draw do
       resources :contracts
       resources :measurements
     end
-    resources :measurements
-    resources :routines
-    resources :workouts
-    resources :exercises
-    resources :diets
-    resources :meals
-    resources :foods
-    resources :psychology_tasks
-    resources :physio_exercises
-    resources :appointments
-    resources :contracts
+    resources :measurements do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :routines do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :workouts do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :exercises do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :diets do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :meals do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :foods do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :psychology_tasks do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :physio_exercises do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :appointments do
+      collection do
+        get 'delete_all'
+      end
+    end
+    resources :contracts do
+      collection do
+        get 'delete_all'
+      end
+    end
   end
   resources :routines
   resources :workouts

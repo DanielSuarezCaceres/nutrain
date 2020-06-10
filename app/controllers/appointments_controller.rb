@@ -85,6 +85,14 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def delete_all
+    if current_user.appointments.delete_all
+      redirect_to user_appointments_path(current_user), notice: 'All appointments deleted successfully'
+    else
+      redirect_to user_appointments_path(current_user), flash[:error] = 'Something went wrong while deleting appointments'
+    end
+  end
+
   private
 
   def appointment_params
