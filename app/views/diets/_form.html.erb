@@ -3,7 +3,7 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :kcal_goal %>
-  <%= f.input :total_meals %>
+  <%= f.input :recommended_meals %>
   <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   <%= f.input :goal do %>
     <%= f.select :goal, options_for_select(['Bulking', 'Weight loss', 'Maintain'], selected: f.object.goal), 

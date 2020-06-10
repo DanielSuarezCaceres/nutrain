@@ -27,7 +27,9 @@ Rails.application.routes.draw do
       resources :physio_exercises
       resources :appointments
       resources :contracts
+      resources :measurements
     end
+    resources :measurements
     resources :routines
     resources :workouts
     resources :exercises

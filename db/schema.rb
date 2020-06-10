@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_164720) do
+ActiveRecord::Schema.define(version: 2020_06_09_203844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
     t.string "name"
     t.text "description"
     t.integer "kcal_goal"
-    t.integer "total_meals"
+    t.integer "recommended_meals"
     t.bigint "user_id"
     t.string "goal"
     t.boolean "active"
@@ -107,9 +107,9 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
     t.bigint "user_id"
     t.datetime "day"
     t.integer "kcal"
-    t.integer "protein"
-    t.integer "carbs"
-    t.integer "fats"
+    t.float "protein"
+    t.float "carbs"
+    t.float "fats"
     t.boolean "vegan", default: false, null: false
     t.boolean "vegetarian", default: false, null: false
     t.boolean "gluten_free", default: false, null: false
@@ -118,6 +118,21 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_meals_on_user_id"
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.datetime "day"
+    t.integer "weight"
+    t.integer "neck_size"
+    t.integer "chest_size"
+    t.integer "arm_size"
+    t.integer "waist_size"
+    t.integer "hips_size"
+    t.integer "leg_size"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_measurements_on_user_id"
   end
 
   create_table "physio_exercises", force: :cascade do |t|
@@ -206,6 +221,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_164720) do
   add_foreign_key "meal_foods", "foods"
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "meals", "users"
+  add_foreign_key "measurements", "users"
   add_foreign_key "physio_exercises", "users", column: "sent_by_id"
   add_foreign_key "psychology_tasks", "users", column: "sent_by_id"
   add_foreign_key "workouts", "users"

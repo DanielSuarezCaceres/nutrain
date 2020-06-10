@@ -1,0 +1,45 @@
+<div class="container">
+
+	<div class="flex-container flex-container-style fixed-height">
+		<div class="flex-item"><span contenteditable=""><h1>Nutrain</h1></span></div>
+	</div>
+
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Body progress history</h4>
+    <br>
+    <% if !params[:measurement].nil? || params[:measurement][:start_date].empty? %>
+      <h5>From: <%= params[:measurement][:start_date] %></h5>
+      <h5>To: <%= params[:measurement][:end_date] %></h5>
+    <% end %>
+    <br>
+    <h5>Total body measurements: <%= measurements.count %></h5>
+  </div><br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Weight (kg)</th>
+      <th class="text-center">Neck size (cm)</th>
+      <th class="text-center">Chest size (cm)</th>
+      <th class="text-center">Arm size (cm)</th>
+      <th class="text-center">Waist size (cm)</th>
+      <th class="text-center">Hips size (cm)</th>
+      <th class="text-center">Leg size (cm)</th>
+      <th class="text-center">Day</th>
+    </tr>
+    <tbody>
+      <% measurements.each do |measurement| %>
+        <tr>
+          <td class="text-center"><%= measurement.weight %></td>
+          <td class="text-center"><%= measurement.neck_size %></td>
+          <td class="text-center"><%= measurement.chest_size %></td>
+          <td class="text-center"><%= measurement.arm_size %></td>
+          <td class="text-center"><%= measurement.waist_size %></td>
+          <td class="text-center"><%= measurement.hips_size %></td>
+          <td class="text-center"><%= measurement.leg_size %></td>
+          <td class="text-center"><%= measurement.day %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

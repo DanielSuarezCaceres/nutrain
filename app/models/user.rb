@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :measurements
   has_many :routines
   # has_many :workout_exercises, dependent: :destroy
   # has_many :workouts, through: :workout_exercises
@@ -56,8 +57,23 @@ class User < ApplicationRecord
     where.not(id: current_user_id).where.not(type: 'Admin')
   end
 
-  def self.users_withoot_contract(user_id)
-    
+  def self.users_without_contract(user_id)
+    user = User.find(user_id)
+    type = user.type
+    all_users = User.where.not(id: user_id)
+    users_with_contract = []
+    byebug
+    if type == 'Professional'
+      user.contracts.each do |c|
+        users_with_contract << User.find(c.client_id)
+      end
+      users_with_contract
+    else
+      user.contracts.each do |c|
+        users_with_contract << User.find(c.professional_id)
+      end
+      users_with_contract
+    end
   end
 
   def self.only_professionals
@@ -74,5 +90,13 @@ class User < ApplicationRecord
   
   def get_current_routine
     self.routines.where(active: true).first
+  end
+
+  def weights_last_month
+    weights = []
+    self.measurements.each do |m|
+      weights << m.weight
+    end
+    weights
   end
 end

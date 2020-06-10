@@ -1,0 +1,51 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header d-flex">
+      <h2>Edit workout</h2>
+      <%= link_to 'Back', root_path, class: 'btn ml-auto' %>
+    </div>
+    <div class="card-body">
+      <div class="workout-form">
+        <%= simple_form_for(@measurement, url: user_measurement_path(params[:user_id]), method: :put) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <div class="row">
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :day, as: :datetime, html5: true %>
+              </div>
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :weight, placeholder: 'Weight in kg' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :neck_size, placeholder: 'Neck size in cm' %>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :chest_size, placeholder: 'Chest size in cm' %>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :arm_size, placeholder: 'Arm size in cm' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :waist_size, placeholder: 'Waist size in cm' %>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :hips_size, placeholder: 'Hips size in cm' %>
+              </div>
+              <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <%= f.input :leg_size, placeholder: 'Leg size in cm' %>
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit %>
+            <%= link_to 'Back', :back, class: 'btn' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

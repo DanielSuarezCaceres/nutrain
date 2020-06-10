@@ -48,7 +48,7 @@ class AppointmentsController < ApplicationController
     #byebug
     #@appointment.update(start_time: appointment_params[:start_time].to_time)
     #@appointment.update(end_time: appointment_params[:end_time].to_time)
-    byebug
+    #byebug
     if @appointment.valid?  
       @appointment.save
       flash[:notice] = 'Appointment created sucessfully'
@@ -76,7 +76,13 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    #@ = .find(params[:id])
+    @appointment = Appointment.find(params[:id])
+    if @appointment.destroy
+      redirect_to user_appointments_path(params[:user_id]), notice: 'Appointment deleted successfully'
+    else
+      flash[:error] = @appointment.errors.full_messages
+      redirect_to user_appointment_path(params[:user_id])
+    end
   end
 
   private

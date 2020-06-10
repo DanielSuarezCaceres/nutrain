@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
       <div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-6 mr-auto" id="meal-form">
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mr-auto" id="meal-form">
     <%= simple_form_for(@meal, url: user_meal_path(user_id: params[:user_id]), method: :put) do |f| %>
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -35,7 +35,7 @@
       <hr>
       <div class="">
         <%= f.association :foods, collection: current_user.foods.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
-          label: 'Add existing ingredients', include_blank: false, include_hidden: false %>
+          label: 'Add existing ingredients', include_blank: false, include_hidden: false, hint: 'Search here existing ingredients' %>
       </div>
       <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
       <hr>
@@ -49,8 +49,10 @@
       </div>
     <% end %>
   </div>
-  <div class="vl"></div>
-  <div class="col-lg-5 col-md-5 col-sm-5 d-flex flex-column align-items-center edit-meal-right-content" align="center">
+  <!-- Vertical separator -->
+  <!-- <div class="vl"></div> -->
+
+  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 d-flex flex-column align-items-center edit-meal-right-content" align="center">
     <h4>Current macros</h4>
     <div class="meal-macros">
       <div class="table-responsive">

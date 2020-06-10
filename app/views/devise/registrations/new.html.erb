@@ -25,24 +25,21 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
               <%= f.label :name %>
               <%= f.text_field :name, class: 'form-control' %>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
               <%= f.label :lastname %>
               <%= f.text_field :lastname, class: 'form-control' %>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-4 mb-3">
               <%= f.label :gender %>
               <%= f.select :gender, options_for_select(['Male', 'Female']),
                  {}, {include_blank: false, class: 'form-control'}%>
             </div>
-            <div class="col-md-3 mb-3">
-              <%= f.label :age %>
-              <%= f.number_field :phone, class: 'form-control' %>
-            </div>
           </div>
+          <!-- Maybe not necessary now, too much info
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <%= f.label :height %>
@@ -52,21 +49,26 @@
               <%= f.label :weight %>
               <%= f.number_field :phone, class: 'form-control', placeholder: 'Weight in kg' %>
             </div>
-            <div class="col-md-4 mb-3">
-              <%= f.label :phone %>
-              <%= f.text_field :phone, class: 'form-control', placeholder: 'eg: 123456789' %>
+            <div class="col-md-3 mb-3">
+              <%= f.label :age %>
+              <%= f.number_field :phone, class: 'form-control' %>
             </div>
           </div>
+          -->
           <div class="form-row">
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
               <%= f.label :city %>
               <%= f.text_field :city, class: 'form-control' %>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
               <%= f.label :country %>
               <%= f.country_select :country, {priority_countries: ["ES", "US", "GB"]},{prompt: "Select a Country", class: 'form-control'} %>
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-3 mb-3">
+              <%= f.label :phone %>
+              <%= f.text_field :phone, class: 'form-control', placeholder: 'eg: 123456789' %>
+            </div>
+            <div class="col-md-3 mb-3">
               <%= f.label :type %>
               <%= f.select :type, options_for_select(['Client', 'Professional']),
                  {}, {include_blank: false, class: 'form-control'} %>

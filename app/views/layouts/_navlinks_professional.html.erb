@@ -2,25 +2,36 @@
   <li class="nav-item">
     <%= link_to 'Home', root_path %>
   </li>
+  <div class="dropdown-divider"></div>
   <li>
     <%= link_to 'Search users', users_path %>
   </li>
+  <div class="dropdown-divider"></div>
   <!-- <%= render 'layouts/dropdown_users' %> -->
   <%= render 'layouts/dropdown_training' %>
+  <div class="dropdown-divider"></div>
   <%= render 'layouts/dropdown_nutrition' %>
+  <div class="dropdown-divider"></div>
   <li class="nav-item">
     <%= link_to 'Psychology', user_psychology_tasks_path(current_user) %>
   </li>
+  <div class="dropdown-divider"></div>
   <li class="nav-item">
     <%= link_to 'Physiotherapy', user_physio_exercises_path(current_user) %>
   </li>
+  <div class="dropdown-divider"></div>
   <li>
-    <!-- <%= link_to 'My clients', user_contracts_path(current_user.id) %> -->
-    <%= link_to 'My contracts', user_contracts_path(current_user) %>
+    <%= link_to 'Contracts', user_contracts_path(current_user) %>
   </li>
+  <div class="dropdown-divider"></div>
+  <li class="nav-item">
+    <%= link_to 'Measurements', user_measurements_path(current_user) %>
+  </li>
+  <div class="dropdown-divider"></div>
   <li class="nav-item">
     <%= link_to 'Appointments', user_appointments_path(current_user) %>
   </li>
+  <div class="dropdown-divider"></div>
   <li class="nav-item">
     <%= link_to 'Help', root_path %>
   </li>

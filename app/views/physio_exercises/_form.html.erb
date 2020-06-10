@@ -10,7 +10,8 @@
     <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   </div>
 
-  <div class="form-actions">
+  <div class="row form-actions">
     <%= f.button :submit %>
+    <%= link_to 'Back', :back, class: 'btn' %>
   </div>
 <% end %>

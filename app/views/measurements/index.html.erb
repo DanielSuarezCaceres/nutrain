@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-start" id="upper-toolbar">
+  <div class="p-2">
+    <%= link_to 'New body measurements', new_user_measurement_path(current_user), class: 'btn' %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Delete all', user_measurements_path(current_user.id), class: 'btn' %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Download report', "#", 
+    {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn'} %>
+  </div>
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"><%= render 'measurements/modal' %></div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center table-title">
+  <h3>Body measurements</h3>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <tr>
+      <th class="text-center">Weight (kg)</th>
+      <th class="text-center">Neck (cm)</th>
+      <th class="text-center">Chest (cm)</th>
+      <th class="text-center">Arm (cm)</th>
+      <th class="text-center">Waist (cm)</th>
+      <th class="text-center">Hips (cm)</th>
+      <th class="text-center">Leg (cm)</th>
+      <th class="text-center">Day</th>
+      <th class="text-center">Actions</th>
+    </tr>
+    <tbody>
+      <% @measurements.each do |measurement| %>
+        <tr>
+          <td class="text-center"><%= measurement.weight %></td>
+          <td class="text-center"><%= measurement.neck_size %></td>
+          <td class="text-center"><%= measurement.chest_size %></td>
+          <td class="text-center"><%= measurement.arm_size %></td>
+          <td class="text-center"><%= measurement.waist_size %></td>
+          <td class="text-center"><%= measurement.hips_size %></td>
+          <td class="text-center"><%= measurement.leg_size %></td>
+          <td class="text-center"><%= measurement.day %></td>
+          <td class="text-center">
+            <%= link_to 'Details', user_measurement_path(user_id: current_user.id, id: measurement.id), class: 'btn' %>
+            <%= link_to 'Edit', edit_user_measurement_path(user_id: current_user.id, id: measurement.id), class: 'btn' %>
+            <%= link_to 'Delete', user_measurement_path(user_id: current_user.id, id: measurement.id), method: :delete,
+        data: { confirm: "This action cannot be undone'. Are you sure?" }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br><br>
+
+  <!-- refactor this, not necessary to take all measurement if not going to show all of them -->
+  <% @measurements = current_user.measurements %>
+  <h3>Body measurements progress</h3>
+  <br>
+  <h4>Weight</h4>
+  <%= line_chart [
+        {name: 'Weight (kg)', data: @measurements.group(:day).sum(:weight)}
+  ] %>
+  <br>
+  <h4>Upper body</h4>
+  <%= line_chart [
+        {name: 'Neck size (cm)', data: @measurements.group(:day).sum(:neck_size)},
+        {name: 'Chest size (cm)', data: @measurements.group(:day).sum(:chest_size)},
+        {name: 'Amr size (cm)', data: @measurements.group(:day).sum(:arm_size)},
+  ]%>
+  <br>
+  <h4>Lower body</h4>
+  <%= line_chart [
+        {name: 'Waist size (cm)', data: @measurements.group(:day).sum(:waist_size)},
+        {name: 'Hips size (cm)', data: @measurements.group(:day).sum(:hips_size)},
+        {name: 'Hips size (cm)', data: @measurements.group(:day).sum(:leg_size)}
+  ]%>
+</div>

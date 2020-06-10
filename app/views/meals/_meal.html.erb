@@ -33,6 +33,7 @@
       <th class="text-center">Protein</th>
       <th class="text-center">Carbs</th>
       <th class="text-center">Fats</th>
+      <th class="text-center">Serving size (g)</th>
     </tr>
     <tbody>
       <% @meal.foods.each do |food| %>
@@ -43,27 +44,28 @@
           <td class="text-center"><%= food.protein %></td>
           <td class="text-center"><%= food.carbs %></td>
           <td class="text-center"><%= food.fats %></td>
+          <td class="text-center"><%= food.serving_size %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
 <!-- <button class="btn" id="toggle-show-meal-graphics"><span>Show graphics</span></button> -->
-<br><br>
+<br>
+<br>
 <div id="show-meal-graphics">
-<div class="col-12 d-flex justify-content-around">
-  <div class="col-3">
-  <h5>Protein</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:protein) %>
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <h5>Protein</h5>
+      <%= pie_chart @meal.foods.group(:name).sum(:protein) %>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <h5>Carbs</h5>
+      <%= pie_chart @meal.foods.group(:name).sum(:carbs) %>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <h5>Fats</h5>
+      <%= pie_chart @meal.foods.group(:name).sum(:fats) %>
+    </div>
   </div>
-  <div class="col-3">
-  <h5>Carbs</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:carbs) %>
-  </div>
-  <div class="col-3">
-  <h5>Fats</h5>
-  <%= pie_chart @meal.foods.group(:name).sum(:fats) %>
-  </div>
-</div>
 </div>
