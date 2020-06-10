@@ -40,7 +40,7 @@ class PhysioExercisesController < ApplicationController
   # POST /physio_exercises
   def create
     @physio_exercise = PhysioExercise.new(physio_exercise_params)
-    if params[:physio_exercise][:user_id] != current_user.id
+    if params[:physio_exercise][:user_id].to_i != current_user.id
       @client = User.find(params[:user_id].to_i)
       @physio_exercise = @client.physio_exercises.new(physio_exercise_params)
       if @physio_exercise.valid?

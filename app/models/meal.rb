@@ -4,7 +4,7 @@ class Meal < ApplicationRecord
   has_many :meal_foods, inverse_of: :meal, dependent: :destroy
   has_many :foods, through: :meal_foods
   accepts_nested_attributes_for :foods, reject_if: :all_blank, allow_destroy: true
-  after_save :calculate_total_macros_food
+  before_save :calculate_total_macros_food
   # after_update :calculate_total_macros_food
 
   validates :name, presence: true
@@ -53,6 +53,7 @@ class Meal < ApplicationRecord
   end
 
   def self.total_kcal_meals_today(user_id)
+    # byebug
     total_kcal = 0
     User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
       total_kcal += meal.kcal

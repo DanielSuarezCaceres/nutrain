@@ -13,6 +13,7 @@ class ContractsController < ApplicationController
     # @contract = Contract.new
     # prepopulate client_id field in form
     #if params[:client_id]
+    # byebug
     if current_user.type == 'Professional'
       if params[:client_id]
         @contract = current_user.contracts.build(client_id: params[:client_id])
@@ -36,6 +37,7 @@ class ContractsController < ApplicationController
     #@user = User.find(params[:user_id])
     @contract = current_user.contracts.new(contract_params)
     # byebug
+    # byebug
     if @contract.valid?
       @contract.save
       flash[:notice] = "Contract request sent sucessfully"

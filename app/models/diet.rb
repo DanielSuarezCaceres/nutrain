@@ -4,7 +4,7 @@ class Diet < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   # validates :description, presence: true, length: { minimum: 30 }
   validates :kcal_goal, presence: true, numericality: { greater_than_or_equal_to: 1, message: "must be one at least"}
-  validates :total_meals, presence: true, numericality: { greater_than_or_equal_to: 1, message: "must be one at least"}
+  validates :recommended_meals, presence: true, numericality: { greater_than_or_equal_to: 1, message: "must be one at least"}
   validates :goal, presence: true
 
   before_save :check_active_diet

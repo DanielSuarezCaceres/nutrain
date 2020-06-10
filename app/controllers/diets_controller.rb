@@ -94,7 +94,7 @@ class DietsController < ApplicationController
       :user_id,
       :client_id,
       :kcal_goal,
-      :total_meals,
+      :recommended_meals,
       :active,
       :goal
     )

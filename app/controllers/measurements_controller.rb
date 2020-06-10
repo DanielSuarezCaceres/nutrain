@@ -82,6 +82,7 @@ class MeasurementsController < ApplicationController
     end
 
     def measurements_in_date_range
+      # byebug
       start_date = params[:measurement][:start_date]
       end_date = params[:measurement][:end_date]
       # if start_date or end_date are empty (or both), return all meals
@@ -95,11 +96,13 @@ class MeasurementsController < ApplicationController
       end
       measurements_in_range = []
       @measurements.each do |measurement|
-        measurement_date = measurement.created_at.strftime("%Y-%m-%d")
+        measurement_date = measurement.day.strftime("%Y-%m-%d")
+        # byebug
         if measurement_date.between?(start_date, end_date)
           measurements_in_range << measurement
         end
       end
+      # byebug
       measurements_in_range
     end
 end

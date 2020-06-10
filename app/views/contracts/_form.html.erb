@@ -23,19 +23,21 @@
       <%= f.submit 'Cancel contract', class: 'btn btn-danger', onclick: "contrat_state.value = 'Cancelled'" %>
     <% end%>
   <% else %>
-    <%= simple_form_for(@contract) do |f| %>
+    <%= simple_form_for(@contract, url: user_contracts_path(user_id: current_user.id, client_id: params[:client_id])) do |f| %>
       <%= f.error_notification %>
       <%= f.hidden_field :state %>
       <%= f.hidden_field :sent_by_id %>
       <% if current_user.type == 'Professional' %>
         <% if params[:client_id] %>
           <%= f.input :client_id, collection: Professional.find(current_user.id).clients_without_contract, disabled: true %>
+          <%= f.hidden_field :client_id, value: params[:client_id] %>
         <% else %>
           <%= f.input :client_id, collection: Professional.find(current_user.id).clients_without_contract %>
         <% end %>
       <% else %>
         <% if params[:professional_id] %>
           <%= f.input :professional_id, collection: Client.find(current_user.id).professionals_without_contract, disabled: true %>
+          <%= f.hidden_field :client_id, value: params[:professional_id] %>
         <% else %>
           <%= f.input :professional_id, collection: Client.find(current_user.id).professionals_without_contract %>
         <% end %>

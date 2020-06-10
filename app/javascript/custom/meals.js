@@ -8,7 +8,6 @@ document.addEventListener("turbolinks:load", function () {
       'slow');
   })
 })
-let a = "jaja";
 
 /*document.addEventListener("turbolinks:load", function () {
   $("#delete-ingredient").click(function () {
