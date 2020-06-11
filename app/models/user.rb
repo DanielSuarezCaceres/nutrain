@@ -92,6 +92,26 @@ class User < ApplicationRecord
     self.routines.where(active: true).first
   end
 
+  def get_all_exercises
+    exercises = []
+    self.workouts.each do |workout|
+      workout.exercises.each do |exercise|
+        exercises << exercise
+      end
+    end
+    exercises
+  end
+
+  def get_all_foods
+    foods = []
+    self.meals.each do |meal|
+      meal.foods.each do |food|
+        foods << food
+      end
+    end
+    foods
+  end
+
   def weights_last_month
     weights = []
     self.measurements.each do |m|

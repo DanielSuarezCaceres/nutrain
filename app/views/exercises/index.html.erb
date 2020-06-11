@@ -41,4 +41,14 @@
       <% end%>
     </tbody>
   </table>
+  <br><br>
+
+  <h3>Exercises progression</h3>
+  <% @user_exercises = current_user.get_all_exercises %>
+  <%= line_chart [
+    {name: 'Weight (kg)', data: Exercise.all.group_by_day(:created_at).sum(:weight) }, messages: { empty: "No data"}
+    #{name: 'Weight (kg)', data: Exercise.all.group(:name).sum(:weight) }, messages: { empty: "No data"}
+    #{name: 'Weight (kg)', data: @user_exercises.group_by_day { |u| u.created_at }.map { |k, v| [k, v.count] }.to_h }
+  ] %>
+  
 </div>

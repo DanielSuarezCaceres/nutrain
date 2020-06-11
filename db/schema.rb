@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.string "title"
     t.string "description"
     t.datetime "start_time"
-    t.datetime "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_appointments_on_client_id"

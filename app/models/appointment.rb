@@ -5,17 +5,26 @@ class Appointment < ApplicationRecord
   belongs_to :professional
   
   validates :title, presence: true
-  #validates :description, presence: true, lenght: { minimum: 3 }
+  validates :start_time, presence: true
+  validates :client_id, presence: true
+  validates :professional_id, presence: true
+  validate :start_time, :start_time_is_valid
   # validates :start_time_is_valid_datetime
   # validates :end_time_is_valid_datetime
 
-  def start_time_is_valid_datetime
-    errors.add(:start_time, 'start time must be a valid datetime') if ((DateTime.parse(start_time) rescue ArgumentError) == ArgumentError)
+  def start_time_is_valid
+    if start_time < Date.today
+      errors.add(:start_time, 'must be equal or later than today')
+    end
   end
 
-  def end_time_is_valid_datetime
-    errors.add(:end_time, 'end time must be valid datetime') if ((DateTime.parse(end_time) rescue ArgumentError) == ArgumentError)
-  end
+  # def start_time_is_valid_datetime
+  #   errors.add(:start_time, 'start time must be a valid datetime') if ((DateTime.parse(start_time) rescue ArgumentError) == ArgumentError)
+  # end
+
+  # def end_time_is_valid_datetime
+  #   errors.add(:end_time, 'end time must be valid datetime') if ((DateTime.parse(end_time) rescue ArgumentError) == ArgumentError)
+  # end
 
   #def start_time=(start_time)
   #  @start_time = start_time

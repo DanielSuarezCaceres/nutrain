@@ -6,6 +6,9 @@ class ExercisesController < ApplicationController
     if params[:workout_id]
       @exercises = Workout.find(params[:workout_id]).exercises
     end
+    if params[:user_id]
+      @exercises = User.find(params[:user_id]).get_all_exercises
+    end
   end
 
   def show

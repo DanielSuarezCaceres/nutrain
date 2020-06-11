@@ -10,7 +10,6 @@
           <%= f.input :title %>
           <%= f.input :description %>
           <%= f.input :start_time, as: :datetime, html5: true %>
-          <%= f.input :end_time, as: :datetime, html5: true %>
           <% if current_user.type == 'Professional' %>
             <% if params[:client_id] %>
               <%= f.input :client_id, collection: Client.all, disabled: true %>

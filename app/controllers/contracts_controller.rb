@@ -32,12 +32,7 @@ class ContractsController < ApplicationController
   end
   
   def create
-    # esta asignacion no deberia tener que hacerla, buscar solucion
-    # params[:user_id] = current_user.id
-    #@user = User.find(params[:user_id])
     @contract = current_user.contracts.new(contract_params)
-    # byebug
-    # byebug
     if @contract.valid?
       @contract.save
       flash[:notice] = "Contract request sent sucessfully"
@@ -51,9 +46,7 @@ class ContractsController < ApplicationController
   def update
     # If contract param is 'Accepted', save contract ; else, show it as reject or cancelled
     state = params[:contract][:state]
-    #byebug
     if state == 'Accepted'
-      #byebug
       if @contract.update(contract_params)
         @contract.update(state: 'Active')
         redirect_to user_contracts_path(current_user), notice: 'Contract accepted'
@@ -64,7 +57,7 @@ class ContractsController < ApplicationController
     else
       @contract.destroy
       # if contract was still pending, show as rejected ; else, show as existing contract deleted
-      state == 'Rejected' ? notice_message = 'Contract request rejected' : notice_message = 'Contract cancelled'
+      state == 'Rejected' ? notice_message = 'Contract request rejected successfully' : notice_message = 'Contract deleted successfully'
       redirect_to user_contracts_path(current_user), notice: notice_message
     end
   end

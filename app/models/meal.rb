@@ -66,7 +66,7 @@ class Meal < ApplicationRecord
     User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
       total_protein += meal.protein
     end
-    total_protein
+    total_protein.round
   end
 
   def self.total_carbs_meals_today(user_id)
@@ -74,7 +74,7 @@ class Meal < ApplicationRecord
     User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
       total_carbs += meal.carbs
     end
-    total_carbs
+    total_carbs.round
   end
 
   def self.total_fats_meals_today(user_id)
@@ -82,7 +82,7 @@ class Meal < ApplicationRecord
     User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
       total_fats += meal.fats
     end
-    total_fats
+    total_fats.round
   end
 
   def vegan?
@@ -103,6 +103,14 @@ class Meal < ApplicationRecord
 
   def nut_free?
     self.soy_free ? 'Yes' : 'No'
+  end
+
+  def get_all_foods
+    all_foods = []
+    foods.each do |food|
+      all_foods << food
+    end
+    all_foods
   end
 
   def foods_converted
