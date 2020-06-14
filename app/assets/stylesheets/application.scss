@@ -28,23 +28,23 @@
   color: white;
 }
 
-a.page-link {
-  background-color: $pal2col2 !important;
-  color: white !important;
+.btn-group {
+  .btn {
+    background-color: $pal2col2;
+  }
+  .prev.btn {
+    opacity: 1;
+  }
+  .next.btn {
+    opacity: 1;
+  }
 }
 
-.pagination {
-  color: white !important;
-  .page-item.active {
-    .page-link {
-      border-color: $pal1col5! important;
-    }
-  }
-  li.page-item.next.disabled {
-    background-color: $pal2col2 !important;
-  }
-  li.page-item.prev.disabled {
-    background-color: $pal2col2 !important;
+.pagy-combo-input.btn {
+  opacity: 1;
+  input {
+    background-color: $og_secondary1;
+    color: black !important;
   }
 }
 

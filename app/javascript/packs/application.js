@@ -27,6 +27,7 @@ require("select2")
 import $ from 'jquery';
 import select2 from 'select2';
 import 'select2/dist/css/select2.css';
+import '../custom/pagy.js.erb';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -54,7 +55,7 @@ document.addEventListener("turbolinks:load", function () {
   });
 });
 
-// window.addEventListener("turbolinks:load", Pagy.init);
+// window.addEventListener("turbolinks:load", Pagy.init); -> if using asset pipeline, not necessary with Webpacker
 
 /*
 $(document).ready(function(){
