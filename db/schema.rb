@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.string "name"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "day"
+    t.date "day"
     t.integer "kcal"
     t.float "protein"
     t.float "carbs"
@@ -202,7 +202,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.string "name"
     t.text "description"
     t.bigint "user_id"
-    t.datetime "day"
+    t.date "day"
     t.integer "number_of_exercises"
     t.string "goal"
     t.datetime "created_at", precision: 6, null: false

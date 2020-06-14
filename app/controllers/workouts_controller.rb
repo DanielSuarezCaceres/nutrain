@@ -2,7 +2,7 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
   def index
     if params[:user_id]
-      @workouts = User.find(params[:user_id]).workouts
+      @pagy, @workouts = pagy(User.find(params[:user_id]).workouts)
       respond_to do |format|
         format.html
         format.pdf do

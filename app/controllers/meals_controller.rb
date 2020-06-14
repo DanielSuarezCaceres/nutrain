@@ -5,7 +5,7 @@ class MealsController < ApplicationController
   def index
     #@meals = Meal.all
     if params[:user_id]
-      @meals = User.find(params[:user_id]).meals
+      @pagy, @meals = pagy(User.find(params[:user_id]).meals)
       respond_to do |format|
         format.html
         format.pdf do
@@ -101,7 +101,7 @@ class MealsController < ApplicationController
         :id,
         :name,
         :description,
-        :file,
+        :day,
         :kcal,
         :protein,
         :carbs,

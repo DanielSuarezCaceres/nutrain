@@ -16,7 +16,7 @@
       </div>
       
       <div class="row">
-      <% if current_user.meals.where("DATE(created_at) = ?", Date.today).empty? %>
+      <% if current_user.meals.where("DATE(day) = ?", Date.today).empty? %>
         You have not added any food today.
       <% else %>
       <div class="table-responsive">
@@ -26,7 +26,7 @@
             <th class="text-center">Description</th>
             <th class="text-center">Actions</th>
           </tr>
-          <% meals = current_user.meals.where("DATE(created_at) = ?", Date.today) %>
+          <% meals = current_user.meals.where("DATE(day) = ?", Date.today) %>
           <% meals.each do |meal| %>
             <tr>
               <td class="text-center"><%= meal.name %></td>
@@ -55,7 +55,7 @@
       </div>
 
       <div class="row">
-        <% if current_user.workouts.where("DATE(created_at) = ?", Date.today).empty? %>
+        <% if current_user.workouts.where("DATE(day) = ?", Date.today).empty? %>
           You have not added any workout today.
         <% else %>
         <div class="table-responsive">
@@ -65,7 +65,7 @@
               <th class="text-center">Description</th>
               <th class="text-center">Actions</th>
             </tr>
-            <% workouts = current_user.workouts.where("DATE(created_at) = ?", Date.today) %>
+            <% workouts = current_user.workouts.where("DATE(day) = ?", Date.today) %>
             <% workouts.each do |workout| %>
               <tr>
                 <td class="text-center"><%= workout.name %></td>
@@ -100,7 +100,7 @@
           </h4><br>
         </div>
         <p><small>*Set your diet as active in order to see your kcal goal</small></p>
-        <%= bar_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:kcal),
+        <%= bar_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:kcal),
                     colors: ['#f57c00'], title: "Daily kcal", download: true, messages: {empty: "No data"} %>
         
       </div>
@@ -108,7 +108,7 @@
         <div class="row daily-protein-header">
           <h4>Total: <%= Meal.total_protein_meals_today(current_user.id) %> g</h4>
         </div>
-        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:protein),
+        <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:protein),
               title: "Daily protein", download: true, messages: {empty: "No data"} %>
         
       </div>
@@ -116,7 +116,7 @@
         <div class="row daily-carbs-header">
           <h4>Total: <%= Meal.total_carbs_meals_today(current_user.id) %> g</h4>
         </div>
-        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:carbs),
+        <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:carbs),
               title: "Daily carbs", download: true, messages: {empty: "No data"} %>
         
       </div>
@@ -124,7 +124,7 @@
         <div class="row daily-fats-header">
           <h4>Total: <%= Meal.total_fats_meals_today(current_user.id) %> g</h4>
         </div>
-        <%= pie_chart current_user.meals.where("DATE(created_at) = ?", Date.today).group(:name).sum(:fats),
+        <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:fats),
               title: "Daily fats", download: true, messages: {empty: "No data"} %>
         
       </div>
@@ -141,9 +141,9 @@
   <div class="row">
     <% @meals = current_user.meals %>
     <%= line_chart [
-        {name: "Total protein per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:protein)},
-        {name: "Total carbs per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:carbs)},
-        {name: "Total fats per day", data: @meals.group_by_day(:created_at, range: 1.week.ago..Date.today+1).sum(:fats)}],
+        {name: "Total protein per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:protein)},
+        {name: "Total carbs per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:carbs)},
+        {name: "Total fats per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:fats)}],
         ytitle: "Quantity (gr)", xtitle: "Days", title: "Last 7 days marcronutrients", download: true, messages: {empty: "No data"}
       #{library: {hAxis: {title: "X-label"}, vAxis: {title: "Y-label"}, title: "Graph title label"}}
     %>

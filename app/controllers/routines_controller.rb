@@ -3,9 +3,9 @@ class RoutinesController < ApplicationController
 
   def index
     if params[:client_id]
-      @routines = User.find(params[:client_id]).routines
+      @pagy, @routines = pagy(User.find(params[:client_id]).routines)
     else
-      @routines = User.find(params[:user_id]).routines
+      @pagy, @routines = pagy(User.find(params[:user_id]).routines)
       respond_to do |format|
         format.html
         format.pdf do

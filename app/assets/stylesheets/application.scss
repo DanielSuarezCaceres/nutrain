@@ -28,6 +28,26 @@
   color: white;
 }
 
+a.page-link {
+  background-color: $pal2col2 !important;
+  color: white !important;
+}
+
+.pagination {
+  color: white !important;
+  .page-item.active {
+    .page-link {
+      border-color: $pal1col5! important;
+    }
+  }
+  li.page-item.next.disabled {
+    background-color: $pal2col2 !important;
+  }
+  li.page-item.prev.disabled {
+    background-color: $pal2col2 !important;
+  }
+}
+
 th {
   background-color: $pal2col2;
   color: white;

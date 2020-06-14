@@ -4,7 +4,7 @@ class CreateMeals < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.references :user, index: true, foreign_key: true
-      t.datetime :day
+      t.date :day
       t.integer :kcal
       t.float :protein
       t.float :carbs

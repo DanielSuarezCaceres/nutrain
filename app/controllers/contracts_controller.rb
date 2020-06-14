@@ -2,26 +2,24 @@ class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
   def index
-    @contracts = User.find(params[:user_id]).contracts
+    @pagy, @contracts = pagy(User.find(params[:user_id]).contracts)
   end
 
   def show
   end
 
   def new
-    #byebug
-    # @contract = Contract.new
-    # prepopulate client_id field in form
-    #if params[:client_id]
     # byebug
     if current_user.type == 'Professional'
       if params[:client_id]
+        # prepopulate client_id field in form
         @contract = current_user.contracts.build(client_id: params[:client_id])
       else
         @contract = Contract.new
       end
     elsif current_user.type == 'Client'
       if params[:professional_id]
+        # prepopulate professional_id field in form
         @contract = current_user.contracts.build(professional_id: params[:professional_id])
       else
         @contract = Contract.new

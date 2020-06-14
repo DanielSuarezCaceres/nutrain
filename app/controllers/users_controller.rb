@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   def index
     # @user = User.all
     if current_user.type == 'Professional'
-      @users = User.users_except_admin(current_user.id)
+      @pagy, @users = pagy(User.all)
+      #@pagy, @users = User.users_except_admin(current_user.id)
     else
       @users = User.only_professionals
     end

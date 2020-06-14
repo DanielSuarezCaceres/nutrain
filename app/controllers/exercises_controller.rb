@@ -2,11 +2,13 @@ class ExercisesController < ApplicationController
   
   def index
     #@ = .scoped
-    @exercises = Exercise.all
+    @pagy, @exercises = pagy(Exercise.all)
     if params[:workout_id]
-      @exercises = Workout.find(params[:workout_id]).exercises
+      @pagy, @exercises = pagy(Workout.find(params[:workout_id]).exercises)
     end
     if params[:user_id]
+      # @pagy, @exercises = pagy(User.find(params[:user_id]).get_all_exercises)
+      # TODO: pagy has problems with array returned by get_all_exercises
       @exercises = User.find(params[:user_id]).get_all_exercises
     end
   end

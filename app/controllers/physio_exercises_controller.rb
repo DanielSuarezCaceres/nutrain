@@ -4,9 +4,9 @@ class PhysioExercisesController < ApplicationController
   # GET /physio_exercises
   def index
     if params[:client_id]
-      @physio_exercises = User.find(params[:client_id]).physio_exercises
+      @pagy, @physio_exercises = pagy(User.find(params[:client_id]).physio_exercises)
     else
-      @physio_exercises = User.find(params[:user_id]).physio_exercises
+      @pagy, @physio_exercises = pagy(User.find(params[:user_id]).physio_exercises)
       respond_to do |format|
         format.html
         format.pdf do

@@ -3,7 +3,8 @@
     <%= link_to 'New body measurements', new_user_measurement_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Delete all', user_measurements_path(current_user.id), class: 'btn' %>
+     <%= link_to "Delete all", delete_all_user_measurements_path(current_user), :method => :get, class: 'btn btn-danger',
+        data: { confirm: 'You are going to delete all your measurements. This action cannot be undone. Are you sure?' } %>
   </div>
   <div class="p-2">
     <%= link_to 'Download report', "#", 
@@ -52,6 +53,7 @@
       <% end %>
     </tbody>
   </table>
+  <%== pagy_bootstrap_nav(@pagy) %>
   <br>
   <br>
   <!-- refactor this, not necessary to take all measurement if not going to show all of them -->
@@ -61,29 +63,27 @@
   <button class="btn" id="button-measurements-three-months">Last 3 months</button>
   <button class="btn" id="button-measurements-six-months">Last 6 months</button>
   <br>
-
   <!-- MONTHLY GRAPHICS -->
   <div id="measurements-graphics-month">
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:weight)}
         ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last month", download: true, messages: {empty: "No data"},
             id: 'weight-month-graphic', discrete: true %>
-          <br>
-          <%= line_chart [
+    <br>
+    <%= line_chart [
               {name: 'Neck size (cm)', data: @measurements.group_by_day(:day).sum(:neck_size)},
               {name: 'Chest size (cm)', data: @measurements.group_by_day(:day).sum(:chest_size)},
               {name: 'Arm size (cm)', data: @measurements.group_by_day(:day).sum(:arm_size)},
         ], ytitle: "Cm", xtitle: "Date", title: "Upper body metrics progress last month", download: true,
             messages: {empty: "No data"}, discrete: true %>
-          <br>
-          <%= line_chart [
+    <br>
+    <%= line_chart [
               {name: 'Waist size (cm)', data: @measurements.group_by_day(:day).sum(:waist_size)},
               {name: 'Hips size (cm)', data: @measurements.group_by_day(:day).sum(:hips_size)},
               {name: 'Leg size (cm)', data: @measurements.group_by_day(:day).sum(:leg_size)}
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last month", download: true,
             messages: {empty: "No data"}, discrete: true %>
   </div>
-
   <!-- LAST 3 MONTH GRAPHICS -->
   <div id="measurements-graphics-three-months" style="display: none">
     <%= line_chart [
@@ -105,7 +105,6 @@
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 3 months", download: true,
             messages: {empty: "No data"}, discrete: true %>
   </div>
-
   <!-- LAST YEAR GRAPHIC -->
   <div id="measurements-graphics-six-months" style="display: none">
     <%= line_chart [
@@ -126,5 +125,4 @@
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 6 months", download: true,
           messages: {empty: "No data"}, discrete: true %>
   </div>
-
 </div>

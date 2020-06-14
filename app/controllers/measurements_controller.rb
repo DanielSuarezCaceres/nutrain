@@ -4,7 +4,7 @@ class MeasurementsController < ApplicationController
   # GET /measurements
   def index
     if params[:user_id]
-      @measurements = User.find(params[:user_id]).measurements
+      @pagy, @measurements = pagy(User.find(params[:user_id]).measurements)
       respond_to do |format|
         format.html
         format.pdf do
@@ -58,6 +58,14 @@ class MeasurementsController < ApplicationController
       redirect_to user_measurements_path(params[:user_id]), notice: 'Body measurements deleted successfully'
     else
       flash[:erorr] = @measurement.errors.full_messages
+    end
+  end
+
+  def delete_all
+    if current_user.measurements.delete_all
+      redirect_to user_measurements_path(current_user), notice: 'All measurements deleted successfully'
+    else
+      redirect_to user_measurements_path(current_user), flash[:error] = 'Something went wrong while deleting measurements'
     end
   end
 

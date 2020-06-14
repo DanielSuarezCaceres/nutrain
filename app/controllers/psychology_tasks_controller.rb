@@ -4,9 +4,9 @@ class PsychologyTasksController < ApplicationController
   # GET /psychology_tasks
   def index
     if params[:client_id]
-      @psychology_tasks = User.find(params[:client_id]).psychology_tasks
+      @pagy, @psychology_tasks = pagy(User.find(params[:client_id]).psychology_tasks)
     else
-      @psychology_tasks = User.find(params[:user_id]).psychology_tasks
+      @pagy, @psychology_tasks = pagy(User.find(params[:user_id]).psychology_tasks)
       respond_to do |format|
         format.html
         format.pdf do

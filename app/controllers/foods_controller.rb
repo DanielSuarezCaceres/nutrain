@@ -2,9 +2,9 @@ class FoodsController < ApplicationController
 
   def index
     #@ = .scoped
-    @foods = Food.all
+    @pagy, @foods = pagy(Food.all)
     if params[:meal_id]
-      @foods = Meal.find(params[:meal_id]).foods
+     @pagy, @foods = pagy(Meal.find(params[:meal_id]).foods)
     end
   end
 

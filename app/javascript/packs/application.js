@@ -54,6 +54,8 @@ document.addEventListener("turbolinks:load", function () {
   });
 });
 
+// window.addEventListener("turbolinks:load", Pagy.init);
+
 /*
 $(document).ready(function(){
   ScrollReveal().reveal('.pie-graphics  ', {

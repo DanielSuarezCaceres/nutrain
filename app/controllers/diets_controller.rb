@@ -2,9 +2,9 @@ class DietsController < ApplicationController
 
   def index
     if params[:client_id]
-      @diets = User.find(params[:client_id]).diets
+      @pagy, @diets = pagy(User.find(params[:client_id]).diets)
     else
-      @diets = User.find(params[:user_id]).diets
+      @pagy, @diets = pagy(User.find(params[:user_id]).diets)
       respond_to do |format|
         format.html
         format.pdf do

@@ -6,12 +6,13 @@
       <div class="form-inputs">
         <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
         <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
-        <label class="btn" id="btn-sec">
+        <%= f.input :day, as: :date, html5: true %>
+        <!-- <label class="btn" id="btn-sec">
           Select file
           <span style="display:none;">
             <%= f.input :file, label: 'Select photo of meal', as: :file %>
           </span>
-        </label>
+        </label> -->
       </div>
       <br>
       <div class="form-actions">
