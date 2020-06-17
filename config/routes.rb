@@ -85,10 +85,12 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :contacts, only: %i[new create]
   resources :routines
   resources :workouts
   resources :exercises
-  # resources :diets
+  resources :diets
   resources :meals
   resources :foods
   resources :psychology_tasks

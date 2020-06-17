@@ -1,0 +1,20 @@
+<%= simple_form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@contact.errors.count, "error") %> occurred during sending contact email: </h4>
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-inputs">
+    <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
+    <%= f.hidden_field :email, value: current_user.email %>
+    <%= f.input :message, placeholder: "Please, describe your problem with details..." %><br>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Send", class: "btn btn-primary" %>
+  </div>
+<% end %>
