@@ -60,13 +60,23 @@ $pal3col3: #EF767A;
 $pal3col4: #49DCB1;
 $pal3col5: #EEB868;
 
+$pal4col1: #455A64;
+$pal4col2: #607D8B;
+$pal4col3: #4DB6AC;
+$pal4col4: #FF8A65;
+$pal4col5: #EFEBE9;
+
+/* Graphic colors */
+
+//$colors: ['#039be5', '#fb8c00', '#f4511e', '#00897b', '#80deea', '#c0ca33', '#6d4c41', '#3b465e', '#3949ab', '#d81b60'] -> darken-1
+//$colors: ['#42a5f5', '#ffa726', '#ef5350', '#26a69a', '#26c6da', '#d4e157', '#8d6e63', '#59698d', '#5c6bc0', '#ec407a'] -> light-1
+
 /* ---------------------------------------- */
 
 * {
-  font-family: "Quicksand";
+  //font-family: "Quicksand";
+  font-family: 'Roboto-Light', sans-serif;
 }
-
-/* Make footer always after page content, at the bottom */
 
 html {
   height: 100%;
@@ -122,7 +132,7 @@ body {
   font-size: 14px;
   margin-top: 30px;
   padding: 10px 0px 10px 0px;
-  background-color: $pal1col1;
+  background-color: $midnight-blue;
 }
 
 // Background gradient for  screens
@@ -141,71 +151,27 @@ li {
     text-decoration: none;
   }
 }
-/*
-a:link { 
+
+h1 {
   color: white;
 }
-a:visited { 
-  color: white;
+
+h4 {
+  color: black;
+  padding: 0px 0px 0px 5px;
 }
-a:hover { 
-  color: #CCCCCC;
-}
-a:active { 
-  color: white;
-}*/
 
 table {
-    background-color: rgba(0,0,0,0.025);
-}
-
-#upper-toolbar {
-  background-color: #cfd8dc;
-  height: 15%; // Is it doing something???
-}
-
-@media (min-width: 768px) {  
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-    border-radius:0;
+  background-color: rgba(0,0,0,0.025);
+  border-collapse: collapse;
+  border-radius: 5px 5px 5px 5px; //1em;
+  overflow: hidden;
+  th, td {
+    padding: 1em;
   }
 }
 
-/*.select2-icon-result {
-  display: flex;
-  flex-flow: row nowrap;
-}*/
-
-.navbar {
-  background-color: $pal1col1;
-  text-decoration: none;
-  border-bottom: 0;
-  color: white;
-  li {
-    padding-left: 5px;
-    padding-right: 5px;
-
-    margin-left: 5px;
-    margin-right: 5px;
-    font-weight: bold;
-  }
-}
-
-.navbar-nav > .active > a {
-    background: $midnight-blue;
-    border: medium none;
-}
-
-/*
-.navbar-default .navbar-nav>.active> a, 
-.navbar-default .navbar-nav>.active> a:focus, 
-.navbar-default .navbar-nav>.active> a:hover {
-  background: #86bb15;
-}
-*/
-
-// it does something???
+// does it does something???
 li.dropdown-item {
   color: inherit !important;
 }
@@ -221,59 +187,98 @@ hr {
   height: 0.25px;
 }
 
-.daily-workouts-header, .daily-meals-header {
-  background-color: $pal2col2;
-  border-radius: 5px 5px 0px 0px;
-  h3 {
-    color: white;
-    margin: 5px 0px 0px 5px;
+#upper-toolbar {
+  //background-color: #cfd8dc;
+  background-color: rgba(158, 158, 158, 0.1);
+  height: 15%; // Is it doing something???
+}
+
+.navbar {
+  background-color: $midnight-blue;
+  //background-color: $pal1col1;
+  text-decoration: none;
+  border-bottom: 0;
+  color: white;
+  li {
+    padding-left: 5px;
+    padding-right: 5px;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    //font-weight: bold;
   }
 }
 
-.workout-block {
+.navbar-nav > .active > a {
+    background: $midnight-blue;
+    border: medium none;
+}
 
+/* WELCOME PAGE STYLE */
+
+.table-details, .table-summary-welcome-page {
+  th {
+    background-color: rgba(0, 0, 0, 0.025);
+    color: black;
+  }
+}
+
+.welcome-macros-graphics {
+  background-color: rgba(158, 158, 158, 0.1);
+}
+
+.daily-workouts-header, .daily-meals-header {
+  //background-color: #ffa726;
+  background-color: $pal3col1;
+  border-radius: 5px 5px 0px 0px;
+  h4 {
+    color: white;
+    margin: 5px 5px 5px 5px;
+    padding: 2.5px 2.5px 2.5px 2.5px;
+  }
 }
 
 .daily-summary-header {
-  background-color: $pal2col2;
-  h2 {
+  background-color: $pal3col1;
+  h3 {
     color: white;
-    margin-left: 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 2.5px 2.5px 2.5px 2.5px;
   }
 }
 
 .daily-macros-header {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   border-radius: 5px 5px 0px 0px;
-  h3 {
+  h4 {
     color: white;
-    margin-left: 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 2.5px 2.5px 2.5px 2.5px;
   }
 }
 
 .daily-kcal-header, .daily-protein-header, .daily-carbs-header, .daily-fats-header {
-  background-color: $og_secondary1;
   height: 15%;
   align-items: center;
 }
 
 .weekly-macros-header {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   border-radius: 5px 5px 0px 0px;
-  h3 {
+  h4 {
     color: white;
-    margin-left: 5px;
+    margin: 5px 5px 5px 5px;
+    padding: 2.5px 2.5px 2.5px 2.5px;
   }
 }
 
-h1 {
-  color: white;
+.weekly-macros-graphic {
+  background-color: rgba(158, 158, 158, 0.1);
+  border-color: $midnight-blue;
+  border-width: 1px;
 }
 
-h4 {
-  color: black;
-  padding: 0px 0px 0px 5px;
-}
+/* END WELCOME PAGE STYLE */
 
 .appointment-box {
   background-color: $pal1col5;
@@ -291,25 +296,10 @@ h4 {
 
 .table-title {
   color: white;
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   height: 15%;
-}
-
-// Rounded borders in table
-table {
-  border-collapse: collapse;
-  border-radius: 5px 5px 5px 5px; //1em;
-  overflow: hidden;
-
-  th, td {
-    padding: 1em;
-  }
-}
-
-.table-details, .table-summary-welcome-page {
-  th {
-    background-color: rgba(0, 0, 0, 0.025);
-    color: black;
+  h3 {
+    padding: 5px 5px 5px 5px;
   }
 }
 
@@ -317,19 +307,15 @@ table {
   border-left: 1px black,;
 }
 
+.measurements-graphics {
+  background-color: rgba(158, 158, 158, 0.1);
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+}
+
 // show same height as other bootstrap inputs
 .select2-container .select2-selection--single {height: 40px !important;}
-
-/*
-.css-mine {
-  margin-top: 2em;
-  clear: both;
-}
-
-body {
-  margin: 1.5em;
-}
-*/
 
 // Simple calendar gem style
 .simple-calendar {
@@ -357,7 +343,7 @@ body {
 }
 
 .calendar-title.btn {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   color: white;
   margin: 0px;
   pointer-events: none;
@@ -369,6 +355,13 @@ body {
 }
 
 // Some media queries adjustments for Desktop, Mobile & Tablet
+@media (min-width: 768px) {  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    border-radius:0;
+  }
+}
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .select2 {

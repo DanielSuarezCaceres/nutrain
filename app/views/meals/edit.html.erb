@@ -37,7 +37,7 @@
         <%= f.association :foods, collection: current_user.foods.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients",
           label: 'Add existing ingredients', include_blank: false, include_hidden: false, hint: 'Search here existing ingredients' %>
       </div>
-      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
+      <p><small>*Remember that you can go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
       <hr>
       <div class="foods-form">
         <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
@@ -77,10 +77,10 @@
             <% end %>
             <tr>
               <td class="text-center" style="font-weight: bold">Total macros</td>
-              <td class="text-center" style="font-weight: bold"><%= @meal.kcal%></td>
-              <td class="text-center" style="font-weight: bold"><%= @meal.protein %></td>
-              <td class="text-center" style="font-weight: bold"><%= @meal.carbs %></td>
-              <td class="text-center" style="font-weight: bold"><%= @meal.fats %></td>
+              <td class="text-center" style="font-weight: bold"><%= @meal.kcal %></td>
+              <td class="text-center" style="font-weight: bold"><%= @meal.protein.round %></td>
+              <td class="text-center" style="font-weight: bold"><%= @meal.carbs.round %></td>
+              <td class="text-center" style="font-weight: bold"><%= @meal.fats.round %></td>
             </tr>
           </tbody>
         </table>

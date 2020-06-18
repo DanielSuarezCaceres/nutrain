@@ -18,19 +18,19 @@
  @import "style";
  
 .btn, a.btn {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   color: white;
   margin: 5px 5px 5px 5px;
 }
 
 .card-header {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   color: white;
 }
 
 .btn-group {
   .btn {
-    background-color: $pal2col2;
+    background-color: $pal3col1;
   }
   .prev.btn {
     opacity: 1;
@@ -49,6 +49,6 @@
 }
 
 th {
-  background-color: $pal2col2;
+  background-color: $pal3col1;
   color: white;
 }

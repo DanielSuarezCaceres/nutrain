@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :clients, controller: 'users', type: 'Client' do
+      #resources :professionals, only: %i[show]
       resources :routines
       resources :diets
       resources :psychology_tasks

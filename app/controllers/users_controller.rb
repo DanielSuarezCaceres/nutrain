@@ -5,10 +5,13 @@ class UsersController < ApplicationController
   def index
     # @user = User.all
     if current_user.type == 'Professional'
-      @pagy, @users = pagy(User.all)
+      @q = Client.ransack(params[:q])
+      @pagy, @users = pagy(@q.result)
       #@pagy, @users = User.users_except_admin(current_user.id)
     else
-      @users = User.only_professionals
+      @q = Professional.ransack(params[:q])
+      @pagy, @users, = pagy(@q.result)
+      #@users = User.only_professionals
     end
   end
 
