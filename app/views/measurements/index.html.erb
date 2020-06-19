@@ -72,63 +72,63 @@
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:weight)}
         ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last month", download: true, messages: {empty: "No data"},
-            id: 'weight-month-graphic', discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+            id: 'weight-month-graphic', discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day).sum(:neck_size)},
           {name: 'Chest size (cm)', data: @measurements.group_by_day(:day).sum(:chest_size)},
           {name: 'Arm size (cm)', data: @measurements.group_by_day(:day).sum(:arm_size)},
         ], ytitle: "Cm", xtitle: "Date", title: "Upper body metrics progress last month", download: true,
-            messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+            messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Waist size (cm)', data: @measurements.group_by_day(:day).sum(:waist_size)},
           {name: 'Hips size (cm)', data: @measurements.group_by_day(:day).sum(:hips_size)},
           {name: 'Leg size (cm)', data: @measurements.group_by_day(:day).sum(:leg_size)}
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last month", download: true,
-            messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+            messages: {empty: "No data"}, discrete: true %>
   </div>
   <!-- LAST 3 MONTH GRAPHICS -->
   <div id="measurements-graphics-three-months" style="display: none">
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:weight)}
         ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last 3 months", download: true,
-            messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+            messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:neck_size)},
           {name: 'Chest size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:chest_size)},
           {name: 'Arm size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:arm_size)},
         ], ytitle: "Cm", xtitle: "Date", title: "Upper body metrics progress last 3 months", download: true,
-          messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+          messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Waist size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:waist_size)},
           {name: 'Hips size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:hips_size)},
           {name: 'Leg size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:leg_size)}
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 3 months", download: true,
-            messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+            messages: {empty: "No data"}, discrete: true %>
   </div>
   <!-- LAST YEAR GRAPHIC -->
   <div id="measurements-graphics-six-months" style="display: none">
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:weight)}
-        ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last 6 months", download: true, messages: {empty: "No data"}, discrete: true,
-          colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+        ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last 6 months", download: true,
+          messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:neck_size)},
           {name: 'Chest size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:chest_size)},
           {name: 'Arm size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:arm_size)},
         ], ytitle: "Cm", xtitle: "Date", title: "Upper body metrics progress last 6 months", download: true,
-          messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+          messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Waist size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:waist_size)},
           {name: 'Hips size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:hips_size)},
           {name: 'Leg size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:leg_size)}
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 6 months", download: true,
-          messages: {empty: "No data"}, discrete: true, colors: ['#42a5f5', '#ffa726', '#ef5350'] %>
+          messages: {empty: "No data"}, discrete: true %>
   </div>
   </div>
 

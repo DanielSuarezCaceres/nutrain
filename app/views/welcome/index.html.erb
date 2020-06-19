@@ -109,8 +109,7 @@
           <h4>Total: <%= Meal.total_protein_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:protein),
-              title: "Daily protein", download: true, messages: {empty: "No data"},
-              colors: ['#42a5f5', '#ffa726', '#ef5350', '#26a69a', '#26c6da', '#d4e157', '#8d6e63', '#59698d', '#5c6bc0', '#ec407a'] %>
+              title: "Daily protein", download: true, messages: {empty: "No data"} %>
         
       </div>
       <div class="col-md-3 carbs-graphic">
@@ -118,8 +117,7 @@
           <h4>Total: <%= Meal.total_carbs_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:carbs),
-              title: "Daily carbs", download: true, messages: {empty: "No data"},
-              colors: ['#42a5f5', '#ffa726', '#ef5350', '#26a69a', '#26c6da', '#d4e157', '#8d6e63', '#59698d', '#5c6bc0', '#ec407a'] %>
+              title: "Daily carbs", download: true, messages: {empty: "No data"} %>
         
       </div>
       <div class="col-md-3 fats-graphic">
@@ -127,8 +125,7 @@
           <h4>Total: <%= Meal.total_fats_meals_today(current_user.id) %> g</h4>
         </div>
         <%= pie_chart current_user.meals.where("DATE(day) = ?", Date.today).group(:name).sum(:fats),
-              title: "Daily fats", download: true, messages: {empty: "No data"},
-              colors: ['#42a5f5', '#ffa726', '#ef5350', '#26a69a', '#26c6da', '#d4e157', '#8d6e63', '#59698d', '#5c6bc0', '#ec407a'] %>
+              title: "Daily fats", download: true, messages: {empty: "No data"}%>
         
       </div>
     </div>
@@ -146,8 +143,7 @@
         {name: "Total protein per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:protein)},
         {name: "Total carbs per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:carbs)},
         {name: "Total fats per day", data: @meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:fats)}],
-        ytitle: "Quantity (gr)", xtitle: "Days", title: "Last 7 days marcronutrients", download: true, messages: {empty: "No data"},
-        colors: ['#42a5f5', '#ffa726', '#ef5350']
+        ytitle: "Quantity (gr)", xtitle: "Days", title: "Last 7 days marcronutrients", download: true, messages: {empty: "No data"}
     %>
   </div>
   <div class="row">
