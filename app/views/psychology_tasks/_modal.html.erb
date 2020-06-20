@@ -11,6 +11,7 @@
       <%= date_field :psychology_task, :end_date, class: 'form-control' %><br>
       <p class="small">*If any date field is empty, all psychology exercises will be shown in the PDF file.</p>
       <div class="modal-footer">
+        <%= button_tag "Clear", type: :reset, class: 'btn' %>
         <%= button_tag "See pdf", class: 'btn' %>
       </div>
     <% end %>
