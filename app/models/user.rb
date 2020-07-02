@@ -59,11 +59,9 @@ class User < ApplicationRecord
 
   def self.users_without_contract(user_id)
     user = User.find(user_id)
-    type = user.type
     all_users = User.where.not(id: user_id)
     users_with_contract = []
-    byebug
-    if type == 'Professional'
+    if user.type == 'Professional'
       user.contracts.each do |c|
         users_with_contract << User.find(c.client_id)
       end

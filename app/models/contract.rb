@@ -5,9 +5,9 @@ class Contract < ApplicationRecord
   def self.get_contract_message(client_id, professional_id)
     contract = Contract.where(client_id: client_id, professional_id: professional_id).first
     if contract.state == 'Active'
-      "Cancel contract"
+      "See contract"
     else
-      "Cancel contract request"
+      "See contract request"
     end
 
     

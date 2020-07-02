@@ -1,6 +1,7 @@
 <div id="contract-form">
   <% if @contract.state == 'Pending' %>
-    <%= simple_form_for(@contract, remote: true, data: { confirm: 'This action cannot be undone. Are you sure?' }) do |f| %>
+    <%= simple_form_for(@contract, url: user_contract_path(user_id: current_user.id, client_id: params[:client_id]), method: :put,
+    remote: true, data: { confirm: 'This action cannot be undone. Are you sure?' }) do |f| %>
       <b>Request from: </b> <%= User.find(@contract.sent_by_id).fullname %><br>
       <b>Request sent at:</b> <%= @contract.created_at %><br>
       <b>Message:</b>
@@ -15,7 +16,8 @@
       <% end %>
     <% end %>
   <% elsif @contract.state == 'Active' %>
-    <%= simple_form_for(@contract, data: { confirm: 'You are cancelling a contract, this cannot be undone. Are you sure?' }) do |f| %>
+    <%= simple_form_for(@contract, url: user_contract_path(user_id: current_user.id, client_id: params[:client_id]), method: :put,
+    data: { confirm: 'You are cancelling a contract, this cannot be undone. Are you sure?' }) do |f| %>
       <b><%= f.label :client_id %>:</b> <%= User.find(@contract.client_id).fullname %><br>
       <b><%= f.label :professional_id %>:</b> <%= User.find(@contract.professional_id).fullname %><br>
       <b>Active since:</b> <%= @contract.updated_at %><br><br>

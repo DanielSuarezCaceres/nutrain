@@ -61,9 +61,19 @@
               <!-- appointments can be made without existing a contract between professional and user -->
               <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
               <% if current_user.has_contract?(user.id) %>
+                <% contract = Contract.where(professional_id: current_user.id, client_id: user.id).first %>
                 <%= link_to Contract.get_contract_message(user.id, current_user.id), 
                   edit_user_contract_path(user_id: current_user, id: Contract.where(professional_id: current_user.id, client_id: user.id).first),
                   class: 'btn btn-danger' %>
+                
+                <!-- ELIMINATE DIRECTLY CONTRACT 
+                <%= link_to Contract.get_contract_message(user.id, current_user.id), user_contract_path(user_id: current_user.id, id: contract.id), method: :delete,
+                data: { confirm: "You are deleting the following contract: 
+                -Client: #{User.find(contract.client_id).fullname}
+                -Professional: #{User.find(contract.professional_id).fullname}
+                -Status: #{contract.state}
+                This action cannot be undone. Are you sure you want to delete?" }, class: 'btn btn-danger' %>
+                -->
               <% else %>
                 <%= link_to 'Contract request', new_user_contract_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
               <% end %>
