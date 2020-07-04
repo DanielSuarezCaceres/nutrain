@@ -141,6 +141,12 @@ body {
   background: linear-gradient(180deg, rgba(38,70,83,1) 0%, rgba(36,113,113,1) 58%, rgba(42,157,143,1) 100%);
 }
 
+.devise-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .logo {
   font-family: "Sriracha";
 }

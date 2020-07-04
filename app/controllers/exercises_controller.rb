@@ -17,7 +17,7 @@ class ExercisesController < ApplicationController
   end
 
   def new
-    @exercise = curent_user.exercises.new
+    @exercise = Exercise.new
   end
 
   def create

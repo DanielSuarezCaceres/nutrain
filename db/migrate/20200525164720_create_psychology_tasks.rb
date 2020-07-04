@@ -3,6 +3,7 @@ class CreatePsychologyTasks < ActiveRecord::Migration[6.0]
     create_table :psychology_tasks do |t|
       t.string :name
       t.text :description
+      t.string :goal
       t.bigint :user_id
       # t.references :client, index: true, foreign_key: { to_table: 'users' }
       t.references :sent_by, index: true, foreign_key: { to_table: 'users' }

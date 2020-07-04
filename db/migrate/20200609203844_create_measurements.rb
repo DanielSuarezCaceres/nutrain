@@ -3,6 +3,7 @@ class CreateMeasurements < ActiveRecord::Migration[6.0]
     create_table :measurements do |t|
       t.datetime :day
       t.integer :weight
+      t.integer :body_fat
       t.integer :neck_size
       t.integer :chest_size
       t.integer :arm_size

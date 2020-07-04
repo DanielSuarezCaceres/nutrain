@@ -8,5 +8,15 @@
       <th class="text-center">Description</th>
       <td class="text-center"><%= @psychology_task.description %></td>
     </tr>
+    <tr>
+      <th class="text-center">Goal</th>
+      <td class="text-center"><%= @psychology_task.goal %></td>
+    </tr>
+    <% if @psychology_task.sent_by_id != current_user.id %>
+      <tr>
+        <th class="text-center">Sent by</th>
+        <td class="text-center"><%= User.find(@psychology_task.sent_by_id).fullname %></td>
+      </tr>
+    <% end %>
   </table>
 </div>

@@ -122,13 +122,14 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
   create_table "measurements", force: :cascade do |t|
     t.datetime "day"
     t.integer "weight"
+    t.integer "body_fat"
     t.integer "neck_size"
     t.integer "chest_size"
     t.integer "arm_size"
     t.integer "waist_size"
     t.integer "hips_size"
     t.integer "leg_size"
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_measurements_on_user_id"
@@ -149,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
   create_table "psychology_tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.string "goal"
     t.bigint "user_id"
     t.bigint "sent_by_id"
     t.datetime "created_at", precision: 6, null: false

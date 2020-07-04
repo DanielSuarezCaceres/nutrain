@@ -33,7 +33,7 @@
             <td class="text-center">
               <%= link_to 'Details', user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
               <%= link_to 'Delete', user_exercise_path(user_id: current_user.id, id: exercise.id), 
-            method: :delete, data: { confirm: "You are deleting '#{exercise.name}'. Are you sure" }, class: 'btn btn-danger' %>
+                  method: :delete, data: { confirm: "You are deleting '#{exercise.name}'. Are you sure" }, class: 'btn btn-danger' %>
               <%= link_to 'Edit', edit_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
             </td>
           </tr>
@@ -41,7 +41,10 @@
       <% end%>
     </tbody>
   </table>
-  <%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
+</div>
+
+<%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
+<div>
   <br><br>
 
   <h3>Exercises progression</h3>
@@ -51,5 +54,4 @@
     #{name: 'Weight (kg)', data: Exercise.all.group(:name).sum(:weight) }, messages: { empty: "No data"}
     #{name: 'Weight (kg)', data: @user_exercises.group_by_day { |u| u.created_at }.map { |k, v| [k, v.count] }.to_h }
   ] %>
-  
 </div>

@@ -109,12 +109,5 @@ class User < ApplicationRecord
     end
     foods
   end
-
-  def weights_last_month
-    weights = []
-    self.measurements.each do |m|
-      weights << m.weight
-    end
-    weights
-  end
+  
 end

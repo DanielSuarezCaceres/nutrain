@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.input :name, placeholder: 'Name of the exercise' %>
     <%= f.input :description, placeholder: 'Give some details: explanations, tips, considerations...' %>
+    <%= f.input :goal, placeholder: 'What is the goal of this task?'%>
     <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   </div>
   <div class="row form-actions">

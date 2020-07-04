@@ -76,6 +76,7 @@ class MeasurementsController < ApplicationController
         :id,
         :day,
         :weight,
+        :body_fat,
         :neck_size,
         :chest_size,
         :arm_size,

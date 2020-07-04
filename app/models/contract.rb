@@ -9,8 +9,11 @@ class Contract < ApplicationRecord
     else
       "See contract request"
     end
+  end
 
-    
+  def self.get_state(client_id, professional_id)
+    contract = Contract.where(client_id: client_id, professional_id: professional_id).first
+    contract.state
   end
 
 end

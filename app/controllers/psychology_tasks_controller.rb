@@ -28,6 +28,7 @@ class PsychologyTasksController < ApplicationController
   def new
     # @psychology_task = PsychologyTask.new
     @psychology_task = User.find(params[:user_id]).psychology_tasks.new
+    @psychology_task = PsychologyTask.new
     # if params[:client_id]
     #   @psychology_task = User.find(params[:client_id]).psychology_tasks.new
     # else
@@ -45,6 +46,8 @@ class PsychologyTasksController < ApplicationController
     if params[:psychology_task][:user_id].to_i != current_user.id
       @client = User.find(params[:psychology_task][:user_id].to_i)
       @psychology_task = @client.psychology_tasks.new(psychology_task_params)
+      @psychology_task.assign_attributes(sent_by_id: current_user.id) # task is assigned by professional
+      byebug
       if @psychology_task.valid?
         @psychology_task.save
         redirect_to user_clients_path(user_id: params[:user_id]),
@@ -102,8 +105,10 @@ class PsychologyTasksController < ApplicationController
     params.require(:psychology_task).permit(
       :name,
       :description,
+      :goal,
       :user_id,
-      :client_id
+      :client_id,
+      :sent_by_id
     )
   end
   

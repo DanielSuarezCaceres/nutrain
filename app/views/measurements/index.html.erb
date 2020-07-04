@@ -3,7 +3,7 @@
     <%= link_to 'New body measurements', new_user_measurement_path(current_user), class: 'btn' %>
   </div>
   <div class="p-2">
-     <%= link_to "Delete all", delete_all_user_measurements_path(current_user), :method => :get, class: 'btn btn-danger',
+    <%= link_to "Delete all", delete_all_user_measurements_path(current_user), :method => :get, class: 'btn btn-danger',
         data: { confirm: 'You are going to delete all your measurements. This action cannot be undone. Are you sure?' } %>
   </div>
   <div class="p-2">
@@ -23,6 +23,7 @@
   <table class="table table-hover">
     <tr>
       <th class="text-center">Weight (kg)</th>
+      <th class="text-center">Body fat (%)</th>
       <th class="text-center">Neck (cm)</th>
       <th class="text-center">Chest (cm)</th>
       <th class="text-center">Arm (cm)</th>
@@ -36,6 +37,7 @@
       <% @measurements.each do |measurement| %>
         <tr>
           <td class="text-center"><%= measurement.weight %></td>
+          <td class="text-center"><%= measurement.body_fat %></td>
           <td class="text-center"><%= measurement.neck_size %></td>
           <td class="text-center"><%= measurement.chest_size %></td>
           <td class="text-center"><%= measurement.arm_size %></td>
@@ -47,32 +49,37 @@
             <%= link_to 'Details', user_measurement_path(user_id: current_user.id, id: measurement.id), class: 'btn' %>
             <%= link_to 'Edit', edit_user_measurement_path(user_id: current_user.id, id: measurement.id), class: 'btn' %>
             <%= link_to 'Delete', user_measurement_path(user_id: current_user.id, id: measurement.id), method: :delete,
-        data: { confirm: "This action cannot be undone'. Are you sure?" }, class: 'btn btn-danger' %>
+              data: { confirm: "This action cannot be undone'. Are you sure?" }, class: 'btn btn-danger' %>
           </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-  <%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
-  <br>
-  <br>
-  <!-- refactor this, not necessary to take all measurement if not going to show all of them -->
-  <% @measurements = current_user.measurements %>
-  <div class="body-measurements-buttons">
+</div>
+<%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
+<br>
+<br>
+<!-- refactor this, not necessary to take all measurement if not going to show all of them -->
+<% @measurements = Measurement.last_six_months(current_user.id) %>
+<div class="body-measurements-buttons">
   <h3>Body measurements progress</h3>
   <button class="btn" id="button-measurements-month">Last month</button>
   <button class="btn" id="button-measurements-three-months">Last 3 months</button>
   <button class="btn" id="button-measurements-six-months">Last 6 months</button>
-  </div>
-  <br>
-
-  <!-- MONTHLY GRAPHICS -->
-  <div class="measurements-graphics">
+</div>
+<br>
+<!-- MONTHLY GRAPHICS -->
+<div class="measurements-graphics">
   <div id="measurements-graphics-month">
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:weight)}
         ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last month", download: true, messages: {empty: "No data"},
             id: 'weight-month-graphic', discrete: true %>
+    <br>
+    <%= line_chart [
+          {name: 'Body fat (%)', data: @measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:body_fat)}
+        ], ytitle: "Body fat %", xtitle: "Date", title: "Body fat % progress last month", download: true,
+          messages: {empty: "No data"},discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day).sum(:neck_size)},
@@ -96,6 +103,11 @@
             messages: {empty: "No data"}, discrete: true %>
     <br>
     <%= line_chart [
+          {name: 'Body fat (%)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:body_fat)}
+        ], ytitle: "Body fat %", xtitle: "Date", title: "Body fat % progress last 3 months", download: true,
+          messages: {empty: "No data"},discrete: true %>
+    <br>
+    <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:neck_size)},
           {name: 'Chest size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:chest_size)},
           {name: 'Arm size (cm)', data: @measurements.group_by_day(:day, range: 3.month.ago..Date.today).sum(:arm_size)},
@@ -109,12 +121,17 @@
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 3 months", download: true,
             messages: {empty: "No data"}, discrete: true %>
   </div>
-  <!-- LAST YEAR GRAPHIC -->
+  <!-- LAST SIX MONTHS GRAPHICS -->
   <div id="measurements-graphics-six-months" style="display: none">
     <%= line_chart [
           {name: 'Weight (kg)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:weight)}
         ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last 6 months", download: true,
           messages: {empty: "No data"}, discrete: true %>
+    <br>
+    <%= line_chart [
+          {name: 'Body fat (%)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:body_fat)}
+        ], ytitle: "Body fat %", xtitle: "Date", title: "Body fat % progress last 6 months", download: true,
+          messages: {empty: "No data"},discrete: true %>
     <br>
     <%= line_chart [
           {name: 'Neck size (cm)', data: @measurements.group_by_day(:day, range: 6.month.ago..Date.today).sum(:neck_size)},
@@ -130,6 +147,5 @@
         ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last 6 months", download: true,
           messages: {empty: "No data"}, discrete: true %>
   </div>
-  </div>
-
+</div>
 </div>

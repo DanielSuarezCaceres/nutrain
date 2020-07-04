@@ -1,16 +1,188 @@
-<div class="container p-3 col-6">
-  <div class="card">
-    <div class="card-header d-flex">
-      <div class="mr-auto">
-        <h2>User details</h2>
+<% if current_user.has_contract?(@user.id) && Contract.get_state(@user.id, current_user.id) == 'Active' %>
+  <div class="container p-3 col-9">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div class="mr-auto">
+          <h2>User details</h2>
+        </div>
+        <% if current_user.id == @user.id %>
+          <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn' %>
+        <% end %>
+        <%= link_to 'Back', :back, class: 'btn' %>
       </div>
-      <% if current_user.id == @user.id %>
-        <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn' %>
-      <% end %>
-      <%= link_to 'Back', :back, class: 'btn' %>
-    </div>
-    <div class="card-body">
-      <%= render 'user' %>
+      <div class="card-body">
+        <%= render 'user' %>
+      </div>
     </div>
   </div>
-</div>
+  <div class="container p-3 col-9">
+    <div class="card client-stats">
+      <div class="card-header">
+        <div class="row d-flex justify-content-center">
+          <button class="btn" id="button-client-meals">Last meals</button>
+          <button class="btn" id="button-client-workouts">Last workouts</button>
+          <button class="btn" id="button-client-psychology">Last psychology exercises</button>
+          <button class="btn" id="button-client-physiotherapy">Last physio exercises</button>
+          <button class="btn" id="button-client-body-measurements">Body measurements</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-stats-content">
+      <!-- CLIENT MEALS -->
+      <div class="container-client-meals" id="client-meals">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-hover">
+              <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Kcal</th>
+                <th class="text-center">Protein</th>
+                <th class="text-center">Carbs</th>
+                <th class="text-center">Fats</th>
+              </tr>
+              <tbody>
+                <% @user.meals.each do |meal| %>
+                  <tr>
+                    <td class="text-center"><%= meal.name %></td>
+                    <td class="text-center"><%= meal.kcal %></td>
+                    <td class="text-center"><%= meal.protein %></td>
+                    <td class="text-center"><%= meal.carbs %></td>
+                    <td class="text-center"><%= meal.fats %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- CLIENT WORKOUTS -->
+        <div class="container-client-workout"  id="client-workouts" style="display: none">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-hover">
+              <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Nº of exercises</th>
+                <th class="text-center">Days of exercise</th>
+                <th class="text-center">Date</th>
+              </tr>
+              <tbody>
+                <% @user.workouts.each do |workout| %>
+                  <tr>
+                    <td class="text-center"><%= workout.name %></td>
+                    <td class="text-center"><%= workout.description %></td>
+                    <td class="text-center"><%= workout.number_of_exercises %></td>
+                    <td class="text-center"><%= workout.created_at %></td>
+                    <td class="text-center"><%= workout.goal %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- CLIENT PSYCHOLOGY EXERCISES -->
+        <div class="container-client-psychology" id="client-psychology" style="display: none">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">Name</th>
+                  <th class="text-center">Description</th>
+                  <th class="text-center">Goal </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @user.psychology_tasks.each do |psychology_task| %>
+                  <tr>
+                    <td class="text-center"><%= psychology_task.name %></td>
+                    <td class="text-center"><%= psychology_task.description %></td>
+                    <td class="text-center"><%= psychology_task.goal %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- CLIENT PHYSIOTHERAPY EXERCISES -->
+        <div class="container-client-physiotherapy" id="client-physiotherapy" style="display:none">
+          <div class="table-responsive">
+            <table class="table table-responsive-sm table-hover">
+              <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Duration</th>
+              </tr>
+              <tbody>
+                <% @user.physio_exercises.each do |physio_exercise| %>
+                  <tr>
+                    <td class="text-center"><%= physio_exercise.name %></td>
+                    <td class="text-center"><%= physio_exercise.description %></td>
+                    <td class="text-center"><%= physio_exercise.duration %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- CLIENT BODY MEASUREMENTS -->
+        <div class="container-client-measurements" id="client-body-measurements" style="display:none">
+          <div class="table-responsive">
+            <table class="table table-responsive-lg table-responsive-md table-responsive-sm table-hover">
+              <tr>
+                <th class="text-center">Weight (kg)</th>
+                <th class="text-center">Body fat (%)</th>
+                <th class="text-center">Neck (cm)</th>
+                <th class="text-center">Chest (cm)</th>
+                <th class="text-center">Arm (cm)</th>
+                <th class="text-center">Waist (cm)</th>
+                <th class="text-center">Hips (cm)</th>
+                <th class="text-center">Leg (cm)</th>
+                <th class="text-center">Day</th>
+              </tr>
+              <tbody>
+                <% @user.measurements.each do |measurement| %>
+                  <tr>
+                    <td class="text-center"><%= measurement.weight %></td>
+                    <td class="text-center"><%= measurement.body_fat %></td>
+                    <td class="text-center"><%= measurement.neck_size %></td>
+                    <td class="text-center"><%= measurement.chest_size %></td>
+                    <td class="text-center"><%= measurement.arm_size %></td>
+                    <td class="text-center"><%= measurement.waist_size %></td>
+                    <td class="text-center"><%= measurement.hips_size %></td>
+                    <td class="text-center"><%= measurement.leg_size %></td>
+                    <td class="text-center"><%= measurement.day %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+            <%= line_chart [
+              {name: "Total protein per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:protein)},
+              {name: "Total carbs per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:carbs)},
+              {name: "Total fats per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:fats)}],
+              ytitle: "Quantity (gr)", xtitle: "Days", title: "Last 7 days marcronutrients", download: true, messages: {empty: "No data"}
+            %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% else %>
+    <div class="container p-3 col-6">
+      <div class="card">
+        <div class="card-header d-flex">
+          <div class="mr-auto">
+            <h2>User details</h2>
+          </div>
+          <% if current_user.id == @user.id %>
+            <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn' %>
+          <% end %>
+          <%= link_to 'Back', :back, class: 'btn' %>
+        </div>
+        <div class="card-body">
+          <%= render 'user' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

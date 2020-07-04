@@ -19,6 +19,7 @@
   <table class="table">
     <tr>
       <th class="text-center">Weight (kg)</th>
+      <th class="text-center">Body fat (%)</th>
       <th class="text-center">Neck size (cm)</th>
       <th class="text-center">Chest size (cm)</th>
       <th class="text-center">Arm size (cm)</th>
@@ -31,6 +32,7 @@
       <% measurements.each do |measurement| %>
         <tr>
           <td class="text-center"><%= measurement.weight %></td>
+          <td class="text-center"><%= measurement.body_fat %></td>
           <td class="text-center"><%= measurement.neck_size %></td>
           <td class="text-center"><%= measurement.chest_size %></td>
           <td class="text-center"><%= measurement.arm_size %></td>

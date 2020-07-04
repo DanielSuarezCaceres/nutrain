@@ -8,7 +8,6 @@
 
 document.addEventListener("turbolinks:load", function () {
   $("#button-measurements-month").click(function () {
-    console.log("SHOWING MONTH");
     // $("#measurements-graphics-month").show();
     // $("#measurements-graphics-year").hide();
     var chart = Chartkick.charts["weight-month-graphic"];
@@ -24,7 +23,6 @@ document.addEventListener("turbolinks:load", function () {
 
 document.addEventListener("turbolinks:load", function () {
   $("#button-measurements-three-months").click(function () {
-    console.log("SHOWING QUARTER");
     // $("#measurements-graphics-month").show();
     // $("#measurements-graphics-year").hide();
     document.getElementById('measurements-graphics-three-months').style.display = 'inline';
