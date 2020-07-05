@@ -25,7 +25,14 @@
     </div>
     </div>
   <div class="footer-box">
-    <footer class="footer text-center">&copy; 2020 Daniel Suárez Cáceres. All rights reserved.</footer>
+    <footer class="footer text-center">
+      &copy; 2020 Daniel Suárez Cáceres. All rights reserved. <br><br>
+      <div class="row d-flex justify-content-center">
+        <%= link_to 'Privacy', new_contact_path, class: 'mr-2' %>
+        <%= link_to 'Terms of service', new_contact_path, class: 'mr-2' %>
+        <%= link_to 'Cookies', new_contact_path, class: 'mr-2' %>
+      </div>
+    </footer>
   </div>
   </body>
 

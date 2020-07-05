@@ -12,7 +12,7 @@
   <div class="form-inputs">
     <%= f.input :email, as: :hidden, input_html: { value: current_user.email } %>
     <%= f.hidden_field :email, value: current_user.email %>
-    <%= f.input :message, placeholder: "Please, describe your problem with details..." %><br>
+    <%= f.text_area :message, rows: 5, placeholder: "Please, describe your problem with details...", class: 'form-control' %><br>
   </div>
   <div class="form-actions">
     <%= f.submit "Send", class: "btn btn-primary" %>

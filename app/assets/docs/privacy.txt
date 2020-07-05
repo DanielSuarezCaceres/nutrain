@@ -1,0 +1,14 @@
+1. Registro de actividades de tratamiento
+El primer paso para cumplir con la ley de protección de datos informáticos y adaptarse al RGPD es elaborar un registro de actividades de tratamiento. Para ello, debes tener claro qué son los datos en la empresa de informática que estás utilizando. Si no lo sabes, comienza por realizar un análisis de los mismos, de qué tipo son y qué cantidad. Puedes hacerlo en base a estas preguntas:
+
+Tipo de datos que recopilas
+Identificativos
+Bancarios
+Financieros
+De salud …..
+Finalidad del tratamiento
+Política de almacenamiento de esos datos
+En papel
+En soporte informático
+Si cedemos esos datos o los transferimos fuera de nuestro país
+Medios de tratamiento

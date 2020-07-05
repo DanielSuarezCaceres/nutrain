@@ -33,9 +33,9 @@
           <td class="text-center"><%= routine.goal %></td>
           <td class="text-center">
             <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
+            <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
             <%= link_to 'Delete', user_routine_path(user_id: current_user.id, id: routine.id), 
             method: :delete, data: { confirm: "You are deleting '#{routine.name}'. Are you sure?" }, class: 'btn btn-danger' %>
-            <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
           </td>
         </tr>
       <% end %>

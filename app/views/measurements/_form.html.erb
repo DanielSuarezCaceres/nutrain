@@ -5,10 +5,13 @@
       <div class="col-md-4 col-sm-6 col-xs-12">
         <%= f.input :day, as: :date, html5: true %>
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-12">
+
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
         <%= f.input :weight, placeholder: 'Weight in kg' %>
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="col-md-6 col-sm-6 col-xs-12">
         <%= f.input :body_fat, placeholder: 'Body fat %'%>
       </div>
     </div>
@@ -38,6 +41,6 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
-    <%= link_to 'Back', :back, class: 'btn' %>
+    <%= button_tag "Clear", type: :reset, class: 'btn' %>
   </div>
 <% end %>

@@ -1,8 +1,8 @@
-<div class="container p-3 col-6">
+<div class="container p-4 col-6">
   <div class="card">
     <div class="card-header d-flex">
-      <h2>Edit workout</h2>
-      <%= link_to 'Back', root_path, class: 'btn ml-auto' %>
+      <h2>Edit measurement</h2>
+      <%= link_to 'Back', :back, class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <div class="workout-form">
@@ -45,7 +45,7 @@
           </div>
           <div class="form-actions">
             <%= f.button :submit %>
-            <%= link_to 'Back', :back, class: 'btn' %>
+            <%= button_tag "Clear", type: :reset, class: 'btn' %>
           </div>
         <% end %>
       </div>

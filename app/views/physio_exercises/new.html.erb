@@ -1,7 +1,8 @@
-<div class="container p-3 col-6">
+<div class="container p-4 col-6">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex">
       <h2>New physio exercise</h2>
+      <%= link_to 'Back', :back, class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <%= render 'form', physio_exercise: @physio_exercise, user_id: current_user.id %>

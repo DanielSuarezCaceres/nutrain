@@ -1,7 +1,8 @@
-<div class="container p-3 col-6">
+<div class="container p-4 col-6">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex">
       <h2>New appointment</h2>
+      <%= link_to 'Back', :back, class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <div id="appointment-form">
@@ -23,13 +24,9 @@
               <%= f.input :professional_id, collection: Professional.all %>
             <% end %>
           <% end %>
-          <div class="row">
+          <div class="form-actions d-flex">
             <%= f.button :submit, class: 'btn' %>
-            <%= link_to 'Back', user_appointments_path(user_id: current_user.id), class: 'btn' %>
-            <% unless @appointment.id.nil? %>
-              <%= link_to 'Delete', user_appointment_path(user_id: current_user.id), method: :delete,
-        data: { confirm: 'You are deleting the appointment. This action cannot be undone. Are you sure?' }, class: 'btn btn-danger ml-auto' %>
-            <% end %>
+            <%= button_tag "Clear", type: :reset, class: 'btn' %>
           </div>
         <% end %>
       </div>

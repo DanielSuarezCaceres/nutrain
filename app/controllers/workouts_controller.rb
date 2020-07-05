@@ -26,7 +26,7 @@ class WorkoutsController < ApplicationController
   def create
     user = current_user
     @workout = user.workouts.new(workout_params)
-    # byebug
+    #byebug
     if @workout.valid?
       @workout.save
       redirect_to root_path, notice: 'Workout added successfully' # (current_user)
@@ -78,6 +78,7 @@ class WorkoutsController < ApplicationController
         :day,
         :user_id,
         :number_of_exercises,
+        :goal,
         exercises_attributes: %i[id name description sets reps weight _destroy],
     )
   end

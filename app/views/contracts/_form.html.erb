@@ -45,10 +45,10 @@
         <% end %>
       <% end %>
       <%= f.input :message %>
-      <div class="row">
+      <div class="form-actions d-flex">
         <%= f.submit 'Send request', onclick: "contract_state.value = 'Pending', contract_sent_by_id.value = #{current_user.id}", 
           class: 'btn' %>
-        <%= link_to 'Back', user_contracts_path(current_user), class: 'btn' %>
+        <%= button_tag "Clear", type: :reset, class: 'btn' %>
       </div>
     <% end %>
   <% end %>

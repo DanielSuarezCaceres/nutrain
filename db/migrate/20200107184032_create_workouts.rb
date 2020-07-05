@@ -5,7 +5,6 @@ class CreateWorkouts < ActiveRecord::Migration[6.0]
       t.text :description
       t.references :user, index: true, foreign_key: true
       t.date :day
-      t.integer :number_of_exercises
       t.string :goal
 
       t.timestamps

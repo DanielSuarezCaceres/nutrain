@@ -1,7 +1,8 @@
 <div class="container p-3 col-6">
   <div class="card">
-    <div class="card-header">
-      <h1>Edit diet</h1>
+    <div class="card-header d-flex">
+      <h2>Edit diet</h2>
+      <%= link_to 'Back', user_diets_path(user_id: current_user.id), class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <%= simple_form_for(@diet, url: user_diet_path(params[:client_id].nil? ? params[:user_id] : params[:client_id]), method: :put) do |f| %>
@@ -21,8 +22,7 @@
         <% end %>
         <div class="row">
           <%= f.button :submit, class: 'btn' %>
-          <%= link_to 'Back', user_diets_path(user_id: current_user.id), class: 'btn' %>
-        </div>
+          <%= button_tag "Clear", type: :reset, class: 'btn' %>
       <% end %>
     </div>
   </div>

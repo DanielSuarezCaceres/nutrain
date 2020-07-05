@@ -7,8 +7,8 @@
     <%= f.input :goal, placeholder: 'What is the goal of this task?'%>
     <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   </div>
-  <div class="row form-actions">
+  <div class="form-actions d-flex">
     <%= f.button :submit %>
-    <%= link_to 'Back', :back, class: 'btn' %>
+    <%= button_tag "Clear", type: :reset, class: 'btn' %>
   </div>
 <% end %>

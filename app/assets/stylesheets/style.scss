@@ -107,7 +107,7 @@ body {
 }
 
 // Top screen shade for login, register and resend password screens
-.custom-shape-divider-top-1591800413 {
+.custom-shape-divider-top-1593935046 {
   position: absolute;
   top: 0;
   left: 0;
@@ -116,29 +116,33 @@ body {
   line-height: 0;
 }
 
-.custom-shape-divider-top-1591800413 svg {
+.custom-shape-divider-top-1593935046 svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
   height: 150px;
 }
 
-.custom-shape-divider-top-1591800413 .shape-fill {
-  fill: #247171;
+.custom-shape-divider-top-1593935046 .shape-fill {
+  fill: #2C3E50;
 }
-
 .footer-box {
   color: white;
   font-size: 14px;
   margin-top: 30px;
   padding: 10px 0px 10px 0px;
   background-color: $midnight-blue;
+  a, a:visited {
+    color: inherit !important;  // <- this makes dropdowns links text black
+    text-decoration: none;
+  }
 }
 
 // Background gradient for  screens
 .sign-in-screen, .sign-up-screen, .forgot-password-screen, .change-password-screen, .send-confirmation-screen {
   //background-image: radial-gradient(circle, #005b88, #006c96, #007da2, #008fac, #00a0b5);
-  background: linear-gradient(180deg, rgba(38,70,83,1) 0%, rgba(36,113,113,1) 58%, rgba(42,157,143,1) 100%);
+  //background: linear-gradient(180deg, rgba(38,70,83,1) 0%, rgba(36,113,113,1) 58%, rgba(42,157,143,1) 100%);
+  background-image: linear-gradient(to bottom, #456990, #3e5e7f, #38536f, #32485f, #2c3e50);
 }
 
 .devise-buttons {
@@ -311,6 +315,11 @@ hr {
   h3 {
     padding: 5px 5px 5px 5px;
   }
+}
+
+/* align form buttons with inputs */ 
+.form-actions {
+  margin-left: -5px;
 }
 
 .edit-meal-right-content {

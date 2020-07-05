@@ -1,10 +1,8 @@
-<div class="container p-3 col-6">
+<div class="container p-4 col-6">
   <div class="card">
     <div class="card-header d-flex">
-      <div class="mr-auto">
-        <h1>Edit psychology task</h1>
-      </div>
-      <%= link_to 'Back', :back, class: 'btn' %>
+      <h2>Edit psychology task</h2>
+      <%= link_to 'Back', :back, class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <%= simple_form_for(@psychology_task, url: edit_user_psychology_task_path(params[:client_id].nil? ? params[:user_id] : params[:client_id]),
@@ -15,14 +13,17 @@
           <%= f.input :name, placeholder: 'Name of the exercise' %>
           <%= f.input :description, placeholder: 'Give some details: explanations, tips, considerations...' %>
           <%= f.input :goal, placeholder: 'What is the goal of this task?'%>
+          <!--
           <% if @psychology_task.sent_by_id != current_user.id %>
-          <%= f.label :Sent_by %>: <%= "#{User.find(@psychology_task.sent_by_id).fullname}"%>
+            SENT BY HERE
           <% end %>
+          -->
           <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
         </div>
         <br><br>
         <div class="form-actions">
           <%= f.button :submit %>
+          <%= button_tag "Clear", type: :reset, class: 'btn' %>
         </div>
       <% end %>
     </div>

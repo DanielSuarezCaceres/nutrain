@@ -4,9 +4,6 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :days_of_exercise, id: 'routine_days_of_exercise' %>
-  <!--<%= f.hidden_field :user_id, :value => params[:user_id] %>
-  <%= f.hidden_field :client_id, :value => params[:client_id] %>-->
-  <!-- <%= f.hidden_field :client_id, value: params[:id] %> -->
   <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   <%= f.input :goal do %>
     <%= f.select :goal,options_for_select(['Hypertrophy', 'Strength', 'Strength and Hypertrophy', 'Other'],
@@ -20,8 +17,8 @@
   <!--
     <%#= f.input :file, 'Select a file', as: :file %>
   -->
-  <div class="row">
+  <div class="form-actions d-flex">
     <%= f.button :submit, class: 'btn', id: 'submit-routine' %>
-    <%= link_to 'Back', :back, class: 'btn' %>
+    <%= button_tag "Clear", type: :reset, class: 'btn' %>
   </div>
 <% end %>

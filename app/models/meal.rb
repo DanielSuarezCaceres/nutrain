@@ -133,4 +133,8 @@ class Meal < ApplicationRecord
     return foods_result
   end
 
+  def self.last_week_meals(user_id)
+    User.find(user_id).meals.where('day BETWEEN ? AND ?', (Date.today - 6.day), Date.today)
+  end
+
 end

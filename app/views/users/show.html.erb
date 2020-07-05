@@ -2,13 +2,11 @@
   <div class="container p-3 col-9">
     <div class="card">
       <div class="card-header d-flex">
-        <div class="mr-auto">
-          <h2>User details</h2>
-        </div>
+        <h2>User details</h2>
         <% if current_user.id == @user.id %>
           <%= link_to 'Edit', edit_user_registration_path(@user), class: 'btn' %>
         <% end %>
-        <%= link_to 'Back', :back, class: 'btn' %>
+        <%= link_to 'Back', :back, class: 'btn ml-auto' %>
       </div>
       <div class="card-body">
         <%= render 'user' %>
@@ -30,7 +28,8 @@
     <div class="card-body">
       <div class="user-stats-content">
       <!-- CLIENT MEALS -->
-      <div class="container-client-meals" id="client-meals">
+        <div class="container-client-meals" id="client-meals">
+          <!--
           <div class="table-responsive">
             <table class="table table-responsive-sm table-hover">
               <tr>
@@ -53,16 +52,26 @@
               </tbody>
             </table>
           </div>
+          -->
+          <div>
+            <%= line_chart [
+              {name: "Total protein per day", data: @user.meals.group_by_day(:day, range: 1.month.ago..Date.today+1).sum(:protein)},
+              {name: "Total carbs per day", data: @user.meals.group_by_day(:day, range: 1.month.ago..Date.today+1).sum(:carbs)},
+              {name: "Total fats per day", data: @user.meals.group_by_day(:day, range: 1.month.ago..Date.today+1).sum(:fats)}],
+              ytitle: "Quantity (gr)", xtitle: "Days", title: "Last month marcronutrients", download: true, messages: {empty: "No data"},
+              discrete: true
+            %>
+          </div>
         </div>
         <!-- CLIENT WORKOUTS -->
         <div class="container-client-workout"  id="client-workouts" style="display: none">
+          <!--
           <div class="table-responsive">
             <table class="table table-responsive-sm table-hover">
               <tr>
                 <th class="text-center">Name</th>
                 <th class="text-center">Description</th>
-                <th class="text-center">Nº of exercises</th>
-                <th class="text-center">Days of exercise</th>
+                <th class="text-center">Goal</th>
                 <th class="text-center">Date</th>
               </tr>
               <tbody>
@@ -70,13 +79,20 @@
                   <tr>
                     <td class="text-center"><%= workout.name %></td>
                     <td class="text-center"><%= workout.description %></td>
-                    <td class="text-center"><%= workout.number_of_exercises %></td>
-                    <td class="text-center"><%= workout.created_at %></td>
                     <td class="text-center"><%= workout.goal %></td>
+                    <td class="text-center"><%= workout.day %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
+          </div>
+          -->
+          <div>
+            <%= line_chart [
+              {name: "Nº of workouts per day", data: @user.workouts.group_by_day(:day, range: 1.month.ago..Date.today+1).count},
+              ], ytitle: "Nº", xtitle: "Days", title: "Last month workouts", download: true, messages: {empty: "No data"},
+              discrete: true
+            %>
           </div>
         </div>
         <!-- CLIENT PSYCHOLOGY EXERCISES -->
@@ -91,7 +107,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @user.psychology_tasks.each do |psychology_task| %>
+                <% @user.psychology_tasks.limit(15).each do |psychology_task| %>
                   <tr>
                     <td class="text-center"><%= psychology_task.name %></td>
                     <td class="text-center"><%= psychology_task.description %></td>
@@ -112,7 +128,7 @@
                 <th class="text-center">Duration</th>
               </tr>
               <tbody>
-                <% @user.physio_exercises.each do |physio_exercise| %>
+                <% @user.physio_exercises.limit(15).each do |physio_exercise| %>
                   <tr>
                     <td class="text-center"><%= physio_exercise.name %></td>
                     <td class="text-center"><%= physio_exercise.description %></td>
@@ -125,6 +141,7 @@
         </div>
         <!-- CLIENT BODY MEASUREMENTS -->
         <div class="container-client-measurements" id="client-body-measurements" style="display:none">
+          <!--
           <div class="table-responsive">
             <table class="table table-responsive-lg table-responsive-md table-responsive-sm table-hover">
               <tr>
@@ -139,7 +156,7 @@
                 <th class="text-center">Day</th>
               </tr>
               <tbody>
-                <% @user.measurements.each do |measurement| %>
+                <% @user.measurements.limit(10).each do |measurement| %>
                   <tr>
                     <td class="text-center"><%= measurement.weight %></td>
                     <td class="text-center"><%= measurement.body_fat %></td>
@@ -155,11 +172,34 @@
               </tbody>
             </table>
           </div>
+          -->
+          <div>
             <%= line_chart [
-              {name: "Total protein per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:protein)},
-              {name: "Total carbs per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:carbs)},
-              {name: "Total fats per day", data: @user.meals.group_by_day(:day, range: 1.week.ago..Date.today+1).sum(:fats)}],
-              ytitle: "Quantity (gr)", xtitle: "Days", title: "Last 7 days marcronutrients", download: true, messages: {empty: "No data"}
+                  {name: 'Weight (kg)', data: @user.measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:weight)}
+                ], ytitle: "Kg", xtitle: "Date", title: "Weight progress last month", download: true, messages: {empty: "No data"},
+                    id: 'weight-month-graphic', discrete: true
+            %>
+            <br>
+            <%= line_chart [
+                  {name: 'Body fat (%)', data: @user.measurements.group_by_day(:day, range: 1.month.ago..Date.today).sum(:body_fat)}
+                ], ytitle: "Body fat %", xtitle: "Date", title: "Body fat % progress last month", download: true,
+                  messages: {empty: "No data"},discrete: true
+            %>
+            <br>
+            <%= line_chart [
+                  {name: 'Neck size (cm)', data: @user.measurements.group_by_day(:day).sum(:neck_size)},
+                  {name: 'Chest size (cm)', data: @user.measurements.group_by_day(:day).sum(:chest_size)},
+                  {name: 'Arm size (cm)', data: @user.measurements.group_by_day(:day).sum(:arm_size)},
+                ], ytitle: "Cm", xtitle: "Date", title: "Upper body metrics progress last month", download: true,
+                    messages: {empty: "No data"}, discrete: true
+            %>
+            <br>
+            <%= line_chart [
+                  {name: 'Waist size (cm)', data: @user.measurements.group_by_day(:day).sum(:waist_size)},
+                  {name: 'Hips size (cm)', data: @user.measurements.group_by_day(:day).sum(:hips_size)},
+                  {name: 'Leg size (cm)', data: @user.measurements.group_by_day(:day).sum(:leg_size)}
+                ], ytitle: "Cm", xtitle: "Date", title: "Lower body metrics progress last month", download: true,
+                    messages: {empty: "No data"}, discrete: true
             %>
           </div>
         </div>

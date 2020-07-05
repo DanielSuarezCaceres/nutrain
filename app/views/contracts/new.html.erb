@@ -1,7 +1,8 @@
-<div class="container p-3 col-6">
+<div class="container p-4 col-6">
   <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex">
       <h2>New contract request</h2>
+      <%= link_to 'Back', user_contracts_path(user_id: current_user.id), class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
       <%= render 'form', user_id: current_user.id %>
