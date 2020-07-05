@@ -137,4 +137,12 @@ class Meal < ApplicationRecord
     User.find(user_id).meals.where('day BETWEEN ? AND ?', (Date.today - 6.day), Date.today)
   end
 
+  def self.last_month_meals(user_id)
+    User.find(user_id).meals.where('day BETWEEN ? AND ?', (Date.today - 1.month), Date.today)
+  end
+
+  def self.last_trimester_meals(user_id)
+    User.find(user_id).meals.where('day BETWEEN ? AND ?', (Date.today - 3.month), Date.today)
+  end
+
 end
