@@ -132,62 +132,64 @@
   </div><br><br>
 
   <!-- WEEKLY MACRONUTRIENTS HEADER -->
-  <div class="row weekly-macros-header">
-      <h4>Nutrition history</h4>
-      <div class="d-flex justify-content-center">
-        <button class="btn" id="nutrition-overview-week">Last week</button>
-        <button class="btn" id="nutrition-overview-month">Last month</button>
-        <button class="btn" id="nutrition-overview-trimester">Last 3 months</button>
-      </div>
-  </div>
+  <div class="container-home-nutrition">
+    <div class="nutrition-overview-header d-flex">
+        <h4>Nutrition history</h4>
+        <div class="d-flex justify-content-center">
+          <button class="btn" id="nutrition-overview-week">Last week</button>
+          <button class="btn" id="nutrition-overview-month">Last month</button>
+          <button class="btn" id="nutrition-overview-trimester">Last 3 months</button>
+        </div>
+    </div>
   
-  <!-- WEEK, MONTH & TRIMESTER GRAPHICS -->
-  <div id="container-nutrition-overview">
-    <div class="row" id="container-nutrition-overview-weekly">
-      <% @meals_week = Meal.last_week_meals(current_user.id) %>
-        <%= line_chart [
-            {name: "Total protein per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:protein)},
-            {name: "Total carbs per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:carbs)},
-            {name: "Total fats per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:fats)}],
-            ytitle: "Quantity (gr)", xtitle: "Days", title: "Marcronutrients last 7 days", download: true,
+    <!-- WEEK, MONTH & TRIMESTER GRAPHICS -->
+    <div class="container-nutrition-overview">
+      <div class="" id="container-nutrition-overview-weekly">
+        <% @meals_week = Meal.last_week_meals(current_user.id) %>
+          <%= line_chart [
+              {name: "Total protein per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:protein)},
+              {name: "Total carbs per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:carbs)},
+              {name: "Total fats per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:fats)}],
+              ytitle: "Amount (gr)", xtitle: "Days", title: "Marcronutrients last 7 days", download: true,
+              messages: {empty: "No data"}, discrete: true
+          %>
+          <br>
+          <%= column_chart [name: "Kcal per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:kcal)],
+            colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last 7 days", download: true,
+            messages: {empty: "No data"}, discrete: true 
+          %>
+      </div>
+      <div class="" id="container-nutrition-overview-month" style="display: none">
+        <% @meals_month= Meal.last_month_meals(current_user.id) %>
+          <%= line_chart [
+              {name: "Total protein per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:protein)},
+              {name: "Total carbs per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:carbs)},
+              {name: "Total fats per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:fats)}],
+              ytitle: "Amount (gr)", xtitle: "Days", title: "Marcronutrients last month", download: true,
+              messages: {empty: "No data"}, discrete: true
+          %>
+          <br>
+          <%= column_chart [name: "Kcal per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:kcal)],
+            colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last month", download: true, 
             messages: {empty: "No data"}, discrete: true
-        %>
-        <br>
-        <%= column_chart [name: "Kcal per day", data: @meals_week.group_by_day(:day, range: 6.day.ago..Date.today).sum(:kcal)],
-          colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last 7 days", download: true,
-          messages: {empty: "No data"}, discrete: true 
-        %>
-    </div>
-    <div class="row" id="container-nutrition-overview-month" style="display: none">
-      <% @meals_month= Meal.last_month_meals(current_user.id) %>
-        <%= line_chart [
-            {name: "Total protein per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:protein)},
-            {name: "Total carbs per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:carbs)},
-            {name: "Total fats per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:fats)}],
-            ytitle: "Quantity (gr)", xtitle: "Days", title: "Marcronutrients last month", download: true,
+          %>
+      </div>
+      <div class="" id="container-nutrition-overview-trimester" style="display: none">
+        <% @meals_month= Meal.last_month_meals(current_user.id) %>
+          <%= line_chart [
+              {name: "Total protein per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:protein)},
+              {name: "Total carbs per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:carbs)},
+              {name: "Total fats per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:fats)}],
+              ytitle: "Amount (gr)", xtitle: "Days", title: "Marcronutrients last 3 months", download: true,
+              messages: {empty: "No data"}, discrete: true
+          %>
+          <br>
+          <%= column_chart [name: "Kcal per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:kcal)],
+            colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last 3 months", download: true,
             messages: {empty: "No data"}, discrete: true
-        %>
-        <br>
-        <%= column_chart [name: "Kcal per day", data: @meals_month.group_by_day(:day, range: 1.month.ago..Date.today).sum(:kcal)],
-          colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last month", download: true, 
-          messages: {empty: "No data"}, discrete: true
-        %>
-    </div>
-    <div class="row" id="container-nutrition-overview-trimester" style="display: none">
-      <% @meals_month= Meal.last_month_meals(current_user.id) %>
-        <%= line_chart [
-            {name: "Total protein per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:protein)},
-            {name: "Total carbs per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:carbs)},
-            {name: "Total fats per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:fats)}],
-            ytitle: "Quantity (gr)", xtitle: "Days", title: "Marcronutrients last 3 months", download: true,
-            messages: {empty: "No data"}, discrete: true
-        %>
-        <br>
-        <%= column_chart [name: "Kcal per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:kcal)],
-          colors: ['#f57c00'], ytitle: "Kcal", xtitle: "Days", title: "Kcal last 3 months", download: true,
-          messages: {empty: "No data"}, discrete: true
-        %>
+          %>
+      </div>
     </div>
   </div>
-
+<!-- END NUTRITION OVERVIEW -->
 </div>
