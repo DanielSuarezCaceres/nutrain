@@ -13,29 +13,16 @@
   <br>
   
   <% @diets.each do |diet| %>
-    <h3><%= diet.name %></h3>
-    <table class="table">
-      <tr>
-        <th class="text-center">Description</th>
-        <td class="text-center"><%= diet.description %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Kcal goal</th>
-        <td class="text-center"><%= diet.kcal_goal %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Number of meals</th>
-        <td class="text-center"><%= diet.recommended_meals %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Diet goal</th>
-        <td class="text-center"><%= diet.goal %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Created at</th>
-        <td class="text-center"><%= diet.created_at.strftime("%Y-%m-%d") %></td>
-      </tr>
-    </table>
-    <br><br>
+  <hr>
+    <h3><%= diet.name %></h3><br>
+    <h5>Name</h5>
+    <p><%= diet.name %></p><br>
+    <h5>Description</h5>
+    <p><%= diet.description %></p><br>
+    <h5>Kcal goal:</h5><p><%= diet.kcal_goal %></p><br>
+    <h5>Recommended meals:</h5><p><%= diet.recommended_meals %></p><br>
+    <h5>Diet goal:</h5><p><%= diet.goal %></p>
+    <h5>Created at:</h5><p><%= diet.created_at.strftime("%Y-%m-%d") %></p>
+    <hr>
   <% end %>
 </div>

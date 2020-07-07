@@ -9,6 +9,46 @@ document.addEventListener("turbolinks:load", function () {
   })
 })
 
+document.addEventListener("turbolinks:load", function () {
+  $('select#meal_food_ids').on("select2:selecting", function(e) { 
+    // what you would like to happen
+    console.log("testing mio");
+  });
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $("#meal_foods").on('select2:selecting', function(e) {
+    console.log("testing orca");
+  })
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $(".select-meal-ingredients").unbind().on('select2:selecting', function(e){
+    console.log("ahora si");
+  })
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $(".select #meal_food_ids").unbind().on('select2:selecting', function(e){
+    console.log("al fin");
+  })
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $("select#select_ingredients_meal").on('select2:selecting', function(e) {
+    console.log("hola");
+  })
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $("select#meal_foods").select2();
+})
+
+document.addEventListener("turbolinks:load", function () {
+  $("#tags").autocomplete({
+    source: '/foods'
+  });
+})
 /*document.addEventListener("turbolinks:load", function () {
   $("#delete-ingredient").click(function () {
     $('html, body').animate({

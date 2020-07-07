@@ -29,7 +29,6 @@ adminDaniel = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'Admin'
 }
 
 nutritionistAlberto = {
@@ -50,7 +49,6 @@ nutritionistAlberto = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'Nutritionist'
 }
 
 trainerAlvaro = {
@@ -71,7 +69,26 @@ trainerAlvaro = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'Trainer'
+}
+
+trainerAurelio = {
+  name: "Aurelio",
+  lastname: "Sánchez",
+  phone: "654678321",
+  city: "Málaga",
+  age: "39",
+  gender: "Male",
+  height: "188",
+  weight: "75",
+  description: "",
+  country: "Spain",
+  email: "aurelio@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: true,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
 }
 
 psychologistPepe = {
@@ -92,7 +109,6 @@ psychologistPepe = {
   physiotherapist: false,
   psychologist: true,
   verified: false
-  #type: 'Psychologist'
 }
 
 physiotherapistPaco = {
@@ -113,7 +129,26 @@ physiotherapistPaco = {
   physiotherapist: true,
   psychologist: false,
   verified: false
-  #type: 'Physiotherapist'
+}
+
+physiotherapistAlicia = {
+  name: "Alicia",
+  lastname: "Diaz",
+  phone: "982786654",
+  city: "Madrid",
+  age: "34",
+  gender: "Female",
+  height: "177",
+  weight: "61",
+  description: "",
+  country: "Spain",
+  email: "alicia@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: true,
+  psychologist: false,
+  verified: false
 }
 
 userJavi = {
@@ -134,7 +169,6 @@ userJavi = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'User'
 }
 
 userJuan = {
@@ -155,7 +189,6 @@ userJuan = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'User'
 }
 
 userManolo = {
@@ -176,15 +209,123 @@ userManolo = {
   physiotherapist: false,
   psychologist: false,
   verified: false
-  #type: 'User'
+}
+
+userPepe = {
+  name: "Manolo",
+  lastname: "Perez",
+  phone: "654786653",
+  city: "LP",
+  age: "25",
+  gender: "Male",
+  height: "178",
+  weight: "65",
+  description: "",
+  country: "Spain",
+  email: "manolo@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+}
+
+userAntonio = {
+  name: "Antonio",
+  lastname: "Suárez",
+  phone: "928543123",
+  city: "Galicia",
+  age: "42",
+  gender: "Male",
+  height: "174",
+  weight: "67",
+  description: "",
+  country: "Spain",
+  email: "antonio@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+}
+
+userGabriela = {
+  name: "Gabriela",
+  lastname: "Álvarez",
+  phone: "765567987",
+  city: "Tarragona",
+  age: "35",
+  gender: "Female",
+  height: "171",
+  weight: "57",
+  description: "",
+  country: "Spain",
+  email: "gabriela@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+}
+
+userMaría = {
+  name: "María",
+  lastname: "Jiménez",
+  phone: "654123543",
+  city: "Murcia",
+  age: "23",
+  gender: "Female",
+  height: "188",
+  weight: "67",
+  description: "",
+  country: "Spain",
+  email: "maria@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
+}
+
+userLaura = {
+  name: "Laura",
+  lastname: "Perez",
+  phone: "329123543",
+  city: "LP",
+  age: "29",
+  gender: "Female",
+  height: "168",
+  weight: "62",
+  description: "",
+  country: "Spain",
+  email: "laura@correo.es",
+  password: "nutrain",
+  nutritionist: false,
+  trainer: false,
+  physiotherapist: false,
+  psychologist: false,
+  verified: false
 }
 
 Admin.create(adminDaniel)
 Professional.create(trainerAlvaro)
+Professional.create(trainerAurelio)
 Professional.create(nutritionistAlberto)
 Professional.create(physiotherapistPaco)
+Professional.create(physiotherapistAlicia)
 Professional.create(psychologistPepe)
 Client.create(userJavi)
 Client.create(userJuan)
 Client.create(userManolo)
+Client.create(userPepe)
+Client.create(userAntonio)
+Client.create(userGabriela)
+Client.create(userMaría)
+Client.create(userAna)
+Client.create(userLaura)
+
 

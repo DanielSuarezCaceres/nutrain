@@ -11,25 +11,3 @@
   </div>
 </div>
 
-<div class="container p-4 col-6">
-  <div class="card web-policies">
-    <div class="card-header">
-      <div class="row d-flex justify-content-center">
-        <button class="btn" id="button-privacy">Privacy</button>
-        <button class="btn" id="button-terms-of-service">Terms of service</button>
-        <button class="btn" id="button-cookies">Cookies</button>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="" id="privacy-content">
-        <p><%= simple_format(File.read(Rails.root.join('app','assets','docs','privacy.txt'))) %></p>
-      </div>
-      <div class="" id="terms-of-service-content" style="display:none">
-        <p><%= simple_format(File.read(Rails.root.join('app','assets','docs','terms_of_service.txt'))) %></p>
-      </div>
-      <div class="" id="cookies" style="display:none">
-        <p><%= simple_format(File.read(Rails.root.join('app','assets','docs','cookies.txt'))) %></p>
-      </div>
-    </div>
-  </div>
-</div>

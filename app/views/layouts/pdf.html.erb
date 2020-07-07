@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>PDF</title>
-  <%= wicked_pdf_stylesheet_link_tag('pdf') %>
-  <%= wicked_pdf_stylesheet_link_tag('bootstrap') %>
-</head>
-<body>
-  <div class='container'>
-    <%= yield %>
-  </div>
-</body>
+  <head>
+    <title>PDF</title>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag('pdf') %>
+    <%= wicked_pdf_stylesheet_link_tag('bootstrap') %>
+  </head>
+  <body>
+    <div class='container'>
+      <%= yield %>
+    </div>
+  </body>
 </html>

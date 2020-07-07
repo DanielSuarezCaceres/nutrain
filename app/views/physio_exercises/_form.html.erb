@@ -5,7 +5,7 @@
 
   <div class="form-inputs">
     <%= f.input :name, placeholder: 'Name of the exercise' %>
-    <%= f.input :description, placeholder: 'Give some details: how to do it, tips, how many times per week, etc' %>
+    <%= f.input :description, input_html: { rows: 8 }, placeholder: 'Give some details: how to do it, tips, how many times per week, etc' %>
     <%= f.input :duration, placeholder: 'e.g: 4 weeks' %>
     <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
   </div>

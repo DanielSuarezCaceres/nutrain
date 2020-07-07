@@ -29,16 +29,16 @@
   <tr>
     <th class="text-center">Name</th>
     <th class="text-center">Description</th>
-    <th class="text-center">Days of exercise</th>
     <th class="text-center">Date</th>
+    <th class="text-center">Goal</th>
     <th class="text-center">Actions</th>
   </tr>
   <tbody>
     <% @workouts.each do |workout| %>
       <tr>
         <td class="text-center"><%= workout.name %></td>
-        <td class="text-center"><%= workout.description %></td>
-        <td class="text-center"><%= workout.created_at %></td>
+        <td class="text-center description"><%= workout.description %></td>
+        <td class="text-center"><%= workout.day %></td>
         <td class="text-center"><%= workout.goal %></td>
         <td class="text-center">
           <%= link_to 'Details', user_workout_path(user_id: current_user.id, id: workout.id), class: 'btn' %>

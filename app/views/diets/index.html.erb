@@ -30,8 +30,8 @@
   <% @diets.each do |diet| %>
   <tr>
     <td class="text-center"><%= diet.name %></td>
-    <td class="text-center"><%= diet.description %></td>
-    <td class="text-center"><%= diet.active %></td>
+    <td class="text-center description"><%= diet.description %></td>
+    <td class="text-center"><%= diet.active ? 'Yes' : 'No' %></td>
     <td class="text-center"><%= diet.kcal_goal %></td>
     <td class="text-center"><%= diet.recommended_meals %></td>
     <td class="text-center"><%= diet.goal %></td>

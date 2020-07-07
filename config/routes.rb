@@ -77,5 +77,6 @@ Rails.application.routes.draw do
   end
 
   resources :contacts, only: %i[new create]
+  resources :foods, only: %i[index create]
   
 end

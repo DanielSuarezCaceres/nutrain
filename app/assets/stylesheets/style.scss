@@ -126,6 +126,7 @@ body {
 .custom-shape-divider-top-1593935046 .shape-fill {
   fill: #2C3E50;
 }
+
 .footer-box {
   color: white;
   font-size: 14px;
@@ -179,6 +180,14 @@ table {
   th, td {
     padding: 1em;
   }
+}
+
+/* Add ellipsis (...) to shorten text of description fields in tables */
+td.description {
+  max-width: 100px; /* tweak me please */
+  white-space : nowrap;
+  overflow : hidden;
+  text-overflow: ellipsis;
 }
 
 // does it does something???

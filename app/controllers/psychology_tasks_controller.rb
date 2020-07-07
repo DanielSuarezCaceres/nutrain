@@ -69,15 +69,23 @@ class PsychologyTasksController < ApplicationController
 
   # PATCH/PUT /psychology_tasks/1
   def update
-    if @psychology_task.update(psychology_task_params)
-      if params[:psychology_task][:user_id].to_i != current_user.id
-        redirect_to user_psychology_tasks_path(current_user),
+    if params[:psychology_task][:user_id].to_i != current_user.id
+      @client = User.find(params[:routine][:user_id].to_i)
+      @psychology_task = PsychologyTask.find(params[:id])
+      if @psychology_task.update(psychology_task_params)
+        redirect_to user_clients_path(current_user),
           notice: "Psychology exercise updated for client successfully"
       else
         redirect_to user_psychology_tasks_path(current_user), notice: 'Psychology exercise updated successfully'
       end
     else
-      render :edit
+      @user = current_user
+      @psychology_task = PsychologyTask.find(params[:id])
+      if @psychology_task.update(psychology_task_params)
+        redirect_to user_psychology_tasks_path(@user), notice: 'Physiotherapy exercise created successfully'
+      else
+        render :edit
+      end
     end
   end
 

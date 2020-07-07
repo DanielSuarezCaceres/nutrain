@@ -65,19 +65,17 @@ class PhysioExercisesController < ApplicationController
   def update
     if params[:physio_exercise][:user_id].to_i != current_user.id
       @client = User.find(params[:routine][:user_id].to_i)
-      @physio_exercise = @client.physio_exercises.new(physio_exercise_params)
-      if @physio_exercise.valid?
-        @physio_exercise.save
-        redirect_to user_physio_exercises_path(user_id: current_user.id),
-          notice: 'Physiotherapy exercise created for your client successfully'
+      @physio_exercise = PhysioExercise.find(params[:id])
+      if @physio_exercise.update(physio_exercise_params)
+        redirect_to user_clients_path(current_user),
+        notice: 'Physiotherapy exercise created for your client successfully'
       else
         render :edit
       end
     else
       @user = current_user
-      @physio_exercise = @user.physio_exercises.new(physio_exercise_params)
-      if @physio_exercise.valid?
-        @physio_exercise.save
+      @physio_exercise = PhysioExercise.find(params[:id])
+      if @physio_exercise.update(physio_exercise_params)
         redirect_to user_physio_exercises_path(@user), notice: 'Physiotherapy exercise created successfully'
       else
         render :edit

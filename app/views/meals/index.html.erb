@@ -45,11 +45,11 @@
           <td class="text-center"><%= meal.protein %></td>
           <td class="text-center"><%= meal.carbs %></td>
           <td class="text-center"><%= meal.fats %></td>
-          <td class="text-center"><%= meal.vegan %></td>
-          <td class="text-center"><%= meal.vegetarian %></td>
-          <td class="text-center"><%= meal.gluten_free %></td>
-          <td class="text-center"><%= meal.nut_free %></td>
-          <td class="text-center"><%= meal.soy_free %></td>
+          <td class="text-center"><%= meal.vegan ? 'Yes' : 'No' %></td>
+          <td class="text-center"><%= meal.vegetarian ? 'Yes' : 'No' %></td>
+          <td class="text-center"><%= meal.gluten_free ? 'Yes' : 'No' %></td>
+          <td class="text-center"><%= meal.nut_free ? 'Yes' : 'No' %></td>
+          <td class="text-center"><%= meal.soy_free ? 'Yes' : 'No' %></td>
           <td class="text-center"><%= meal.created_at %></td>
           <td class="text-center">
             <%= link_to 'Details', user_meal_path(user_id: current_user.id, id: meal.id), class: 'btn' %>

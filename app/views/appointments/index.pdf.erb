@@ -31,7 +31,7 @@
           <td class="text-center"><%= User.find(appointment.client_id).fullname %></td>
           <td class="text-center">
             <%= "#{appointment.start_time.strftime("%Y-%m-%d")}
-              #{appointment.start_time.strftime("%H:%M")}-#{appointment.end_time.strftime("%H:%M")} "%>
+              #{appointment.start_time.strftime("%H:%M")}"%>
           </td>
         </tr>
       <% end %>

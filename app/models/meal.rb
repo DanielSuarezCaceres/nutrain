@@ -43,7 +43,7 @@ class Meal < ApplicationRecord
   def self.total_kcal_macros_today(user_id)
     total_macros = Hash.new
     total_macros["kcal"] = total_macros["protein"] = total_macros["carbs"] = total_macros["fats"] = 0
-    User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
+    User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
       total_macros["kcal"] += meal.kcal
       total_macros["protein"] += meal.protein
       total_macros["carbs"] += meal.carbs
@@ -55,7 +55,7 @@ class Meal < ApplicationRecord
   def self.total_kcal_meals_today(user_id)
     # byebug
     total_kcal = 0
-    User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
+    User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
       total_kcal += meal.kcal
     end
     total_kcal
@@ -63,7 +63,7 @@ class Meal < ApplicationRecord
 
   def self.total_protein_meals_today(user_id)
     total_protein = 0
-    User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
+    User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
       total_protein += meal.protein
     end
     total_protein.round
@@ -71,7 +71,7 @@ class Meal < ApplicationRecord
 
   def self.total_carbs_meals_today(user_id)
     total_carbs = 0
-    User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
+    User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
       total_carbs += meal.carbs
     end
     total_carbs.round
@@ -79,7 +79,7 @@ class Meal < ApplicationRecord
 
   def self.total_fats_meals_today(user_id)
     total_fats = 0
-    User.find(user_id).meals.where('DATE(created_at) = ?', Date.today).each do |meal|
+    User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
       total_fats += meal.fats
     end
     total_fats.round

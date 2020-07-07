@@ -13,25 +13,15 @@
   <br>
   
   <% routines.each do |routine| %>
-    <h3><%= routine.name %></h3>
-    <table class="table">
-      <tr>
-        <th class="text-center">Description</th>
-        <td class="text-center"><%= routine.description %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Number of exercises</th>
-        <td class="text-center"><%= routine.days_of_exercise %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Routine goal</th>
-        <td class="text-center"><%= routine.goal %></td>
-      </tr>
-      <tr>
-        <th class="text-center">Created at</th>
-        <td class="text-center"><%= routine.created_at.strftime("%Y-%m-%d") %></td>
-      </tr>
-    </table>
-    <br><br>
+    <hr>
+    <h3><%= routine.name %></h3><br>
+    <h5>Name</h5>
+    <p><%= routine.name %></p><br>
+    <h5>Description</h5>
+    <p><%= routine.description %></p><br>
+    <h5>Days of exercise: </h5><p><%= routine.days_of_exercise %></p><br>
+    <h5>Routine goal: </h5><p><%= routine.goal %></p><br>
+    <h5>Created at: </h5><p><%= routine.created_at.strftime("%Y-%m-%d") %></p>
+    <hr>
   <% end %>
 </div>

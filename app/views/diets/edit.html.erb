@@ -8,7 +8,7 @@
       <%= simple_form_for(@diet, url: user_diet_path(params[:client_id].nil? ? params[:user_id] : params[:client_id]), method: :put) do |f| %>
         <%= f.error_notification %>
         <%= f.input :name %>
-        <%= f.input :description %>
+        <%= f.input :description, input_html: { rows: 8 } %>
         <%= f.input :kcal_goal %>
         <%= f.input :recommended_meals %>
         <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>

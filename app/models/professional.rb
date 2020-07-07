@@ -45,4 +45,8 @@ class Professional < User
     self.psychologist ? 'Yes' : 'No'
   end
 
+  def verified?
+    self.verified ? 'Yes' : 'No'
+  end
+
 end

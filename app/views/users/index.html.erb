@@ -4,13 +4,7 @@
 
 <div class="table-responsive">
   <table class="table table-hover">
-  <tr>
-      <%= search_form_for @q do |f| %>
-        <td class="text-center">
-          <%= f.text_field :name_cont %>
-        </td>
-      <% end %>
-    </tr>
+
     <tr>
       <th class="text-center">Name</th>
       <th class="text-center">Lastname</th>
@@ -24,7 +18,7 @@
         <th class="text-center">Trainer</th>
         <th class="text-center">Psychologist</th>
         <th class="text-center">Physiotherapist</th>
-        <th class="text-center">Actions</th>
+        <th class="text-center">Verified?</th>
       <% end %>
       <th class="text-center">Actions</th>
       <% if current_user.type == 'Admin' %>
@@ -47,7 +41,7 @@
             <td class="text-center"><%= user.is_trainer? %></td>
             <td class="text-center"><%= user.is_psychologist? %></td>
             <td class="text-center"><%= user.is_physiotherapist? %></td>
-            <td class="text-center">Actions</td>
+            <td class="text-center"><%= user.verified? %></td>
           <% end %>
           <% if current_user.type == 'Admin' %>
             <td class="text-center">

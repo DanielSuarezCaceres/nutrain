@@ -27,8 +27,8 @@
       <% @routines.each do |routine| %>
         <tr>
           <td class="text-center"><%= routine.name %></td>
-          <td class="text-center"><%= routine.description %></td>
-          <td class="text-center"><%= routine.active %></td>
+          <td class="text-center description"><%= routine.description %></td>
+          <td class="text-center"><%= routine.active ? 'Yes' : 'No' %></td>
           <td class="text-center"><%= routine.days_of_exercise %></td>
           <td class="text-center"><%= routine.goal %></td>
           <td class="text-center">
