@@ -1,4 +1,5 @@
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @appointments = User.find(params[:user_id]).appointments

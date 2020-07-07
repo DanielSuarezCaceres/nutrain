@@ -1,4 +1,5 @@
 class PhysioExercisesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_physio_exercise, only: [:show, :edit, :update, :destroy]
 
   # GET /physio_exercises

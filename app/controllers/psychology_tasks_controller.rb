@@ -1,4 +1,5 @@
 class PsychologyTasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_psychology_task, only: [:show, :edit, :update, :destroy]
 
   # GET /psychology_tasks

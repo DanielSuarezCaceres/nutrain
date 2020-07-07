@@ -1,5 +1,7 @@
 class WorkoutsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  
   def index
     if params[:user_id]
       @pagy, @workouts = pagy(User.find(params[:user_id]).workouts)

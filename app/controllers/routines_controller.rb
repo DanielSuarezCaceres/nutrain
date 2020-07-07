@@ -1,6 +1,6 @@
 class RoutinesController < ApplicationController
   #before_action :set_physio_exercise, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   def index
     if params[:client_id]
       @pagy, @routines = pagy(User.find(params[:client_id]).routines)

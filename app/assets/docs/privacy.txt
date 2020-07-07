@@ -1,14 +1,23 @@
-1. Registro de actividades de tratamiento
-El primer paso para cumplir con la ley de protección de datos informáticos y adaptarse al RGPD es elaborar un registro de actividades de tratamiento. Para ello, debes tener claro qué son los datos en la empresa de informática que estás utilizando. Si no lo sabes, comienza por realizar un análisis de los mismos, de qué tipo son y qué cantidad. Puedes hacerlo en base a estas preguntas:
+This Privacy Policy from Nutrain was published on June 2020.
 
-Tipo de datos que recopilas
-Identificativos
-Bancarios
-Financieros
-De salud …..
-Finalidad del tratamiento
-Política de almacenamiento de esos datos
-En papel
-En soporte informático
-Si cedemos esos datos o los transferimos fuera de nuestro país
-Medios de tratamiento
+What is Nutrain?
+
+Nutrain is a software developed for tracking and monitoring your health, while also provide a platform to allow communication between clients and professionals.
+
+What type of informacion do we collect?
+
+We only collect personal information about you, in order to identify every users and provide a reliable and good service. 
+
+This personal data includes:
+  -Identifying data: name, last name, email.
+  -Health data: information about your nutrition, training, psychology and physiotherapy.
+
+We do not share any of this information with other services or websites, it is only used in our website to provide our service properly.
+
+We collect this data in the following way:
+  -Register form: the data you provide in this form, such as name, last name, email, country, phone number, etc.
+
+Data storage policy
+
+All of the data previously mentioned is stored in computing servers.
+

@@ -1,1 +1,5 @@
-Estas son las cookies
+Nutrain does not use:
+
+-Functional cookies: we do not gather information to analyze site traffic, measurements or perfomance reports.
+-Advertising cookies: Nutrain is a free-ad website, so we do not use any kind of advertising cookies.
+-Required cookies: the only required cookies we use is to provide basic login funcionality, so we only remember your log-in details.
