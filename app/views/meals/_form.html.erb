@@ -20,7 +20,7 @@
         <%= f.association :foods, collection: current_user.foods.all, label_method: :name_and_amount, value_method: :id, id: "select_ingredients_meal",
           label: 'Add existing ingredients', include_blank: false, include_hidden: false, class: 'meal-ingredients' %>
       </div>
-      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
+      <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients or add new foods.</small></p>
       <hr>
       <div class="foods-form">
         <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>

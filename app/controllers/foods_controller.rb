@@ -32,7 +32,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = current_user.foods.new(food_params)
-    byebug
+    #byebug
     if @food.valid?
       @food.save
       redirect_to user_foods_path(current_user), notice: 'Foods created successfully'

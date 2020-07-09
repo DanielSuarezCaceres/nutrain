@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.text "description"
     t.integer "sets"
     t.integer "reps"
-    t.integer "weight"
+    t.float "weight"
     t.bigint "workout_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.float "protein"
     t.float "carbs"
     t.float "fats"
-    t.float "serving_size"
+    t.integer "serving_size"
     t.boolean "vegan", default: false, null: false
     t.boolean "vegetarian", default: false, null: false
     t.boolean "gluten_free", default: false, null: false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
 
   create_table "measurements", force: :cascade do |t|
     t.datetime "day"
-    t.integer "weight"
+    t.float "weight"
     t.integer "body_fat"
     t.integer "neck_size"
     t.integer "chest_size"
@@ -140,10 +140,8 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.text "description"
     t.bigint "user_id"
     t.string "duration"
-    t.bigint "sent_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sent_by_id"], name: "index_physio_exercises_on_sent_by_id"
     t.index ["user_id"], name: "index_psychology_tasks_on_user_id"
   end
 
@@ -152,10 +150,8 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.text "description"
     t.string "goal"
     t.bigint "user_id"
-    t.bigint "sent_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sent_by_id"], name: "index_psychology_tasks_on_sent_by_id"
     t.index ["user_id"], name: "index_physio_exercises_on_user_id"
   end
 
@@ -176,9 +172,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.string "name"
     t.string "lastname"
     t.string "gender"
-    t.string "age"
-    t.string "height"
-    t.string "weight"
     t.string "phone"
     t.string "city"
     t.string "country"
@@ -222,7 +215,5 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "meals", "users"
   add_foreign_key "measurements", "users"
-  add_foreign_key "physio_exercises", "users", column: "sent_by_id"
-  add_foreign_key "psychology_tasks", "users", column: "sent_by_id"
   add_foreign_key "workouts", "users"
 end

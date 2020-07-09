@@ -1,11 +1,31 @@
 <%= simple_form_for(@food, url: user_foods_path(user_id: current_user.id)) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name %>
-  <%= f.input :brand %>
-  <%= f.input :kcal %>
-  <%= f.input :protein %>
-  <%= f.input :carbs %>
-  <%= f.input :fats %>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= f.input :name %>
+    </div>
+    <div class="col-lg-6">
+      <%= f.input :brand %>
+    </div>
+  </div>
+  <br>
+  <p class="small">Note: introduce macros per 100g (same as the product info), and then they will be calculated based on serving size value</p>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= f.input :kcal %>
+    </div>
+    <div class="col-lg-6">
+      <%= f.input :protein %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <%= f.input :carbs %>
+    </div>
+    <div class="col-lg-6">
+      <%= f.input :fats %>
+    </div>
+  </div>
   <%= f.input :serving_size %>
   <%= label_tag "Characteristics"%>
   <div class="d-flex justify-content-between">
