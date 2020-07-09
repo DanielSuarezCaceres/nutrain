@@ -205,7 +205,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.text "description"
     t.bigint "user_id"
     t.date "day"
-    t.integer "number_of_exercises"
     t.string "goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="flex-container flex-container-style fixed-height">
+    <div class="flex-item"><span contenteditable="">
+        <h1>Nutrain</h1>
+      </span></div>
+  </div>
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Exercises report</h4>
+    <h4>Date: <%= Date.today.strftime("%Y-%m-%d") %></h4>
+    <br>
+  </div>
+  <br>
+
+  <table class="table">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Sets</th>
+      <th class="text-center">Reps</th>
+      <th class="text-center">Weight</th>
+      <th class="text-center">Workout name</th>
+      <th class="text-center">Workout date</th>
+    </tr>
+    <tbody>
+      <% @exercises.each do |ex| %>
+        <tr>
+          <td class="text-center"><%= ex.name %></td>
+          <td class="text-center"><%= ex.description %></td>
+          <td class="text-center"><%= ex.sets %></td>
+          <td class="text-center"><%= ex.reps %></td>
+          <td class="text-center"><%= ex.weight %></td>
+          <td class="text-center">
+            <%= Workout.find(ex.workout_id).name %>
+          </td>
+          <td class="text-center">
+            <%= Workout.find(ex.workout_id).day.strftime("%Y-%m-%d") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

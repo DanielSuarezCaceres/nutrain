@@ -3,7 +3,7 @@
     <%= link_to 'New food', new_user_food_path(current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Download history', user_foods_path(current_user.id), class: 'btn' %>
+    <%= link_to 'Download history', user_foods_path(current_user, :format => :pdf), :format => :pdf, target: :_blank, class: 'btn' %>
   </div>
 </div>
 <div class="d-flex justify-content-center table-title">
@@ -45,7 +45,8 @@
             <%= link_to 'Details', user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
             <%= link_to 'Delete', user_food_path(user_id: current_user.id, id: food.id), 
             method: :delete, data: { confirm: "You are deleting '#{food.name}'. Are you sure" }, class: 'btn btn-danger' %>
-            <%= link_to 'Edit', edit_user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>
+            <%= link_to 'Edit', edit_user_food_path(
+              user_id: current_user.id, id: food.id), class: 'btn' %>
           </td>
         </tr>
       <% end %>

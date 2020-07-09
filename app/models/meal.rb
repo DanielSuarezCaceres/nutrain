@@ -5,15 +5,15 @@ class Meal < ApplicationRecord
   has_many :foods, through: :meal_foods
   accepts_nested_attributes_for :foods, reject_if: :all_blank, allow_destroy: true
   before_save :calculate_total_macros_food
-  # after_update :calculate_total_macros_food
 
   validates :name, presence: true
-  # validates :description, presence: true (?)
-  
-  #attr_accessor :foods_attributes
 
-  def meal_ingredients
-    self.meal_foods
+  def ingredients_ids
+    ingredient_ids = []
+    self.foods.each do |food|
+      ingredient_ids << food.id
+    end
+    ingredient_ids
   end
 
   def calculate_total_macros_food
@@ -22,10 +22,11 @@ class Meal < ApplicationRecord
     self.vegan = self.vegetarian = self.nut_free = self.gluten_free = self.soy_free = false
 
     #byebug
-    if foods.empty?
+    if meal_foods.empty?
       return
     else
-      foods.each do |food|
+      meal_foods.each do |meal_food|
+        food = Food.find(meal_food.food_id)
         serving_size = (food.serving_size / 100.0)
         self.kcal += (serving_size * food.kcal).round
         self.protein += (serving_size * food.protein).round
@@ -38,6 +39,29 @@ class Meal < ApplicationRecord
         self.soy_free = food.soy_free
       end
     end
+  end
+
+  def add_ingredient_macros(food_id)
+    byebug
+    food = Food.find(food_id)
+    food_serving_size = food.serving_size / 100
+    self.kcal += (food.kcal * food_serving_size)
+    self.protein += (food.protein * food_serving_size)
+    self.carbs += (food.carbs * food_serving_size)
+    self.fats += (food.fats * food_serving_size)
+    byebug
+    return
+  end
+
+  def clear_ingredient_macros(food_params)
+    byebug
+    food_serving_size = (food_params[:serving_size].to_f / 100)
+    self.kcal -= (food_params[:kcal].to_f * food_serving_size)
+    self.protein -= (food_params[:protein].to_f * food_serving_size)
+    self.carbs -= (food_params[:carbs].to_f * food_serving_size)
+    self.fats -= (food_params[:fats].to_f * food_serving_size)
+    byebug
+    return
   end
 
   def self.total_kcal_macros_today(user_id)
@@ -56,7 +80,7 @@ class Meal < ApplicationRecord
     # byebug
     total_kcal = 0
     User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
-      total_kcal += meal.kcal
+      total_kcal += meal.kcal unless meal.kcal.nil? 
     end
     total_kcal
   end
@@ -64,7 +88,7 @@ class Meal < ApplicationRecord
   def self.total_protein_meals_today(user_id)
     total_protein = 0
     User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
-      total_protein += meal.protein
+      total_protein += meal.protein unless meal.protein.nil?
     end
     total_protein.round
   end
@@ -72,7 +96,7 @@ class Meal < ApplicationRecord
   def self.total_carbs_meals_today(user_id)
     total_carbs = 0
     User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
-      total_carbs += meal.carbs
+      total_carbs += meal.carbs unless meal.carbs.nil? 
     end
     total_carbs.round
   end
@@ -80,7 +104,7 @@ class Meal < ApplicationRecord
   def self.total_fats_meals_today(user_id)
     total_fats = 0
     User.find(user_id).meals.where('DATE(day) = ?', Date.today).each do |meal|
-      total_fats += meal.fats
+      total_fats += meal.fats unless meal.fats.nil? 
     end
     total_fats.round
   end
@@ -113,6 +137,7 @@ class Meal < ApplicationRecord
     all_foods
   end
 
+  # used in edit meal view to display ingredient macros in table
   def foods_converted
     foods_result = []
     self.foods.each do |food|

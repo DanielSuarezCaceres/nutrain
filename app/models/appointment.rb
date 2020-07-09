@@ -16,6 +16,9 @@ class Appointment < ApplicationRecord
     if start_time < Date.today
       errors.add(:start_time, 'must be equal or later than today')
     end
+    if start_time.strftime("%Y").length > 4
+      errors.add(:start_time, 'year is not correct')
+    end
   end
 
   # def start_time_is_valid_datetime

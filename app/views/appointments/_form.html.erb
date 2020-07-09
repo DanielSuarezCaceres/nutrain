@@ -1,5 +1,5 @@
 <div id="appointment-form">
-  <%= simple_form_for(@appointment) do |f| %>
+  <%= simple_form_for(@appointment, url: user_appointments_path(user_id: current_user.id, client_id: params[:client_id])) do |f| %>
     <%= f.error_notification %>
 
     <%= f.input :title %>
@@ -20,7 +20,8 @@
       <% end %>
     <% end %>
     <div class="form-actions">
-      <%= f.button :submit, class: 'btn' %>
+      <%= f.button :submit, onclick: "appointment_client_id.value = #{params[:client_id]}", 
+      class: 'btn' %>
       <%= button_tag "Clear", type: :reset, class: 'btn' %>
       <% unless @appointment.id.nil? %>
         <%= link_to 'Delete', user_appointment_path(user_id: current_user.id), method: :delete,

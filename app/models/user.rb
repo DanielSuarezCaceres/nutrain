@@ -3,8 +3,6 @@
 class User < ApplicationRecord
   has_many :measurements
   has_many :routines
-  # has_many :workout_exercises, dependent: :destroy
-  # has_many :workouts, through: :workout_exercises
   has_many :workouts
   has_many :exercises, dependent: :destroy
   #has_many :workouts, dependent: :destroy
@@ -44,6 +42,11 @@ class User < ApplicationRecord
     result
   end
 =end
+
+  # all sub-models inherit UserPolicy
+  def self.policy_class
+    UserPolicy
+  end
 
   def has_no_password?
     self.encrypted_password.blank?

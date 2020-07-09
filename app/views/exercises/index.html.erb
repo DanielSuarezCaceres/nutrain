@@ -3,7 +3,11 @@
     <%= link_to 'New exercise', new_user_exercise_path(current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
-    <%= link_to 'Download history', user_exercises_path(current_user.id), class: 'btn' %>
+    <%= link_to "Delete all", delete_all_user_exercises_path(current_user), :method => :get, class: 'btn btn-danger',
+        data: { confirm: 'You are going to delete all your exercises. This action cannot be undone. Are you sure?' } %>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Download history', user_exercises_path(current_user.id, :format => :pdf), :format => :pdf, target: :_blank, class: 'btn' %>
   </div>
 </div>
 <div class="d-flex justify-content-center table-title">
@@ -25,7 +29,7 @@
         <% @exercises.each do |exercise| %>
           <tr>
             <td class="text-center"><%= exercise.name %></td>
-            <td class="text-center"><%= exercise.description %></td>
+            <td class="text-center description"><%= exercise.description %></td>
             <td class="text-center"><%= exercise.sets %></td>
             <td class="text-center"><%= exercise.reps %></td>
             <td class="text-center"><%= exercise.weight %></td>
@@ -34,7 +38,7 @@
               <%= link_to 'Details', user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
               <%= link_to 'Delete', user_exercise_path(user_id: current_user.id, id: exercise.id), 
                   method: :delete, data: { confirm: "You are deleting '#{exercise.name}'. Are you sure" }, class: 'btn btn-danger' %>
-              <%= link_to 'Edit', edit_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
+              <%= link_to 'Edit', edit_user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
             </td>
           </tr>
         <% end %>
@@ -44,6 +48,7 @@
 </div>
 
 <%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
+<!--
 <div>
   <br><br>
 
@@ -55,3 +60,4 @@
     #{name: 'Weight (kg)', data: @user_exercises.group_by_day { |u| u.created_at }.map { |k, v| [k, v.count] }.to_h }
   ] %>
 </div>
+-->

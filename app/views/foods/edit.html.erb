@@ -1,0 +1,30 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header d-flex">
+      <h2>Edit food</h2>
+      <%= link_to 'Back', user_foods_path(user_id: current_user.id), class: 'btn ml-auto' %>
+    </div>
+    <div class="card-body">
+      <%= simple_form_for(@food, url: user_food_path(current_user), method: :put) do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name %>
+        <%= f.input :brand %>
+        <%= f.input :kcal %>
+        <%= f.input :protein %>
+        <%= f.input :carbs %>
+        <%= f.input :fats %>
+        <%= label_tag "Characteristics"%>
+        <div class="d-flex justify-content-between">
+          <%= f.input :vegan %>
+          <%= f.input :vegetarian %>
+          <%= f.input :gluten_free %>
+          <%= f.input :nut_free %>
+          <%= f.input :soy_free  %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn' %>
+          <%= button_tag "Clear", type: :reset, class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,6 @@ class MealsController < ApplicationController
 
   # GET /meals
   def index
-    #@meals = Meal.all
     if params[:user_id]
       @pagy, @meals = pagy(User.find(params[:user_id]).meals)
       respond_to do |format|
@@ -22,7 +21,6 @@ class MealsController < ApplicationController
   end
 
   # GET /meals/1
-  # GET /meals/1.json
   def show
     @meal = Meal.find(params[:id])
   end
@@ -38,12 +36,10 @@ class MealsController < ApplicationController
 
   # POST /meals
   def create
-    # @user = User.find(params[:user_id])
     user = current_user
     @meal = user.meals.new(meal_params)
     # check existing ingredients sent by select2
-    add_existing_ingredients
-    # byebug
+    #add_existing_ingredients
     if @meal.valid?
       @meal.save
       redirect_to root_path, notice: 'Meal added successfully' # (current_user)
@@ -54,17 +50,8 @@ class MealsController < ApplicationController
 
   # PATCH/PUT /meals/1
   def update
-    #if params[:meal][:food_ids]
-    #  params[:meal][:food_ids].each do |ingredient|
-    #    @meal.foods << Food.find(ingredient) unless @meal.foods.include? Food.find(ingredient)
-    #  end
-    #end
-    update_ingredients
-    # byebug
+    check_selected_ingredients
     if @meal.update(meal_params)
-      #if params[:meal][:food_ids]
-      #  update_meal_foods
-      #end
       redirect_to root_path, notice: 'Meal updated successfully'
     else
       render :edit
@@ -97,7 +84,6 @@ class MealsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def meal_params
-    #params.fetch(:meal, {})
     params.require(:meal).permit(
         :id,
         :name,
@@ -121,40 +107,17 @@ class MealsController < ApplicationController
     )
   end
 
-  def update_meal_foods
-    new_ingredients = []
-    params[:meal][:food_ids].each do |ing_id|
-      new_ingredients << Food.find(ing_id)
-    end
-    
-    @meal.foods.each do |food|
-      @meal.foods.delete(food) unless new_ingredients.include? food
-      #if !new_ingredientes.include? food then @meal.foods.delete(food)
-    end
-    return
-  end
-
-  def update_ingredients
-    selected_ingredients_ids = params[:meal][:food_ids]
-    if params[:meal][:foods_attributes]
-      params[:meal][:foods_attributes].each do |key, value|
-        #byebug
-        if value["id"].nil?
-          next
-        else
-          #byebug
-          params[:meal][:foods_attributes].delete(key) unless selected_ingredients_ids.include? value["id"]
-        end
-      end
-    end
-    #byebug
-    aux = true
-  end
-
   def add_existing_ingredients
     if params[:meal][:food_ids]
       params[:meal][:food_ids].each do |ingredient|
-        @meal.foods << Food.find(ingredient) unless @meal.foods.include? Food.find(ingredient)
+        byebug
+        #@meal.foods << Food.find(ingredient) unless @meal.foods.include? Food.find(ingredient)
+        if @meal.foods.include?(Food.find(ingredient))
+          next
+        else
+          @meal.foods << Food.find(ingredient)
+          @meal.add_ingredient_macros(ingredient)
+        end
       end
     end
     return
@@ -180,6 +143,33 @@ class MealsController < ApplicationController
       end
     end
     meals_in_range
+  end
+
+  def check_selected_ingredients
+    prev_ingredients_ids = @meal.ingredients_ids
+    if params[:meal][:food_ids]
+      selected_ingredients_ids = params[:meal][:food_ids]
+      #check initial ingredients and compare with ingredients selected in select2
+      #delete those who were before and now are not in the select2
+      prev_ingredients_ids.each do |id_ingr|
+        if !(selected_ingredients_ids.include? id_ingr.to_s)
+          #substract_ingredient_macros(id_ingr)
+          @meal.meal_foods.where(meal_id: @meal.id, food_id: id_ingr).first.destroy
+        end
+      end
+
+    else
+      @meal.meal_foods.delete_all
+    end
+  end
+
+  def substract_ingredient_macros(id_ingr)
+    food = Food.find(id_ingr)
+    serving_size = (food.serving_size / 100)
+    @meal.kcal -= (serving_size * food.kcal).round
+    @meal.protein -= (serving_size * food.protein).round
+    @meal.carbs -= (serving_size * food.carbs).round
+    @meal.fats -= (serving_size * food.fats).round
   end
 
 end

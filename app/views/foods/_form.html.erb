@@ -1,0 +1,23 @@
+<%= simple_form_for(@food, url: user_foods_path(user_id: current_user.id)) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :brand %>
+  <%= f.input :kcal %>
+  <%= f.input :protein %>
+  <%= f.input :carbs %>
+  <%= f.input :fats %>
+  <%= f.input :serving_size %>
+  <%= label_tag "Characteristics"%>
+  <div class="d-flex justify-content-between">
+    <%= f.input :vegan %>
+    <%= f.input :vegetarian %>
+    <%= f.input :gluten_free %>
+    <%= f.input :nut_free %>
+    <%= f.input :soy_free  %>
+  </div>
+               
+  <div class="form-actions d-flex">
+    <%= f.button :submit, class: 'btn' %>
+    <%= button_tag "Clear", type: :reset, class: 'btn' %>
+  </div>
+<% end %>

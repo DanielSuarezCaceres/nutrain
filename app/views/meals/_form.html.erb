@@ -7,18 +7,10 @@
         <%= f.input :name, placeholder: 'Give a name to your delicious meal!' %>
         <%= f.input :description, placeholder: 'Description: cooking time, steps...' %>
         <%= f.input :day, as: :date, html5: true %>
-        <!-- <label class="btn" id="btn-sec">
-          Select file
-          <span style="display:none;">
-            <%= f.input :file, label: 'Select photo of meal', as: :file %>
-          </span>
-        </label> -->
       </div>
       <br>
       <div class="form-actions">
         <%= f.button :submit, class: 'btn' %>
-        <!-- pending: reset button does not reset select2 -->
-        <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn' %> -->
       </div>
       <br>
       <br>
@@ -76,7 +68,7 @@
         </table>
       </div>
     </div>
-    <!-- <button class="btn" id="toggle-edit-meal-graphics">Show graphics</button> -->
+
     <div id="edit-meal-graphics">
     <%= pie_chart @meal.foods.group(:name).sum(:protein),
                   colors: ['#16A085', '#D35400', '#0288d1', '#2C3E50'],

@@ -1,0 +1,23 @@
+<div class="container p-3 col-6">
+  <div class="card">
+    <div class="card-header d-flex">
+      <h2>Edit exercise</h2>
+      <%= link_to 'Back', user_diets_path(user_id: current_user.id), class: 'btn ml-auto' %>
+    </div>
+    <div class="card-body">
+      <%= simple_form_for(@exercise, url: user_exercise_path(user_id: current_user.id), method: :put) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :sets %>
+        <%= f.input :reps %>
+        <%= f.input :weight %>
+        <%= f.input :workout_id, collection: current_user.workouts, label_method: :name_and_date, value_method: :id %>
+        
+        <div class="form-actions">
+          <%= f.button :submit, class: 'btn' %>
+          <%= button_tag "Clear", type: :reset, class: 'btn' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

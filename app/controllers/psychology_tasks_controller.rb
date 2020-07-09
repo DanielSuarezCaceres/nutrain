@@ -27,8 +27,7 @@ class PsychologyTasksController < ApplicationController
 
   # GET /psychology_tasks/new
   def new
-    # @psychology_task = PsychologyTask.new
-    @psychology_task = User.find(params[:user_id]).psychology_tasks.new
+    #@psychology_task = User.find(params[:user_id]).psychology_tasks.new
     @psychology_task = PsychologyTask.new
     # if params[:client_id]
     #   @psychology_task = User.find(params[:client_id]).psychology_tasks.new
@@ -43,7 +42,7 @@ class PsychologyTasksController < ApplicationController
 
   # POST /psychology_tasks
   def create
-    # if id's are different, routine is being created by a professional for one of his clients
+    # if id's are different, exercise is being created by a professional for one of his clients
     if params[:psychology_task][:user_id].to_i != current_user.id
       @client = User.find(params[:psychology_task][:user_id].to_i)
       @psychology_task = @client.psychology_tasks.new(psychology_task_params)
@@ -71,7 +70,7 @@ class PsychologyTasksController < ApplicationController
   # PATCH/PUT /psychology_tasks/1
   def update
     if params[:psychology_task][:user_id].to_i != current_user.id
-      @client = User.find(params[:routine][:user_id].to_i)
+      @client = User.find(params[:psychology_task][:user_id].to_i)
       @psychology_task = PsychologyTask.find(params[:id])
       if @psychology_task.update(psychology_task_params)
         redirect_to user_clients_path(current_user),
@@ -116,8 +115,8 @@ class PsychologyTasksController < ApplicationController
       :description,
       :goal,
       :user_id,
-      :client_id,
-      :sent_by_id
+      :client_id
+      #:sent_by_id
     )
   end
   

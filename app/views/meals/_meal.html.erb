@@ -40,11 +40,11 @@
         <tr>
           <td class="text-center"><%= food.name %></td>
           <td class="text-center"><%= food.brand %></td>
-          <td class="text-center"><%= food.kcal %></td>
-          <td class="text-center"><%= food.protein %></td>
-          <td class="text-center"><%= food.carbs %></td>
-          <td class="text-center"><%= food.fats %></td>
-          <td class="text-center"><%= food.serving_size %></td>
+          <td class="text-center"><%= (food.kcal * food.serving_size/100).round %></td>
+          <td class="text-center"><%= (food.protein * food.serving_size/100).round %></td>
+          <td class="text-center"><%= (food.carbs * food.serving_size/100).round %></td>
+          <td class="text-center"><%= (food.fats * food.serving_size/100).round %></td>
+          <td class="text-center"><%= food.serving_size.round %></td>
         </tr>
       <% end %>
     </tbody>

@@ -40,9 +40,9 @@ class PhysioExercisesController < ApplicationController
 
   # POST /physio_exercises
   def create
-    @physio_exercise = PhysioExercise.new(physio_exercise_params)
+    #@physio_exercise = PhysioExercise.new(physio_exercise_params)
     if params[:physio_exercise][:user_id].to_i != current_user.id
-      @client = User.find(params[:user_id].to_i)
+      @client = User.find(params[:physio_exercise][:user_id].to_i)
       @physio_exercise = @client.physio_exercises.new(physio_exercise_params)
       if @physio_exercise.valid?
         @physio_exercise.save
@@ -65,7 +65,7 @@ class PhysioExercisesController < ApplicationController
   # PATCH/PUT /physio_exercises/1
   def update
     if params[:physio_exercise][:user_id].to_i != current_user.id
-      @client = User.find(params[:routine][:user_id].to_i)
+      @client = User.find(params[:physio_exercise][:user_id].to_i)
       @physio_exercise = PhysioExercise.find(params[:id])
       if @physio_exercise.update(physio_exercise_params)
         redirect_to user_clients_path(current_user),

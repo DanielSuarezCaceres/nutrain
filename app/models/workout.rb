@@ -6,6 +6,10 @@ class Workout < ApplicationRecord
   # validates :description, presence: true, length: { minium: 30 }
   #validates :number_of_exercises, numericality: { greater_than_or_equal_to: 1, message: "must be one at least"}
 
+  def name_and_date
+    "#{name} | Date: #{day}"
+  end
+
   def get_all_exercises
     all_exercises = []
     exercises.each do |exercise|

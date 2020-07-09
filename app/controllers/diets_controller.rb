@@ -3,6 +3,7 @@ class DietsController < ApplicationController
 
   def index
     if params[:client_id]
+      @diets = User.find(params[:client_id]).diets
       @pagy, @diets = pagy(User.find(params[:client_id]).diets)
     else
       @pagy, @diets = pagy(User.find(params[:user_id]).diets)
@@ -26,6 +27,7 @@ class DietsController < ApplicationController
 
   def new
     @diet = Diet.new
+    # authorize @diet
     # if params[:client_id]
     #   @diet = User.find(params[:client_id]).diets.new
     # else
@@ -44,6 +46,7 @@ class DietsController < ApplicationController
     if params[:diet][:user_id].to_i != current_user.id
       @client = User.find(params[:diet][:user_id].to_i)
       @diet = @client.diets.new(diet_params)
+      # authorize @diet
       if @diet.valid?
         @diet.save
         redirect_to user_clients_path(user_id: params[:user_id]), notice: 'Diet created for your client successfully'
@@ -81,7 +84,7 @@ class DietsController < ApplicationController
       redirect_to user_diets_path(current_user), notice: 'Diet deleted successfully'
     else
       flash[:error] = @diet.errors.full_messages
-      redirect_to user_diet_path(@diet)
+      redirect_to user_diet_path(@diet), error: 'Something went wrong while deleting diet'
     end
   end
 

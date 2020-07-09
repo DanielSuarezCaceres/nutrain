@@ -4,6 +4,7 @@ class Food < ApplicationRecord
   has_many :meals, through: :meal_foods
   belongs_to :user
   # belongs_to :meal
+  #attr_accessor :serving_size
 
   def name_and_amount
     "#{name}, #{serving_size}g, #{brand} (#{kcal} kcal, #{protein} p, #{carbs} ch, #{fats} f)"
@@ -19,6 +20,7 @@ class Food < ApplicationRecord
     food_macros_serving["protein"] = (serving_size * self.protein).round
     food_macros_serving["carbs"] = (serving_size * self.carbs).round
     food_macros_serving["fats"] = (serving_size * self.fats).round
+    food_macros_serving["serving_size"] = self.serving_size.round
     food_macros_serving["vegan"] = self.vegan
     food_macros_serving["vegetarian"] = self.vegetarian
     food_macros_serving["nut_free"] = self.nut_free

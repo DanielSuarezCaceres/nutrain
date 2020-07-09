@@ -21,7 +21,6 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    # byebug
     @appointment = Appointment.new
     # prepopulate client_id field in form
     if current_user.type == 'Professional'
@@ -43,9 +42,6 @@ class AppointmentsController < ApplicationController
   
   def create
     @appointment = current_user.appointments.new(appointment_params)
-    #@appointment.update(start_time: appointment_params[:start_time].to_time)
-    #@appointment.update(end_time: appointment_params[:end_time].to_time)
-    # byebug
     if @appointment.valid?  
       @appointment.save
       flash[:notice] = 'Appointment created sucessfully'
@@ -58,7 +54,6 @@ class AppointmentsController < ApplicationController
 
   def update
     @appointment = Appointment.find(params[:id])
-    #byebug
     if @appointment.update(appointment_params)
       flash[:notice] = 'Appointment updated succesfully'
       redirect_to user_appointments_path(user_id: current_user.id)
@@ -96,11 +91,11 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(
       :id,
       :title,
+      :user_id,
       :description,
       :client_id,
       :professional_id,
-      :start_time,
-      #:end_time
+      :start_time
     )
   end
 

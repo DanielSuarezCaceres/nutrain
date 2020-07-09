@@ -1,6 +1,6 @@
 <div class="row">
   <div class="p-1">
-    <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
+    <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, client_id: @user.id), class: 'btn' %>
   </div>
   <% if current_user.has_contract?(@user.id) %>
     <% if current_user.nutritionist %>

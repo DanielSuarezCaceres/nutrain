@@ -2,7 +2,6 @@
   <div class="card">
     <div class="card-header d-flex">
       <h2>Edit meal</h2>
-      <!-- <%= link_to 'Show', user_meal_path(current_user), class: 'btn' %> -->
       <%= link_to 'Back', :back, class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
@@ -19,8 +18,6 @@
             <br>
             <div class="form-actions">
               <%= f.button :submit, class: 'btn' %>
-              <!-- pending: reset button does not reset select2 -->
-              <!-- <%= f.button :button, 'Reset', type: :reset, class: 'btn' %> -->
             </div>
             <br>
             <br>
@@ -32,14 +29,14 @@
             </div>
             <p><small>*Remember that you can go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients</small></p>
             <hr>
-            <div class="foods-form">
+            <!--<div class="foods-form">
               <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
               <hr>
-              <!-- maybe comment this in the future depending on wether user are allowed to edit foods or not -->
               <%= f.simple_fields_for :foods do |food| %>
                 <%= render 'foods/food_fields', f: food %>
               <% end %>
             </div>
+            -->
           <% end %>
         </div>
         <!-- Vertical separator -->
@@ -80,15 +77,15 @@
           </div>
           <!-- <button class="btn" id="toggle-edit-meal-graphics">Show graphics</button> -->
           <div id="edit-meal-graphics">
-            <h5>Protein</h5>
             <%= pie_chart @meal.foods.group(:name).sum(:protein),
-                  width: "250px", height: "250px" %><br>
-            <h5>Carbs</h5>
+                  width: "250px", height: "250px", title: 'Protein',
+                  download: true, messages: {empty: "No data"}%><br>
             <%= pie_chart @meal.foods.group(:name).sum(:carbs),
-                  width: "250px", height: "250px" %><br>
-            <h5>Fats</h5>
+                  width: "250px", height: "250px", title: 'Carbs',
+                  download: true, messages: {empty: "No data"} %><br>
             <%= pie_chart @meal.foods.group(:name).sum(:fats),
-                  width: "250px", height: "250px" %>
+                  width: "250px", height: "250px", title: 'Fats',
+                  download: true, messages: {empty: "No data"} %>
           </div>
         </div>
       </div>

@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="flex-container flex-container-style fixed-height">
+    <div class="flex-item"><span contenteditable="">
+        <h1>Nutrain</h1>
+      </span></div>
+  </div>
+  <div class="row">
+    <h4>User: <%= current_user.fullname %></h4>
+    <h4>Info: Foods report</h4>
+    <h4>Date: <%= Date.today.strftime("%Y-%m-%d") %></h4>
+    <br>
+  </div>
+  <br>
+  
+  <table class="table">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Brand</th>
+      <th class="text-center">Kcal</th>
+      <th class="text-center">Protein</th>
+      <th class="text-center">Carbs</th>
+      <th class="text-center">Fats</th>
+    </tr>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td class="text-center"><%= food.name %></td>
+          <td class="text-center"><%= food.brand %></td>
+          <td class="text-center"><%= food.kcal %></td>
+          <td class="text-center"><%= food.protein %></td>
+          <td class="text-center"><%= food.carbs %></td>
+          <td class="text-center"><%= food.fats %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

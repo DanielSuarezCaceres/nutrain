@@ -4,9 +4,6 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :lastname
       t.string :gender
-      t.string :age
-      t.string :height
-      t.string :weight
       t.string :phone
       t.string :city
       t.string :country

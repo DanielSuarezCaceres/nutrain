@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
+  include Pagy::Backend #pagination
+  include Pundit #authorization
   
   #before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
     root_path
   end
 =end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from ActiveRecord::InvalidForeignKey, with: :not_delete
 
   protected
 
@@ -27,6 +32,10 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
+  end
+
+  def not_delete(e)
+    flash[:error] = "You can not delete this resource"
   end
 
 end

@@ -6,11 +6,12 @@
     </div>
     <div class="card-body">
       <div id="appointment-form">
-        <%= simple_form_for(@appointment, url: user_appointments_path(user_id: params[:user_id])) do |f| %>
+        <%= simple_form_for(@appointment, url: user_appointments_path(user_id: params[:user_id], client_id: params[:client_id])) do |f| %>
           <%= f.error_notification %>
           <%= f.input :title %>
           <%= f.input :description %>
           <%= f.input :start_time, as: :datetime, html5: true %>
+          <%= f.hidden_field :client_id, value: params[:client_id] %>
           <% if current_user.type == 'Professional' %>
             <% if params[:client_id] %>
               <%= f.input :client_id, collection: Client.all, disabled: true %>
