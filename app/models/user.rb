@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :measurements
-  has_many :routines
+  has_many :measurements, dependent: :destroy
+  has_many :routines, dependent: :destroy
   has_many :workouts, dependent: :destroy
-  has_many :diets
+  has_many :diets, dependent: :destroy
   has_many :meals, dependent: :destroy
   has_many :foods, dependent: :destroy
   has_many :physio_exercises, dependent: :destroy
   has_many :psychology_tasks, dependent: :destroy
-  has_many :appointments
-  has_many :contracts
+  has_many :appointments, dependent: :destroy
+  has_many :contracts, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

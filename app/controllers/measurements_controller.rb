@@ -65,11 +65,16 @@ class MeasurementsController < ApplicationController
   end
 
   def delete_all
-    if current_user.measurements.delete_all
-      redirect_to user_measurements_path(current_user), notice: 'All measurements deleted successfully'
+    if current_user.measurements.any?
+      if current_user.measurements.delete_all
+        redirect_to user_measurements_path(current_user), notice: 'All measurements deleted successfully'
+      else
+        redirect_to user_measurements_path(current_user),
+          :flash => { :error => "Something went wrong while deleting measurements" }
+      end
     else
       redirect_to user_measurements_path(current_user),
-        :flash => { :error => "Something went wrong while deleting measurements" }
+        :flash => { :error => "No measurements to delete" }
     end
   end
 

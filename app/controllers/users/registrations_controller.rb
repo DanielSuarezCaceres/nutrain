@@ -3,6 +3,28 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_user!
 
+  def destroy
+    if current_user.type == 'Client'
+      Appointment.where(client_id: current_user.id).destroy_all
+      Contract.where(client_id: current_user.id).destroy_all
+      if current_user.destroy
+        redirect_to root_path, notice: 'Account deleted successfully'
+      else
+        redirect_to edit_user_path(current_user), 
+          :flash => { :error => "Something went wrong while deleting your account" }
+      end
+    else
+      Appointment.where(professional_id: current_user.id).destroy_all
+      Contract.where(professional_id: current_user.id).destroy_all
+      if current_user.destroy
+        redirect_to root_path, notice: 'Account deleted successfully'
+      else
+        redirect_to edit_user_path(current_user), 
+          :flash => { :error => "Something went wrong while deleting your account" }
+      end
+    end
+  end
+
   protected
   def update_resource(resource, params)
     resource.update_without_password(params)
@@ -11,6 +33,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     user_path(resource)
   end
+
+ 
 
   # def update
   #   byebug

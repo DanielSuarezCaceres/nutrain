@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.string "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_psychology_tasks_on_user_id"
+    t.index ["user_id"], name: "index_physio_exercises_on_user_id"
   end
 
   create_table "psychology_tasks", force: :cascade do |t|
@@ -152,14 +152,13 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_physio_exercises_on_user_id"
+    t.index ["user_id"], name: "index_psychology_tasks_on_user_id"
   end
 
   create_table "routines", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.bigint "user_id"
-    t.string "file"
     t.integer "days_of_exercise"
     t.string "goal"
     t.boolean "active"
@@ -204,16 +203,20 @@ ActiveRecord::Schema.define(version: 2020_06_09_203844) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
-  add_foreign_key "appointments", "users", column: "client_id"
-  add_foreign_key "appointments", "users", column: "professional_id"
-  add_foreign_key "contracts", "users", column: "client_id"
-  add_foreign_key "contracts", "users", column: "professional_id"
-  add_foreign_key "contracts", "users", column: "sent_by_id"
+  add_foreign_key "appointments", "users", column: "client_id", on_delete: :cascade
+  add_foreign_key "appointments", "users", column: "professional_id", on_delete: :cascade
+  add_foreign_key "contracts", "users", column: "client_id", on_delete: :cascade
+  add_foreign_key "contracts", "users", column: "professional_id", on_delete: :cascade
+  add_foreign_key "contracts", "users", column: "sent_by_id", on_delete: :cascade
+  add_foreign_key "diets", "users"
   add_foreign_key "exercises", "workouts"
   add_foreign_key "foods", "users"
   add_foreign_key "meal_foods", "foods"
   add_foreign_key "meal_foods", "meals"
   add_foreign_key "meals", "users"
   add_foreign_key "measurements", "users"
+  add_foreign_key "physio_exercises", "users"
+  add_foreign_key "psychology_tasks", "users"
+  add_foreign_key "routines", "users"
   add_foreign_key "workouts", "users"
 end

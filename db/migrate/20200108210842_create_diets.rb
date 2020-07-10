@@ -5,12 +5,13 @@ class CreateDiets < ActiveRecord::Migration[6.0]
       t.text :description
       t.integer :kcal_goal
       t.integer :recommended_meals
-      t.bigint :user_id
+      t.references :user, index: true, foreign_key: true, on_delete: :cascade
+      #t.bigint :user_id
       t.string :goal
       t.boolean :active
 
       t.timestamps
-      t.index ["user_id"], name: "index_diets_on_user_id"
+      #t.index ["user_id"], name: "index_diets_on_user_id"
     end
   end
 end

@@ -2,7 +2,8 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @appointments = User.find(params[:user_id]).appointments
+    @client = User.find(current_user.id)
+    @appointments = @client.appointments
     respond_to do |format|
       format.html
       format.pdf do
@@ -88,7 +89,7 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(
       :id,
       :title,
-      :user_id,
+      #:user_id,
       :description,
       :client_id,
       :professional_id,

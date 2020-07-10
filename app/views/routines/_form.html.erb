@@ -11,7 +11,7 @@
   <% end %>
   <%= f.input :active, label: 'Set as current routine', class: 'form-control' %>
   <!-- if professional is creating routine for client, show message -->
-  <% if current_user.id != params[:user_id] %>
+  <% if current_user.type == 'Professional' && params.has_key?(:client_id) %>
     <p><small>*You can only change user's current routine. Set routine as current if you want to update it later.</small></p>
   <% end %>
   <!--

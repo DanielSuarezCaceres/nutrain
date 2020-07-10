@@ -89,11 +89,16 @@ class DietsController < ApplicationController
   end
 
   def delete_all
-    if current_user.diets.delete_all
-      redirect_to user_diets_path(current_user), notice: 'All diets deleted successfully'
+    if current_user.diets.any?
+      if current_user.diets.delete_all
+        redirect_to user_diets_path(current_user), notice: 'All diets deleted successfully'
+      else
+        redirect_to user_diets_path(current_user),
+          :flash => { :error => "Something went wrong while deleting diets" }
+      end
     else
       redirect_to user_diets_path(current_user),
-        :flash => { :error => "Something went wrong while deleting diets" }
+        :flash => { :error => "No diets to delete" }
     end
   end
 

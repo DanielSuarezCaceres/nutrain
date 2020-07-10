@@ -59,11 +59,27 @@ class WorkoutsController < ApplicationController
   end
   
   def delete_all
-    if current_user.workouts.delete_all
-      redirect_to user_workouts_path(current_user), notice: 'All workouts deleted successfully'
+    if current_user.workouts.any?
+      @exercises = Exercise.user_exercises(current_user.id)
+      if @exercises.any?
+        @exercises.each do |ex|
+          if Exercise.find(ex.id).destroy
+            next
+          else
+            redirect_to user_workouts_path(current_user),
+              :flash => { :error => "Sometehing went wrong while deleting exercises. You might have lost some of them" }
+          end
+        end
+      end
+      if current_user.workouts.delete_all
+        redirect_to user_workouts_path(current_user), notice: 'All workouts deleted successfully'
+      else
+        redirect_to user_workouts_path(current_user),
+          :flash => { :error => "Something went wrong while deleting workouts" }
+      end
     else
       redirect_to user_workouts_path(current_user),
-        :flash => { :error => "Something went wrong while deleting workouts" }
+        :flash => { :error => "No workouts to delete" }
     end
   end
 

@@ -3,7 +3,7 @@ class CreateMeals < ActiveRecord::Migration[6.0]
     create_table :meals do |t|
       t.string :name
       t.text :description
-      t.references :user, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true, on_delete: :cascade
       t.date :day
       t.integer :kcal
       t.float :protein

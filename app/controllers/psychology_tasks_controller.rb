@@ -101,11 +101,16 @@ class PsychologyTasksController < ApplicationController
   end
 
   def delete_all
-    if current_user.psychology_tasks.delete_all
-      redirect_to user_psychology_tasks_path(current_user), notice: 'All psychology tasks deleted successfully'
+    if current_user.psychology_tasks.any?
+      if current_user.psychology_tasks.delete_all
+        redirect_to user_psychology_tasks_path(current_user), notice: 'All psychology tasks deleted successfully'
+      else
+        redirect_to user_psychology_tasks_path(current_user),
+          :flash => { :error => "Something went wrong while deleting all psychology exercises" }
+      end
     else
       redirect_to user_psychology_tasks_path(current_user),
-        :flash => { :error => "Something went wrong while deleting all psychology exercises" }
+        :flash => { :error => "No psychology exercises to delete" }
     end
   end
 

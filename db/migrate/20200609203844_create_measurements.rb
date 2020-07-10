@@ -10,7 +10,7 @@ class CreateMeasurements < ActiveRecord::Migration[6.0]
       t.integer :waist_size
       t.integer :hips_size
       t.integer :leg_size
-      t.references :user, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true, on_delete: :cascade
 
       t.timestamps
     end
