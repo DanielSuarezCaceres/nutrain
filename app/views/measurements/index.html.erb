@@ -22,15 +22,15 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
-      <th class="text-center">Weight (kg)</th>
-      <th class="text-center">Body fat (%)</th>
-      <th class="text-center">Neck (cm)</th>
-      <th class="text-center">Chest (cm)</th>
-      <th class="text-center">Arm (cm)</th>
-      <th class="text-center">Waist (cm)</th>
-      <th class="text-center">Hips (cm)</th>
-      <th class="text-center">Leg (cm)</th>
-      <th class="text-center">Day</th>
+      <th class="text-center"><%= sort_link(@q, :weight) %></th>
+      <th class="text-center"><%= sort_link(@q, :body_fat) %></th>
+      <th class="text-center"><%= sort_link(@q, :neck_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :chest_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :arm_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :waist_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :hips_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :leg_size) %></th>
+      <th class="text-center"><%= sort_link(@q, :day) %></th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>

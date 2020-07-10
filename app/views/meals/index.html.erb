@@ -22,18 +22,18 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
-      <th class="text-center">Name</th>
+      <th class="text-center"><%= sort_link(@q, :name) %></th>
       <th class="text-center">Description</th>
-      <th class="text-center">Kcal</th>
-      <th class="text-center">Protein</th>
-      <th class="text-center">Carbs</th>
-      <th class="text-center">Fats</th>
+      <th class="text-center"><%= sort_link(@q, :kcal) %></th>
+      <th class="text-center"><%= sort_link(@q, :protein) %></th>
+      <th class="text-center"><%= sort_link(@q, :carbs) %></th>
+      <th class="text-center"><%= sort_link(@q, :fats) %></th>
       <th class="text-center">Vegan</th>
       <th class="text-center">Vegetarian</th>
       <th class="text-center">Gluten free</th>
       <th class="text-center">Nut free</th>
       <th class="text-center">Soy free</th>
-      <th class="text-center">Date</th>
+      <th class="text-center"><%= sort_link(@q, :day) %></th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>
@@ -50,7 +50,7 @@
           <td class="text-center"><%= meal.gluten_free ? 'Yes' : 'No' %></td>
           <td class="text-center"><%= meal.nut_free ? 'Yes' : 'No' %></td>
           <td class="text-center"><%= meal.soy_free ? 'Yes' : 'No' %></td>
-          <td class="text-center"><%= meal.created_at %></td>
+          <td class="text-center"><%= meal.day %></td>
           <td class="text-center">
             <%= link_to 'Details', user_meal_path(user_id: current_user.id, id: meal.id), class: 'btn' %>
             <%= link_to 'Delete', user_meal_path(user_id: current_user.id, id: meal.id), 

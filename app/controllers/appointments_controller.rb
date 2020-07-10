@@ -44,10 +44,8 @@ class AppointmentsController < ApplicationController
     @appointment = current_user.appointments.new(appointment_params)
     if @appointment.valid?  
       @appointment.save
-      flash[:notice] = 'Appointment created sucessfully'
-      redirect_to user_appointments_path(current_user)
+      redirect_to user_appointments_path(current_user), notice: 'Appointment created successfully'
     else
-      flash[:error] = @appointment.errors
       render :new
     end
   end
@@ -55,10 +53,8 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
-      flash[:notice] = 'Appointment updated succesfully'
-      redirect_to user_appointments_path(user_id: current_user.id)
+      redirect_to user_appointments_path(user_id: current_user.id), notice: 'Appointment updated successfully'
     else
-      flash[:error] = @appointment.errors
       render :edit
     end
   end
@@ -72,8 +68,8 @@ class AppointmentsController < ApplicationController
     if @appointment.destroy
       redirect_to user_appointments_path(params[:user_id]), notice: 'Appointment deleted successfully'
     else
-      flash[:error] = @appointment.errors.full_messages
-      redirect_to user_appointment_path(params[:user_id])
+      redirect_to user_appointment_path(params[:user_id]),
+      :flash => { :error => "Something went wrong while deleting appointment" }
     end
   end
 
@@ -81,7 +77,8 @@ class AppointmentsController < ApplicationController
     if current_user.appointments.delete_all
       redirect_to user_appointments_path(current_user), notice: 'All appointments deleted successfully'
     else
-      redirect_to user_appointments_path(current_user), flash[:error] = 'Something went wrong while deleting appointments'
+      redirect_to user_appointments_path(current_user),
+        :flash => { :error => "Something went wrong while deleting all the appointments" }
     end
   end
 

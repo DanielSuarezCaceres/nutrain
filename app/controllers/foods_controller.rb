@@ -7,7 +7,8 @@ class FoodsController < ApplicationController
     if params[:meal_id]
      @pagy, @foods = pagy(Meal.find(params[:meal_id]).foods)
     else
-      @pagy, @foods = pagy(current_user.foods)
+      @q = current_user.foods.ransack(params[:q])
+      @pagy, @foods = pagy(@q.result)
     end
     respond_to do |format|
      format.html
@@ -61,6 +62,23 @@ class FoodsController < ApplicationController
       redirect_to user_foods_path(current_user), notice: 'Food deleted successfully'
     else
       redirect_to user_foods_path(current_user), error: 'Something went wrong while deleting food'
+    end
+  end
+
+  def delete_all
+    if current_user.foods.any?
+      current_user.foods.each do |food|
+        MealFood.where(food_id: food.id).destroy_all
+      end
+      if current_user.foods.delete_all
+        redirect_to user_foods_path(current_user), notice: 'All foods deleted successfully'
+      else
+        redirect_to user_foods_path(current_user),
+          :flash => { :error => "Something went wrong while deleting foods. You might have lost some of them" }
+      end
+    else
+      redirect_to user_foods_path(current_user),
+        :flash => { :error => "No foods to delete"}
     end
   end
 

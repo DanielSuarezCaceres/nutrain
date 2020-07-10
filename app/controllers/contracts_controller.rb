@@ -3,7 +3,7 @@ class ContractsController < ApplicationController
   before_action :set_contract, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pagy, @contracts = pagy(User.find(params[:user_id]).contracts)
+    @pagy, @contracts = pagy(User.find(current_user.id).contracts)
   end
 
   def show
@@ -11,6 +11,7 @@ class ContractsController < ApplicationController
 
   def new
     # byebug
+    @contract = Contract.new
     if current_user.type == 'Professional'
       if params[:client_id]
         # prepopulate client_id field in form
@@ -34,11 +35,10 @@ class ContractsController < ApplicationController
     @contract = current_user.contracts.new(contract_params)
     if @contract.valid?
       @contract.save
-      flash[:notice] = "Contract request sent sucessfully"
-      redirect_to user_contracts_path(current_user)
+      redirect_to user_contracts_path(current_user), notice: 'Contract created successfully'
     else
-      flash[:error] = @contract.errors.full_messages
-      render :new
+      redirect_to new_user_contract_path(user_id: current_user.id),
+        :flash => { :error => "Could not create contract due to following reasons: #{@contract.errors.full_messages}" }
     end
   end
 
@@ -50,8 +50,8 @@ class ContractsController < ApplicationController
         @contract.update(state: 'Active')
         redirect_to user_contracts_path(current_user), notice: 'Contract accepted'
       else
-        flash[:error] = @contract.errors.full_messages
-        render :edit
+        redirect_to edit_user_contract_path(current_user),
+        :flash => { :error => "Could not edit contract due to following reasons: #{@contract.errors.full_messages}" }
       end
     else
       @contract.destroy
@@ -70,7 +70,7 @@ class ContractsController < ApplicationController
       state == 'Pending' ? notice_message = 'Contract request cancelled' : notice_message = 'Contract deleted successfully'
       redirect_to user_contracts_path(current_user), notice: notice_message
     else
-      flash[:notice] = @contract.errors.full_messages
+      redirect_to user_contracts_path(current_user), flash => { :error => "Something went wrong while deleting contract" }
     end
   end
 
@@ -78,7 +78,8 @@ class ContractsController < ApplicationController
     if current_user.contracts.delete_all
       redirect_to user_contracts_path(current_user), notice: 'All contracts deleted successfully'
     else
-      redirect_to user_contracts_path(current_user), flash[:error] = 'Something went wrong while deleting contracts'
+      redirect_to user_contracts_path(current_user),
+      :flash => { :error => "Something went wrong while deleting contracts" }
     end
   end
 

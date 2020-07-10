@@ -5,7 +5,7 @@
       <%= link_to 'Back', user_contracts_path(user_id: current_user.id), class: 'btn ml-auto' %>
     </div>
     <div class="card-body">
-      <%= render 'form', user_id: current_user.id %>
+      <%= render 'form', contract: @contract, user_id: current_user.id %>
     </div>
   </div>
 </div>

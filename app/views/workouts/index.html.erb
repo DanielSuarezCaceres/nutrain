@@ -27,9 +27,9 @@
 <div class="table-responsive">
 <table class="table table-responsive-lg table-hover">
   <tr>
-    <th class="text-center">Name</th>
+    <th class="text-center"><%= sort_link(@q, :name) %></th>
     <th class="text-center">Description</th>
-    <th class="text-center">Date</th>
+    <th class="text-center"><%= sort_link(@q, :day) %></th>
     <th class="text-center">Goal</th>
     <th class="text-center">Actions</th>
   </tr>

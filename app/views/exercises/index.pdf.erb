@@ -23,6 +23,7 @@
       <th class="text-center">Workout date</th>
     </tr>
     <tbody>
+      <% @exercises = Exercise.user_exercises(current_user.id) %>
       <% @exercises.each do |ex| %>
         <tr>
           <td class="text-center"><%= ex.name %></td>

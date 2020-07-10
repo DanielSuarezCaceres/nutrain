@@ -3,6 +3,10 @@
     <%= link_to 'New food', new_user_food_path(current_user.id), class: 'btn' %>
   </div>
   <div class="p-2">
+    <%= link_to "Delete all", delete_all_user_foods_path(current_user), :method => :get, class: 'btn btn-danger',
+        data: { confirm: 'You are going to delete all your foods. This action cannot be undone. Are you sure?' } %>
+  </div>
+  <div class="p-2">
     <%= link_to 'Download history', user_foods_path(current_user, :format => :pdf), :format => :pdf, target: :_blank, class: 'btn' %>
   </div>
 </div>
@@ -12,18 +16,18 @@
 <div class="table-responsive">
   <table class="table table-hover">
     <tr>
-      <th class="text-center">Name</th>
+      <th class="text-center"><%= sort_link(@q, :name) %></th>
       <th class="text-center">Brand</th>
-      <th class="text-center">Kcal</th>
-      <th class="text-center">Protein</th>
-      <th class="text-center">Carbs</th>
-      <th class="text-center">Fats</th>
+      <th class="text-center"><%= sort_link(@q, :kcal) %></th>
+      <th class="text-center"><%= sort_link(@q, :protein) %></th>
+      <th class="text-center"><%= sort_link(@q, :carbs) %></th>
+      <th class="text-center"><%= sort_link(@q, :fats) %></th>
       <th class="text-center">Vegan</th>
       <th class="text-center">Vegetarian</th>
       <th class="text-center">Gluten free</th>
       <th class="text-center">Nut free</th>
       <th class="text-center">Soy free</th>
-      <th class="text-center">Date</th>
+      <th class="text-center"><%= sort_link(@q, :created_at) %></th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>
@@ -35,11 +39,11 @@
           <td class="text-center"><%= food.protein %></td>
           <td class="text-center"><%= food.carbs %></td>
           <td class="text-center"><%= food.fats %></td>
-          <td class="text-center"><%= food.vegan %></td>
-          <td class="text-center"><%= food.vegetarian %></td>
-          <td class="text-center"><%= food.gluten_free %></td>
-          <td class="text-center"><%= food.nut_free %></td>
-          <td class="text-center"><%= food.soy_free %></td>
+          <td class="text-center"><%= food.vegan? %></td>
+          <td class="text-center"><%= food.vegetarian? %></td>
+          <td class="text-center"><%= food.gluten_free? %></td>
+          <td class="text-center"><%= food.nut_free? %></td>
+          <td class="text-center"><%= food.soy_free? %></td>
           <td class="text-center"><%= food.created_at %></td>
           <td class="text-center">
             <%= link_to 'Details', user_food_path(user_id: current_user.id, id: food.id), class: 'btn' %>

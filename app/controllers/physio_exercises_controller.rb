@@ -7,7 +7,8 @@ class PhysioExercisesController < ApplicationController
     if params[:client_id]
       @pagy, @physio_exercises = pagy(User.find(params[:client_id]).physio_exercises)
     else
-      @pagy, @physio_exercises = pagy(User.find(params[:user_id]).physio_exercises)
+      @q = User.find(params[:user_id]).physio_exercises.ransack(params[:q])
+      @pagy, @physio_exercises = pagy(@q.result)
       respond_to do |format|
         format.html
         format.pdf do
@@ -89,7 +90,8 @@ class PhysioExercisesController < ApplicationController
     if @physio_exercise.destroy
       redirect_to user_physio_exercises_path(current_user), notice: 'Physiotherapy exercise deleted succesfully'
     else
-      flash[:error] = @physio_exercise.errors.full_messages
+      redirect_to user_physio_exercises_path(current_user),
+        :flash => { :error => "Something went wrong while deleting physiotherapy exercise" }
     end
   end
 
@@ -97,7 +99,8 @@ class PhysioExercisesController < ApplicationController
     if current_user.physio_exercises.delete_all
       redirect_to user_physio_exercises_path(current_user), notice: 'All physiotherapy exercises deleted successfully'
     else
-      redirect_to user_physio_exercises_path(current_user), flash[:error] = 'Something went wrong while deleting physiotherapy exercises'
+      redirect_to user_physio_exercises_path(current_user),
+        :flash => { :error => "Something went wrong while deleting physiotherapy exercises" }
     end
   end
 

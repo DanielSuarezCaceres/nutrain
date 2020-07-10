@@ -1,8 +1,5 @@
 <div class="d-flex justify-content-start" id="upper-toolbar">
   <div class="p-2">
-    <%= link_to 'New exercise', new_user_exercise_path(current_user.id), class: 'btn' %>
-  </div>
-  <div class="p-2">
     <%= link_to "Delete all", delete_all_user_exercises_path(current_user), :method => :get, class: 'btn btn-danger',
         data: { confirm: 'You are going to delete all your exercises. This action cannot be undone. Are you sure?' } %>
   </div>
@@ -21,32 +18,29 @@
       <th class="text-center">Sets</th>
       <th class="text-center">Reps</th>
       <th class="text-center">Weight (kg)</th>
-      <th class="text-center">Date</th>
+      <th class="text-center">Workout name and date</th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>
-      <% if !@exercises.nil? %>
-        <% @exercises.each do |exercise| %>
-          <tr>
-            <td class="text-center"><%= exercise.name %></td>
-            <td class="text-center description"><%= exercise.description %></td>
-            <td class="text-center"><%= exercise.sets %></td>
-            <td class="text-center"><%= exercise.reps %></td>
-            <td class="text-center"><%= exercise.weight %></td>
-            <td class="text-center"><%= exercise.created_at %></td>
-            <td class="text-center">
-              <%= link_to 'Details', user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
-              <%= link_to 'Delete', user_exercise_path(user_id: current_user.id, id: exercise.id), 
+      <% @exercises = Exercise.user_exercises(current_user.id) %>
+      <% @exercises.each do |exercise| %>
+        <tr>
+          <td class="text-center"><%= exercise.name %></td>
+          <td class="text-center description"><%= exercise.description %></td>
+          <td class="text-center"><%= exercise.sets %></td>
+          <td class="text-center"><%= exercise.reps %></td>
+          <td class="text-center"><%= exercise.weight %></td>
+          <td class="text-center"><%= Workout.find(exercise.workout_id).name_and_date %></td>
+          <td class="text-center">
+            <%= link_to 'Details', user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
+            <%= link_to 'Delete', user_exercise_path(user_id: current_user.id, id: exercise.id), 
                   method: :delete, data: { confirm: "You are deleting '#{exercise.name}'. Are you sure" }, class: 'btn btn-danger' %>
-              <%= link_to 'Edit', edit_user_exercise_path(user_id: current_user.id, id: exercise.id), class: 'btn' %>
-            </td>
-          </tr>
-        <% end %>
-      <% end%>
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
-
 <%= pagy_bootstrap_combo_nav_js(@pagy).html_safe %>
 <!--
 <div>

@@ -27,6 +27,7 @@
       <th class="text-center">Description</th>
       <th class="text-center">Client</th>
       <th class="text-center">Duration</th>
+      <th class="text-center"><%= sort_link(@q, :created_at) %></th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>
@@ -36,6 +37,7 @@
           <td class="text-center description"><%= physio_exercise.description %></td>
           <td class="text-center"><%= physio_exercise.user_id %></td>
           <td class="text-center"><%= physio_exercise.duration %></td>
+          <td class="text-center"><%= physio_exercise.created_at %></td>
           <td class="text-center">
             <%= link_to 'Show', user_physio_exercise_path(user_id: params[:user_id], id: physio_exercise.id), class: 'btn' %>
             <%= link_to 'Edit', edit_user_physio_exercise_path(user_id: params[:user_id], id: physio_exercise.id), class: 'btn' %>

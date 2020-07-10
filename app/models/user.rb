@@ -3,17 +3,14 @@
 class User < ApplicationRecord
   has_many :measurements
   has_many :routines
-  has_many :workouts
-  has_many :exercises, dependent: :destroy
-  #has_many :workouts, dependent: :destroy
+  has_many :workouts, dependent: :destroy
   has_many :diets
   has_many :meals, dependent: :destroy
-  # has_many :meal_foods
-  # has_many :meals, through: :meal_foods
   has_many :foods, dependent: :destroy
-  has_many :physio_exercises
-  has_many :psychology_tasks
+  has_many :physio_exercises, dependent: :destroy
+  has_many :psychology_tasks, dependent: :destroy
   has_many :appointments
+  has_many :contracts
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -56,9 +53,9 @@ class User < ApplicationRecord
     "#{name} #{lastname}"
   end
 
-  def self.users_except_admin(current_user_id)
-    where.not(id: current_user_id).where.not(type: 'Admin')
-  end
+  #def self.users_except_admin(current_user_id)
+  #  where.not(id: current_user_id).where.not(type: 'Admin')
+  #end
 
   def self.users_without_contract(user_id)
     user = User.find(user_id)

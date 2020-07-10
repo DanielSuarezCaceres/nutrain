@@ -35,26 +35,10 @@
             </div>
             <div class="col-md-4 mb-3">
               <%= f.label :gender %>
-              <%= f.select :gender, options_for_select(['Male', 'Female']),
+              <%= f.select :gender, options_for_select(['Male', 'Female'], selected: f.object.gender),
                  {}, {include_blank: false, class: 'form-control'}%>
             </div>
           </div>
-          <!-- Maybe not necessary, too much info in the form
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <%= f.label :age %>
-              <%= f.number_field :age, class: 'form-control' %>
-            </div>
-            <div class="col-md-4 mb-3">
-              <%= f.label "Height (cm)" %>
-              <%= f.number_field :phone, class: 'form-control', placeholder: 'Height in cm' %>
-            </div>
-            <div class="col-md-4 mb-3">
-              <%= f.label "Weight (kg)" %>
-              <%= f.number_field :phone, class: 'form-control', placeholder: 'Weight in kg' %>
-            </div>
-          </div>
-          -->
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <%= f.label :city %>
@@ -68,11 +52,6 @@
               <%= f.label :phone %>
               <%= f.text_field :phone, class: 'form-control', placeholder: 'eg: 123456789' %>
             </div>
-            <!-- <div class="col-md-4 mb-3">
-              <%= f.label :type %>
-              <%= f.select :type, options_for_select(['Client', 'Professional'], selected: f.object.type), 
-                 {}, {include_blank: false, class: 'form-control'} %>
-            </div>  --> 
           </div>
           <div class="form-row">
             <div class="col">

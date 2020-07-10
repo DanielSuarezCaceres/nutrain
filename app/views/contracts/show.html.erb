@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
       <%= render 'contract' %>
-      <%= link_to 'Edit', edit_user_contract_path(@contract, user_id: current_user.id), class: 'btn' %>
+      <%= link_to 'Edit', edit_user_contract_path(@contract), class: 'btn' %>
       <%= link_to 'Back', user_contracts_path(user_id: current_user.id), class: 'btn' %>
     </div>
   </div>

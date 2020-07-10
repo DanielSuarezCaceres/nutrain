@@ -43,7 +43,7 @@ import '../custom/pagy.js.erb';
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function(){
-      $(".alert").fadeOut(4000);
+      $(".alert").fadeOut(5000);
   });
 });
 
@@ -58,24 +58,3 @@ document.addEventListener("turbolinks:load", function () {
 });
 
 // window.addEventListener("turbolinks:load", Pagy.init); -> if using asset pipeline, not necessary with Webpacker
-
-/*
-$(document).ready(function(){
-  ScrollReveal().reveal('.pie-graphics  ', {
-      easing: 'ease-in',
-      delay: 1000,
-      duration: 1000,
-  });
-});
-*/
-
-/*
-$(function(){
-    $(document).foundation();
-    window.scrollReveal = new ScrollReveal();
-});*/
-
-/*
-document.addEventListener('page:change', function() {
-    document.getElementsByClassName('pie-graphics').className += 'animated fadeIn';
-});*/

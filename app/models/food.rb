@@ -29,4 +29,24 @@ class Food < ApplicationRecord
     return food_macros_serving
   end
 
+  def vegan?
+    self.vegan ? 'Yes' : 'No'
+  end
+
+  def vegetarian?
+    self.vegetarian ? 'Yes' : 'No'
+  end
+
+  def gluten_free?
+    self.gluten_free ? 'Yes' : 'No'
+  end
+
+  def soy_free?
+    self.soy_free ? 'Yes' : 'No'
+  end
+
+  def nut_free?
+    self.soy_free ? 'Yes' : 'No'
+  end
+
 end

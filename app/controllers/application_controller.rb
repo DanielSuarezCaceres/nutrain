@@ -16,14 +16,14 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActionController::RoutingError, with: :not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :not_delete
+  #rescue_from ActiveRecord::InvalidForeignKey, with: :not_delete
 
   protected
 
   # tells devise to permit other params too
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :lastname, :phone, :city, :country, :type])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :lastname, :phone, :city, :country, :type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :lastname, :phone, :gender, :description,  :city, :country, :type])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :lastname, :phone, :gender, :description, :city, :country, :type])
   end
 
   def user_not_authorized
@@ -34,8 +34,8 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/404.html", status: 404, layout: false
   end
 
-  def not_delete(e)
-    flash[:error] = "You can not delete this resource"
-  end
+  #def not_delete(e)
+  #  flash[:error] = "You can not delete this resource"
+  #end
 
 end

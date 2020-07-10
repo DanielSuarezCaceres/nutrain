@@ -6,7 +6,8 @@ class DietsController < ApplicationController
       @diets = User.find(params[:client_id]).diets
       @pagy, @diets = pagy(User.find(params[:client_id]).diets)
     else
-      @pagy, @diets = pagy(User.find(params[:user_id]).diets)
+      @q = User.find(params[:user_id]).diets.ransack(params[:q])
+      @pagy, @diets = pagy(@q.result)
       respond_to do |format|
         format.html
         format.pdf do
@@ -83,7 +84,6 @@ class DietsController < ApplicationController
     if @diet.destroy
       redirect_to user_diets_path(current_user), notice: 'Diet deleted successfully'
     else
-      flash[:error] = @diet.errors.full_messages
       redirect_to user_diet_path(@diet), error: 'Something went wrong while deleting diet'
     end
   end
@@ -92,7 +92,8 @@ class DietsController < ApplicationController
     if current_user.diets.delete_all
       redirect_to user_diets_path(current_user), notice: 'All diets deleted successfully'
     else
-      redirect_to user_dietss_path(current_user), flash[:error] = 'Something went wrong while deleting diets'
+      redirect_to user_diets_path(current_user),
+        :flash => { :error => "Something went wrong while deleting diets" }
     end
   end
 

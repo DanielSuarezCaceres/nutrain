@@ -342,6 +342,27 @@ hr {
   border-radius: 5px;
 }
 
+// user in contact form
+#error_explanation {
+  color: #f00;
+  h4 {
+    color: #f00;
+  }
+  ul {
+    margin: 0 0 18px 0;
+  }
+}
+
+.sort_link {
+  text-decoration: none;
+  color: white;
+}
+
+.search-bar {
+  background-color: transparent;
+  align-items: center;
+}
+
 // show same height as other bootstrap inputs
 .select2-container .select2-selection--single {height: 40px !important;}
 

@@ -3,9 +3,11 @@ class RoutinesController < ApplicationController
   before_action :authenticate_user!
   def index
     if params[:client_id]
-      @pagy, @routines = pagy(User.find(params[:client_id]).routines)
+      @q = User.find(params[:client_id]).routines.ransack(params[:q])
+      @pagy, @routines = pagy(@q.result)
     else
-      @pagy, @routines = pagy(User.find(params[:user_id]).routines)
+      @q = User.find(params[:user_id]).routines.ransack(params[:q])
+      @pagy, @routines = pagy(@q.result)
       respond_to do |format|
         format.html
         format.pdf do
@@ -79,8 +81,7 @@ class RoutinesController < ApplicationController
     if @routine.destroy
       redirect_to user_routines_path(current_user), notice: 'Routine deleted successfully'
     else
-      flash[:error] = @routine.errors.full_messages
-      # redirect_to user_routines_path(current_user)
+      redirect_to user_routines_path(current_user), :flash => { :error => "Something went wrong while deleting routine" }
     end
   end
 
@@ -88,7 +89,8 @@ class RoutinesController < ApplicationController
     if current_user.routines.delete_all
       redirect_to user_routines_path(current_user), notice: 'All routines deleted successfully'
     else
-      redirect_to user_routines_path(current_user), flash[:error] = 'Something went wrong while deleting routines'
+      redirect_to user_routines_path(current_user),
+        :flash => { :error => "Something went wrong while deleting routines" }
     end
   end
 

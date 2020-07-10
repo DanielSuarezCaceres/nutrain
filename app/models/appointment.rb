@@ -13,11 +13,13 @@ class Appointment < ApplicationRecord
   # validates :end_time_is_valid_datetime
 
   def start_time_is_valid
-    if start_time < Date.today
-      errors.add(:start_time, 'must be equal or later than today')
-    end
-    if start_time.strftime("%Y").length > 4
-      errors.add(:start_time, 'year is not correct')
+    if !start_time.nil?
+      if start_time < Date.today
+        errors.add(:start_time, 'must be equal or later than today')
+      end
+      if start_time.strftime("%Y").length > 4
+        errors.add(:start_time, 'year is not correct')
+      end
     end
   end
 

@@ -7,7 +7,8 @@ class PsychologyTasksController < ApplicationController
     if params[:client_id]
       @pagy, @psychology_tasks = pagy(User.find(params[:client_id]).psychology_tasks)
     else
-      @pagy, @psychology_tasks = pagy(User.find(params[:user_id]).psychology_tasks)
+      @q = User.find(params[:user_id]).psychology_tasks.ransack(params[:q])
+      @pagy, @psychology_tasks = pagy(@q.result)
       respond_to do |format|
         format.html
         format.pdf do
@@ -94,7 +95,8 @@ class PsychologyTasksController < ApplicationController
     if @psychology_task.destroy
       redirect_to user_psychology_tasks_path(current_user), notice: 'Psychology exercise deleted successfully'
     else
-      flash[:error] = @psychology_task.errors.full_messages
+      redirect_to user_psychology_tasks_path(current_user),
+        :flash => { :error => "Something went wrong while deleting psychology exercise" }
     end
   end
 
@@ -102,7 +104,8 @@ class PsychologyTasksController < ApplicationController
     if current_user.psychology_tasks.delete_all
       redirect_to user_psychology_tasks_path(current_user), notice: 'All psychology tasks deleted successfully'
     else
-      redirect_to user_psychology_tasks_path(current_user), flash[:error] = 'Something went wrong while deleting all psychology tasks'
+      redirect_to user_psychology_tasks_path(current_user),
+        :flash => { :error => "Something went wrong while deleting all psychology exercises" }
     end
   end
 

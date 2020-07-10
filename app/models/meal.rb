@@ -129,14 +129,6 @@ class Meal < ApplicationRecord
     self.soy_free ? 'Yes' : 'No'
   end
 
-  def get_all_foods
-    all_foods = []
-    foods.each do |food|
-      all_foods << food
-    end
-    all_foods
-  end
-
   # used in edit meal view to display ingredient macros in table
   def foods_converted
     foods_result = []

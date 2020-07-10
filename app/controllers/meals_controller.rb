@@ -5,7 +5,9 @@ class MealsController < ApplicationController
   # GET /meals
   def index
     if params[:user_id]
-      @pagy, @meals = pagy(User.find(params[:user_id]).meals)
+      @q = User.find(current_user.id).meals.ransack(params[:q])
+      @pagy, @meals = pagy(@q.result)
+      #@pagy, @meals = pagy(User.find(params[:user_id]).meals)
       respond_to do |format|
         format.html
         format.pdf do
@@ -63,7 +65,8 @@ class MealsController < ApplicationController
     if @meal.destroy
       redirect_to root_path, notice: 'Meal deleted successfully'
     else
-      flash[:error] = @meal.errors.full_messages
+      redirect_to user_meals_path(current_user),
+      :flash => { :error => "Something went wrong while deleting meal" }
     end
   end
 
@@ -71,7 +74,8 @@ class MealsController < ApplicationController
     if current_user.meals.delete_all
       redirect_to user_meals_path(current_user), notice: 'All meals deleted successfully'
     else
-      redirect_to user_meals_path(current_user), flash[:error] = 'Something went wrong while deleting meals'
+      redirect_to user_meals_path(current_user),
+        :flash => { :error => "Something went wrong while deleting meals" }
     end
   end
 

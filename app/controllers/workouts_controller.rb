@@ -4,7 +4,8 @@ class WorkoutsController < ApplicationController
   
   def index
     if params[:user_id]
-      @pagy, @workouts = pagy(User.find(params[:user_id]).workouts)
+      @q = User.find(params[:user_id]).workouts.ransack(params[:q])
+      @pagy, @workouts = pagy(@q.result)
       respond_to do |format|
         format.html
         format.pdf do
@@ -28,7 +29,6 @@ class WorkoutsController < ApplicationController
   def create
     user = current_user
     @workout = user.workouts.new(workout_params)
-    #byebug
     if @workout.valid?
       @workout.save
       redirect_to root_path, notice: 'Workout added successfully' # (current_user)
@@ -54,7 +54,7 @@ class WorkoutsController < ApplicationController
     if @workout.destroy
       redirect_to root_path, notice: 'Workout deleted successfully'
     else
-      flash[:error] = @workout.errors.full_messages
+      redirect_to user_workouts_path(current_user), :flash => { :error => "Something went wrong while deleting workout" }
     end
   end
   
@@ -62,7 +62,8 @@ class WorkoutsController < ApplicationController
     if current_user.workouts.delete_all
       redirect_to user_workouts_path(current_user), notice: 'All workouts deleted successfully'
     else
-      redirect_to user_workouts_path(current_user), flash[:error] = 'Something went wrong while deleting workouts'
+      redirect_to user_workouts_path(current_user),
+        :flash => { :error => "Something went wrong while deleting workouts" }
     end
   end
 

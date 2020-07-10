@@ -11,23 +11,6 @@
 #load(Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb"))
 # to run seed -> db:seed RAILS_ENV=environment_name
 
-adminDaniel = {
-  name: "Daniel",
-  lastname: "Suarez",
-  phone: "643543345",
-  city: "LP",
-  gender: "Male",
-  description: "",
-  country: "Spain",
-  email: "daniel@correo.es",
-  password: "nutrain",
-  nutritionist: false,
-  trainer: false,
-  physiotherapist: false,
-  psychologist: false,
-  verified: false
-}
-
 nutritionistAlberto = {
   name: "Alberto",
   lastname: "Rodriguez",
@@ -266,7 +249,6 @@ userLaura = {
   verified: false
 }
 
-Admin.create(adminDaniel)
 Professional.create(trainerAlvaro)
 Professional.create(trainerAurelio)
 Professional.create(nutritionistAlberto)

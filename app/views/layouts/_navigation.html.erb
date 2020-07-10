@@ -7,9 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navBarMenu">
-      <% if current_user.type == 'Admin' %>
-        <%= render 'layouts/navlinks_admin' %>
-      <% elsif current_user.type == 'Client' %>
+      <% if current_user.type == 'Client' %>
         <%= render 'layouts/navlinks_client' %>
       <% else %>
         <%= render 'layouts/navlinks_professional' %>

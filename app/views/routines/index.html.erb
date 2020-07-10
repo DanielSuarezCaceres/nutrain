@@ -21,6 +21,7 @@
       <th class="text-center">Current?</th>
       <th class="text-center">Days of exercise</th>
       <th class="text-center">Routine goal</th>
+      <th class="text-center"><%= sort_link(@q, :created_at) %></th>
       <th class="text-center">Actions</th>
     </tr>
     <tbody>
@@ -31,6 +32,7 @@
           <td class="text-center"><%= routine.active ? 'Yes' : 'No' %></td>
           <td class="text-center"><%= routine.days_of_exercise %></td>
           <td class="text-center"><%= routine.goal %></td>
+          <td class="text-center"><%= routine.created_at %></td>
           <td class="text-center">
             <%= link_to 'Details', user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>
             <%= link_to 'Edit', edit_user_routine_path(user_id: current_user.id, id: routine.id), class: 'btn' %>

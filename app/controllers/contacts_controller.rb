@@ -10,8 +10,7 @@ class ContactsController < ApplicationController
       ContactsMailer.contact_email(@contact).deliver_now
       redirect_to root_path, notice: 'Email sent successfully'
     else
-      flash[:error] = 'Could not sent message'
-      render 'new'
+      render :new
     end
   end
 
