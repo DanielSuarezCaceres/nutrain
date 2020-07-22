@@ -15,8 +15,8 @@
       <th class="text-center">Name</th>
       <th class="text-center">Lastname</th>
       <th class="text-center">Email</th>
-      <th class="text-center">Gender</th>
-      <th class="text-center">Phone</th>
+      <!-- <th class="text-center">Gender</th>
+      <th class="text-center">Phone</th> -->
       <th class="text-center">City</th>
       <th class="text-center">Country</th>
       <% if current_user.type == 'Client' %>
@@ -35,8 +35,8 @@
           <td class="text-center"><%= user.name %></td>
           <td class="text-center"><%= user.lastname %></td>
           <td class="text-center"><%= user.email %></td>
-          <td class="text-center"><%= user.gender %></td>
-          <td class="text-center"><%= user.phone %></td>
+          <!-- <td class="text-center"><%= user.gender %></td>
+          <td class="text-center"><%= user.phone %></td> -->
           <td class="text-center"><%= user.city %></td>
           <td class="text-center"><%= user.country %></td>
           <% if current_user.type == 'Client' %>
@@ -76,10 +76,10 @@
               <%= link_to 'New appointment', new_user_appointment_path(user_id: current_user.id, professional_id: user.id), class: 'btn' %>
              <% if current_user.has_contract?(user.id) %>
                 <%= link_to Contract.get_contract_message(current_user.id, user.id), 
-                  edit_user_contract_path(user_id: current_user, id: Contract.where(professiona_id: user.id, client_id: current_user.id)),
+                  edit_user_contract_path(user_id: current_user, id: Contract.where(professional_id: user.id, client_id: current_user.id).first),
                   class: 'btn btn-danger' %>
               <% else %>
-                <%= link_to 'Contract request', new_user_contract_path(user_id: current_user.id, client_id: user.id), class: 'btn' %>
+                <%= link_to 'Contract request', new_user_contract_path(user_id: current_user.id, professional_id: user.id), class: 'btn' %>
               <% end %>
             </td>
           <% end %>

@@ -175,7 +175,7 @@
           %>
       </div>
       <div class="" id="container-nutrition-overview-trimester" style="display: none">
-        <% @meals_month= Meal.last_month_meals(current_user.id) %>
+        <% @meals_month= Meal.last_trimester_meals(current_user.id) %>
           <%= line_chart [
               {name: "Total protein per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:protein)},
               {name: "Total carbs per day", data: @meals_month.group_by_day(:day, range: 3.month.ago..Date.today).sum(:carbs)},

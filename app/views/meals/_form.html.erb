@@ -21,9 +21,9 @@
           label: 'Add existing ingredients', include_blank: false, include_hidden: false, class: 'meal-ingredients' %>
       </div>
       <p><small>*Remember that you cant go to <%= link_to 'Foods', user_foods_path(current_user) %> if you need to change any food macronutrients or add new foods.</small></p>
-      <hr>
+      <!-- <hr> -->
       <div class="foods-form">
-        <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
+        <!-- <%= link_to_add_association 'New ingredient', f, :foods, partial: 'foods/food_fields', class: 'btn', id: 'add-ingredient' %>
         <!-- maybe comment this in the future depending on wether user are allowed to edit foods or not -->
         <!-- <%= f.simple_fields_for :foods do |food| %>
           <%= render 'foods/food_fields', f: food %>

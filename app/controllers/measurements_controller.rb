@@ -113,7 +113,7 @@ class MeasurementsController < ApplicationController
         return measurements
       end
       measurements_in_range = []
-      @measurements.each do |measurement|
+      current_user.measurements.each do |measurement|
         measurement_date = measurement.day.strftime("%Y-%m-%d")
         # byebug
         if measurement_date.between?(start_date, end_date)

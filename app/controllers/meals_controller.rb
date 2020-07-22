@@ -145,8 +145,8 @@ class MealsController < ApplicationController
       return meals
     end
     meals_in_range = []
-    @meals.each do |meal|
-      meal_date = meal.created_at.strftime("%Y-%m-%d")
+    current_user.meals.each do |meal|
+      meal_date = meal.day.strftime("%Y-%m-%d")
       if meal_date.between?(start_date, end_date)
         meals_in_range << meal
       end

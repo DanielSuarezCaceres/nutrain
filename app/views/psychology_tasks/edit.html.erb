@@ -12,11 +12,6 @@
           <%= f.input :name, placeholder: 'Name of the exercise' %>
           <%= f.input :description, input_html: { rows: 8 }, placeholder: 'Give some details: explanations, tips, considerations...' %>
           <%= f.input :goal, placeholder: 'What is the goal of this task?'%>
-          <!--
-          <% if @psychology_task.sent_by_id != current_user.id %>
-            SENT BY HERE
-          <% end %>
-          -->
           <%= f.hidden_field :user_id, value: params[:client_id].nil? ? params[:user_id] : params[:client_id] %>
         </div>
         <br><br>

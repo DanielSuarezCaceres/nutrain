@@ -110,7 +110,7 @@ class AppointmentsController < ApplicationController
       return appointments
     end
     appointments_in_range = []
-    @appointments.each do |appointment|
+    current_user.appointments.each do |appointment|
       appointment_date = appointment.created_at.strftime("%Y-%m-%d")
       if appointment_date.between?(start_date, end_date)
         appointments_in_range << appointment

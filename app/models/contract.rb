@@ -6,8 +6,12 @@ class Contract < ApplicationRecord
   validates :professional_id, presence: true
   validates :message, presence: true
   
-  def self.get_contract_message(client_id, professional_id)
-    contract = Contract.where(client_id: client_id, professional_id: professional_id).first
+  def self.get_contract_message(first_id, second_id)
+    if User.find(second_id).type == 'Professional'
+      contract = Contract.where(client_id: first_id, professional_id: second_id).first
+    else
+      contract = Contract.where(client_id: second_id, professional_id: first_id).first
+    end
     if contract.state == 'Active'
       "See contract"
     else
@@ -15,8 +19,12 @@ class Contract < ApplicationRecord
     end
   end
 
-  def self.get_state(client_id, professional_id)
-    contract = Contract.where(client_id: client_id, professional_id: professional_id).first
+  def self.get_state(first_id, second_id)
+    if User.find(second_id).type == 'Professional'
+      contract = Contract.where(client_id: first_id, professional_id: second_id).first
+    else
+      contract = Contract.where(client_id: second_id, professional_id: first_id).first
+    end
     contract.state
   end
 

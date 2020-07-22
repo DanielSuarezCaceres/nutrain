@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
       # @pagy, @exercises = pagy(User.find(params[:user_id]).get_all_exercises)
       # TODO: pagy has problems with array returned by get_all_exercises
       #@exercises = User.find(params[:user_id]).get_all_exercises
-      @pagy, @exercises = pagy(Exercise.user_exercises(current_user.id), outset: 100)
+      @pagy, @exercises = pagy_array(Exercise.user_exercises(current_user.id))
 
     end
     respond_to do |format|

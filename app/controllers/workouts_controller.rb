@@ -129,8 +129,8 @@ class WorkoutsController < ApplicationController
       return workouts
     end
     workouts_in_range = []
-    @workouts.each do |workout|
-      workout_date = workout.created_at.strftime("%Y-%m-%d")
+    current_user.workouts.each do |workout|
+      workout_date = workout.day.strftime("%Y-%m-%d")
       if workout_date.between?(start_date, end_date)
         workouts_in_range << workout
       end
